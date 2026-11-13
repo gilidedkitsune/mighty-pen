@@ -4,7 +4,7 @@ Three Claude Code plugins for written content. One researches, one writes, one e
 
 - **cited-works** researches: stats, quotes, and sources traced to their primary origin, with a do-not-cite trap list and ready-to-use citations.
 - **fresh-ink** writes the draft (9 skills behind one routing spine).
-- **red-pen** edits the draft (verdict-first review, then quick-fix or full report), and bundles the no-slops AI-tells filter so editing works without fresh-ink installed.
+- **red-pen** edits the draft (verdict-first review, then quick-fix or full report).
 
 ## Install (one time)
 
@@ -56,7 +56,7 @@ quill is the front door; it loads the others only when a job needs them.
 | content-formats | Templates for fixed-shape content (customer story, webinar, sales enablement, creator brief) |
 | blog | The blog content-type default: write, brief, optimize, outrank a competitor |
 | ogilvy-copywriting | Persuasion principles, plus an optional voice |
-| no-slops | The AI-tells filter and the 35/50 gate, applied as drafting constraints (also bundled in red-pen) |
+| no-slops | The AI-tells filter and the 35/50 gate, applied as drafting constraints |
 | aeo-craft | The citability sculpt for published work: gets a draft found, extracted, and cited by AI answer engines |
 | seo-geo | Live SEO/GEO data and tooling (setup below) |
 

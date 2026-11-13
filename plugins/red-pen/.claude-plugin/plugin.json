@@ -1,7 +1,7 @@
 {
   "name": "red-pen",
-  "description": "The fix-it tool: a tough, exacting copyeditor with verdict-first review, quick-fix or full report, and concreteness scoring, plus the no-slops AI-tells filter.",
-  "version": "2.3.0",
+  "description": "The fix-it tool: a tough, exacting copyeditor with verdict-first review, quick-fix or full report, and concreteness scoring.",
+  "version": "2.2.1",
   "author": {
     "name": "Taylor"
   }
