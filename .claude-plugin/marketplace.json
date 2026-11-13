@@ -1,0 +1,27 @@
+{
+  "name": "mighty-pen",
+  "owner": {
+    "name": "Taylor"
+  },
+  "description": "Personal writing and editing skills: research, draft, and edit.",
+  "plugins": [
+    {
+      "name": "quill-kit",
+      "source": "./plugins/quill-kit",
+      "description": "The make-it kit: routing spine + craft + voice + personas + formats + SEO/GEO.",
+      "version": "2.2.1"
+    },
+    {
+      "name": "red-pencil",
+      "source": "./plugins/red-pencil",
+      "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring.",
+      "version": "2.2.1"
+    },
+    {
+      "name": "the-archive",
+      "source": "./plugins/the-archive",
+      "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations.",
+      "version": "2.2.1"
+    }
+  ]
+}
