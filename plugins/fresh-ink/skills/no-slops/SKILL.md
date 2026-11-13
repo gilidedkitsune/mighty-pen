@@ -1,222 +1,187 @@
 ---
 name: no-slops
 description: >
-  Audit and clean content for AI writing patterns. Use this skill after drafting any content to eliminate AI tells, slop, and formulaic writing. Trigger on: "no-slops", "noslops", "stop slop", "stop-slop", "slop check", "run no-slops", "run noslops", "audit this draft", "AI tells", "clean up the copy", or any request to review content for AI-generated patterns. Also trigger automatically as part of the blog workflow (Step 6). Works on any prose: blogs, social, emails, landing pages, thought leadership.
+  The AI-tell filter. Reads a draft for the patterns that make writing sound machine-made
+  (stock phrases, tiered vocabulary, structural reflexes, flat rhythm, missing texture), fixes
+  them in place, and scores the result out of 50 with 35 as the bar. Use after drafting
+  anything, and as a drafting constraint before. Trigger on "no-slops", "noslops", "slop
+  check", "stop slop", "AI tells", "does this sound like AI", "de-AI this", "clean up the copy",
+  or "audit this draft". Runs on any prose: posts, emails, pages, essays, scripts.
 ---
 
 # No-slops
 
-One pass. Catch everything. This skill is the single, unified filter: the AI-tells audit and the slop check are one thing, done here.
+A single filter for everything that makes copy read as generated. It is also a rulebook: craft and blog hand it to the writer before the first sentence (prose-craft pass 0), so by the time the audit runs it should come back nearly empty.
 
-Read the draft once through, applying every rule below simultaneously. Fix violations in place. Don't flag them for later. Rewrite them now.
-
+How to run it: one read, every section at once, fixing as you go. Don't produce a list of problems for later; produce the repaired text.
 
 ## 0. Fingerprint check (mechanical, first)
 
-Before the read-through, sweep for P0 fingerprints: near-certain AI artifacts that end credibility on sight. These are search-and-fix, no judgment required:
+Some artifacts are proof on their own that a machine touched the text and nobody read it after. Sweep for these before reading for meaning. They need no judgment, only search:
 
-- **Unfilled placeholders:** [Your Name], [INSERT LINK], [Company], 2026-XX-XX
-- **Citation markup leaks:** oaicite, contentReference, turn0search, attached_file, grok_card
-- **AI-tool URL parameters:** utm_source=chatgpt.com / openai / copilot in any link
-- **Knowledge-cutoff disclaimers:** "As of my last update...", "I don't have access to real-time..."
-- **Chatbot artifacts:** "I hope this helps", "Let me know if...", "Great question", "Certainly!"
-- **Reasoning-chain leakage:** "Let me think about this...", "Step 1:", "First, I'll...", "Okay, so..." — visible-reasoning scaffolding that belongs in a thinking process, not the delivered copy.
-- **Unicode hygiene:** zero-width characters, homoglyphs (lookalike letters from another alphabet), or other invisible/non-standard unicode that can leak in from a copy-paste. Strip on sight; this is a hygiene check, not a detector-evasion technique, and this skill never adds unicode to *defeat* detection.
+| Artifact | What it looks like |
+|---|---|
+| Template residue | Square-bracket blanks, "[Client name]", "TBD-link", dates like 2026-MM-DD |
+| Citation debris | Tool tokens such as `oaicite`, `contentReference`, `turn0search`, `grok_card`, or a stray `attached_file` |
+| Tracking tails | `utm_source=chatgpt.com` or another assistant's name in a link |
+| Model disclaimers | "As of my training data...", "I can't browse the web..." |
+| Assistant manners | "Hope that's useful!", "Happy to adjust!", "Great question", "Absolutely!" |
+| Leaked reasoning | "Let me work through this", "First, I'll outline", "Okay, so the user wants" |
+| Invisible characters | Zero-width spaces, lookalike letters from other alphabets, odd unicode from a paste. Strip them as hygiene; never add unicode to dodge a detector. |
 
-Any one of these shipping in public is worse than every other violation in this file combined.
+One of these in published copy costs more credibility than every other finding combined.
 
-**The mechanical sweep.** Other skills call for "no-slops's mechanical sweep" on short copy and after every rewrite. It means exactly this, run for real and not by eye: the §0 fingerprints above, Tier 1 vocabulary (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`), the banned phrases, em dashes, and adverbs. No scoring; that's §7.
-
+**The mechanical sweep.** When another skill asks for "no-slops's mechanical sweep" (on short copy, or after any rewrite), it means this list, run by search and not by eye: the §0 artifacts, Tier 1 vocabulary (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`), the kill-on-sight phrases in that same file, em dashes, and adverbs. No score; scoring is §7.
 
 ## 1. Kill dead language
 
-Phrases die on sight; words are tiered. See [references/banned.md](references/banned.md) for the full catalog:
+`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md` holds the catalog. Two different rules apply:
 
-- **Phrases** (throat-clearing, vague attribution, chatbot artifacts, compulsive summaries, future closers, false breadth): kill every instance.
-- **Tier 1 words** (delve, tapestry, seamless, leverage-as-verb...): a finding on sight, any register.
-- **Tier 2 words** (crucial, robust, foster, streamline...): legitimate alone; a finding in clusters of 2+ per paragraph. Technical terms (robust, scalable, ecosystem) are fine in dev-facing prose.
-- **Tier 3 words** (significant, innovative, compelling...): a finding only at density, 3+ per ~300 words.
+- **Phrases** are never acceptable. Stalling openers, borrowed authority ("research suggests"), assistant manners, recap endings, crystal-ball closers, everyone-and-their-dog breadth: delete or replace every one.
+- **Words** are tiered by how much it takes to make them a problem. Tier 1 is a finding the first time it appears. Tier 2 is fine alone and a finding when two land in one paragraph. Tier 3 only counts in bulk, three or more in roughly 300 words.
 
-This is the density principle from §10 made mechanical: a single Tier 2 word is not slop; a pileup is. The short version for phrases: if it could appear in any article about any topic and still make grammatical sense, it's filler. Cut it.
-
+The test for any phrase you aren't sure about: could it sit in an article on any subject without changing a word? Then it's carrying nothing. Cut it.
 
 ## 2. Fix the structure
 
-AI defaults to a small set of structural patterns. They feel polished on first read but become obvious in aggregate. See [references/structures.md](references/structures.md) for the full catalog with examples.
-
-The patterns that matter most:
+Models reach for a handful of sentence shapes so often that the shapes themselves become the tell. Individually each looks fine; in aggregate they read as a template. The full catalog, with repairs, is `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/structures.md`. The six that matter most:
 
 ### Binary contrasts / negation-reframes
-Any sentence that negates one framing then asserts a corrected one. "This isn't X. This is Y." / "Not X. Y." / "Forget X. This is Y." / "Less X, more Y." / "The answer isn't X. It's Y."
-
-State Y directly. The reader doesn't need the runway.
+Setting up a wrong idea just to knock it down: "It's not a tool, it's a teammate." "Forget speed. Think trust." Say the second half and skip the straw man.
 
 ### Dramatic fragmentation
-Sentence fragments used as punchlines to create false drama. "Speed. Quality. Cost." / "[Noun]. That's it. That's the [thing]." / "X. And Y. And Z."
-
-Complete sentences. Trust content over presentation.
+Single nouns as drumbeats: "Fast. Private. Yours." "One click. Done." Write the sentence the fragments were avoiding.
 
 ### Rhetorical setups
-Phrases that announce insight rather than deliver it. "What if I told you..." / "Here's what I mean:" / "Think about it:" / "Once you see it this way, you can't unsee it."
-
-Make the point. Let readers draw conclusions.
+Lines that promise a reveal instead of making the point: "Here's the twist." "Picture this:" "Once you notice it, it's everywhere." Make the point; the reader will notice on their own.
 
 ### False agency
-Giving inanimate things human verbs. "The complaint becomes a fix." "The decision emerges." "The market rewards."
-
-Name the human. Someone fixed it. Someone decided. Buyers paid for it. If no specific person fits, use "you."
+Objects doing what people do: "The data tells a story." "The roadmap decided." "Churn is asking us something." Find who actually acted and name them, or address the reader as "you."
 
 ### Narrator-from-a-distance
-Floating above the scene. "Nobody designed this." "This happens because..." "People tend to..."
-
-Put the reader in the room. "You" beats "People." Specifics beat abstractions.
+Commentary from above the scene: "Teams often find..." "There's a reason this keeps happening." Put the reader inside it with a specific person, place, or moment.
 
 ### Overly smooth connectors
-Paragraph openers that create artificial flow. "This belief defines how we build this." "This is personal for us." "That same pattern shows up across the team."
+Openers that fake continuity: "That same energy carries into...", "This is where it gets personal." If the paragraph follows, it needs no bridge; if it needs one, use a word you'd say out loud.
 
-If the paragraph follows logically from the prior one, it doesn't need a connector. If it needs one, use something a person would say out loud.
-
-Also in the full catalog, same severity as the patterns above: **arguing with no one** ("To be clear," "A tempting approach would be": a defense against an objection nobody raised), **vague connection** ("linked to," "associated with": a relationship asserted without being named), **repeated sentence openings**, **a heading restated by its first sentence**, **superficial -ing analyses** ("..., highlighting the importance of"), **false ranges** ("from startups to Fortune 500s"), **synonym cycling** (developers → engineers → practitioners), **formulaic conclusions** ("Despite these challenges..."), **significance inflation** ("stands as a testament to"), the **formatting tells** (bold-lead-in bullet walls, erratic inline bolding, decorative emoji/arrows outside social, colon pileups, bullet-itis, curly quotes inside code), **diff-anchored writing** (docs narrating their own edits instead of the current state), **sudden register shift**, and **question-format headers** (a tell in prose, the deliberate point in search-weave). See [references/structures.md](references/structures.md).
-
+The catalog also covers, at the same severity: rebuttals to objections nobody raised, relationships asserted without being named ("tied to"), runs of identical sentence openings, a first sentence that repeats its heading, trailing "-ing" commentary (", underscoring the need for..."), ranges with no real scale ("from solo founders to global enterprises"), rotating synonyms for one thing, stock conclusions, inflated significance, formatting reflexes (wall-of-bold bullets, decorative emoji, arrow chains, colon stacks), documents that narrate their own edits, abrupt register changes, and question-shaped headers (a tell in ordinary prose; the point of the exercise in search-weave).
 
 ## 3. Enforce voice rules
 
 ### Active voice
-Every sentence needs a human subject doing something. Passive voice hides the actor and drains energy. "X was created" becomes "[Person] created X." "Mistakes were made" becomes "[Person] made mistakes."
-
-Find the actor. Put them at the front of the sentence. Passive is allowed on purpose, to spotlight the object when the actor doesn't matter ("The vulnerability was patched within an hour"), but never as the default.
+Sentences should have someone doing something. "The pricing page was rewritten" hides who did it; "Priya rewrote the pricing page" doesn't. Passive is a choice you can make on purpose, when the thing acted on matters more than who acted ("Every account was migrated by Friday"), but it is never the default.
 
 ### No adverbs
-Kill all adverbs. No -ly words. No softeners ("really," "just," "simply"), no intensifiers ("genuinely," "truly," "deeply"), no hedges ("honestly," "actually," "fundamentally").
-
-If an adverb is propping up a weak verb, replace the verb. "Moved quickly" becomes "sprinted." "Really important" becomes "critical," or better, show why it matters instead of announcing that it does.
+Cut them, -ly words and the unmarked ones too: softeners (just, really, simply), boosters (truly, deeply, incredibly), and fake candor (honestly, frankly, actually). When an adverb is holding a verb up, the verb is wrong: "walked slowly" is "trudged"; "very important" is either a better word or a reason.
 
 ### No em dashes
-Zero em dashes in the final copy. Restructure every sentence that uses one. Use a comma, a period, a colon, a semicolon, or parentheses. Pick the punctuation that fits the sentence's rhythm.
+None in final copy. Rebuild the sentence with a comma, a period, a colon, a semicolon, or parentheses, whichever fits its rhythm. (House style, including en dashes in ranges, is in tone-and-guidelines under Dashes.)
 
 ### Copula inflation
-Use "is," "are," "was," "has." Don't dress them up. "Serves as," "stands as," "represents," "boasts," "features," "offers": these are "is" in a blazer. "The platform serves as a hub" is just "the platform is a hub." When a plain copula works, use it.
+"Is" is a fine verb. "Serves as," "stands as," "functions as," "represents," "boasts" are usually "is" or "has" in costume. "The dashboard serves as the team's source of truth" is "the dashboard is the team's source of truth."
 
 ### Contractions
-Use them. "Don't" beats "do not." "Can't" beats "cannot." Formal prose is not the goal.
+Use them where a person would: don't, it's, we'll. Stiffness isn't rigor.
 
 ### Specificity over declaration
-No vague declaratives. "The reasons are structural" says nothing. "The implications are significant" says nothing. Name the specific reason. Name the specific implication. If you can't name it, you don't know it well enough to write about it.
-
-No lazy extremes doing vague work ("every," "always," "never," "everyone," "nobody"). Use specifics instead of sweeping claims.
+A sentence that announces weight without carrying any ("The impact was substantial." "There are deeper forces at work.") gets replaced by the impact or the force. If you can't name it, you haven't earned the sentence. Sweeping quantifiers (always, never, everyone, no one) get the same treatment: swap in the real scope.
 
 ### Uncertainty
-When you're genuinely uncertain about a claim, say so plainly ("I think," "probably," "kinda"). Honest hedging is human. But don't soften facts you're confident about with qualifiers. State them directly.
-
+Real doubt is allowed and should be plain ("probably," "I'm not sure yet," "my guess"). Doubt sprinkled over things you know is not humility; it's noise. State the known things flatly.
 
 ## 4. Check the rhythm
 
 ### Sentence length
-Audit against the rhythm rule in craft's prose-craft §5 (in any run of five sentences, one under eight words and one over twenty). The tell to catch here: two short sentences in a row can work; three in a row becomes staccato posturing.
+The rule itself lives in craft's prose-craft §5. What to catch here: a pair of short sentences can land; three short ones in a row start to sound like a drum solo.
 
 ### Lists
-Two items beat three. AI defaults to tricolons (groups of three with escalating rhythm). One triple per piece is fine if it genuinely earns it. More than that is a pattern. Default to pairs.
+Models love threes. Default to two items, or to however many actually exist. One deliberate triplet per piece is fine; a habit of them is a tell.
 
 ### Punctuation displacement
-The em-dash ban pushes drafts into colon pileups and semicolon chains instead. One colon-driven sentence per paragraph, at most. If every sentence has a hinge, nothing hinges.
+Without em dashes, drafts tend to swap in colons and semicolons for every hinge. Allow one colon-hinged sentence per paragraph at most. When every sentence pivots, none of them do.
 
 ### Paragraph endings
-Vary how paragraphs end. If every paragraph closes with a punchy one-liner, it reads as a formula. Let some paragraphs end mid-thought and carry into the next.
+If every paragraph lands on a short zinger, the zingers become wallpaper. Let some paragraphs stop plainly or run into the next.
 
 ### Sentence starters
-Watch for Wh- word openers becoming a crutch. "What makes this hard is..." becomes "The constraint is..." or better, name the specific constraint directly. Don't start paragraphs with "So." Don't start sentences with "Look,".
+Watch for crutch openers: "What's interesting is", "The thing about X is", "So," at the top of a paragraph, "Look," anywhere. Start with the subject.
 
 ### Quotability
-If a sentence sounds like it belongs on a motivational poster or a LinkedIn carousel, rewrite it. Cut quotables.
-
+A line built to be screenshotted ("Clarity is a kindness you pay forward") is usually empty. Rewrite it as something specific or cut it.
 
 ## 5. Catch the second-generation tells
 
-Copy scrubbed of the obvious tells grows its own. These survive the first pass, so hunt them on the second.
+Once the obvious tells are gone, a cleaner but still synthetic layer shows up. Look for it on the second read.
 
-**Performed cleverness.** Surprising adjective-noun pairs that sound writerly: "confident lies," "elegant catastrophe," "quiet violence." They come from reaching for clever, not from knowing something. Replace with a concrete fact.
+- **Performed cleverness:** odd adjective-noun pairings that sound literary and mean little ("honest chaos," "a gentle brutality"). Replace with the fact underneath.
+- **Wisdom-shaped objects:** sentences with the cadence of insight and no claim anyone could dispute ("Some lessons only arrive late."). Make it specific enough to argue with, or delete it.
+- **Perfect balance:** every point qualified, every section the same size, every argument resolved. People write unevenly; they linger where they care.
+- **Omniscient casual:** a relaxed voice that is never wrong and never unsure. Real experts show the edges of what they know.
 
-**Wisdom-shaped objects.** Sentences built like an insight that say nothing you could argue with: "And that tension never really goes away." Delete it, or make it specific and debatable.
-
-**Perfect balance.** Every claim met with a qualifier, every paragraph the same length, every argument tidy. Real writing is lopsided. It spends where the writer cared and rushes the rest. Let it be uneven.
-
-**Omniscient casual.** A voice that knows everything and admits no gaps. Writers who actually know a subject also know what they don't, and it shows. Let the friction show.
-
-For worked before/after examples (what AI strips out of great copy, and why specific beats slop), see [references/slop-vs-gold.md](references/slop-vs-gold.md).
-
+Worked pairs (machine version against the human original, with what changed) are in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/slop-vs-gold.md`.
 
 ## 6. Build texture, don't just strip tells
 
-Removing slop gets you clean. Clean isn't the same as human: a sterile, even, friction-free draft is its own tell. The fix is generative. Create the asymmetry a real writer leaves behind.
+A draft with every tell removed can still read as generated, because it's too even. After cleaning, add back the unevenness a person leaves:
 
-**Uneven density.** The part the writer cares about gets the most words. The boring part gets compressed or cut. Equal coverage reads as generated. Spend where it matters.
-
-**Register mixing.** A real vocabulary is lumpy: a technical term in one line, "stuff" in the next. If every sentence draws from the same word pool, it reads as generated.
-
-**Structural lopsidedness.** Let one paragraph run long because there was more to say, and one run short because there wasn't. Don't distribute length evenly, and don't alternate long-short for rhythm. Designed rhythm is detectable.
-
-**Opinions that cost something.** "Impressive and a little troubling" is a hedge in an opinion's clothing. Commit: "the latency numbers are cherry-picked," or "this migration was a mistake and they know it." If you genuinely can't form a take, say so. Don't manufacture balance.
-
-**First person that means something.** Skip "here's what stays with me." If you use "I," tie it to a real thought: "I read this twice and the second paragraph still contradicts the fourth."
-
+- **Spend unevenly.** Give the part that matters the most room, and squeeze or drop the parts that don't.
+- **Mix registers.** A precise term next to a casual one ("the p99 latency, which is to say the bad days") is how people actually talk.
+- **Vary shape on purpose, not on a schedule.** A long paragraph because there was more to say; a one-liner because there wasn't. Alternating long and short by rule is its own pattern.
+- **Take positions that could be wrong.** "Promising, with caveats" is a dodge. "The benchmark only holds on warm caches" is a position. If there's no take to have, say that instead of inventing balance.
+- **Use "I" for real thoughts.** Not "what strikes me is", but "I tried the import twice and it dropped the same three rows both times."
 
 ## 7. Score it
 
-Rate the draft 1-10 on each dimension:
+Score each dimension from 1 to 10:
 
-| Dimension | Question |
-|-----------|----------|
-| Directness | Does it state things or announce them? |
-| Rhythm | Varied or metronomic? |
-| Trust | Does it respect the reader's intelligence? |
-| Authenticity | Does it sound like a person wrote it? |
-| Density | Is there anything you could cut without losing meaning? |
+| Dimension | Ask |
+|---|---|
+| Directness | Does it say things, or say that it's about to? |
+| Rhythm | Does the length and shape vary like speech, or tick like a metronome? |
+| Trust | Does it assume a smart reader, or explain what they already know? |
+| Authenticity | Could a specific person have written this, or anyone? |
+| Density | Is there a sentence you could delete without losing anything? |
 
-**Below 35/50: revise before presenting.** Go back through the draft and fix the weakest dimension first.
-
+**Under 35 out of 50 doesn't ship.** Revise the lowest-scoring dimension first, then score again.
 
 ## 8. Second pass and self-audit
 
-After revising, re-read the **rewrite**, not the original. Rewrites grow their own tells: recycled transitions, a copula swap that snuck back in, a fresh Tier 2 cluster. Ask one question — *"What makes this still read as AI-generated?"* — answer it in two or three blunt bullets, fix those, then score. One corrective pass is the cap; a third rarely finds anything new and costs a full regeneration.
-
+Reread the revised text, not the original: rewrites introduce their own tells (a fresh "furthermore," a copula that crept back, a new Tier 2 pair). Ask yourself, "What here would still make a reader suspect a model?" Write two or three blunt answers, fix them, then score. Stop after one corrective round; a third pass rarely finds anything and usually flattens the voice.
 
 ## 9. Severity, channels, and what to preserve
 
-**Severity (maps to red-pen's Red/Yellow/Blue):**
-- **P0 / Red** — fingerprints (§0) and vague attribution propping a factual claim. Never ships.
-- **P1 / Yellow** — Tier 1 vocabulary, kill-on-sight phrases, structural patterns (§2). Fix before presenting.
-- **P2 / Blue** — Tier 2/3 density, rhythm, and texture (§4–6). Fix in the revise loop; judgment applies.
+**Severity** (lines up with red-pen's Red, Yellow, Blue):
+- **P0 / Red:** §0 artifacts, and vague attribution holding up a factual claim. Never ships.
+- **P1 / Yellow:** Tier 1 words, kill-on-sight phrases, and the §2 structures. Fixed before anyone sees the draft.
+- **P2 / Blue:** Tier 2 and 3 density, rhythm, texture (§4 to §6). Fixed in revision, with judgment.
 
-**Channel calibration** (rules flex by destination; em dashes are zero everywhere):
+**By channel** (em dashes are zero in all of them):
 
-| Channel | Adjustment |
+| Channel | How the rules flex |
 |---|---|
-| Blog / long-form / web | Full strength |
-| Social | Structure rules relax (fragments and platform emoji conventions allowed); vocabulary tiers still enforced |
-| Email | Full strength; subject lines may fragment |
-| Docs / technical | Tier 2 technical words (robust, scalable, ecosystem, comprehensive) are legitimate where they carry real meaning; everything else full strength |
+| Blog, long-form, web pages | Everything at full strength |
+| Social | Fragments and platform emoji conventions are allowed; the vocabulary tiers still apply |
+| Email | Full strength, except subject lines may be fragments |
+| Docs and technical writing | Tier 2 terms with a precise technical meaning (robust, scalable, ecosystem, comprehensive) are fine; the rest at full strength |
 
-**Fixing a tell never adds a fact.** A repair may cut, merge, restructure, or shorten, but a name, number, date, quote, citation, or claim must come from the source or the writer. If a sentence needs a detail you don't have, ask for it or write the simpler sentence. An unsupported addition is a worse failure than the tell it replaced.
+**Never add a fact while fixing a tell.** A repair can delete, merge, reorder, or simplify. It can't introduce a name, number, date, quote, source, or claim that the writer or the source didn't provide. Missing a detail? Ask, or write the plainer sentence. An invented specific is worse than the tell it replaced.
 
-**Preserve on sight — never sand these off:**
-- Specific, hard-to-fabricate detail (names, numbers, dates, first-hand observations)
-- Mixed feelings and unresolved tension
-- Era-bound references, and deliberate repetition of the right word
-- Genuine asides, self-corrections, and lopsided emphasis
+**Protect these on sight:**
+- Details that are hard to fake: names, figures, dates, things the writer saw
+- Ambivalence that the writer didn't resolve
+- References that date the piece, and a right word repeated on purpose
+- Real asides, self-corrections, and lopsided emphasis
 
-A scrub that removes these made the draft worse, not cleaner. If the rewrite is more polished but less alive, put the life back.
-
+If a cleanup leaves the draft smoother but deader, it went too far; put the life back.
 
 ## 10. Sources
 
-The structural and vocabulary catalog draws on Wikipedia's ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup, by way of [blader/humanizer](https://github.com/blader/humanizer) v3.0.0 (MIT), cross-checked against the larger 55-pattern catalog in [Aboudjem/humanizer-skill](https://github.com/Aboudjem/humanizer-skill) (MIT) for coverage gaps. Patterns that duplicated house rules were dropped; the ones kept were rewritten to this stack's stricter standards (zero em dashes rather than sample-matched, pairs over triads). The worked before/after examples in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/slop-vs-gold.md` are ours.
+The structural and vocabulary catalog started from Wikipedia's "Signs of AI writing" page, maintained by WikiProject AI Cleanup (https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), and was checked for gaps against two MIT-licensed humanizer catalogs on GitHub (blader/humanizer and Aboudjem/humanizer-skill). Entries were selected, reorganized, and rewritten for this rulebook's stricter house rules; the worked examples are original.
 
-Last cross-checked against both catalogs: October 2026. Worth a re-check periodically; the tells move as models change (em dash suppression attempts, new hedging patterns) faster than any fixed list stays current.
+Re-check the catalog every few months. Tells shift as models change, and a fixed list goes stale.
 
 ## 11. The editorial judgment call
 
-The question is never "does this pattern exist in the text?" It's "is this an intentional rhetorical choice, or is AI defaulting to a pattern?"
+The question is never whether a pattern appears. It's whether the writer chose it or the model fell into it. A keynote or a manifesto can carry more rhetoric than a product email. What gives a draft away is density: patterns stacked closer together than a person would ever stack them.
 
-Some content types (manifestos, speeches, pitch decks) earn more rhetorical energy than others. Blog posts and emails earn less. The problem is always density: when patterns appear at a frequency no human writer would produce organically.
-
-Audit for pattern density first, not individual instances. Then read the whole thing out loud. If any sentence sounds performative or rehearsed, cut it.
+So audit for density first, single instances second. Then read the whole draft aloud, and cut any line that sounds rehearsed.

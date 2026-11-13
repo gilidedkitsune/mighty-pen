@@ -1,256 +1,93 @@
-# Banned phrases and tiered vocabulary
+# The dead-language catalog
 
-Two kinds of entries. **Phrases die on sight** — no register makes them good. **Words are tiered**: the tier tells you when a word becomes a finding. This makes the density principle in SKILL.md mechanical: a single Tier 2 word is not a finding; a cluster is.
+The reference behind no-slops §1. It holds two kinds of entry with two different rules:
 
----
-
-## Phrases: kill on sight
-
-### Throat-clearing openers
-
-Remove these and state the content directly.
-
-- "Here's the thing:"
-- "Here's what [X]" / "Here's this [X]" / "Here's that [X]" / "Here's why [X]"
-- "The uncomfortable truth is"
-- "It turns out"
-- "The real [X] is"
-- "Let me be clear"
-- "The truth is,"
-- "I'll say it again:"
-- "I'm going to be honest"
-- "Can we talk about"
-- "Here's what I find interesting"
-- "Here's the problem though"
-
-- "Let's dive in" / "Let's explore" / "Let's break this down"
-- "Here's what you need to know"
-- "Without further ado"
-- "Let's be honest" / "Real talk"
-- "The thing is"
-- "Now let's look at"
-
-Any "here's what/this/that" construction is throat-clearing. Cut it. The staged-candor openers ("Honestly?", "Look,", "Real talk") are the same move wearing a friendlier face: "honestly" inside a casual sentence is ordinary, the tell is the standalone opener before a routine claim.
-
-### Emphasis crutches
-
-These add no meaning. Delete them.
-
-- "Full stop." / "Period."
-- "Let that sink in."
-- "Read that again."
-- "This matters because"
-- "Make no mistake"
-- "Here's why that matters"
-- "This changes everything"
-- "Are you paying attention?"
-- "You're not ready for this"
-
-### Dead AI language
-
-- "In today's [anything]..."
-- "It's important to note that..." / "It's worth noting..."
-- "I'd be happy to help"
-- "In order to"
-- "In a world where"
-- "When it comes to"
-- "At the end of the day"
-- "The reality is"
-- "At its core"
-
-### Dead transitions
-
-- "Furthermore" / "Additionally" / "Moreover"
-- "Moving forward"
-- "To put this in perspective..."
-- "What makes this particularly interesting is..."
-- "The implications here are..."
-- "In other words..."
-- "It goes without saying..."
-
-### AI cringe
-
-- "Supercharge" / "Unlock" / "Future-proof"
-- "10x your productivity"
-- "The AI revolution"
-- "In the age of AI"
-
-### Generic insider claims
-
-- "Here's the part nobody's talking about"
-- "What nobody tells you"
-- Anything with "nobody" or "most people don't realize"
-
-### Wisdom templates
-
-An ordinary point dressed as a hidden truth. The dressing adds no detail. Replace each with the specific claim.
-
-- "The real question is"
-- "What really matters is"
-- "The deeper issue is"
-- "The heart of the matter"
-- "X is the language of Y" / "the currency of" / "the architecture of"
-- "X becomes a trap"
-- "X is not a tool but a mirror"
-- "X is the new Y"
-
-### Vague connection *(see structures.md for the full pattern)*
-
-Saying two things are related without saying how. Name the relationship or flag the gap; never invent one.
-
-- "associated with" / "in association with"
-- "connected to" / "in connection with"
-- "linked to" / "tied to"
-
-### Vague attribution *(escalates to P0 when it props a factual claim)*
-
-Name the source or cut the claim. See tone-and-guidelines (Bibliography and attribution) and red-pen's claims-and-proof lens.
-
-- "Experts believe / experts say"
-- "Studies show" / "Research suggests"
-- "Industry reports indicate"
-- "Many argue" / "Some critics say"
-- "It is widely known/accepted"
-
-**Notability name-dropping.** A variant of vague attribution: listing prestigious outlets or names as proof instead of saying what they actually reported. "Covered by TechCrunch, Forbes, and The Verge" asserts credibility by association without a single claim attached. Name what each source said, or cut the list down to the one that's actually load-bearing.
-
-**Hallucination markers.** A suspiciously precise, unverifiable number or fact stated with full confidence: an exact percentage, an oddly specific date, a named-but-uncheckable study. Precision is not the same as sourcing. If you can't trace it, the specificity is a tell, not a strength: round it to what you actually know, or cut it.
-
-### Chatbot artifacts and sycophancy *(P0 — these end credibility)*
-
-- "I hope this helps"
-- "Let me know if you have any questions"
-- "Certainly!" / "Of course!"
-- "Great question" / "Excellent point"
-- "You're absolutely right"
-- "Would you like me to..." / "Want me to...?"
-- "Should I continue?" / "Shall I go on?"
-- "Here is a..." / "Here's the [thing] you asked for"
-
-The offers are the half most often missed, because they wrap real content instead of sitting on top of it. Remove the wrapper, keep the content.
-
-### Compulsive summaries
-
-Endings that restate instead of land. Cut; end on the last point.
-
-- "In conclusion" / "In summary" / "To sum up"
-- "Overall," (as a closer)
-- A final paragraph that repeats the piece in miniature
-
-### Generic future closers
-
-- "The future looks bright"
-- "Only time will tell"
-- "It remains to be seen"
-- "Exciting times ahead"
-- "may become one of the most important [X]"
-
-### False breadth
-
-- "Whether you're a [X] or a [Y]"
-- "For everyone from [X] to [Y]" (see False ranges in structures.md)
-- "...and beyond"
-
-### Hedge stacks
-
-One hedge max, and only when the uncertainty is real (SKILL.md §3, Uncertainty).
-
-- "could potentially"
-- "may possibly"
-- "might arguably"
-
-### Weak corporate language
-
-- "We're not trying to be difficult"
-- "I want to be transparent"
-
-### Meta-commentary
-
-Remove self-referential asides. The writing should move, not announce its own structure.
-
-- "Hint:" / "Plot twist:" / "Spoiler:"
-- "You already know this, but"
-- "But that's another post"
-- "X is a feature, not a bug"
-- "Dressed up as"
-- "The rest of this essay explains..."
-- "Let me walk you through..."
-- "In this section, we'll..."
-- "As we'll see..."
-- "I want to explore..."
-
-### Performative emphasis
-
-False intimacy or manufactured sincerity:
-
-- "creeps in"
-- "I promise"
-- "They exist, I promise"
-- "This is genuinely hard"
-- "This is what leadership actually looks like"
-- "actually matters"
-
-### Vague declaratives
-
-Sentences that announce importance without naming the specific thing:
-
-- "The reasons are structural"
-- "The implications are significant"
-- "This is the deepest problem"
-- "The stakes are high"
-- "The consequences are real"
-
-If a sentence says something is important without showing the specific thing, cut it or replace it with the specific thing.
+- **Phrases** are findings every time, in every register. Delete them or say the thing they were standing in for.
+- **Words** are tiered by how much it takes to make them a problem. One Tier 2 word is ordinary English; three in a paragraph are a fingerprint.
 
 ---
 
-## Tier 1 words — replace on sight
+## Part 1: Phrases (always a finding)
 
-A tell in any register. Each entry covers its inflections (plurals, gerunds, participles).
+Each family below lists representative phrasings, not every variant. If a phrase does the family's job, it belongs to the family.
 
-`delve` · `tapestry` · `testament (to)` · `realm` · `paradigm (shift)` · `embark` · `beacon` · `nestled` · `bustling` · `ever-evolving` · `game-changer` · `groundbreaking` (figurative) · `cutting-edge` · `seamless` · `synergy` · `thought leader` · `learnings` · `actionable` · `impactful` · `leverage` (verb) · `utilize` · `deep dive` (noun) · `unpack` (analysis) · `landscape` (metaphor) · `boasts` · `showcase / showcasing` · `vibrant` · `meticulous` · `intricate / intricacies` · `interplay` · `pivotal` · `underscore(s)` · `garner` · `elevate` (metaphor) · `empower` (marketing sense) · `harness` (metaphor) · `unleash` · `myriad` · `plethora` · `holistic`
+| Family | What it's doing | Examples | Repair |
+|---|---|---|---|
+| **Stalling openers** | Clearing the throat before the point | "Here's the thing", "Here's why that matters", "So here's what happened", "Let's dive in", "Let's unpack this", "Without further ado", "Now, let's turn to", "The truth is", "It turns out", "The real story is", "I'll be honest with you", "Can we talk about" | Start with the point |
+| **Staged candor** | Pretending to drop the act | Standalone "Honestly?", "Real talk:", "Look,", "Let's be real" before an ordinary claim | Make the claim; candor shows in content |
+| **Emphasis props** | Insisting a line matters | "Let that sink in", "Read that twice", "Full stop.", "Make no mistake", "This changes everything", "Big if true", "You're not ready" | Cut; if it matters, the sentence shows why |
+| **Boilerplate scaffolding** | Filler the model uses to get moving | "In today's fast-moving world", "In an era of", "When it comes to", "At the end of the day", "In order to", "It's worth noting that", "It's important to remember", "At its heart" | Delete; "in order to" is "to" |
+| **Stiff transitions** | Essay-machine joints | "Furthermore", "Moreover", "Additionally", "With that in mind", "That said, it's clear that", "To put it another way", "Needless to say", "Going forward" | Let the logic connect the paragraphs, or use but / so / because |
+| **Hype verbs and slogans** | Launch-deck energy | "Supercharge your", "Unlock the power of", "Take it to the next level", "Future-proof your", "10x your", "The AI revolution is here" | Name the actual change and its size |
+| **Secret-knowledge hooks** | Claiming an insight nobody else has | "What nobody tells you", "The part everyone misses", "Most people don't realize", "The dirty secret of" | State the insight; if it's real, it lands without the frame |
+| **Wisdom costumes** | An ordinary point dressed as a revelation | "The real question is", "What it all comes down to", "The deeper issue", "X is the new Y", "X is the currency of Y", "X isn't a tool, it's a mirror", "X becomes a trap" | Replace with the specific claim |
+| **Unnamed links** | Asserting a relationship without naming it | "tied to", "linked to", "associated with", "connected to", "in relation to" | Say how the two are related, or flag that you don't know |
+| **Borrowed authority** | Sources without a source (P0 when it props a fact) | "Studies show", "Research suggests", "Experts agree", "Industry data indicates", "Critics argue", "It's widely accepted" | Name the source or drop the claim; see tone-and-guidelines, Bibliography and attribution |
+| **Assistant manners** | Chat-window residue (P0) | "I hope this helps", "Happy to tweak this", "Let me know if you'd like", "Great question", "You're absolutely right", "Want me to keep going?", "Here's the draft you asked for" | Strip the wrapper, keep whatever it wrapped |
+| **Recap endings** | Restating instead of landing | "In conclusion", "To wrap up", "All in all", "Ultimately, it's clear that", a final paragraph that replays the piece | End on the last real point |
+| **Crystal-ball closers** | Vague futures | "The future is bright", "Only time will tell", "It'll be exciting to see", "This is just the beginning", "could reshape the entire industry" | End on a fact, a consequence, or a next step |
+| **Fake breadth** | Pretending to cover everyone | "Whether you're a startup or an enterprise", "From beginners to experts", "and so much more", "and beyond" | Name who it's actually for |
+| **Stacked hedges** | Doubt on top of doubt | "could potentially", "might possibly", "may arguably", "somewhat likely" | One hedge, only when the doubt is real (no-slops §3, Uncertainty) |
+| **Self-narration** | The text describing itself | "In this post, we'll", "As we'll see", "Let me walk you through", "I want to explore", "Spoiler:", "Plot twist:", "More on that later", "But that's a story for another day" | Just do the thing being announced |
+| **Manufactured sincerity** | Performing feeling | "I promise", "This is genuinely hard", "and that's what real leadership looks like", "it actually matters", "it quietly creeps in" | Show the hard part or the stake with a detail |
+| **Weight without content** | Announcing importance | "The stakes couldn't be higher", "The implications are huge", "This is the core problem", "The effects are real" | Replace with the stake, the implication, the problem |
 
-**Replace with:** the plain word (use, is, has), or the specific thing. "Leverages AI" → "uses AI." "A testament to our commitment" → the thing you actually did.
+**Two more P0 patterns** that hide inside otherwise fine sentences:
 
-## Tier 2 words — flag in clusters (2+ in one paragraph)
-
-Legitimate alone; damning together.
-
-`crucial` · `key` (adjective) · `essential` · `profound` · `enduring` · `renowned` · `foster` · `navigate` (challenges) · `enhance` · `ensure` · `robust`\* · `comprehensive`\* · `scalable`\* · `ecosystem`\* · `streamline` · `facilitate` · `resonate` · `transform / transformative` · `revolutionize` · `cultivate` · `encompass` · `nuanced` · `multifaceted` · `cornerstone` · `paramount` · `poised` · `burgeoning` · `nascent` · `quintessential` · `overarching` · `catalyze` · `augment` · `spearhead` · `bolster`
-
-\* Legitimate in technical and developer contexts (docs, engineering blogs) where they carry specific meaning. Flag them in marketing prose.
-
-## Tier 3 words — flag at density (3+ per ~300 words)
-
-Filler that only registers in bulk.
-
-`significant` · `innovative` · `effective` · `dynamic` · `compelling` · `powerful` · `unprecedented` · `exceptional` · `remarkable` · `sophisticated` · `valuable` · `instrumental` · `world-class`
+- **Logo-wall credibility:** listing outlets or institutions as proof ("featured in Wired, Fast Company, and the BBC") without saying what any of them reported. Say what the load-bearing one actually said, or cut the list.
+- **Suspicious precision:** an exact, uncheckable figure stated with total confidence ("73.4% of teams", "a 2019 Stanford study" with no title). Precision without a traceable source is a tell, not a strength. Trace it, round it to what you know, or cut it.
 
 ---
 
-## Business jargon
+## Part 2: Words (tiered)
 
-| Avoid | Use instead |
-|-------|-------------|
-| Navigate (challenges) | Handle, address |
-| Unpack (analysis) | Explain, examine |
-| Lean into | Accept, embrace |
-| Align with | Match, fit, support |
-| Diverse array | Name the actual set |
-| Landscape (context) | Situation, field |
-| Game-changer | Name the specific change |
-| Double down | Commit, increase |
-| Deep dive | Analysis, examination |
-| Take a step back | Reconsider |
-| Moving forward | Next, from now |
-| Circle back | Return to, revisit |
-| On the same page | Aligned, agreed |
+Each entry includes its inflections: plurals, -ing and -ed forms, adverb forms.
 
-## Adverbs — house style rule
+### Tier 1: a finding on first sight, any register
 
-This one is stricter than tell-detection: it's brand voice. Kill all of them. No -ly words. No softeners, intensifiers, or hedges.
+`actionable` · `beacon` · `boast` · `bustling` · `cutting-edge` · `deep dive` (noun) · `delve` · `elevate` (figurative) · `embark` · `empower` (marketing sense) · `ever-evolving` · `game-changer` · `garner` · `groundbreaking` (figurative) · `harness` (figurative) · `holistic` · `impactful` · `interplay` · `intricate` · `landscape` (figurative) · `learnings` · `leverage` (verb) · `meticulous` · `myriad` · `nestled` · `paradigm` · `pivotal` · `plethora` · `realm` · `seamless` · `showcase` · `synergy` · `tapestry` · `testament` · `thought leader` · `underscore` · `unleash` · `unpack` (meaning "analyze") · `utilize` · `vibrant`
 
-- "really" / "just" / "literally" / "genuinely" / "honestly"
-- "simply" / "actually" / "deeply" / "truly"
-- "fundamentally" / "inherently" / "inevitably"
-- "interestingly" / "importantly" / "crucially"
+**Repair:** use the plain verb (use, has, is, show) or name the specific thing. "Leveraging our platform" is "using the platform." "A testament to the team" is whatever the team did.
+
+### Tier 2: fine alone, a finding when two or more share a paragraph
+
+`augment` · `bolster` · `burgeoning` · `catalyze` · `comprehensive`\* · `cornerstone` · `crucial` · `cultivate` · `ecosystem`\* · `encompass` · `enduring` · `enhance` · `ensure` · `essential` · `facilitate` · `foster` · `key` (adjective) · `multifaceted` · `nascent` · `navigate` (problems) · `nuanced` · `overarching` · `paramount` · `poised` · `profound` · `quintessential` · `renowned` · `resonate` · `revolutionize` · `robust`\* · `scalable`\* · `spearhead` · `streamline` · `transform` / `transformative`
+
+\* Acceptable in technical writing where the word has a precise meaning (a scalable queue, a robust parser). Count them in marketing prose.
+
+### Tier 3: a finding only in bulk (three or more in about 300 words)
+
+`compelling` · `dynamic` · `effective` · `exceptional` · `innovative` · `instrumental` · `powerful` · `remarkable` · `significant` · `sophisticated` · `unprecedented` · `valuable` · `world-class`
+
+---
+
+## Part 3: Office-speak swaps
+
+| Instead of | Try |
+|---|---|
+| align on | agree on |
+| circle back | come back to, follow up |
+| double down | commit further |
+| lean into | accept, use |
+| move the needle | change the number (and name it) |
+| navigate challenges | handle, fix, work around |
+| on the same page | agreed |
+| take a step back | reconsider |
+| touch base | check in |
+| unpack | explain |
+| a diverse array of | name the set |
+| the [industry] landscape | the market, the field, or the specific players |
+
+---
+
+## Part 4: Adverbs (house rule)
+
+Stricter than tell-detection: this is the house voice. Adverbs go, including these favorites:
+
+- Softeners: just, really, simply, quite, rather
+- Boosters: truly, deeply, incredibly, extremely, literally
+- False candor: honestly, frankly, actually, genuinely
+- Analyst filler: fundamentally, inherently, inevitably, essentially
+- Signposts: interestingly, importantly, notably, crucially
+
+If removing one leaves the sentence weak, the verb or noun was the problem; replace that.

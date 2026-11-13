@@ -1,243 +1,189 @@
-# Website Copy Best Practices
+# Website copy: page-level rules
 
-Rules specific to website copy (homepages, landing pages, feature pages, pricing pages). These layer on top of the tone-and-guidelines and the GEO/AEO writing rules. No duplication: this file covers what those don't.
-
----
-
-## The 5-question test
-
-Every page must answer these five questions within seconds:
-
-1. **What is this?**
-2. **Who is it for?**
-3. **Why should I care?**
-4. **Why should I trust you?**
-5. **What should I do next?**
-
-If a visitor can't answer all five from the first screen, the page is underperforming. Use this as a pre-publish gut check on every page.
+For homepages, landing pages, feature pages, and pricing pages. These sit on top of tone-and-guidelines and the search and AI writing rules, so this file covers only what they don't.
 
 ---
 
-## Above-the-fold framework
+## The five-question test
 
-The first screen does most of the work. It should contain:
+A visitor should be able to answer all five from the first screen. If they can't, the page is underperforming. Use it as a pre-publish check on every page.
 
-- **Clear headline**: what this is and why it matters
-- **Supporting subhead**: the outcome or value prop in one sentence
-- **Primary CTA**: one action, specific language
-- **Visual proof**: demo, screenshot, or product in action
-- **Trust signal**: logo bar, user count, testimonial snippet, or recognizable customer
-
-If any of these are missing, the page starts at a deficit.
+1. What is this?
+2. Who is it for?
+3. Why should I care?
+4. Why should I trust you?
+5. What should I do next?
 
 ---
 
-## Headline formula
+## The first screen
 
-The strongest web headlines follow this pattern:
+The first screen carries most of the page's weight. It should hold:
 
-**Desired outcome + speed, cost, or status advantage**
+- A headline that says what this is and why it matters
+- A subhead with the outcome or value in one sentence
+- One primary action, with specific wording
+- Visual proof: a demo, a screenshot, the product working
+- A trust signal: a logo bar, a user count, a short testimonial, or a recognizable customer
 
-Strong:
-- Build your website in days, not months
-- Save $20K on your next website redesign
-- Launch faster without hiring a dev team
-- Turn ideas into live products instantly
-
-Weak:
-- Welcome to the future of innovation
-- Digital transformation made simple
-- Your partner in growth
-
-The headline should be specific enough that a stranger can understand the product's value in under three seconds.
+A page missing any of these starts behind.
 
 ---
 
-## Voice of customer beats voice of brand
+## Headlines
 
-The strongest headlines are usually a paraphrase of something a real customer already said. Copy is assembled from their words, not invented in ours. When you have quotes, interviews, reviews, or support tickets, mine them for:
-- **their verbs:** "chase invoices," not "manage accounts receivable"
-- **the before-state:** what they were doing 30 seconds before they signed up
-- **the unprompted result:** not "increased efficiency" but "I got my weekends back"
-- **the admitted objection:** "I almost didn't try it because..."
+Strong web headlines pair an outcome with a concrete advantage: speed, cost, or status.
 
-If all you have is "we help teams collaborate," you don't have a headline yet. Get the customer's real words first. Their language out-converts ours because it's already in the reader's head.
+- Strong: "Ship a site in days, not months." "Cut a redesign bill by $20K." "Launch without hiring a dev team."
+- Weak: "Welcome to the future of innovation." "Digital transformation made simple." "Your partner in growth."
 
----
-
-## CTA specificity
-
-Generic CTAs underperform. Every CTA should describe what happens when the user clicks.
-
-Weak:
-- Learn More
-- Submit
-- Click Here
-- Get Started
-
-Strong:
-- Start Building Free
-- Generate Your Website
-- See How It Works
-- Get Your First Draft
-
-Match the CTA language to the page's purpose. A pricing page CTA is different from a feature page CTA.
+A stranger should understand the value in about three seconds.
 
 ---
 
-## Objection handling
+## Customer language first
 
-Great web copy anticipates hesitation and answers it on the page. Common objections to address proactively:
+The best headlines usually restate something a real customer already said. Copy assembled from the customer's words beats copy invented in our own. When interviews, reviews, or support tickets are available, mine them for:
 
-- "Will this actually work for my use case?"
-- "Is AI good enough for production?"
-- "Do I still need developers?"
-- "Will this look generic?"
-- "What if I get stuck?"
-- "Is my data secure?"
+- Their verbs: "chase invoices," not "manage receivables"
+- The before state: what they were doing right before they signed up
+- The unprompted result: "I got my weekends back," not "improved efficiency"
+- The admitted hesitation: "I almost skipped it because..."
 
-Place objection handling after the value proposition and proof sections. FAQ sections, comparison tables, and "who this is for / who this isn't for" blocks all serve this purpose.
+If the only draft line is "we help teams collaborate," the headline isn't written yet. Get the customer's words first, because they're already in the reader's head.
 
 ---
 
-## Friction reduction
+## Calls to action
 
-Every unanswered question creates friction. Strong pages address these explicitly:
+A call to action should say what happens when someone clicks.
 
-- **What happens next?** (after signup, after clicking, after purchasing)
-- **How long does it take?** (to see results, to build, to onboard)
-- **What's included?** (at each tier, in the free plan, in the trial)
-- **Is this difficult?** (skill level required, learning curve)
-- **What's the risk?** (refund policy, free tier, no credit card required)
+- Weak: "Learn more," "Submit," "Click here," "Get started."
+- Strong: "Start building free," "Generate your site," "See how it works," "Get your first draft."
 
-Surface these answers near the CTA, not buried in a help doc.
+Match the wording to the page's job. A pricing page's button reads differently from a feature page's.
 
 ---
 
-## Social proof placement
+## Objections
 
-Trust is the core conversion lever. High-performing pages use proof throughout, not just in a testimonials section:
+Good web copy answers hesitation before the visitor has to ask. Common ones: "Will this work for my case?", "Is it good enough for production?", "Do I still need developers?", "Will the result look generic?", "What if I get stuck?", "Is my data safe?"
 
-- **Logo bars**: near the top, after the hero
-- **Usage metrics**: specific numbers ("40,000+ sites built" not "thousands of users")
-- **Testimonials**: placed next to the claims they support, not isolated
-- **Case study snippets**: embedded in feature sections as evidence
-- **Screenshots**: real product, real output, not stock illustrations
-- **Recognizable customers**: named companies, not anonymous logos
-
-Proof should appear within scrolling distance of every major claim.
+Answer them after the value and the proof. FAQs, comparison tables, and "who this is for and who it isn't for" blocks all do this job.
 
 ---
 
-## Information scent and page momentum
+## Friction
 
-Users should always know where they are, what comes next, and why it matters. Every section should create natural momentum toward the next.
+Every open question costs a conversion. Answer these near the call to action, not in a help article:
 
-- Each section's closing line should create a reason to keep reading
-- Visual hierarchy guides the eye downward
-- Subheads preview what's coming, not just label what's there
-- CTAs appear at natural decision points, not just at the bottom
-
-If a user stops scrolling mid-page, the information scent broke.
-
----
-
-## Homepage restraint
-
-A homepage should:
-
-- **Orient**: what is this company/product
-- **Excite**: why should I care
-- **Clarify**: how does it work (brief)
-- **Move users deeper**: route to feature pages, pricing, use cases
-
-A homepage should NOT attempt to explain the entire product. Too much copy creates paralysis. The homepage is a routing page with a value proposition, not a product manual.
+- What happens after I sign up or click?
+- How long until I see results?
+- What's included at each tier, and on the free plan?
+- How hard is it? What skill do I need?
+- What's the risk? Refunds, free tiers, no card required?
 
 ---
 
-## One purpose per page
+## Proof placement
 
-Every page should primarily do one thing:
+Trust is the main conversion lever. Spread proof through the page instead of collecting it in one testimonials block:
 
-- **Convert**: pricing, signup, trial start
-- **Educate**: feature deep-dive, how it works
-- **Compare**: vs. competitors, vs. alternatives
-- **Capture**: lead gen, newsletter, gated content
-- **Explain**: use case pages, industry-specific landing pages
+- Logos right after the hero
+- Specific numbers: "40,000 sites built," not "thousands of users"
+- Testimonials placed beside the claim they support
+- Case study snippets inside feature sections
+- Real screenshots of real output, not stock art
+- Named customers, not anonymous logos
 
-Trying to do everything on one page weakens all of it. If a page has competing CTAs or mixed purposes, split it.
-
----
-
-## Mobile-first writing
-
-Most users hit your copy on phones. That means:
-
-- Shorter sentences (mobile line breaks happen sooner)
-- Tighter paragraphs (two to three sentences max)
-- Stronger spacing between sections
-- Clearer visual hierarchy (subheads do more work on small screens)
-- Headlines that work in two lines, not four
-
-Desktop-optimized dense writing underperforms on mobile. Write for the small screen first, then verify it looks good on desktop.
+Proof should sit within a scroll of every major claim.
 
 ---
 
-## The page flow formula
+## Momentum
 
-The strongest pages follow this sequence:
-
-1. **Clear headline**: What is this?
-2. **Outcome-oriented subhead**: Why should I care?
-3. **Proof**: Why should I trust you?
-4. **Objection handling**: Why won't this fail?
-5. **CTA**: What should I do next?
-
-This isn't the only valid structure, but it's the highest-converting default. Deviate when the page type demands it (comparison pages lead with the comparison; pricing pages lead with the tiers), but use this as the starting framework.
+Readers should always know where they are and what's next. Each section's last line should give a reason to keep reading. Subheads should preview what follows, not just label it. Calls to action belong at decision points, not only at the bottom. If a reader stops scrolling mid-page, the thread broke.
 
 ---
 
-## Page-type structure templates
+## Homepage scope
 
-Structure adapts to the page's job. Use these as starting frameworks, not rigid templates.
+A homepage orients (what is this), creates interest (why care), gives a brief explanation (how it works), and routes people deeper. It is a routing page with a value statement, not a product manual. Too much copy there causes paralysis.
 
-### General web copy
+---
 
-Covers homepage, feature pages, pricing pages, solution pages, persona pages, industry pages, and any persistent page on the site. These pages live on the site long-term and serve mixed traffic across awareness levels.
+## One job per page
 
-**Homepage:** Orient, excite, route. Hero with outcome headline → social proof bar → three to four feature highlights linking deeper → audience routing ("For founders", "For developers") → closing CTA. Restrain scope: tease depth, don't explain the whole product.
+Each page should primarily do one thing: convert (pricing, signup, trial), teach (how it works), compare (against alternatives), capture (lead or newsletter), or explain (a use case or industry). Competing jobs weaken every one of them. If a page mixes them, split it.
 
-**Feature page:** Problem this feature solves → mechanism (how it works) → demo or screenshot → proof (use cases, before/after) → feature-specific CTA. Lead with the problem, not the feature name. Schwartz Stage 3-4 treatment: explain how yours is different.
+---
 
-**Pricing page:** Scannable tier comparison → what's included (specifics, not vague descriptors) → objection handling per tier → CTA per tier. Clarity over narrative. Name the price. Address the top three objections on the page.
+## Mobile
 
-**Solution / persona / industry page:** Audience-specific pain point → how the product solves it for this audience → proof from similar users → CTA. Mirror the reader's language. These pages are Schwartz problem-aware to solution-aware: the reader feels the pain and is comparing options.
+Most people read on a phone, so write for the small screen first:
 
-**Rules for all general web copy:**
-- One clear purpose per page. Competing CTAs weaken all of them.
-- Above the fold: headline + outcome subhead + primary CTA + visual proof + trust signal.
-- Headlines follow the outcome + advantage formula. No vague branding language.
-- Objection handling appears after value prop and proof, not buried in a help doc.
-- Every section creates a reason to keep scrolling or click deeper.
-- Show the product. Screenshots, demos, real output. No stock illustrations.
+- Short sentences, since mobile line breaks come sooner
+- Paragraphs of two or three sentences at most
+- Generous spacing between sections
+- Subheads doing the navigation work
+- Headlines that fit in two lines, not four
 
-### Single-use landing page
+Dense desktop prose underperforms on mobile.
 
-Campaign-specific pages tied to a single traffic source (paid ad, email, event, social, contest). These pages exist to convert on one goal and are disposable once the campaign ends.
+---
 
-**Structure** (adapt sections to the campaign; skip what doesn't apply, but maintain the order):
-1. **Hero**: bold headline + tagline or outcome statement + primary CTA + urgency element (countdown timer, deadline, limited availability)
-2. **How it works**: clear mechanics in two to three short steps. Remove all ambiguity about what happens after the user acts.
-3. **Offer / value**: what they get. Prizes, credits, access, deliverable. Be specific and visual.
-4. **CTA section**: repeat the primary action with a direct prompt. Registration or submission form lives here.
-5. **Social proof / trust**: partnership logos, winners, testimonials, user count. Matched to the campaign context.
-6. **Terms / fine print**: eligibility, rules, disclaimers. Bottom of page.
-7. **Footer**: minimal. Copyright only. No sitemap, no secondary links.
+## Default page flow
+
+The highest-converting default order:
+
+1. Headline: what is this?
+2. Subhead: why should I care?
+3. Proof: why should I trust it?
+4. Objections: why won't this fail?
+5. Call to action: what next?
+
+Deviate when the page type requires it. Comparison pages open with the comparison; pricing pages open with the tiers.
+
+---
+
+## Page-type patterns
+
+These are starting points for the page's job, not fixed templates.
+
+### Standing pages
+
+Homepages, feature pages, pricing, solution and persona pages, and industry pages. They stay live for a long time and get traffic at every stage of awareness.
+
+- **Homepage:** headline, a proof bar, three or four feature highlights that link deeper, audience routes ("for founders," "for developers"), and a closing action. Tease depth; don't explain everything.
+- **Feature page:** the problem, how the feature solves it, a demo or screenshot, proof from real use, and an action tied to the feature. Lead with the problem, not the feature's name. The reader is usually comparing options by this point, so show what's different about the mechanism.
+- **Pricing page:** a scannable comparison of tiers, what each includes in concrete terms, the top three objections handled on the page, and an action for each tier. Name the prices.
+- **Solution, persona, and industry pages:** the pain specific to that audience, how the product addresses it for them, proof from similar users, and an action. Use the reader's vocabulary. The reader feels the pain and is comparing options.
+
+**Rules for every standing page:**
+- One purpose. Competing actions weaken all of them.
+- The first screen has the headline, subhead, primary action, visual proof, and a trust signal.
+- Headlines use the outcome-plus-advantage pattern. No vague brand language.
+- Objections come after the value and the proof, on the page.
+- Every section gives a reason to scroll or click deeper.
+- Show the product in use. No stock illustration.
+
+### Single-campaign landing pages
+
+Pages tied to one traffic source (a paid ad, an email, an event, a social post, a contest), built to convert once and retired afterward.
+
+**Sections, in order** (adapt the content, keep the order):
+1. **Hero:** the headline, an outcome statement, the primary action, and a real urgency element (a deadline, a limit).
+2. **How it works:** two or three short steps. Remove any doubt about what happens after the visitor acts.
+3. **The offer:** what they get, stated specifically and visually.
+4. **Action section:** the primary action repeated with a direct prompt. The form lives here.
+5. **Trust:** partner logos, winners, testimonials, user counts that match the campaign.
+6. **Fine print:** eligibility, rules, disclaimers, at the bottom.
+7. **Footer:** copyright only. No sitemap, no extra links.
 
 **Rules:**
-- No site navigation. The page is standalone. Every exit path that isn't the CTA is a leak.
-- One CTA. One. Repeated at the hero and the CTA section, but never competing with a second action.
-- Message match: the headline must deliver on whatever the ad, email, or social post promised. If the ad says "build your site in 5 minutes," the landing page opens with that exact promise.
-- Schwartz diagnosis is most critical here. The traffic source determines the reader's awareness level: paid search is usually solution-aware, social ads might be problem-aware or unaware. Consult `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` and match the copy to the intersection.
-- Copy length follows awareness. Unaware readers need longer pages. Most-aware readers need just the offer and a button.
-- Strip everything that doesn't serve the conversion. No "about us," no feature tours, no secondary links.
+- No site navigation. Every exit besides the action is a leak.
+- One action, repeated where it's needed, never competing with a second.
+- Message match: the headline delivers the promise the ad or email made. If the ad said "build your site in five minutes," the page opens with that exact promise.
+- The traffic source sets the reader's awareness. Paid search is usually solution-aware; social ads may be problem-aware or unaware. Use `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` to match the copy to that position.
+- Length follows awareness. Unaware readers need a longer page; a most-aware reader needs the offer and a button.
+- Remove anything that doesn't help convert: no "about us," no feature tour, no secondary links.

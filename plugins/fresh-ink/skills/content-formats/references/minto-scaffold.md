@@ -1,30 +1,30 @@
-# Answer-First Document Scaffold (Minto / SCQA)
+# Answer-first document scaffold (pyramid and SCQA)
 
-A document-level argument skeleton for content types that must land a conclusion fast with a busy reader: executive summaries, 1-pagers, bylines and thought leadership, and sales enablement. Loaded by craft at the outline step for those types.
+The argument skeleton for documents that must land a conclusion with a busy reader: executive summaries, one-pagers, bylines and thought pieces, and sales arguments. craft loads it at the outline step for those types.
 
-This is STRUCTURE (the order an argument is built in), not drafting craft. It is distinct from the passage-level answer-first rule in `SEO-GEO-drafting.md`: that rule makes each section independently extractable; this one organizes the whole document's logic so the point lands first and the support hangs beneath it.
+This governs the order of the whole document's argument. It is separate from the passage-level rule in `SEO-GEO-drafting.md`, which requires each section to stand alone for extraction. Here the point comes first, and the support sits beneath it.
 
 ## The shape
 
-1. **Governing thesis up top.** One sentence stating the answer or recommendation. The reader gets the takeaway before any setup. Decision-makers who read nothing else read this.
+1. **Thesis first.** One sentence stating the answer or the recommendation. A reader who stops here still has the takeaway.
 
-2. **SCQA lead.** A short setup that earns the thesis:
-   - **Situation:** the shared, uncontested context.
-   - **Complication:** what changed, or what is at stake (the tension).
-   - **Question:** the question the complication raises (often implied, not written out).
-   - **Answer:** the thesis, landed as the resolution.
+2. **SCQA lead.** The short setup that justifies the thesis:
+   - **Situation:** the context everyone already accepts.
+   - **Complication:** what changed, or what's at risk. This is the tension.
+   - **Question:** the question the complication forces (often left unwritten).
+   - **Answer:** the thesis, now landed as the resolution.
 
-3. **Three to five supporting arguments, MECE.** Each supports the thesis and stands on its own. MECE means Mutually Exclusive (arguments do not overlap) and Collectively Exhaustive (together they make the case with no obvious gap). Each argument leads with its point, then its evidence.
+3. **Three to five supporting arguments.** Each one backs the thesis and stands apart from the others. Together they should cover the case with no obvious hole. Each opens with its claim, then gives the evidence.
 
-4. **Close on the action.** What the reader should now do, decide, or believe.
+4. **A closing action.** What the reader should now decide, do, or believe.
 
-## Per-type notes
+## By document type
 
-- **Executive summary:** thesis and recommendation first; the SCQA lead is one tight paragraph; the supporting arguments are the key findings. One to two pages.
-- **1-pager:** thesis as the headline; SCQA compressed to a few lines; arguments as scannable sections.
-- **Byline / thought leadership:** the thesis is the fresh or contrarian claim; SCQA earns the right to make it; each argument should stand as a quotable point.
-- **Sales enablement:** pairs with the asset templates (battle card, objection handler, one-sheet); reach for the pyramid when the asset has to argue a position, not just list facts.
+- **Executive summary:** thesis and recommendation first, the SCQA lead in one tight paragraph, the findings as the arguments. One to two pages.
+- **One-pager:** the thesis becomes the headline, SCQA compresses to a few lines, arguments become scannable sections.
+- **Byline or thought piece:** the thesis is the fresh or contrarian claim. SCQA earns the right to make it. Each argument should work as a quotable point.
+- **Sales argument:** pairs with the asset templates in `sales-enablement-template.md`. Use the pyramid when the asset has to take a position, not just list facts.
 
-## Integrity check (self-review, or hand to red-pen)
+## Integrity check
 
-Reverse-outline the draft: pull each section's topic sentence into a tree under the thesis. Do they collectively support it (exhaustive)? Do any overlap (not exclusive)? Does any section fail to roll up to the thesis? A gap or an overlap means the argument is not tight yet.
+Reverse-outline the draft: write each section's topic sentence as a tree beneath the thesis. Ask two questions. Do the arguments together cover the thesis (no gap)? Does any argument repeat another (no overlap)? A section that doesn't roll up to the thesis is either a second argument or a cut. Fix the gaps and overlaps before any line editing, or the edit polishes an argument that doesn't hold.

@@ -1,28 +1,28 @@
-# JTBD Four Forces (push / pull / anxiety / habit)
+# Four forces of switching (push, pull, anxiety, habit)
 
-A switching model for conversion content, complementary to Schwartz. Schwartz tells you how aware the reader is; the Four Forces tell you what actually moves them off their current behavior. Use it for content that asks the reader to switch or adopt: web and landing copy, ads, nurture email, "vs" and migration pages.
+A model of why someone changes what they do. Schwartz tells you how aware the reader is; the four forces tell you what moves them off their current behavior. Use it for copy that asks someone to switch or adopt: landing pages, ads, nurture email, and "vs" or migration pages.
 
-Run Schwartz first (awareness and sophistication set the angle), then check the forces. This complements the diagnosis; it does not replace it.
+Run Schwartz first, so the awareness level and market stage set the angle. Then check the forces. This adds to the diagnosis; it doesn't replace it.
 
-## The four forces
+## The forces
 
-A reader switches only when the forces toward change beat the forces against it:
+A reader switches only when the forces pushing toward change outweigh the forces holding them back.
 
-- **Push** of the current situation: the frustration with how things are now. ("Waiting days on a dev for one landing page.")
-- **Pull** of the new solution: the appeal of the new way. ("Describe it, ship it the same day.")
-- **Anxiety** of the new: fear and uncertainty about switching. ("Is the output real code? Will it scale? Is it mine?")
-- **Habit** of the present: inertia, sunk cost, the comfort of the current workflow. ("We already have a process, even if it's slow.")
+- **Push:** the frustration with how things are now. ("Waiting days on a developer for one landing page.")
+- **Pull:** the appeal of the new option. ("Describe it, see it live the same day.")
+- **Anxiety:** the fear of switching. ("Is the output real code? Will it hold up? Do I keep control of it?")
+- **Habit:** inertia, sunk cost, the comfort of the current process. ("We have a process. It's slow, but it's ours.")
 
-Most copy oversells the pull and ignores the two forces working against the switch. For a developer tool, where readers are leaving hand-coding or another builder, **anxiety and habit are usually the real blockers**, and they are exactly what the VoC anxieties bucket surfaces.
+Most copy oversells pull and ignores the other two. For developer tools, the blockers are usually anxiety and habit. The VoC anxieties bucket in voc-message-mining is where to find them in the buyer's own words.
 
-## Using it
+## Applying it
 
-Capture all four in the customer's words (pull anxiety and habit straight from the VoC anxieties bucket when you have it). Then make the draft:
+Collect all four forces in the customer's language. Then build the draft around them:
 
-- Lead with push plus pull (the case for change).
-- Name and defuse at least one real anxiety before the CTA ("your code is yours, exportable, production-grade").
-- Break at least one habit or lower one switching cost ("import your existing stack," "no migration weekend").
+- Open with push and pull: the case for changing.
+- Name and answer at least one real anxiety before the call to action ("your code is yours, exportable, and production-grade").
+- Break or lower at least one habit ("bring your existing stack," "no migration weekend").
 
-A draft that is all-pull, that never names the incumbent or a switching fear, is the most common conversion miss. If the piece addresses neither an anxiety nor a habit, that is the gap to close.
+The most common conversion miss is copy that is all pull, names no incumbent, and raises no fear of switching. If the piece addresses neither an anxiety nor a habit, that's the gap to close first.
 
-For red-pen: a light coverage check can flag conversion copy that is all-pull and addresses neither anxiety nor habit.
+red-pen can flag conversion copy that's all pull, with nothing on anxiety or habit.

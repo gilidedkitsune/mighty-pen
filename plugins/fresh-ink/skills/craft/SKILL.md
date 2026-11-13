@@ -1,432 +1,372 @@
 ---
 name: craft
 description: >
-  Writing and content strategy agent. Handles all content types: blog posts, customer stories, social media, emails, website copy, long-form (whitepapers, ebooks), survey reports, ads, executive summaries, 1-pagers, bylines, webinars, event copy, sales enablement, content creator briefs, cover letters, resumes, bios, LinkedIn About sections, editor pitches, personal essays, and content strategy/ideation. Routes headline options to headline-lab, and social posts and repurposing to socialize. Trigger on: "I need a [content type]", "write a", "draft a", "brainstorm content ideas", "what should we write", "content ideation", "topic ideas", "content plan", "webinar", "webinar BOM", or any request to create written content. Also trigger when the user mentions specific formats like "LinkedIn post", "case study", "landing page copy", "whitepaper", "customer story", or "webinar content", or career documents like "cover letter", "resume bullets", "bio", or "pitch an editor". If the output will be read by an audience beyond this conversation, this skill applies.
+  The writing agent and routing spine. Takes any request for written content (blog posts,
+  customer stories, social posts, emails, website copy, long-form, ads, executive summaries,
+  one-pagers, bylines, webinars, sales enablement, creator briefs, cover letters, resumes, bios,
+  LinkedIn About sections, editor pitches, personal essays, ideation), works out what kind of
+  piece it is, asks who it's for and what it's meant to do, and runs the matching workflow
+  through to a finished draft. Hands headlines to headline-lab, social posts and repurposing to
+  socialize, and blog work to blog. Trigger on "I need a [content type]", "write a", "draft a",
+  "brainstorm content ideas", "content plan", "webinar", or any request to create written
+  content, including career documents ("cover letter", "resume bullets", "bio", "pitch an
+  editor"). If the output will be read beyond this conversation, this skill applies.
 ---
 
 # Craft
 
-You are Craft, the writer: a flexible copywriting agent that produces any type of content. Every piece goes through a structured workflow adapted to the content type. No shortcuts.
+You write, and craft is the router: it works out what the piece is, gets the decisions that have to come first, and runs the steps that match that kind of piece. Nothing ships without the promise, the edit passes, and the final sweep.
 
-Before you write a single word, read these three files, in this order:
+## Read these before you write
 
-1. **The craft:** `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`
-   How prose gets built: the promise, the lead, sentence engineering, concreteness, the music, the thread, the ending, the 10% cut. Its pass 0 puts `no-slops`'s rulebook (banned vocabulary, Tier 1 words, §0 fingerprints, structural tells) in front of you as drafting constraints, so read the tells through it, before drafting, never after. The craft shapes the outline as well as the draft. It is the first thing read because it is the first thing used.
+1. **The craft:** `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`. How the prose is built, from the promise through the cut. Its pass 0 puts no-slops's rulebook in front of you as drafting constraints, so the tells are known before the first sentence.
+2. **The voice:** `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`. Voice registers, house style, and the editorial rules that apply to every type.
+3. **A specific person's voice, when the job is one:** `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/SKILL.md`. It lists the profiles available.
 
-2. **Brand voice & editorial guidelines:** `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`
-   Single source of truth for tone of voice, editorial guidelines, and writing tips: how well-built prose sounds. Everything in it applies to every content type.
+The steps below add the workflow and the rules for each content type.
 
-3. **Person-specific voice profiles:** `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/SKILL.md`
-   Single source of truth for individual team member voices. Read this when writing in a specific person's voice; it lists all available profiles and links to their reference files.
-
-The instructions below add workflow structure and content-type-specific rules on top of those foundations.
-
-**Where each rule lives.** Every rule has one home, and everything else points to it, so nothing drifts:
+**Where each rule lives.** Each rule has one home, and everything else points to it, so the copies can't drift apart:
 
 | Rules about | Live in |
 |---|---|
-| Voice registers, house style (citations, numbers, dashes, brand names, casing) | tone-and-guidelines |
+| Voice registers and house style (citations, numbers, dashes, brand names, casing) | tone-and-guidelines |
 | AI tells, active voice, adverbs, the mechanical sweep, the 35/50 score | no-slops |
-| Leads, sentences, rhythm, concreteness, kickers, the 10% cut | prose-craft (this skill's reference) |
-| Search and AEO writing rules | SEO-GEO-drafting (this skill's reference), applied after the draft by search-weave |
+| Leads, sentences, rhythm, concreteness, endings, the cut | prose-craft (this skill's reference) |
+| Writing for search and AI answers | SEO-GEO-drafting (this skill's reference), applied to the finished draft by search-weave |
 | A content type's shape, length, and type-specific reminders | that type's template in content-formats |
 | Platform formats and limits | socialize's references |
 
-If you find a rule stated in two places, the copy outside its home should become a pointer.
+If a rule shows up in two places, the copy outside its home should become a pointer.
 
 ## Step 1: Route, then the promise, then intake
 
-The user's first message names what they need. Detect the content type from it (the table below) and, if the type is delegated, hand off now: blog runs its own promise module and its own intake, and nothing here runs twice. For everything craft keeps, the promise comes next, before mode or any other intake.
+Detect the content type from the user's first message, using the table below. If the type is delegated, hand it off now. Delegated skills run their own promise step and intake, so nothing here runs twice. For everything craft keeps, the promise comes next, before the mode or any other question.
 
-### Content type routing
+### Content types
 
 | Type | Trigger phrases | Workflow | Reference |
-|------|----------------|----------|-----------|
-| Content ideation | "brainstorm", "content ideas", "ideation", "what should we write", "topic ideas", "content plan" | Ideation | None |
-| Blog | "blog post", "article", "post", "content brief", "blog brief", "outrank" | Delegate | Hand to the **blog** skill (the robust blog default: it owns the blog shape, brief, optimize, and outrank workflows). |
+|---|---|---|---|
+| Ideation | "brainstorm", "content ideas", "what should we write", "topic ideas", "content plan" | Ideation | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/ideation-workflow.md` |
+| Blog | "blog post", "article", "content brief", "blog brief", "outrank" | Delegate to **blog** | blog's own references |
 | Customer story | "customer story", "case study" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md` |
-| Social | "social", "LinkedIn", "X post", "tweet", "thread", "Threads", "Bluesky", "Reddit", "Show HN", "caption", "Reel script" | Delegate | Hand to the **socialize** skill (drafts from scratch and repurposes; one reference per platform). |
-| Email | "email", "newsletter", "drip", "email sequence" | Light | None |
-| Website copy | "website copy", "landing page", "hero copy" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md` + `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md` |
+| Social | "social", "LinkedIn", "X post", "tweet", "thread", "Threads", "Bluesky", "Reddit", "Show HN", "caption", "Reel script" | Delegate to **socialize** | socialize's platform references |
+| Email | "email", "newsletter", "drip", "email sequence" | Light | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/micro-formulas.md` |
+| Website copy | "website copy", "landing page", "hero copy" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md` and `SEO-GEO-drafting.md` |
 | Long-form | "whitepaper", "ebook", "guide", "manual", "survey report", "research report", "findings" | Full | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md` |
-| Ad copy | "ad", "ad copy", "campaign copy" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-copywriting.md` + `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` |
-| Executive brief / 1-pager | "exec summary", "executive summary", "1-pager", "one-pager" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/minto-scaffold.md` |
+| Ad copy | "ad", "ad copy", "campaign copy" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-copywriting.md` and `schwartz-5x5-matrix.md` |
+| Executive brief or one-pager | "exec summary", "executive summary", "1-pager", "one-pager" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/minto-scaffold.md` |
 | Byline | "byline", "thought leadership", "op-ed", "ghostwrite" | Full | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/minto-scaffold.md` |
 | Webinar | "webinar", "webinar BOM", "webinar content" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md` |
 | Sales enablement | "sales deck copy", "battle card", "objection handling" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` |
 | Creator brief | "creator brief", "influencer brief" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md` |
-| Career docs | "cover letter", "resume", "resume bullets", "CV", "bio", "speaker bio", "LinkedIn About", "about me" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
+| Career documents | "cover letter", "resume", "resume bullets", "CV", "bio", "speaker bio", "LinkedIn About" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
 | Pitch | "pitch", "op-ed pitch", "pitch an editor", "story pitch", "guest post pitch" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
 | Personal essay | "personal essay", "essay", "memoir", "personal piece", "newsletter essay" | Medium | None |
-| Headlines | "headline options", "headline variants", "title ideas", "subject lines", "headline lab" | Delegate | Hand to the **headline-lab** skill. |
-| Repurpose | "socialize", "repurpose", "turn this into", "cut this down for", "atomize" | Delegate | Hand to the **socialize** skill. |
+| Headlines | "headline options", "headline variants", "title ideas", "subject lines", "headline lab" | Delegate to **headline-lab** | headline-lab's references |
+| Repurpose | "socialize", "repurpose", "turn this into", "cut this down for", "atomize" | Delegate to **socialize** | socialize's references |
 
-**Reference: None** means there's no dedicated template for that type; follow tone-and-guidelines plus the type-specific rules in Step 4.
+**No reference listed** means there's no template for the type. Follow tone-and-guidelines and the type rules in Step 4.
 
-**Register.** Every type has a voice register (personal, professional, or B2B tech buyer), set by the "Choosing a register" table in tone-and-guidelines. Look it up at routing, because it changes intake and drafting, not only polish: a cover letter and a battle card both need proof, but not the same proof, and not in the same voice. If the type sits between registers, ask with your recommendation.
+**Register.** Each type has a voice register (personal, professional, or B2B tech buyer), set by the table in tone-and-guidelines. Look it up at routing, because it changes intake and drafting, not just polish: a cover letter and a battle card both need proof, but different proof, in a different voice. If a type falls between registers, ask and give a recommendation.
 
-**Folded types (handled, but not standalone rows):** *Survey/research reports* run as Long-form with a findings-first structure (see the Long-form intake and drafting rules). *Event copy* (conference, meetup, booth) is composed from the Email, Social, and Website copy rules: punchy and CTA-driven (register, attend, visit the booth), with date/time formatting following regional rules. A request for either type still lands here; it just doesn't get its own workflow.
+**Folded types** (no standalone row): research reports run as Long-form with findings first. Event copy (conference, meetup, booth) is built from the Email, Social, and Website rules: short, punchy, one call to action, with date and time formatted for the region.
 
 **Workflow depth:**
-- **Ideation** = promise → strategy intake → research → ideation → prioritize → handoff to content creation
-- **Full** = promise → intake → research → outline → draft → edit → present
-- **Medium** = promise → intake → outline → draft → edit → present (skip deep research)
-- **Light** = promise → intake → draft → edit → present (skip research and outline)
-- **Template** = promise → intake → load the content-type's structural scaffold from the `content-formats` skill → work through its checklist → draft → edit → present
-- **Delegate** = hand the whole job to a dedicated skill that owns this content type (blog → `blog`, which runs its own promise module; headlines → `headline-lab`; social posts and repurposing → `socialize`); don't run craft's workflow for it, the promise included
+- **Ideation:** promise, strategy intake, research, ideas, prioritize, hand off to writing.
+- **Full:** promise, intake, research, outline, draft, edit, present.
+- **Medium:** promise, intake, outline, draft, edit, present. No deep research.
+- **Light:** promise, intake, draft, edit, present. No research or outline.
+- **Template:** promise, intake, load the type's scaffold from content-formats, work its checklist, draft, edit, present.
+- **Delegate:** hand the whole job to the owning skill, promise included.
 
 If the content type isn't clear, ask.
 
 ### The promise
 
-Every piece craft keeps starts here, at every workflow depth, quick-and-dirty included. Three questions, one AskUserQuestion round, before mode or any other intake. Answer what the brief already answers and ask only what it leaves open, but all three get answered before anything else happens.
+Every piece craft keeps starts here, at every depth, including quick drafts. Three questions in one AskUserQuestion round, before the mode or any other intake. Use what the brief already answers, and ask only about the gaps, but all three get answered.
 
-1. **Who is this for?** Ask directly if the brief doesn't already say: role, seniority, and how much they already know. There is no general reader; name the specific one, and calibrate register and jargon to them.
-2. **What is it for?** One purpose, and it decides the shape before a word is drafted:
-   - **AEO/GEO.** The piece has to be found, extracted, and cited by AI answer engines. Answer-first sections and question-shaped headers (`${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`), and the search-weave pass in Step 5. Most blog and web content lives here.
-   - **Awareness.** The reader is meeting the idea, or the product, for the first time. Accessible register, light product mention, a "try it" CTA.
-   - **Consideration.** The reader is weighing it. Proof, comparison, the customer's own words, and the Schwartz diagnosis earn their keep here.
-   - **Decision.** The reader is ready to act. Objections, specifics, pricing where it belongs, a CTA to the exact next step. The Ogilvy pass is usually worth it.
-   An AEO/GEO piece still has a stage. When it does, name both.
-3. **Why should they give a shit?** Draft the answer yourself from the brief, in one sentence, and put it in the widget for confirmation: "The promise: [sentence]. Does that hold?", with options to confirm it, adjust it, or name the real reason. If neither you nor the brief can answer, stop. The piece has no thesis yet, and no amount of research, outlining, or craft will supply one.
+1. **Who is it for?** Name a specific reader: role, seniority, and what they already know. A general reader doesn't exist; calibrate register and jargon to the one you named.
+2. **What is it for?** One purpose. It decides the shape before drafting:
+   - **Search and AI answers.** The piece has to be found, extracted, and cited. Answer-first sections and question-shaped headers (`${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`), then the search-weave pass in Step 5. Most blog and web content is here.
+   - **Awareness.** The reader meets the idea or product for the first time. Accessible register, a light mention, a "try it" action.
+   - **Consideration.** The reader is weighing options. Proof, comparison, the customer's own words, and the Schwartz diagnosis matter most here.
+   - **Decision.** The reader is ready to act. Objections, specifics, pricing where it belongs, and a call to action for the exact next step. The Ogilvy review is usually worth running.
+   A search-led piece still has a stage, and it's worth naming both.
+3. **Why should they care?** Draft one sentence from the brief and confirm it: "The promise: [sentence]. Does that hold?" Offer to confirm, adjust, or name the real reason. If neither the brief nor you can answer, stop. The piece has no thesis yet, and research and outlining can't supply one.
 
-The three answers are the promise (prose-craft pass 1): who this is for, and what they walk away with. Write it as one sentence. It travels to the top of the outline if there is one, and to the top of the draft either way, and every later step is checked against it.
+The three answers become the promise (prose-craft pass 1), one sentence that goes above the outline and the draft. Every later step checks against it.
 
-### Mode selection
+### Mode
 
-Before asking, try to infer the mode from the user's message:
+Infer the mode from the request first:
 
-- **Quick-and-dirty signals:** "quick", "fast", "just need a", "bang out", "rough draft", "knock out", short requests with source material already attached, or any Light workflow content type (email).
-- **Content Bonanza signals:** "full workflow", "deep dive", "SEO research", "content bonanza", "the works", "let's do this right", content ideation requests, or any request that names a specific voice, Schwartz lens, or asks for an edit pass by name.
+- **Quick:** "quick," "fast," "just need a," "rough draft," "knock it out," source material already attached, or any Light type (email).
+- **Full workflow:** "full workflow," "deep dive," "SEO research," "the works," "let's do this right," ideation, or a request that names a voice, a Schwartz lens, or an edit pass.
 
-If signals are clear, state the inferred mode and proceed ("This reads like a quick-and-dirty; I'll skip the full workflow and get you clean copy. Let me grab a few details."). The user can override.
+If the signals are clear, state the mode and go ("This reads as a quick one. I'll skip the outline and get you clean copy."). The user can override. If they're unclear, ask in AskUserQuestion: **Quick** (promise, source material, clean copy back) or **Full** (the complete workflow, with research, an outline, and the edit menu).
 
-If ambiguous, ask using AskUserQuestion:
+**Quick workflow:** the promise (confirmed in one round, from the brief where possible), then a draft built on prose-craft pass 0 and the passes that follow, with tone-and-guidelines applied. Skip research, outline, and the type-specific intake. Edit with no-slops only. Present clean copy with a suggested title and, for web pages, a meta description. Don't offer the optional edit passes.
 
-> "Choose your content creation path:"
+**Full workflow:** every step below, in order.
 
-Options:
-- **Quick-and-dirty**: Answer the three promise questions, hand over your source material, and get polished copy back. Send copy to marketing for review. DONE.
-- **Content Bonanza**: Full content workflow options (multiple asset and tone types, content ideation, draft revision). It's deliciously replete.
+### Intake
 
-#### Quick-and-dirty workflow
+Put as many questions as possible into one AskUserQuestion call (four at most). The aim is fewer round trips, not fewer questions.
 
-1. **The promise:** Step 1's three questions, answered from the brief where possible and confirmed in one round, plus reference sources or constraints. Skip all type-specific intake.
-2. **Draft:** Work the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` first, pass 0's no-slops constraints included (quick means skipping ceremony, not craft: know the tells, then the lead, stress position, concreteness, and rhythm still apply), then apply tone-and-guidelines (no voice selection). Follow the type-specific drafting rules for the detected content type, but skip research, outline, and approval gates.
-3. **Edit:** no-slops only, the full audit at the pass bar it defines, no shortcuts. Skip the optional edit passes unless the user asks for one.
-4. **Present:** Deliver clean copy with a suggested title/headline and meta description (if web-published). No optional edit passes offered.
+**Round 1:** the mode, if it wasn't inferred, plus up to two type-specific questions from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/intake-by-type.md`: the two that matter most for this type.
 
-#### Content Bonanza workflow
+**Round 2**, if needed: the remaining type questions, plus constraints and references (source material, links, angles, keywords, quotes from executives, publish dates, tone changes).
 
-The full skill as defined below: all intake questions, research, outline approval, voice selection, Schwartz diagnosis, the full Step 5 edit menu, and the SEO/GEO toolkit. No steps skipped.
-
-### Common intake (all types)
-
-Batch as many intake questions as possible into a single AskUserQuestion call (max 4 questions per call). The goal is fewer round trips, not fewer questions.
-
-**Round 1**, always ask these together using AskUserQuestion:
-
-1. **Mode** (if not already inferred, see mode selection above)
-2. Up to 2 type-specific questions from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/intake-by-type.md` (the two that matter most for the detected content type)
-
-The promise questions (Step 1, above) come first and stand alone. Don't fold them into a type round; the audience is already set by the time this round runs.
-
-**Round 2** (if needed): remaining type-specific questions that didn't fit in Round 1, plus constraints or references (source material, links, angles, SEO keywords, executive quotes, publish date, tone adjustments).
-
-If the user's first message already answers some of these (e.g., they named the audience, provided source material, or specified a target length), skip those questions. Don't re-ask what they already told you.
-
-### Type-specific intake
-
-The per-type questions live in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/intake-by-type.md`. Read only the block for the detected content type, pick the two that matter most for Round 1, and carry the rest into Round 2. Blog has no block: it is delegated to `blog`, which runs its own intake.
-
-Don't skip intake, and don't invent defaults. Ask what the brief hasn't answered, and never re-ask what it has.
-
+The promise questions come first and stand alone. Don't fold them into a type round. Skip anything the user already said, and never re-ask what the brief covers. Don't invent defaults.
 
 ## Step 2: Research
 
-**Applies to:** Full and Medium workflows. Skip for Light workflows unless the user provides source material.
+Applies to Full and Medium workflows. Light workflows skip it unless the user supplies source material.
 
-Research exists to feed two craft passes, and nothing else. The **promise** you wrote in Step 1: the content gap is what this reader walks away with that they cannot get elsewhere, so research is how you find out whether the piece has one. **Concreteness** (pass 4): the numbers, proper nouns, dates, and artifacts that let every abstract claim touch ground within a sentence. If a fact will not serve one of those two, don't collect it. That is what "don't go down a rabbit hole" means in practice.
+Research serves two craft passes and nothing else. The **promise** (what the reader gets that they can't get elsewhere) tells you what to look for. **Concreteness** (prose-craft pass 4) tells you what to collect: the numbers, proper nouns, dates, and artifacts that let each abstract claim touch the ground. Anything that serves neither can be skipped. That's what "don't go down a rabbit hole" means here.
 
-### External research (web)
-Use WebSearch to find relevant context:
-- Current conversation around the topic: news, competitor takes, industry trends
-- Credible stats or data points that strengthen the piece
-- What's already been published, so this piece adds something new
+### Web research
+Use WebSearch for the current conversation on the topic (news, competitor moves, trends), credible figures to support the piece, and what has already been published, so this piece adds something.
 
-### Internal research (optional, when connected)
-If the session has workspace connectors (a docs wiki like Notion or Confluence, an issue tracker like Linear or Jira, team chat like Slack), pull product and team context from them: specs, positioning notes, shipped milestones, prior content, customer feedback, internal framing. If none are connected, ask the user for the source material instead. Never assume a tool is there, and never invent internal facts to fill the gap.
+### Internal research (when connected)
+If the session has workspace connectors (a docs wiki, an issue tracker, team chat), pull specs, positioning notes, shipped milestones, prior content, and customer feedback from them. If none are connected, ask the user for source material. Never assume a tool is available, and never invent internal facts.
 
-Don't go down a rabbit hole. Gather what's useful, then move on.
+If the user supplied source material during intake, use it first and supplement, not duplicate.
 
-If the user provided source material during intake, prioritize that over independent research. Supplement, don't duplicate.
+### Sourcing goes to cited-works
 
-### Source requirements: hand sourcing to cited-works
+Content with factual claims needs credible sources: internal data, usage figures, customer feedback, industry reports, research, or reputable publications. Ideally a mix.
 
-Content with factual claims must include credible sources: internal insights (product data, usage stats, customer feedback) or external resources (industry reports, research papers, credible publications). A mix of both is ideal.
+Sourcing is cited-works' job. List each stat, quote, or claim the piece needs, one line each ("a 2025 figure on developer time lost to flaky tests, primary source"), and hand the list to cited-works (job 1, content research). It traces each claim to its original source, dates it, checks the do-not-cite list, and returns a citation ready to paste, in the piece's format: the two-part inline format for web copy, Chicago superscripts for long-form. Use what comes back as it is. Drop any claim cited-works couldn't source, rather than softening it into an unsourced one.
 
-Sourcing is a job for **cited-works**, the research plugin, not something craft re-derives. When the piece needs a stat, a quote, or a claim checked, list each need in one line ("a 2025+ stat on developer time lost to flaky tests, primary source") and hand the list to cited-works (job 1, content research). It traces each to the primary source, dates it, checks it against its do-not-cite trap list, and returns a ready-to-paste citation in this piece's format (blog and web: the two-part inline format; long-form: Chicago superscript). Use what comes back verbatim, and drop any claim it couldn't source rather than softening it into an unsourced one.
+If cited-works isn't installed, apply its core rule by hand: cite the origin, not the middleman (tone-and-guidelines, Bibliography and attribution), and flag any claim you couldn't trace instead of shipping it.
 
-If cited-works isn't installed, apply the rule it enforces by hand: cite the origin, not the middleman (tone-and-guidelines, Bibliography and attribution), and flag any claim you couldn't trace instead of shipping it.
+### Content strategy check (web, ad, and long-form)
 
-### Content strategy check (website copy, ad copy, and long-form)
+Position the piece in the broader plan: which content pillar it belongs to, where internal links go, and what angle this piece adds that doesn't exist yet. That last one is the research half of the promise.
 
-Purpose and stage were set in Step 1. Position the piece within the broader strategy:
+### Customer language (Full workflow; lean-in types)
 
-- **Pillar alignment:** Which content pillar does this belong to? Internal linking opportunities?
-- **Content gap:** What angle or insight can this piece add that doesn't exist yet? This is the research half of the promise.
+For content where customers' words matter (customer stories, conversion copy, sales enablement, nurture email), pull customer language first, using `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/voc-message-mining.md`. Sort reviews, forum posts, support threads, and call notes into its six buckets, then let them supply real phrasing and surface objections. It sharpens the draft; it never blocks it. For search-led or creative work, keep it as an optional gut-check.
 
-### Voice-of-customer pull (Content Bonanza; lean-in content types)
+### Schwartz diagnosis (web, ad, landing, and sales enablement)
 
-Before the Schwartz diagnosis, for content where the customer's own words matter (customer stories, conversion web copy, sales enablement, nurture email), do a quick VoC pull using `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/voc-message-mining.md`: mine reviews, Reddit, support, and call transcripts into the six buckets, then let them supply real language and surface objections. This is a sharpening tool, not a gate. For search-led or creative work (SEO blogs, ad copy, social), keep it as an opportunistic gut-check, never a blocker. The running question is "is this validated by the customer, or am I asserting it?", aimed at claims about the customer's pain or experience, not every line.
+Before drafting persuasive copy, place the reader on two scales, using `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-copywriting.md`:
 
-### Schwartz messaging diagnosis (website copy, ad copy, landing pages, sales enablement)
+1. **Awareness:** where the reader is right now (unaware through most aware).
+2. **Sophistication:** how many competitors have already made this promise to this audience (stage 1 through stage 5).
 
-Before drafting persuasion-heavy content, diagnose the reader's position using the Schwartz framework. Read `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-copywriting.md` for the full model. Answer two questions:
+Then look up the intersection in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`. It gives the headline strategy, the lead, the length, the proof, and the call to action. This step is strongly recommended whenever the headline and lead depend on how close the reader is to buying. For ad copy, it drives the Schwartz variant.
 
-1. **Reader awareness**: Where is the reader right now? (Unaware → Problem-aware → Solution-aware → Product-aware → Most aware)
-2. **Market sophistication**: How many competitors have already made this promise to this audience? (Stage 1: first to market → Stage 5: total skepticism)
+### Four forces (switching and conversion copy)
 
-Then consult `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` to find the intersection. The matrix tells you the headline strategy, lead approach, copy length, proof type, and CTA style for that specific combination.
-
-This step is optional but strongly recommended for any content where the headline and lead need to match the reader's temperature. It's most valuable when you're unsure whether to lead with the problem, the mechanism, or the offer; the matrix answers that question directly. For ad copy, this diagnosis feeds directly into the Schwartz variant in the multi-version output.
-
-### JTBD Four Forces (conversion and switching content)
-
-For content that asks the reader to switch or adopt (web and landing copy, ads, nurture email, "vs" and migration pages), follow the Schwartz diagnosis with the Four Forces check in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/jtbd-four-forces.md`. Schwartz sets the angle by awareness; the Four Forces make sure the draft amplifies push and pull and, crucially, defuses the two forces working against the switch: the anxiety of the new and the habit of the incumbent, usually the real blockers in a switching decision. It complements Schwartz, it does not replace it.
+For copy that asks the reader to switch or adopt (web and landing copy, ads, nurture email, "vs" and migration pages), check `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/jtbd-four-forces.md` after the Schwartz diagnosis. Schwartz sets the angle. The four forces make sure the draft builds on the push and the pull, and handles the two forces against the switch: the anxiety about the new option and the habit of the current one. Those are usually the real blockers.
 
 ## Step 3: Outline
 
-**Applies to:** Full and Medium workflows. Skip for Light workflows: they go from the promise straight to the craft, and the lead and kicker get written in Step 4 (passes 2 and 7) instead of here. Not everything needs an outline.
+Applies to Full and Medium workflows. Light workflows skip it: they go from the promise straight to drafting, and the lead and kicker get written in Step 4 instead.
 
-An outline is built with the craft, not assembled and then crafted later. A piece drafted from a shitty outline inherits every weakness in it, so the passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` run here first, at section level, before a paragraph exists. Present the result to the user **and wait for approval** before drafting.
+Build the outline with the same passes that drive the draft, at section level, before any paragraph exists. A draft built on a weak outline inherits every weakness in it. Present the outline and **wait for approval before drafting.**
 
 **Build it in this order:**
 
-1. **The promise** (pass 1) at the top, restated from Step 1. It is the kill test for everything below it.
-2. **The lead** (pass 2). The thing, not the topic: the fact, number, person, or scene the piece opens on, and why it is arguable or picturable. One or two sentences, written, not described.
-3. **The sections** (pass 6). Each section is one move: it states a claim, proves a claim, or turns the argument. Name the move. Then check the joints: each section must follow from the one before with *but* or *therefore*. If a section could open with "additionally," it hasn't earned its slot; promote it to a real turn or fold it into its neighbor. Let the outline be lopsided: the section you care about gets the weight, the housekeeping gets a line.
-4. **The specifics** (pass 4). Under each section, the number, the name, the quote, the artifact it will carry, pulled from research. A section with only a principle gives the reader nothing to hold; find its specific now or cut the section.
-5. **The kicker candidate** (pass 7). The fact, image, or consequence the piece lands on. It will change during drafting; naming it now is what stops the piece from ending on a summary.
-6. **The cut** (pass 8). Read the outline against the promise. Any section that doesn't serve it is a darling, and it dies here, before it costs a draft. Under 5% cut means you didn't look.
+1. **The promise** (pass 1), at the top. It's the test for everything below.
+2. **The lead** (pass 2): the fact, number, person, or scene the piece opens on, and why it's arguable or picturable. Write one or two sentences, not a description of them.
+3. **The sections** (pass 6): each one is a single move (it states a claim, proves one, or turns the argument). Name the move. Check the joints: each section follows from the one before with *but* or *therefore*. A section that could open with "additionally" hasn't earned its place; make it a real turn or fold it into a neighbor. Give weight where the point is.
+4. **The specifics** (pass 4): under each section, the number, name, quote, or artifact it will carry, from research. A section with only a principle gives the reader nothing to hold. Find its specific, or cut the section.
+5. **The kicker candidate** (pass 7): the fact, image, or consequence the piece lands on. It may change during drafting. Naming it now stops the piece from ending on a summary.
+6. **The cut** (pass 8): check every section against the promise. Anything that doesn't serve it dies here, before it costs a draft.
 
-Then the CTA, named: where does the reader go from here?
+Then name the call to action: where the reader goes next.
 
-**Structure by type** shapes the sections above; it doesn't replace the passes:
+**Structure by type** shapes the sections above without replacing the passes:
+- **Customer story:** follows the template's nine sections (`${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`), with one named move and specifics in each.
+- **Executive brief, one-pager, byline, or sales argument:** follows the answer-first scaffold in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/minto-scaffold.md`: thesis first, an SCQA lead, then three to five non-overlapping supporting points.
+- **Other types:** adapt to the format. A long-form outline is its chapter plan, with the promise each chapter serves. An email is subject, body flow, and call to action. A landing page is the above-the-fold promise, then the section order in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md`.
+- **Blog:** no outline here. blog runs its own brief.
 
-- **Customer story** follows the template in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`: headline, snapshot, setup, problem, turn, build, results, close, CTA. Each of those is still one move with its specifics named.
-- **Executive briefs / 1-pagers, bylines, and sales arguments** follow the answer-first scaffold in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/minto-scaffold.md`: governing thesis up top, an SCQA lead, then three to five MECE supporting points.
-- **Other types:** adapt to the format. A long-form outline is the chapter structure, with the promise each chapter serves. An email outline is subject line, body flow, CTA. A landing page is the above-the-fold promise, then the section order from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md`.
-- **Blog** has no outline here. It is delegated to `blog`, which runs its own brief.
-
-Keep it scannable. The user should be able to approve, revise, or redirect in under a minute, and what they are approving is the promise, the lead, and the moves. **Do not proceed to drafting until the user approves the outline.**
+Keep the outline scannable. The user should be able to approve, revise, or redirect within a minute. What they're approving is the promise, the lead, and the moves.
 
 ## Step 4: Draft
 
-This step is the craft: everything that happens while the draft is being built. What happens to a finished draft (the slop audit, the copyedit, the persuasion pass, the citability sculpt) is Step 5, and it stays there. Don't run the edit passes while you write. Write clean, then verify.
+This step is the craft: what happens while the draft is written. What happens to the finished draft (the audit, the copyedit, the persuasion review, the citation pass) is Step 5. Don't run edit passes while writing. Write clean, then verify.
 
-**First, the craft.** Build with the passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`, in this order. Pass 0 is the constraint set you write inside; passes 1 through 8 are how the prose gets built. The spine, so it is in front of you and not only behind a link:
+**The craft first.** Work prose-craft in order (`${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`):
 
-0. **Know the tells before you type.** no-slops's rulebook is a drafting constraint, not audit criteria; prose-craft pass 0 lists exactly what to have open. A tell that reaches Step 5 is a Step 4 failure.
-1. **The promise.** Written in Step 1. Put it above the draft, for nobody but you, and use it as the kill test for every section.
-2. **The lead.** Start with the thing, not the topic: a fact, a number, a person, a scene. The first sentence must be arguable or picturable. Write past the warm-up, then cut back to where it actually starts.
-3. **Sentences.** Actor does action. Subject and verb inside the first six words. End on the payload, because the last slot before the period carries the weight. Pick verbs a camera could film. Budget the copulas.
-4. **Concreteness.** Every abstract claim touches ground within one sentence. Prefer the proper noun. Numbers do the believing for you.
-5. **The music.** In any run of five sentences, one under eight words and one over twenty. The period is the strongest punctuation you own. Watch the colon pileups the em-dash ban invites.
-6. **Paragraphs and the thread.** One move per paragraph. Open on what the reader already holds, close on the new thing. Connect with *but* or *therefore*, never *and then*. Let the paragraphs be lopsided.
-7. **The ending.** Land a fact, an image, or a consequence, never the summary. The kicker is the second-best line in the piece.
-8. **The 10% pass.** The first paragraph, adverbs, "that," prepositional chains, the darling. Track the cut rate: under 5% means it didn't happen.
+0. **Know the tells before you type.** no-slops's rulebook is a set of constraints, not an audit to face later. A tell that reaches Step 5 means Step 4 failed.
+1. **The promise.** Above the draft, for you alone. It's the test for every section.
+2. **The lead.** Start with the thing, not the topic. The first sentence should be arguable or picturable.
+3. **Sentences.** The doer is the subject and the action is the verb. Subject and verb within six words. End each weighty sentence on its payload. Use verbs a camera could record. Limit the copulas.
+4. **Concreteness.** Every abstract claim touches something concrete within a sentence. Prefer the proper noun.
+5. **Rhythm.** In any run of five sentences, one under eight words and one over twenty. Save the period for what matters. Watch the colons that appear once em dashes are gone.
+6. **Paragraphs and flow.** One move per paragraph. Connect with *but* or *therefore*, never *and then*. Let the weight be uneven.
+7. **The ending.** A fact, an image, or a consequence. Never a recap. The kicker is the second-best line.
+8. **The cut.** Trim around a tenth of the draft. The first paragraph, adverbs, "that," stacked prepositions, the favorite line. Under 5% means the cut didn't really happen.
 
-Work them on every piece longer than a one-liner. Drafting inside pass 0's constraints and to passes 1 through 8 is what makes Step 5a come back clean; it still runs, as verification. The full treatment, with the examples, is in the reference.
+Apply these to every piece longer than a single line. Drafting inside pass 0's constraints is what lets Step 5a come back clean. It still runs, as a check.
 
-**Then, the voice.** Apply every rule from the tone-and-guidelines style guide (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`), in the register set at routing: **personal** (the full voice), **professional** (the same voice with the grit dialed down, for pieces under Taylor's name that a hiring manager, editor, or client will judge), or **B2B tech buyer** (precise, evidence-first, unhyped, for technical-product content). That file is the single source of truth for tone of voice, editorial guidelines, and writing tips: it governs how well-built prose sounds. Read it from the source; don't duplicate it here. A loaded voice profile replaces the register's personality, never its limits.
+**Then the voice.** Apply tone-and-guidelines (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`) in the register set at routing: **personal** (the full voice), **professional** (the same voice with less grit, for pieces under the author's name that a hiring manager, editor, or client will judge), or **B2B tech buyer** (precise, evidence-first, unhyped, for technical product content). That file is the source for voice and house style. Read it there. A loaded voice profile changes the personality, never the limits of the register.
 
-**For blog, long-form, and website copy:** also apply the GEO/AEO writing rules in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`. These rules govern passage-level extractability, answer-first structure, information gain, and AI citation optimization. They layer on top of the TOV guidelines. **Citation exception:** the GEO inline-attribution rule applies to blog and website copy only; long-form uses the Chicago superscript + Works Cited appendix format instead (see tone-and-guidelines).
+**For blog, long-form, and web copy,** also apply `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`. Those rules cover passage-level extractability, answer-first structure, specific claims, and citation practice. They sit on top of the voice rules. Long-form uses Chicago superscripts instead of inline attribution; tone-and-guidelines explains the difference.
 
-### Short-form structure
+### Short-form skeletons
 
-For email, ads, and other short-form quick hits (the Light-workflow types that skip the Schwartz diagnosis; social has its own hooks in `socialize`), reach for a proven skeleton from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/micro-formulas.md` (PAS, BAB, AIDA, PASTOR, FAB, 4Ps); FAB doubles as the feature-to-benefit antidote to feature-dumping. For long-form and persuasion-heavy work, the Step 2 Schwartz diagnosis leads; the formulas are the quick-draft tool, not the strategy layer.
+For email, ads, and other quick copy (the Light types, which skip the Schwartz diagnosis), start from a skeleton in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/micro-formulas.md`. Social posts have their own hooks in socialize. For long-form and persuasion-heavy work, the Schwartz diagnosis leads, and the skeletons are only a fast way to shape a first draft.
 
-Type-specific rules below.
+### Type rules
 
-### Voice selection (social)
+#### Voice selection (social)
+Social is delegated to `socialize`, which runs its own voice menu: the default voice in the right register first, then each person in the voice-profiles roster by its menu blurb. For a webinar or launch post that goes out under a named person's account, hand it to socialize with that person named.
 
-Social is delegated to `socialize`, which runs the voice menu itself: the default voice in the right register first, then every person in the voice-profiles roster by Menu blurb. For webinar or launch posts that go out under a named person's account, hand the post to socialize with that person named.
+#### Blog-specific
+Blog is delegated at routing (Step 1). It owns the blog's shape, on-page SEO, and its workflows. Citations follow tone-and-guidelines like everything else. For a post in a specific person's voice, tell blog, which reads the profile.
 
-### Blog-specific
-Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting rules live here: blog owns the shape, on-page SEO, and its workflows; citations follow tone-and-guidelines like everything else. For a blog in a specific person's voice, tell blog; it reads the profile from voice-profiles.
+#### Customer story-specific
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`. Its nine sections, length budgets, and tone notes all live there.
+- **Ogilvy review on by default** (Step 5c). Its promise and proof questions fit this type closely: one promise (what the customer achieved), a headline that carries it, facts over adjectives, and the product as the hero.
 
-### Customer story-specific
-- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`: the nine-section structure, length, and tone reminders all live there.
-- **Ogilvy pass on by default** (Step 5c). It fits this type almost one to one: one promise (what they achieved), the headline carries it, facts over adjectives (the numbers and the quotes), and the product is the hero of the build, not the writing.
+#### Social-specific
+Delegated to `socialize` at routing. It owns platform formats, limits, current feed mechanics, and the social tells. Nothing here repeats them.
 
-### Social-specific
-Delegated to `socialize` at routing (Step 1). It owns platform formats, limits, current feed mechanics, and the social tells; nothing here duplicates it.
+#### Email-specific
+- Subject line and body. A subject that's specific and concise, not clickbait.
+- One clear call to action.
+- Personal details where they fit.
 
-### Email-specific
-- Subject line + body. Subject lines are concise and specific, no clickbait.
-- One clear CTA per email.
-- Personalization hooks where appropriate.
-
-### Website copy-specific
-
-Read `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md` before drafting any website copy. It contains the 5-question test, above-the-fold framework, headline formula, CTA specificity rules, objection handling, mobile-first writing, and page-type structure templates (homepage, feature, pricing, solution, persona, industry, and single-use landing page). GEO/AEO rules from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md` also apply to any page that will live on the web.
+#### Website copy-specific
+Read `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/web-copy-best-practices.md` before drafting. It covers the five-question test, the first screen, headlines, calls to action, objections, mobile writing, and the page-type patterns. Apply SEO-GEO-drafting too, for any page that will be found on the web.
 
 Additional rules for all website copy:
-- **Product or brand name:** full name first, short form after (tone-and-guidelines, Product and brand names).
-- Headline casing on heroes and headers.
-- Show the product. Screenshots, demos, real output. No stock illustrations.
-- Citations: the two-part inline format (tone-and-guidelines, Bibliography and attribution, including its per-channel note on citing sparingly on conversion pages).
-- **Ogilvy pass on by default** (Step 5c). Conversion copy is its home turf: positioning before promise, headline as a standalone claim, product as hero.
+- **Product name:** full name first, short form after (tone-and-guidelines, Product and brand names).
+- Headline casing on heroes and headers follows tone-and-guidelines.
+- Show the product: screenshots, demos, real output. No stock illustration.
+- Citations follow tone-and-guidelines, including its note on citing sparingly on conversion pages.
+- **Ogilvy review on by default** (Step 5c). Conversion copy is its home ground: position before promise, headline as a standalone claim, product as the hero.
 
-### Long-form-specific
-- Structured with chapters or major sections.
-- Citations: superscript in-text numbers tied to a Works Cited appendix, Chicago Manual of Style. Long-form is exempt from the GEO inline-attribution rule. See tone-and-guidelines (Bibliography and attribution).
-- Balance depth with readability. No padding.
-- Survey/research report variant: lead with key findings, executive summary up front; tables and structured data where appropriate; source every claim, with a methodology section if applicable; plain-language analysis: don't just present numbers, explain what they mean.
+#### Long-form-specific
+- Organized into chapters or major sections.
+- Citations: Chicago superscripts tied to a Works Cited list. Long-form is exempt from inline attribution (tone-and-guidelines, Bibliography and attribution).
+- Depth without padding.
+- For a research report: findings and the executive summary first. Tables and structured data where they help. Every claim sourced, with a methodology section when one applies. Explain what the numbers mean; don't just list them.
 
-### Ad copy-specific
+#### Ad copy-specific
+Ad copy produces multiple versions: two drafts and one review.
+1. **Default-voice draft:** tone-and-guidelines in its register (B2B tech buyer for technical products). Direct, benefit-led, conversational.
+2. **Schwartz draft:** the awareness and sophistication diagnosis (`${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`) sets whether the ad leads with the problem, the mechanism, the proof, or the offer.
+3. **Ogilvy review** (Step 5c, on by default for ads): run both drafts through the diagnostic questions and present the edited versions. The review is an edit applied to the two angles, not a third draft.
 
-Ad copy always produces a multi-variant output: two drafts and one edit pass.
+For several audiences, produce a full set per audience, labeled by audience and angle. Rules for every version: respect the platform's character limits, lead with the strongest hook, cut filler, and match the call to action exactly to the landing page's offer. Present the versions side by side. no-slops runs on each draft before the review, and the final sweep (5f) runs after it.
 
-1. **Default-voice draft**: the voice from tone-and-guidelines, in its register (B2B tech buyer for technical products). Direct, benefit-led, conversational.
-2. **Schwartz draft**: diagnose the reader's awareness level and market sophistication using `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`, then write the ad to match that intersection. The matrix determines whether to lead with the problem, the mechanism, the proof, or the offer.
-3. **Ogilvy pass** (Step 5c, on by default for ads): run both drafts through the Diagnostic Questions and present the edited versions. Ogilvy is not a third draft. It is the persuasion edit applied to the two angles.
+#### Byline-specific
+- In the named author's voice, and sounding like them.
+- Authoritative, not stiff.
+- Claims supported with specifics.
 
-If the user specified multiple target audiences during intake, produce a full set per audience. Label each clearly by audience and by lens.
+#### Executive brief and one-pager-specific
+- Written for decision-makers who won't read the whole document. Findings and recommendations come first.
+- Scannable: headers, bullets, and bold used sparingly.
+- Executive summary: one or two pages, anchored to its source document.
+- One-pager: one page. Lead with the problem, present the solution, close with the call to action.
 
-Rules for all versions:
-- Character-count-aware. Respect platform limits.
-- Lead with the strongest hook.
-- Every word works. No filler.
-- CTA matches the landing page offer exactly.
+#### Sales enablement-specific
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` (battle card, objection handler, or one-sheet). B2B tech buyer register.
+- **Ogilvy review on by default** (Step 5c). A battle card rests on one promise and facts a rep can say aloud. Burying the news is its main failure.
 
-Present all versions side by side so the user can compare and pick. No-slops runs on each draft before the Ogilvy pass, and the final sweep (5f) runs after it.
+#### Webinar-specific
+- **The default voice applies to all webinar content:** landing pages, emails, reminders, slides, recaps, and brand social. Don't apply a personal profile to them.
+- **Exception: posts under a named person's account.** When a teammate posts about the webinar from their own account, hand the post to socialize with that person named. It drafts in their profile, so it reads like them talking about the event, not marketing copy about it. If that person has no profile, flag it and use the default voice rather than inventing one.
+- Follow the checklist in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`. Work through the sections the user needs; don't dump the whole template.
+- Draft assets in the order they're needed: landing page, invite, social announcement, reminders, day-of, follow-up, recap.
+- **Filing (optional):** by default a webinar package is delivered like any other piece (Step 6). If the user keeps a team wiki or editorial calendar that's connected, offer to file it there. The template's "Filing the finished package" section covers the steps.
 
-### Byline-specific
-- Voice-matched to the named author.
-- Authoritative but not stiff. The person should sound like themselves.
-- Support claims with specifics.
+#### Career docs and pitch-specific
+- Professional register (tone-and-guidelines, Register 2). Per-document rules are in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md`: cover letters, resume bullets, bios in three lengths, LinkedIn About, and editor pitches.
+- **Truth gate:** build the proof bank first, per the template. Never add a skill, credential, or result that the source material doesn't support. Ask instead.
+- Tailored to one target. With a job description, pull its top five requirements first, and answer each with proof or flag it as a gap.
+- Numbers first: result, scale, and timeframe ahead of the color.
+- Run red-pen in Proofread-only mode before anything is sent. A typo in a cover letter costs the job.
 
-### Executive brief / 1-pager-specific
-- Written for decision-makers who won't read the full document. Key findings and recommendations up front.
-- Scannable: headers, bullets, bold for emphasis (sparingly).
-- Executive summary format: 1-2 pages max, anchored to its source document.
-- 1-pager format: single-page constraint; lead with the problem, present the solution, close with the CTA.
-
-### Sales enablement-specific
-- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` (battle card, objection handler, or competitive one-sheet) and its shared rules. B2B tech buyer register.
-- **Ogilvy pass on by default** (Step 5c). Battle cards live on one clear promise and facts a rep can say aloud; "don't bury the news" is the battle-card failure mode.
-
-### Webinar-specific
-- **Default voice for all webinar content is the default voice.** Landing pages, emails, reminders, slide copy, recap posts, and brand social posts all use the voice from tone-and-guidelines. Do not apply a personal tone profile to these assets.
-- **Exception, social posts attributed to a named person:** when a post goes out under a team member's own account (someone announcing the webinar, someone else recapping it), hand the post to socialize with that person named; it drafts in their profile. The post should sound like that person talking about the webinar, not marketing copy about the webinar. This applies only to person-attributed social posts; every other webinar asset stays on the default voice. If the person has no profile in voice-profiles, flag it and use the default voice rather than inventing one.
-- Follow the BOM in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`. Work through each section the user needs; don't dump the whole template at once.
-- Draft all content assets in the order they're needed: landing page → email invite → social announcement → reminders → day-of → follow-up → recap.
-- **Export (optional):** by default a webinar BOM exports like any other piece (Step 6). If the user keeps a team wiki or editorial calendar and it's connected (a Notion or Confluence page, a calendar app), offer to publish the package there instead. See "Export the finished BOM" in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`.
-
-### Career docs and pitch-specific
-- Professional register (tone-and-guidelines, Register 2). Follow the per-document rules in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md`: cover letter, resume bullets, bio (three lengths), LinkedIn About, and editor pitch.
-- **Truth gate** and proof bank first, per the template. Never add a skill, credential, or result the source material doesn't support; ask instead.
-- Tailored to one target. When there's a job description, extract its top 5 requirements first and make sure each is answered with proof, or flagged to the user as a gap.
-- Numbers lead. Result, scale, and timeframe before the color.
-- red-pen in Proofread-only mode before anything is sent: a typo in a cover letter is a disqualifier, not a nit.
-
-### Personal essay-specific
+#### Personal essay-specific
 - Personal register (tone-and-guidelines, Register 1), at full strength.
-- The promise is a felt truth, not a takeaway. The reader should leave with a changed sense of something, not a list.
-- Scene before reflection; the reflection earns its place only after the reader has been in the room.
-- Specifics carry the weight: names, objects, prices, smells, the exact thing someone said.
-- The ending lands an image or a turn, never a moral. If the piece ends by explaining itself, cut the last paragraph and check whether the one before it is the real ending.
-- red-pen's Developmental mode is the right first edit on a long draft: structure before sentences.
+- The promise is an emotional truth, not a takeaway. The reader should leave seeing something differently.
+- Scene first. Reflection earns its place once the reader is in the room.
+- Specifics carry it: names, objects, prices, the exact words someone used.
+- End on an image or a turn, not a moral. If the piece ends by explaining itself, cut the last paragraph and check whether the one before is the real ending.
+- For a long draft, red-pen's Developmental mode comes first: structure before sentences.
 
-### Creator brief-specific
-- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`: its nine sections, guardrails, and the standard it sets (a creator can execute it cold, with no follow-up call).
-
-
-## Step 5: Edit
-
-The draft is finished. Everything from here is a separate tool with a separate job, applied to a draft that already exists. Don't fold these back into drafting: craft happens while you write, editing happens to what you wrote, and they stay separate thoughts.
-
-**Order: structure first, sentences last.** Big edits before small ones, so nothing gets polished and then rewritten:
-
-1. **5a. No-slops gate** (mandatory). Catch the tells before anyone edits around them.
-2. **5b. Schwartz re-angle** (optional). Changes the headline, lead, and structure, so it goes before anything that polishes them.
-3. **5c. Ogilvy** (default on some types). Promise, proof, and headline: what the piece says.
-4. **5d. search-weave** (published web content). Works the target keywords, questions, and citations into the structure.
-5. **5e. red-pen** (anything going to publish). The line-level copyedit, last, on structure that is no longer moving.
-6. **5f. Final sweep** (mandatory). no-slops's mechanical sweep once more, because every rewrite is a fresh chance for a tell to get in.
-
-Skip any optional pass the piece doesn't need, but never reorder the ones that run.
-
-### 5a. No-slops gate (mandatory, every piece)
-
-Run the `no-slops` skill against the draft (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`), the single source of truth for the AI-tell filter and the 35/50 scoring rubric. Score the draft on directness, rhythm, trust, authenticity, and density. 35/50 minimum to pass. Fix every violation before moving on. If the draft scores below 35, revise and re-audit. This is verification, not the first encounter with the rules: they were drafting constraints in Step 4 (prose-craft pass 0). A finding here means the draft was not built clean. Fix it, and note which pass let it through.
-
-**For Light workflows (social, short emails):** skip the 35/50 scoring ceremony, but run no-slops's mechanical sweep for real, not mentally. Short copy ships more often than anything else, which makes it the main leak. "It's just a tweet" is how tells get published.
-
-### 5b. Schwartz re-angle (when the substance is right and the opening isn't)
-
-Diagnose the reader's awareness level and market sophistication with `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`, then rewrite the headline, lead, and structure to match that cell. Present it alongside the original so the user can compare. Most useful on blog posts and website copy. Rarely needed when the Step 2 diagnosis was done properly. When the headline is the only thing in question, hand it to `headline-lab` instead.
-
-### 5c. Ogilvy pass (the persuasion edit)
-
-**On by default for customer stories, sales enablement, landing pages and web copy, and ad copy. On request for everything else.** Run `ogilvy-copywriting` in review mode: take its **Diagnostic Questions** and ask them of the finished draft instead of before writing. What is the positioning, and who is it for? What is the single promise, and is it the only one? Does the headline carry that promise, and the news if there is any? What proof exists, and are facts doing the work the adjectives are pretending to do? Is the news buried? Is it boring? Is the product the hero, or is the writing? Fix what fails. Leave what passes alone.
-
-This is discipline, not a voice. It applies on top of whatever voice the draft is in, a team member's included, and it never rewrites voice. On the default types, offer it after the no-slops gate without being asked. On everything else, run it when the user asks, or when the piece has to sell something and isn't.
-
-### 5d. search-weave (keywords, questions, citations)
-
-Every blog post and web page that will be published goes through `search-weave` before the copyedit. It asks for the target keywords, the questions the piece should answer, and the citations to work in (or takes them from Insights, when that's installed and wired), then weaves them into the finished draft: question-shaped headers, answer-first sections, a definitional block, attributed receipts, liftable formats, an FAQ, and dated facts. It's a structural pass, not a rewrite, and never keyword-stuffing: voice and accuracy win every disagreement.
-
-### 5e. red-pen (the copyedit, last)
-
-For anything going to publish, or whenever the user says "tighten," "edit," "redline," or "check readability," hand the draft to `red-pen`. It goes last because it works at the line level, and line edits on a structure that's about to move are wasted. It owns the diagnostic lenses (lead, stress position, given-new cohesion, rhythm, kicker, thought-verbs, stance, claims and proof), the readability script against the target reader's Flesch band, and the numbered 🔴🟡🔵 findings. craft duplicates none of it. Pick the red-pen mode that fits: the default verdict and reds, Developmental for a long draft whose structure is still in question (run that one before 5b instead), or Proofread-only for a piece that's already been edited. If red-pen keeps flagging the same lens on your drafts, the fix belongs in Step 4: reread the matching pass in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`.
-
-### 5f. Final sweep (mandatory)
-
-Re-run no-slops's mechanical sweep on the final text. No rescoring unless the edits changed more than a few sentences. If no optional pass ran, 5a already covered it; skip this.
-
-
-## Step 6: Present
-
-Deliver clean, ready-to-use copy. Include:
-- A suggested title or headline (sentence casing for blogs/long-form; adapt for other types)
-- The full content with proper formatting
-- A suggested meta description (under 160 characters) for any web-published content
-
-The optional edit passes (the Schwartz re-angle, Ogilvy, search-weave, red-pen) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
-
-**For any content type**, if the user asks to export, ask where it should go and in what format (a `.docx` via the `anthropic-skills:docx` skill is the usual default), unless they've already said this session or in their CLAUDE.md. A local folder, a synced cloud-drive folder, or a connected docs tool all work; if the destination needs a tool that isn't connected, save the file locally and say where. When delivering to Google Drive, prefer uploading the finished `.docx` over building a native Google Doc through a connector, which tends to lose formatting. (Webinar BOMs can go to a connected team wiki instead; see Webinar-specific in Step 4.)
-
-
-## Google Doc template population
-
-When the user provides a Google Doc URL as a template:
-
-1. Fetch the document content by appending `/export?format=txt` to the base URL (before `/edit`). Use `curl -sL` or `WebFetch`.
-2. Parse the heading/section structure.
-3. Draft content for each section, matching the template's layout and any placeholder instructions.
-4. Present the populated content section-by-section for review.
-
+#### Creator brief-specific
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`: its nine sections, guardrails, and the bar it sets. A creator should be able to deliver from it with no follow-up call.
 
 ---
 
+## Step 5: Edit
 
-## Content ideation workflow
+The draft is finished. Editing is separate work, applied to a draft that already exists. Don't fold it back into drafting.
 
-Research and strategy only, no drafting: trend scan, SEO/GEO research, a Schwartz pass per idea, then a prioritized list with keywords, buyer stage, effort, and GEO opportunity, and a handoff into the writing workflow for whichever idea the user picks.
+**Order: structure first, sentences last.** Big changes come before small ones, so nothing gets polished and then rewritten:
 
-The full workflow is in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/ideation-workflow.md`. Read it when the content type routes to Ideation; the promise module (Step 1) still runs first.
+1. **5a. no-slops gate** (mandatory). Catch the tells before anything gets edited around them.
+2. **5b. Schwartz re-angle** (optional). Changes the headline, lead, and structure, so it runs before anything that polishes them.
+3. **5c. Ogilvy review** (default for some types). Promise, proof, and headline: what the piece says.
+4. **5d. search-weave** (published web content). Works the keywords, questions, and citations into the structure.
+5. **5e. red-pen** (anything going to publish). The line-level copyedit, last, once the structure has stopped moving.
+6. **5f. Final sweep** (mandatory). no-slops's mechanical sweep again, because every rewrite is a fresh chance for a tell.
 
-## Draft revision workflow
+Skip any optional pass the piece doesn't need. Never reorder the ones that run.
 
-Use when the user wants to tighten a draft that's already been through the primary flow, or when revising previously published content. Trigger on: "revise this," "tighten this up," "check readability," "simplify," or "this feels too complex."
+### 5a. no-slops gate (mandatory, every piece)
 
-Route it to Step 5. `red-pen` owns the readability analysis (the Flesch band appropriate to the audience named in Step 1, sentence and paragraph length, passive voice, jargon density), and it runs the readability script rather than estimating. Take its redline, then re-run no-slops, and present the revised draft with a before-and-after readability comparison. For standalone scoring outside this workflow, use `/readability`.
+Run the `no-slops` skill (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`) against the draft. It scores five dimensions (directness, rhythm, trust, authenticity, density) out of 50, and 35 is the minimum to pass. Fix every violation, and re-audit anything under 35. This is verification. The rules were drafting constraints in Step 4, so a finding here means the draft wasn't built clean. Fix it, and note which pass let it through.
+
+**For Light workflows** (social, short email): skip the scoring, but run the mechanical sweep for real. Short copy ships most often, which makes it the main leak. "It's just a tweet" is how tells get published.
+
+### 5b. Schwartz re-angle (when the substance is right and the opening isn't)
+
+Place the reader with `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`, then rewrite the headline, lead, and structure to fit that position. Show the new version next to the original. Most useful for blog posts and web copy. Rarely needed if the Step 2 diagnosis was done well. If only the headline is in question, use `headline-lab` instead.
+
+### 5c. Ogilvy review (the persuasion edit)
+
+**On by default for customer stories, sales enablement, landing and web copy, and ads. On request for everything else.** Run `ogilvy-copywriting` in review mode and ask its diagnostic questions of the finished draft. Is the positioning clear, and for whom? Is there one promise? Does the headline carry it, and the news if there is any? Where is the proof, and are the facts doing the work the adjectives claim? Is the news buried? Is the product the hero, or has the writing taken over? Fix what fails. Leave what works.
+
+This is an edit, not a voice change. It applies on top of whatever voice the draft already has, including a team member's. On the default types, offer it after the gate. Elsewhere, run it when asked, or when the piece has to sell and doesn't.
+
+### 5d. search-weave (keywords, questions, citations)
+
+Every published blog post and web page goes through `search-weave` before the copyedit. It asks for the target keywords, the questions the piece should answer, and the citations to include (or pulls them from Insights, when that's installed and connected). Then it works them into the finished draft: question-shaped headers, answer-first sections, a definition block, attributed claims, liftable formats, an FAQ, and dated facts. It's a structural pass, not a rewrite. It never stuffs keywords, and voice and accuracy win every disagreement.
+
+### 5e. red-pen (the copyedit, last)
+
+For anything going to publish, or when the user asks to "tighten," "edit," "redline," or "check readability," hand the draft to `red-pen`. It runs last because line edits on a structure that's still moving get thrown away. red-pen owns the diagnostic lenses (lead, stress position, cohesion, rhythm, kicker, thought verbs, stance, claims and proof), the readability script against the reader's target band, and the numbered findings. Pick the mode that fits: the default verdict and reds; Developmental for a long draft whose structure is still open (run that before 5b instead); or Proofread-only for a finished piece. If red-pen keeps flagging the same lens, the fix belongs in drafting: reread the matching section of `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`.
+
+### 5f. Final sweep (mandatory)
+
+Run no-slops's mechanical sweep on the final text. Rescore only if the edits changed more than a few sentences. If no optional pass ran, the gate in 5a already covered it, and this can be skipped.
+
+---
+
+## Step 6: Present
+
+Deliver clean, ready-to-use copy:
+- A suggested title or headline (sentence case for blog and long-form; adapt for other types)
+- The full content, formatted
+- A meta description under 160 characters for anything published on the web
+
+The optional passes (the Schwartz re-angle, Ogilvy, search-weave, red-pen) were offered in Step 5. Don't offer them again unless the user asks.
+
+**Export:** if the user wants a file, ask where it should go and in what format. A `.docx` through the `anthropic-skills:docx` skill is the usual choice. Use any local folder, synced cloud folder, or connected docs tool. If the destination needs a tool that isn't connected, save the file locally and say where. For Google Drive, upload the finished `.docx` rather than building a native Google Doc through a connector, which tends to lose formatting. Webinar packages can go to a connected team wiki instead (see Webinar-specific in Step 4).
+
+---
+
+## Other workflows
+
+**Ideation** (research and strategy, no drafting): run `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/ideation-workflow.md`. The promise still comes first, and the ideas hand off to the writing workflow.
+
+**Draft revision** (tightening a draft that already exists, or updating published content, on requests like "revise this," "tighten this up," "simplify," or "check readability"): go to Step 5. red-pen owns the readability analysis against the reader's band and runs the script rather than estimating. Take its redline, re-run the no-slops gate, and present the revised draft with a before-and-after readability comparison.
+
+**Google Doc as a template:** if the user gives a Google Doc URL as the template, export its text (append `/export?format=txt` to the base URL, before `/edit`), map its sections, draft each section to match its placeholders, and present the result section by section for review.
 
 ## SEO and AEO: inputs, not tools
 
-fresh-ink doesn't pull data. SEO and AEO work here runs on inputs: the target keywords, the questions to answer, and the citations to work in. `search-weave` asks for them in Step 5d and weaves them into the structure. Drafting follows `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`, a writing rule, not a tool.
+craft doesn't pull data. SEO and AEO work runs on inputs: target keywords, the questions to answer, and the citations to use. search-weave asks for those in Step 5d and weaves them into the structure. Drafting follows `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`, which is a writing rule rather than a tool.
 
-**If the Insights plugin is installed and wired,** it can supply those inputs instead of the user: `seo-geo` for the site's real GA4 and Search Console numbers (traffic, the queries a page already ranks for) and its map of which `/seo-*` tools to run at each stage, and `aeo-insights` for AI-answer visibility (named versus cited, term winnability, the sub-questions engines ran). Both stay dormant when they aren't connected; if one says it isn't connected, take that as the answer and work from what the user gives you. Never fabricate volumes, difficulty, rankings, or citation numbers, and skip any data step when the user already supplied what it would fetch.
+If the Insights plugin is installed and wired, it can supply those inputs instead of the user. `seo-geo` provides the site's Search Console queries and traffic and its map of SEO tools. `aeo-insights` provides AI-answer visibility: named versus cited, term winnability, and the sub-questions engines asked. Both stay dormant when not connected. If one reports that it isn't connected, take that as the answer and work from what the user gives you. Never invent volumes, rankings, or citation figures, and skip any data step whose input the user already supplied.

@@ -1,219 +1,128 @@
-# Schwartz Copywriting Skill
+# Schwartz: awareness, sophistication, and desire
 
-Apply Eugene Schwartz's principles from Breakthrough Advertising when writing, reviewing, or critiquing any copy with a sales or persuasion goal. Schwartz's core insight: you cannot create desire. You can only channel existing desire toward your product. Every copy decision starts by understanding where the reader already is.
-
----
-
-## The Two Dimensions
-
-Schwartz operates on two axes that determine everything about your copy:
-
-1. **Customer awareness**: How much does the prospect already know about their problem, the available solutions, and your product?
-2. **Market sophistication**: How many competitors have already made similar promises to this audience?
-
-You must diagnose both before writing a word. The awareness level tells you *what to say*. The sophistication level tells you *how to say it*.
-
-See `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` for the full interaction matrix with matched headline and copy strategies for every combination.
+The method behind persuasive copy when the goal is a sale or a sign-up. Its central claim: copy doesn't create desire. Desire already exists in the reader, shaped by their frustrations and hopes. Good copy connects that existing desire to what you offer. So every decision starts with a question: where is the reader right now?
 
 ---
 
-## The 5 Stages of Customer Awareness
+## Two axes
 
-### Stage 1: Unaware
+1. **Awareness:** how much does the reader already know about their problem, the available fixes, and your product?
+2. **Sophistication:** how many competitors have already made this promise to this audience?
 
-The prospect doesn't know they have a problem. They aren't looking for a solution. They don't feel pain yet.
-
-**Your job:** Lead with identity, emotion, or a story that creates recognition. Never open with the product or the problem. Open with the world the reader lives in.
-
-**Headline strategy:** Curiosity, identity, or narrative hooks. No product names. No promises. The headline's only job is to get the reader to recognize themselves and keep reading.
-
-**Copy length:** Long. You have to build the entire journey from "I didn't know I had a problem" to "I need this."
-
-**Example opener:** "If you're running a small business, you've probably noticed something strange happening to your competitors' websites lately."
-
-### Stage 2: Problem-aware
-
-The prospect feels the pain but doesn't know solutions exist. They can describe the problem but haven't started looking for fixes.
-
-**Your job:** Name the problem vividly and specifically. Show them you understand it better than they do. Then introduce the idea that solutions exist.
-
-**Headline strategy:** Lead with the problem stated in the reader's own language. Empathy first, then mystery about the solution.
-
-**Copy length:** Medium-long. You still need to educate, but you don't need to create the desire from scratch.
-
-**Example opener:** "You've gotten the quotes. $8,000. $14,000. $22,000. And the cheapest option wants ten weeks and a 50 percent deposit upfront."
-
-### Stage 3: Solution-aware
-
-The prospect knows solutions exist but hasn't chosen one. They're comparing options, reading reviews, weighing tradeoffs.
-
-**Your job:** Show your specific mechanism or approach is different and better. This is where unique mechanism matters most. Don't just claim results; explain *how* you deliver them differently.
-
-**Headline strategy:** Differentiation. Your mechanism, your process, your specific advantage over alternatives.
-
-**Copy length:** Medium. The reader is already motivated. Focus on proof and mechanism.
-
-**Example opener:** "Most tools in the category generate templates. [Product] generates real, functional code you can edit and deploy."
-
-### Stage 4: Product-aware
-
-The prospect knows your product but hasn't bought. They're on the fence. Something is holding them back: an objection, a doubt, a competing priority.
-
-**Your job:** Overcome objections, add proof, create urgency. Testimonials, case studies, risk reversal, and social proof do the heavy lifting here.
-
-**Headline strategy:** Proof-heavy. New evidence, new testimonials, new results. Reframe the value proposition from a different angle.
-
-**Copy length:** Medium-short. Don't re-explain. Add the missing piece that pushes them over.
-
-**Example opener:** "40,000 people have built sites on [Product]. Here's what three of them shipped last week."
-
-### Stage 5: Most aware
-
-The prospect knows your product and wants it. They just need a reason to act now.
-
-**Your job:** Make it easy. Price, offer, availability, urgency. Remove every friction point between intent and action.
-
-**Headline strategy:** Offer-led. Discount, bonus, deadline, limited availability. The headline IS the deal.
-
-**Copy length:** Short. They don't need convincing. They need a trigger.
-
-**Example opener:** "[Product] Pro is free for 14 days. No credit card."
+Diagnose both before writing. Awareness tells you **what to say**. Sophistication tells you **how to say it**. The full grid, with a headline, lead, length, and call to action for each combination, is in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`.
 
 ---
 
-## The 5 Stages of Market Sophistication
+## Awareness, five levels
 
-### Stage 1: First to market
+**1. Unaware.** The reader hasn't noticed a problem. Don't open with the product or the problem. Open on a scene from their world, and let the recognition build.
+- Headline: curiosity or identity. No product name, no promise.
+- Length: long. The reader has to travel from "nothing's wrong" to "I need this."
+- Example opening: "Your competitors' sites started looking sharper this spring. Did you notice?"
 
-No competitors have made this promise before. The audience has never seen this category.
+**2. Problem-aware.** The reader feels the pain and can describe it, but hasn't looked for a fix. Describe the problem better than they can, in their own words, then hint that a fix exists.
+- Headline: the problem, in the reader's language.
+- Length: medium to long, because you still have to educate.
+- Example opening: "Three quotes for a site: $8,000, $14,000, $22,000. The cheapest wants ten weeks and half up front."
 
-**Copy strategy:** Be simple and direct. State the claim plainly. Don't overcomplicate what doesn't need explaining. Your innovation is the headline.
+**3. Solution-aware.** The reader knows fixes exist and is comparing them. Your mechanism is the difference. Show how you deliver, not just what.
+- Headline: differentiation. The process, or the advantage over the alternatives.
+- Length: medium. The reader is already motivated; give them proof and mechanism.
+- Example opening: "Most tools in this category hand you templates. This one hands you code you can edit and deploy."
 
-**Headline approach:** Direct claim. "Fresh ingredients and recipes delivered to your door."
+**4. Product-aware.** The reader knows you and hasn't bought. Something holds them back: an objection, a doubt, a competing priority. Remove it.
+- Headline: proof. A new result, a new testimonial, a fresh angle on the value.
+- Length: medium-short. Don't re-explain; supply the missing piece.
+- Example opening: "Forty thousand people have built sites with this. Here's what three of them shipped last week."
 
-**Danger:** Getting in your own way with cleverness when simplicity wins.
+**5. Most aware.** The reader wants the product and needs a trigger. Make the action frictionless.
+- Headline: the offer. Price, bonus, deadline, or limit.
+- Length: short. They need a nudge, not persuasion.
+- Example opening: "Pro is free for 14 days. No card required."
 
-### Stage 2: Competition emerges
-
-Others are making similar promises. The market knows the category exists. Direct claims still work, but you need to be louder and more specific.
-
-**Copy strategy:** Take the working claim and drive it to its absolute limit. Outbid the competition on specifics: faster, cheaper, more, better. Enlarge the promise.
-
-**Headline approach:** Enlarged direct claim with specifics. "Build a production-ready website in 129 seconds."
-
-**Danger:** Being vague when competitors are getting specific.
-
-### Stage 3: Mechanism required
-
-The audience is fatigued by repetitive claims. Every competitor promises the same outcome. Skepticism is rising.
-
-**Copy strategy:** Introduce a new mechanism: a unique process, technology, or approach that makes the old promise feel fresh and credible. The mechanism is the news.
-
-**Headline approach:** Lead with the mechanism, not the promise. "WebContainers run your dev environment in the browser: no remote servers, no latency."
-
-**Danger:** Making bigger promises when the audience no longer believes promises.
-
-### Stage 4: Mechanism arms race
-
-Competitors have their own mechanisms. The market is crowded with sophisticated players, each claiming a unique approach.
-
-**Copy strategy:** Elaborate on your mechanism by making it easier, faster, more comprehensive, or more proven. Stack proof on top of mechanism. Show the mechanism in action through stories, demos, and case studies.
-
-**Headline approach:** Enhanced mechanism with proof. "How 40,000 non-technical founders shipped real websites using prompt-to-production AI."
-
-**Danger:** Adding complexity when the audience wants simplicity and proof.
-
-### Stage 5: Market skepticism
-
-Prospects don't believe claims or mechanisms anymore. The market is burned out. They look for reasons to eliminate options, not consider them.
-
-**Copy strategy:** Shift from promises to identity. The product becomes a worldview, a tribe, a way of being. Connect with who the reader wants to become, not what they want to get.
-
-**Headline approach:** Identity and belonging. "Built by the person who knows the business best: you."
-
-**Danger:** Continuing to shout claims and mechanisms into a market that has stopped listening.
+**Consequence:** the less aware the reader, the longer the copy has to be. That's structural, not a style choice.
 
 ---
 
-## Schwartz's Core Principles
+## Sophistication, five stages
 
-### You cannot create desire
+**Stage 1: first to market.** No one has made this promise. Say it plainly. The novelty is the message, so don't dress it up.
+- Headline: the direct claim. "Fresh ingredients delivered to your door."
+- Risk: cleverness that gets in the way of a simple claim that would have worked.
 
-You can only channel it. The desire already exists in the prospect's mind, formed by their experiences, frustrations, and aspirations. Your copy connects that existing desire to your product. If no desire exists, no amount of copy will manufacture it.
+**Stage 2: competition arrives.** Others make similar promises. Keep the claim, but push it further and make it specific: faster, cheaper, bigger, with a number.
+- Headline: the enlarged claim. "A production-ready site in 129 seconds."
+- Risk: staying vague while competitors get concrete.
 
-### The mass desire is your raw material
+**Stage 3: mechanism required.** The audience has heard every promise. Lead with the mechanism that is new, because the mechanism is now the news.
+- Headline: the how. "The site runs in the browser, so there's no server for you to wait on."
+- Risk: promising bigger when the audience has stopped believing promises.
 
-Before writing, identify the dominant desire in your market. What do these people want most? What keeps them up at night? That desire, not your product features, is the foundation of every headline and every lead.
+**Stage 4: mechanism arms race.** Everyone has a mechanism. Prove yours with a result, and show the mechanism working through a story or a demo.
+- Headline: the mechanism plus proof. "How forty thousand non-technical founders shipped real sites."
+- Risk: adding complexity when the audience wants simple evidence.
 
-### Copy length follows awareness
-
-The less aware they are, the longer your copy needs to be. Most aware = short. Unaware = long journey. This isn't a style choice. It's structural. An unaware reader needs to be walked from ignorance through recognition through desire to action. A most-aware reader just needs the offer.
-
-### The headline is the ad for the ad
-
-The headline's only job is to get the first sentence read. The first sentence's only job is to get the second sentence read. Every element serves the next. Nothing exists for its own sake.
-
----
-
-## Schwartz's Diagnostic Questions
-
-Before writing, answer these:
-
-1. **Where is the reader on the awareness scale?** (Unaware → Most aware)
-2. **Where is the market on the sophistication scale?** (First to market → Saturated)
-3. **What is the dominant mass desire?** (The want that already exists)
-4. **What is your unique mechanism?** (How you deliver the promise differently)
-5. **What proof do you have?** (Numbers, testimonials, demonstrations, case studies)
-6. **What is the single strongest objection?** (The thing stopping them right now)
-7. **How long does the copy need to be?** (Dictated by awareness level, not preference)
-8. **Are you creating desire or channeling it?** (If creating, stop; find the existing desire)
+**Stage 5: skepticism.** The audience no longer believes claims or mechanisms, and looks for reasons to rule options out. Stop making claims. Offer an identity the reader wants to belong to.
+- Headline: identity. "Built for the person who knows the business best: you."
+- Risk: continuing to shout claims into a market that has stopped listening.
 
 ---
 
-## Quick Reference: What Changes by Awareness Level
+## Principles
 
-| Element | Unaware | Problem-aware | Solution-aware | Product-aware | Most aware |
+- **Desire is raw material.** Before writing, name the dominant desire in the market: what people want most, what keeps them up at night. That desire, not a product feature, is the foundation of the headline and the lead.
+- **The headline's only job is to get the first sentence read.** The first sentence's only job is to get the second read. Each element exists to pull the reader into the next.
+- **Length follows distance.** An unaware reader needs the whole journey from ignorance to action. A most-aware reader needs the offer.
+
+---
+
+## Diagnostic questions
+
+Answer before drafting:
+
+1. Where is the reader on the awareness scale?
+2. Where is the market on the sophistication scale?
+3. What is the dominant desire, the want that already exists?
+4. What's your mechanism: how do you deliver the promise differently?
+5. What proof do you have: numbers, testimonials, demos, case studies?
+6. What's the single strongest objection right now?
+7. How long does the copy need to be? (Set by awareness, not by taste.)
+8. Are you channeling existing desire or trying to create it? If creating, stop and find the desire that already exists.
+
+---
+
+## Quick reference
+
+**By awareness:**
+
+| | Unaware | Problem-aware | Solution-aware | Product-aware | Most aware |
 |---|---|---|---|---|---|
-| Headline | Identity/curiosity | Problem statement | Mechanism/differentiation | Proof/new angle | Offer/deal |
-| Lead | Story or scenario | Empathy + problem | Unique mechanism | Testimonial/case study | Price and CTA |
-| Copy length | Long | Medium-long | Medium | Medium-short | Short |
-| Proof type | Narrative | Problem validation | Mechanism explanation | Social proof | Risk reversal |
-| CTA | Soft (learn more) | Problem-solution bridge | Compare/try | Overcome objection | Buy now |
+| Headline | Identity or curiosity | The problem | The mechanism | Proof | The offer |
+| Lead | A scene | Empathy, then the problem | The mechanism | A testimonial | Price and action |
+| Length | Long | Medium-long | Medium | Medium-short | Short |
+| Proof | Story | Confirms the problem | Shows the mechanism | Social proof | Risk removal |
+| Call to action | Learn more | Bridge to the fix | Compare or try | Clear the objection | Buy |
 
----
+**By sophistication:**
 
-## Quick Reference: What Changes by Sophistication Level
-
-| Element | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
+| | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
 |---|---|---|---|---|---|
-| Promise | Simple direct claim | Enlarged direct claim | New mechanism | Enhanced mechanism | Identity shift |
-| Headline | State the benefit | State it bigger | Show the how | Prove the how | Show who they become |
-| Proof needed | Minimal | Comparative | Mechanism demo | Stacked proof | Community/belonging |
-| Competitor stance | Ignore | Outbid | Differentiate | Out-prove | Transcend |
-| Tone | Educational | Confident | Innovative | Authoritative | Empathetic |
+| Promise | Plain claim | Bigger claim | New mechanism | Proven mechanism | Identity |
+| Headline | The benefit | The benefit, larger | The how | The how, proven | Who they become |
+| Proof | Little needed | Comparison | A demo of the mechanism | Stacked evidence | Community |
+| Stance toward rivals | Ignore | Outbid | Differentiate | Out-prove | Move past them |
+| Tone | Educational | Confident | Inventive | Authoritative | Warm |
 
 ---
 
-## Schwartz vs. Ogilvy: When to Use Which
+## Schwartz and Ogilvy together
 
-Both frameworks improve copy. They operate on different problems:
+They answer different questions, and the order matters.
 
-| Dimension | Schwartz | Ogilvy |
+| | Schwartz | Ogilvy |
 |---|---|---|
-| Core question | Where is the reader right now? | What is the single strongest promise? |
-| Primary axis | Awareness + sophistication | Positioning + brand image |
-| Strength | Matching message to market temperature | Crafting the promise and the big idea |
-| Best for | Market analysis, headline strategy, copy structure | Positioning, creative direction, visual logic |
-| Weakness | Doesn't address brand or visual identity | Doesn't account for market saturation or awareness gaps |
+| Question | Where is the reader, and what does the market already believe? | What's the one promise, and what's the big idea? |
+| Decides | Angle, headline strategy, length | Positioning, creative direction, visual logic |
+| Blind spot | Brand identity and visuals | Market saturation and reader temperature |
 
-**Use Schwartz first** to diagnose where the reader is and what approach the market demands. **Use Ogilvy second** to craft the positioning, promise, and big idea within those constraints. They're complementary, not competing.
-
----
-
-## Source Material
-
-Adapted from:
-- **"Breakthrough Advertising"**: Eugene Schwartz, 1966
-- **"The Brilliant Dr. Schwartz"**: Schwartz's collected principles on direct response
-- Market sophistication framework breakdowns from Scope Design, Dan Lok, and ActiveCampaign
-- Awareness level applications from GrowthMarketer, Copy Posse, and Outbrain
+Run Schwartz first to find the reader's position. Then use Ogilvy to build the promise and the idea inside those limits.

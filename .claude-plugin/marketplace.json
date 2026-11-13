@@ -9,25 +9,25 @@
       "name": "fresh-ink",
       "source": "./plugins/fresh-ink",
       "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + social + SEO/AEO structure.",
-      "version": "2.7.4"
+      "version": "2.8.0"
     },
     {
       "name": "red-pen",
       "source": "./plugins/red-pen",
       "description": "The fix-it tool: verdict-first copyedit, developmental and proofread modes, concreteness scoring.",
-      "version": "2.7.4"
+      "version": "2.8.0"
     },
     {
       "name": "cited-works",
       "source": "./plugins/cited-works",
       "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations, draft fact-checks.",
-      "version": "2.7.4"
+      "version": "2.8.0"
     },
     {
       "name": "insights",
       "source": "./plugins/insights",
       "description": "The measure-it tool: GA4, Search Console, and AI-answer visibility. Dormant until wired.",
-      "version": "2.7.4"
+      "version": "2.8.0"
     }
   ]
 }

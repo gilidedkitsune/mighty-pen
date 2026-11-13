@@ -1,33 +1,33 @@
-# Micro-Formula Library
+# Short-form skeletons
 
-Body-section skeletons for SHORT-FORM copy: the proven structures that get a quick piece moving. Scoped to the Light-workflow types (social, email, ads, event copy) that skip the Schwartz diagnosis and the outline step and so have the least scaffolding. For long-form and persuasion-heavy work, defer to Schwartz (awareness and sophistication) and the Ogilvy discipline; these formulas are the quick-draft tool, not the strategy layer.
+Body structures for short copy: social posts, cold email, quick ads, and event announcements. These are for the Light-workflow types, which skip the diagnosis and the outline, so they have the least scaffolding. For longer persuasion, the Schwartz diagnosis and Ogilvy's review come first; these skeletons are a fast way to shape a draft, not a strategy.
 
-Pick one per piece. Do not stack them.
+Pick one per piece, and don't stack two.
 
-## The formulas
+## The skeletons
 
-| Formula | Shape | Best for |
+| Name | Order | Good for |
 |---|---|---|
-| **PAS** | Problem, Agitate, Solution | social, cold email, pain-led ads |
-| **BAB** | Before, After, Bridge | social, email, transformation angles |
-| **AIDA** | Attention, Interest, Desire, Action | ads, landing sections, announcements |
-| **PASTOR** | Problem, Amplify, Story, Transformation, Offer, Response | longer sales or nurture email |
-| **FAB** | Feature, Advantage, Benefit | feature copy, product announcements, 1-pagers |
-| **4 Ps** | Promise, Picture, Proof, Push | ads, promo copy |
+| Pain, twist, relief | Name the pain, make it worse, offer the way out | Social, cold email, pain-led ads |
+| Then, now, bridge | The old state, the new state, how you get from one to the other | Social, email, transformation angles |
+| Hook, interest, want, act | Grab, give a reason, make them want it, ask | Ads, landing sections, announcements |
+| Long nurture sequence | Pain, widen it, a story, the change, the offer, what to do next | Longer sales or nurture email |
+| Feature, what it does, why it matters | Name the feature, say what it lets people do, state the result | Feature copy, release notes, one-pagers |
+| Promise, picture, proof, push | The claim, something to see, evidence, the ask | Ads, promotions |
 
-## FAB as a sub-routine (the feature-dump antidote)
+## Feature, then benefit
 
-Whenever you write about a feature, run it through FAB so you never ship a bare feature:
+Whenever you write about a feature, walk it through three questions so no bare feature ships:
 
-- **Feature:** what it is. ("[Product] now supports X.")
-- **Advantage:** what that lets you do. ("so you can do Y...")
-- **Benefit:** the outcome the reader cares about. ("...and ship Z without waiting on a dev.")
+- **The feature:** what it is. ("Exports now include filters.")
+- **What it lets someone do:** the capability. ("Send the same report to a client without re-running it.")
+- **Why they care:** the outcome. ("Clients stop asking for the file twice.")
 
-Kill any feature line that cannot ladder to a reader benefit.
+A feature line that can't reach a reader's outcome gets cut or rewritten.
 
-## Worked examples
+## Examples
 
-- **PAS (tweet):** "Your landing page has been 'almost done' for three weeks. Every day it's down is leads you're not capturing. Describe it to [Product], ship it today."
-- **BAB (email):** "Before: a dev ticket and a two-week wait. After: live by lunch. Here's the 90-second version."
+- **Pain, twist, relief (social):** "Your landing page has been almost done for three weeks. Each day it sits is a day of leads you don't capture. Describe it to Ledgerly and it's live today."
+- **Then, now, bridge (email):** "Before: a dev ticket and a two-week wait. Now: live by lunch. Here's the ninety-second version."
 
-These reinforce the rest of the stack rather than competing with it: FAB serves Ogilvy's "facts over adjectives," and a formula's hook should still pass the VoC gut-check (does it ring true to how customers talk?) and the no-slops filter before it ships.
+These skeletons fit inside the other rules. Each hook should still sound like something a real customer would say (the voice-of-customer check), and the draft still goes through the no-slops filter before it ships.

@@ -1,168 +1,260 @@
 #!/usr/bin/env python3
-"""
-Repetition scanner for the red-pen skill.
-Counts content-word repetition (nouns, verbs, adjectives; function words stripped),
-groups inflections, and reports the repeaters a reader feels: how often, how dense,
-and how tightly clustered. Proper nouns and acronyms are listed separately, untiered.
+"""Repetition check for a draft: which content words recur, how densely, and how clustered.
+
+Counts content words after dropping function words and merging word forms (default, defaults,
+defaulted). Proper nouns and acronyms are listed on their own. Subject terms (taken from the
+title, plus anything passed with --terms) are counted but never flagged, because a piece is
+supposed to keep returning to its subject.
 
 Usage:
-    echo "Your text here" | python3 repetition.py
-    python3 repetition.py path/to/file.txt
-    python3 repetition.py path/to/file.md
-    python3 repetition.py path/to/file.md --terms "forge,model,plan"
-Subject terms (from the title automatically, plus --terms) and proper nouns are reported but never tiered.
-Stdlib only. Refuses .docx (extract the text first).
+    echo "text" | python3 repetition.py --terms "forge,model"
+    python3 repetition.py draft.md --terms "forge,model,plan"
+
+Standard library only. Word documents are refused; extract the text first.
 """
-import sys, re, json, os
+
+import json
+import os
+import re
+import sys
 from collections import Counter, defaultdict
 
-STOP = set("""
-a an the this that these those there here it its itself i me my mine myself we us our ours ourselves you your yours yourself yourselves
-he him his himself she her hers herself they them their theirs themselves who whom whose which what where when why how
-and or but nor so yet for if then than as because while although though unless until whether either neither both
-of in on at to from by with without about above below over under between among through during before after into onto upon
-across along around behind beside beyond inside outside toward towards within against via per off out up down
-is am are was were be been being have has had having do does did doing done
-can could will would shall should may might must ought
-not no nor never none nothing nobody nowhere neither
-very just also too only even still already often always sometimes usually rarely
-more most less least much many some any all each every few several such own same other another
-one two three four five six seven eight nine ten first second third next last
-yes well okay ok maybe perhaps rather quite really actually simply basically
-get got gets getting go goes going went gone come comes came coming
-thing things way ways lot lots kind sort
-s t re ve ll d m
+FUNCTION_WORDS = frozenset("""
+a about above across after again against all almost also although always am among an and
+another any anyone anything are around as at be because been before being below beside
+between beyond both but by can cannot could did do does doing done down during each either
+else enough even ever every everyone everything few for from further get gets getting got
+had has have having he her here hers herself him himself his how however i if in into is
+it its itself just least less let like likely made make many may me might more most much
+must my myself neither never next no nobody none nor not nothing now of off often on once
+one only onto or other others otherwise our ours ourselves out over own per perhaps quite
+rather really same several shall she should since so some something sometimes somewhat still
+such than that the their theirs them themselves then there these they this those though
+through throughout thus to too toward towards under until up upon us very via was we well
+were what whatever when whenever where whether which while who whoever whole whom whose why
+will with within without would yet you your yours yourself yourselves
 """.split())
 
-IRREG = {"went":"go","gone":"go","made":"make","built":"build","said":"say","took":"take","taken":"take","gave":"give","given":"give",
- "ran":"run","wrote":"write","written":"write","saw":"see","seen":"see","knew":"know","known":"know","thought":"think","found":"find",
- "left":"leave","told":"tell","kept":"keep","began":"begin","begun":"begin","brought":"bring","bought":"buy","chose":"choose","chosen":"choose",
- "grew":"grow","grown":"grow","held":"hold","led":"lead","lost":"lose","met":"meet","paid":"pay","sent":"send","showed":"show","shown":"show",
- "spent":"spend","stood":"stand","understood":"understand","won":"win","broke":"break","broken":"break","spoke":"speak","spoken":"speak",
- "fell":"fall","felt":"feel","meant":"mean","sold":"sell","taught":"teach","caught":"catch","dealt":"deal","drew":"draw","drawn":"draw",
- "threw":"throw","thrown":"throw","wore":"wear","worn":"wear","woke":"wake","hid":"hide","hidden":"hide","rose":"rise","risen":"rise",
- "people":"person","children":"child","men":"man","women":"woman","teams":"team","data":"data","better":"good","best":"good","worse":"bad","worst":"bad"}
+# Irregular forms that suffix rules can't reach.
+IRREGULAR = {
+    "went": "go", "gone": "go", "made": "make", "built": "build", "said": "say",
+    "took": "take", "taken": "take", "gave": "give", "given": "give", "ran": "run",
+    "wrote": "write", "written": "write", "saw": "see", "seen": "see", "knew": "know",
+    "known": "know", "thought": "think", "found": "find", "left": "leave", "told": "tell",
+    "kept": "keep", "began": "begin", "begun": "begin", "brought": "bring", "bought": "buy",
+    "chose": "choose", "chosen": "choose", "grew": "grow", "grown": "grow", "held": "hold",
+    "led": "lead", "lost": "lose", "met": "meet", "paid": "pay", "sent": "send",
+    "showed": "show", "shown": "show", "spent": "spend", "stood": "stand",
+    "understood": "understand", "won": "win", "broke": "break", "broken": "break",
+    "spoke": "speak", "spoken": "speak", "fell": "fall", "felt": "feel", "meant": "mean",
+    "sold": "sell", "taught": "teach", "caught": "catch", "drew": "draw", "drawn": "draw",
+    "threw": "throw", "thrown": "throw", "wore": "wear", "worn": "wear", "rose": "rise",
+    "risen": "rise", "people": "person", "children": "child", "men": "man", "women": "woman",
+    "teams": "team", "better": "good", "best": "good", "worse": "bad", "worst": "bad",
+}
 
-def clean_markdown(text):
-    text = re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S)            # front matter
-    text = re.sub(r"```.*?```", " ", text, flags=re.S)                   # code blocks
-    text = re.sub(r"`[^`]*`", " ", text)                                 # inline code
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)                    # images
-    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)                 # links -> text
-    text = re.sub(r"<[^>]+>", " ", text)                                 # html
+SHORT_RED_FLAGS = {"thing", "things", "way", "ways", "lot", "lots", "kind", "sort"}
+
+
+def strip_markup(text):
+    text = re.sub(r"\A---\n.*?\n---\n", "", text, flags=re.S)
+    text = re.sub(r"```.*?```", " ", text, flags=re.S)
+    text = re.sub(r"`[^`]*`", " ", text)
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)
+    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+    text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"https?://\S+", " ", text)
-    text = re.sub(r"^\s{0,3}#{1,6}\s*", "", text, flags=re.M)            # header marks
-    text = re.sub(r"^\s*[-*+>]\s+", "", text, flags=re.M)                # list/quote marks
-    text = re.sub(r"[*_]{1,3}", "", text)                                # emphasis
+    text = re.sub(r"^\s{0,3}#{1,6}\s*", "", text, flags=re.M)
+    text = re.sub(r"^\s*[-*+>]\s+", "", text, flags=re.M)
+    text = re.sub(r"[*_]{1,3}", "", text)
     return text
 
-def lemma(w, surface):
-    if w in IRREG: return IRREG[w]
-    cands = []
-    if len(w) > 4 and w.endswith("ies"): cands.append(w[:-3] + "y")
-    if len(w) > 4 and w.endswith("ied"): cands.append(w[:-3] + "y")
-    if len(w) > 3 and w.endswith("es") and w[-3] in "sxz": cands.append(w[:-2])
-    if len(w) > 4 and w.endswith("sses"): cands.append(w[:-2])
-    if len(w) > 5 and w.endswith("ing"):
-        b = w[:-3]; cands += [b + "e", b, b[:-1] if len(b) > 2 and b[-1] == b[-2] else b]
-    if len(w) > 4 and w.endswith("ed"):
-        b = w[:-2]; cands += [b + "e", b, b[:-1] if len(b) > 2 and b[-1] == b[-2] else b]
-    if len(w) > 3 and w.endswith("s") and not w.endswith("ss"): cands.append(w[:-1])
-    if len(w) > 4 and w.endswith("ly"): cands.append(w[:-2])
-    for c in cands:                       # prefer a base that actually occurs in the text
-        if c in surface: return c
-    for c in cands:
-        if c + "e" in surface: return c + "e"
-    return cands[0] if cands else w
+
+def base_form(word, seen_surfaces):
+    """Reduce a word to a shared base, preferring a base that already appears in the text."""
+    if word in IRREGULAR:
+        return IRREGULAR[word]
+    options = []
+    n = len(word)
+    if n > 4 and word.endswith("ies"):
+        options.append(word[:-3] + "y")
+    if n > 4 and word.endswith("ied"):
+        options.append(word[:-3] + "y")
+    if n > 4 and word.endswith("sses"):
+        options.append(word[:-2])
+    if n > 3 and word.endswith("es") and word[-3] in "sxz":
+        options.append(word[:-2])
+    if n > 5 and word.endswith("ing"):
+        stem = word[:-3]
+        options += [stem + "e", stem, stem[:-1] if len(stem) > 2 and stem[-1] == stem[-2] else stem]
+    if n > 4 and word.endswith("ed"):
+        stem = word[:-2]
+        options += [stem + "e", stem, stem[:-1] if len(stem) > 2 and stem[-1] == stem[-2] else stem]
+    if n > 3 and word.endswith("s") and not word.endswith("ss"):
+        options.append(word[:-1])
+    if n > 4 and word.endswith("ly"):
+        options.append(word[:-2])
+
+    for option in options:
+        if option in seen_surfaces:
+            return option
+    for option in options:
+        if option + "e" in seen_surfaces:
+            return option + "e"
+    return options[0] if options else word
+
+
+def is_title_line(paragraphs, title_match):
+    if title_match:
+        return title_match.group(1)
+    if len(paragraphs) < 2:
+        return ""
+    first = paragraphs[0].split("\n")[0].strip()
+    if len(first.split()) <= 15 and not first.endswith((".", "!", "?")):
+        return first
+    return ""
+
+
+def tier_of(lemma_total, paragraph_peak, per_thousand, marked):
+    if paragraph_peak >= 3 or (lemma_total >= 8 and per_thousand >= 10) or (marked and lemma_total >= 8):
+        return "red"
+    if (lemma_total >= 5 and per_thousand >= 5 and paragraph_peak >= 2) or (marked and lemma_total >= 5):
+        return "yellow"
+    return "note"
+
+
+def analyze(raw, extra_terms):
+    text = strip_markup(raw)
+    paragraphs = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
+    title = is_title_line(paragraphs, re.search(r"^\s{0,3}#\s+(.+)$", raw, flags=re.M))
+    token_pattern = re.compile(r"[A-Za-z][A-Za-z.\-']*[A-Za-z]|[A-Za-z]")
+
+    surface_counts = Counter()
+    capitalized_mid = Counter()
+    lowercase_uses = Counter()
+    total_tokens = 0
+    for para in paragraphs:
+        for sentence in re.split(r"(?<=[.!?])\s+", para.strip()):
+            tokens = token_pattern.findall(sentence)
+            mostly_capitalized = len(tokens) <= 12 and sum(t[0].isupper() for t in tokens) >= 0.6 * max(len(tokens), 1)
+            for index, token in enumerate(tokens):
+                total_tokens += 1
+                key = re.sub(r"'(s|re|ve|ll|d|m|t)$", "", token.lower().strip(".-'"))
+                if not key:
+                    continue
+                surface_counts[key] += 1
+                if token[0].isupper() and index > 0 and not mostly_capitalized:
+                    capitalized_mid[key] += 1
+                if token[0].islower():
+                    lowercase_uses[key] += 1
+
+    proper = {k for k, c in capitalized_mid.items() if c >= 2 and c >= 2 * lowercase_uses[k] and k not in FUNCTION_WORDS}
+    for token in set(re.findall(r"\b[A-Z]{2,5}\b", raw)):
+        proper.add(token.lower())
+
+    subject = set()
+    for token in token_pattern.findall(title):
+        key = token.lower().strip(".-'")
+        if key and key not in FUNCTION_WORDS and len(key) >= 3:
+            subject.add(base_form(key, surface_counts))
+    subject |= {base_form(t, surface_counts) for t in extra_terms}
+
+    lemma_count = Counter()
+    lemma_forms = defaultdict(Counter)
+    lemma_paras = defaultdict(Counter)
+    proper_count = Counter()
+    content_total = 0
+    for p_index, para in enumerate(paragraphs):
+        for token in token_pattern.findall(para):
+            key = re.sub(r"'(s|re|ve|ll|d|m|t)$", "", token.lower().strip(".-'"))
+            if not key or key in FUNCTION_WORDS or len(key) < 3 or key.isdigit():
+                continue
+            if key in proper or "." in key:
+                proper_count[key if "." in key else token.strip(".,")] += 1
+                continue
+            lemma = base_form(key, surface_counts)
+            content_total += 1
+            lemma_count[lemma] += 1
+            lemma_forms[lemma][key] += 1
+            lemma_paras[lemma][p_index] += 1
+
+    def per_thousand(n):
+        return round(n * 1000 / max(total_tokens, 1), 1)
+
+    rows, subject_rows = [], []
+    for lemma, count in lemma_count.most_common(60):
+        if count < 2:
+            break
+        peak = max(lemma_paras[lemma].values())
+        row = {
+            "lemma": lemma,
+            "count": count,
+            "per_1k_words": per_thousand(count),
+            "forms": dict(lemma_forms[lemma].most_common()),
+            "paragraphs_touched": len(lemma_paras[lemma]),
+            "max_in_one_paragraph": peak,
+        }
+        if lemma in subject:
+            subject_rows.append(row)
+            continue
+        marked = len(lemma) >= 7 or "-" in lemma or lemma in SHORT_RED_FLAGS
+        row["tier"] = tier_of(count, peak, per_thousand(count), marked)
+        row["why"] = ("clusters" if peak >= 3 else
+                      "marked word, recurs" if marked and count >= 5 else
+                      "dense" if per_thousand(count) >= 5 else "")
+        rows.append(row)
+
+    rows.sort(key=lambda r: ({"red": 0, "yellow": 1, "note": 2}[r["tier"]], -r["max_in_one_paragraph"], -r["count"]))
+    flagged = [r for r in rows if r["tier"] != "note"]
+    quiet = [r for r in rows if r["tier"] == "note"][:10]
+    return {
+        "words_total": total_tokens,
+        "paragraphs": len(paragraphs),
+        "content_words": content_total,
+        "unique_content_lemmas": len(lemma_count),
+        "content_variety": round(len(lemma_count) / max(content_total, 1), 3),
+        "reds": sum(r["tier"] == "red" for r in rows),
+        "yellows": sum(r["tier"] == "yellow" for r in rows),
+        "title_detected": title,
+        "subject_terms_untiered": subject_rows[:10],
+        "repeaters": flagged + quiet,
+        "proper_nouns_and_acronyms": [{"term": k, "count": v} for k, v in proper_count.most_common(12)],
+        "how_to_read": ("max_in_one_paragraph is the figure a reader feels. Subject terms and proper nouns "
+                        "are counted but never flagged; pass more with --terms. A tic is fixed by restructuring "
+                        "the sentence, never by swapping in a synonym."),
+    }
+
+
+def read_source(args):
+    if args:
+        path = args[0]
+        if path.lower().endswith((".docx", ".doc", ".pdf")):
+            return None, "Binary document. Extract the text first, then pass it in."
+        if not os.path.exists(path):
+            return None, f"File not found: {path}"
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            return fh.read(), None
+    return sys.stdin.read(), None
+
 
 def main():
-    args = sys.argv[1:]; extra_terms = set()
-    if "--terms" in args:
-        i = args.index("--terms"); extra_terms = {t.strip().lower() for t in args[i+1].split(",") if t.strip()} if i+1 < len(args) else set()
-        del args[i:i+2]
-    if args:
-        p = args[0]
-        if p.lower().endswith((".docx", ".doc", ".pdf")):
-            print(json.dumps({"error": "Binary document. Extract the text first, then pipe it in."})); return
-        if not os.path.exists(p):
-            print(json.dumps({"error": f"File not found: {p}"})); return
-        raw = open(p, encoding="utf-8", errors="replace").read()
-    else:
-        raw = sys.stdin.read()
-    if not raw.strip():
-        print(json.dumps({"error": "No text provided"})); return
+    argv = sys.argv[1:]
+    extra_terms = set()
+    if "--terms" in argv:
+        at = argv.index("--terms")
+        if at + 1 < len(argv):
+            extra_terms = {t.strip().lower() for t in argv[at + 1].split(",") if t.strip()}
+        del argv[at:at + 2]
 
-    text = clean_markdown(raw)
-    paras = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
-    m = re.search(r"^\s{0,3}#\s+(.+)$", raw, flags=re.M)
-    # headerless title: only when there is more than one paragraph, the first line is short,
-    # and it does not end like a sentence (a one-line stdin input or a social post is body, not title)
-    first = paras[0].split("\n")[0].strip() if paras else ""
-    title = m.group(1) if m else (first if len(paras) > 1 and len(first.split()) <= 15 and not first.endswith((".", "!", "?")) else "")
-    tok_re = re.compile(r"[A-Za-z][A-Za-z.\-']*[A-Za-z]|[A-Za-z]")
+    raw, problem = read_source(argv)
+    if problem:
+        print(json.dumps({"error": problem}))
+        return
+    if not raw or not raw.strip():
+        print(json.dumps({"error": "No text provided"}))
+        return
+    print(json.dumps(analyze(raw, extra_terms), indent=2))
 
-    # pass 1: surface forms + proper-noun evidence
-    surface = Counter(); cap_mid = Counter(); low_cnt = Counter(); total = 0
-    for para in paras:
-        sents = re.split(r"(?<=[.!?])\s+", para.strip())
-        for s in sents:
-            toks = tok_re.findall(s)
-            titlecase = len(toks) <= 12 and sum(t[0].isupper() for t in toks) >= 0.6 * max(len(toks), 1)
-            for i, t in enumerate(toks):
-                total += 1
-                base = re.sub(r"'(s|re|ve|ll|d|m|t)$", "", t.lower().strip(".-'"))
-                if not base: continue
-                surface[base] += 1
-                if t[0].isupper() and i > 0 and not titlecase: cap_mid[base] += 1
-                if t[0].islower(): low_cnt[base] += 1
-    acronym = lambda t: t.isupper() and 2 <= len(t) <= 5
-    proper = {b for b, c in cap_mid.items() if c >= 2 and c >= 2 * low_cnt[b] and b not in STOP}
-    for b in list(surface):
-        if any(acronym(f) for f in [b.upper()]) and b.upper() in raw: proper.add(b)
-
-    # pass 2: lemmatize content words, track per-paragraph clustering
-    lem_count = Counter(); lem_forms = defaultdict(Counter); lem_paras = defaultdict(Counter); prop_count = Counter()
-    content_total = 0
-    subject = set()
-    for t in tok_re.findall(title):
-        b = t.lower().strip(".-'")
-        if b and b not in STOP and len(b) >= 3: subject.add(lemma(b, surface))
-    subject |= {lemma(t, surface) for t in extra_terms}
-    for pi, para in enumerate(paras):
-        for t in tok_re.findall(para):
-            base = re.sub(r"'(s|re|ve|ll|d|m|t)$", "", t.lower().strip(".-'"))
-            if not base or base in STOP or len(base) < 3 or base.isdigit(): continue
-            if base in proper or "." in base:
-                prop_count[base if "." in base else t.strip(".,")] += 1; continue
-            L = lemma(base, surface)
-            content_total += 1; lem_count[L] += 1; lem_forms[L][base] += 1; lem_paras[L][pi] += 1
-
-    per_1k = lambda c: round(c * 1000 / max(total, 1), 1)
-    reps = []; subj = []
-    for L, c in lem_count.most_common(60):
-        if c < 2: break
-        mx = max(lem_paras[L].values()); touched = len(lem_paras[L])
-        row = {"lemma": L, "count": c, "per_1k_words": per_1k(c), "forms": dict(lem_forms[L].most_common()),
-               "paragraphs_touched": touched, "max_in_one_paragraph": mx}
-        if L in subject:
-            subj.append(row); continue
-        # tiers: clustering first (what a reader feels), then piece-wide density
-        marked = len(L) >= 7 or "-" in L
-        row["tier"] = ("red" if (mx >= 3 and c >= 4) or (c >= 8 and per_1k(c) >= 10) or (marked and c >= 8)
-                       else "yellow" if (c >= 5 and per_1k(c) >= 5 and mx >= 2) or (marked and c >= 5) else "note")
-        row["why"] = ("clusters" if mx >= 3 else "marked word, recurs" if marked and c >= 5 else "dense" if per_1k(c) >= 5 else "")
-        reps.append(row)
-    reps.sort(key=lambda r: ({"red": 0, "yellow": 1, "note": 2}[r["tier"]], -r["max_in_one_paragraph"], -r["count"]))
-    result = {
-        "words_total": total, "paragraphs": len(paras), "content_words": content_total,
-        "unique_content_lemmas": len(lem_count), "content_variety": round(len(lem_count) / max(content_total, 1), 3),
-        "reds": sum(r["tier"] == "red" for r in reps), "yellows": sum(r["tier"] == "yellow" for r in reps),
-        "title_detected": title, "subject_terms_untiered": subj[:10],
-        "repeaters": [r for r in reps if r["tier"] != "note"] + [r for r in reps if r["tier"] == "note"][:10],
-        "proper_nouns_and_acronyms": [{"term": k, "count": v} for k, v in prop_count.most_common(12)],
-        "how_to_read": "max_in_one_paragraph is the column a reader feels. Subject terms and proper nouns are counted but never tiered; pass more with --terms. A tic is fixed by restructuring, never by a synonym."
-    }
-    print(json.dumps(result, indent=2))
 
 if __name__ == "__main__":
     main()

@@ -1,272 +1,136 @@
-# Schwartz 5x5 Matrix: Awareness x Sophistication
+# Schwartz grid: awareness by sophistication
 
-The two dimensions from Breakthrough Advertising (customer awareness and market sophistication) interact to produce 25 distinct messaging contexts. This matrix maps the headline strategy, lead approach, and copy structure for each combination.
+Two questions decide most of a persuasive piece's shape. The first: how much does the reader already know about their problem and about solutions? The second: how many competitors have already made this promise to this audience? Put the answers on a five-by-five grid and the intersection tells you what the headline, the lead, the length, the proof, and the call to action should do.
 
-**How to use:** Diagnose the reader's awareness level (rows) and the market's sophistication level (columns). The intersection tells you what your copy needs to do.
+Examples in each cell use an invented bookkeeping tool called Ledgerly, for freelancers. Treat them as shapes, not copy to reuse.
 
----
-
-## The Matrix
-
-### Row 1: Unaware reader
-
-The reader doesn't know they have a problem. Your copy must create recognition before anything else.
-
-#### Unaware + Stage 1 (First to market)
-
-No one has told this audience they have a problem, and no competitors exist.
-
-- **Headline:** Narrative or identity hook that pulls the reader into a world they recognize. No product, no problem, no promise.
-- **Lead:** Story-driven. Paint a scenario the reader lives in daily. Let the problem emerge naturally from the story.
-- **Copy structure:** Long. Story → problem recognition → "there's now a way" → product introduction → proof → CTA.
-- **Example:** "You run a great business. Your customers love you. But when someone Googles you at 10pm, they find... nothing."
-
-#### Unaware + Stage 2 (Competition emerging)
-
-The reader doesn't know they have a problem, but competitors are already educating similar audiences.
-
-- **Headline:** Curiosity or pattern-interrupt. Bolder than Stage 1 because competitors are creating ambient awareness.
-- **Lead:** Scenario-driven but with sharper stakes. The reader needs to feel the cost of not knowing.
-- **Copy structure:** Long. Scenario → stakes → "here's what's changed" → your enlarged claim → proof → CTA.
-- **Example:** "Your competitors just cut their website costs by 90%. They didn't tell you how."
-
-#### Unaware + Stage 3 (Mechanism required)
-
-The reader doesn't know they have a problem. The market is claim-fatigued, so even your awareness-building needs a fresh mechanism.
-
-- **Headline:** Mechanism-as-curiosity. Introduce the new approach as the hook, not the problem.
-- **Lead:** Lead with the mechanism's implications for the reader's world. Let the problem surface through the mechanism's lens.
-- **Copy structure:** Long. Mechanism teaser → "here's why this matters to you" → problem recognition → mechanism explanation → proof → CTA.
-- **Example:** "There's a reason 40,000 people built their own websites last month without writing a line of code."
-
-#### Unaware + Stage 4 (Mechanism arms race)
-
-The reader is unaware, and the market is crowded with competing mechanisms.
-
-- **Headline:** Social proof or trend signal. Use the crowd as the hook since individual mechanisms don't stand out.
-- **Lead:** "Something is happening" framing. Let the trend create problem awareness.
-- **Copy structure:** Long. Trend observation → why it matters → how it works → your proven approach → stacked proof → CTA.
-- **Example:** "58% of small businesses now use AI in their operations. Most started with their website."
-
-#### Unaware + Stage 5 (Market skepticism)
-
-The reader doesn't know they have a problem, and the market is burned out on claims. Hardest combination.
-
-- **Headline:** Pure identity. No claims, no mechanisms, no promises. Speak to who they are.
-- **Lead:** Identity-first. "You're the kind of person who..." Build tribal recognition before introducing anything.
-- **Copy structure:** Long. Identity → shared values → "people like us do things like this" → soft product introduction → community proof → CTA.
-- **Example:** "You didn't start your business to become a project manager for web developers."
+**How to use it:** find the reader's awareness (the rows), find the market's sophistication (the columns), and read the cell.
 
 ---
 
-### Row 2: Problem-aware reader
+## Row 1: Unaware
 
-The reader knows they have a problem but doesn't know solutions exist.
+The reader doesn't yet see a problem. Recognition has to come before any pitch.
 
-#### Problem-aware + Stage 1 (First to market)
+**Unaware, stage 1 (no one has made the promise yet).** Open inside a scene the reader lives in. Let the problem surface from the scene rather than being announced. Long copy: scene, the friction it reveals, the idea that a different option exists, the product, proof, call to action.
+- Example headline shape: "You invoice on time, your clients pay late, and nobody tells you why."
 
-The reader feels the pain. You're the first to offer a solution. This is the highest-conversion combination.
+**Unaware, stage 2 (competitors are starting to educate).** Sharper stakes, because the reader has started to hear about the category elsewhere. Same long structure, with the cost of not knowing made concrete.
+- Example: "Freelancers in your field lose about a month of income a year to late payments. Most never add it up."
 
-- **Headline:** Name the problem, then promise the fix. Simple and direct.
-- **Lead:** Empathy with the problem, then immediate pivot to "there's now a way."
-- **Copy structure:** Medium-long. Problem validation → solution introduction → how it works → proof → CTA.
-- **Example:** "Tired of paying $15,000 for a website that takes three months? Now you can build it yourself in an afternoon."
+**Unaware, stage 3 (the market needs a new mechanism to get attention).** Claims have worn out, so lead with how the thing works, and let the problem appear through the mechanism.
+- Example: "Ledgerly sends the reminder for you, in your voice, the day an invoice slips. Here's why that changes the math."
 
-#### Problem-aware + Stage 2 (Competition emerging)
+**Unaware, stage 4 (crowded mechanisms).** Use the crowd as the hook, since no single mechanism stands out. Trend first, then why it matters, then your approach with stacked proof.
+- Example: "Over half of freelancers now chase payments by hand. Most started with a spreadsheet."
 
-The reader feels the pain. Competitors are offering solutions. You need to outbid them.
-
-- **Headline:** Problem statement with an enlarged promise. Bigger numbers, faster results, lower cost.
-- **Lead:** Quick empathy, then your claim driven to the absolute limit.
-- **Copy structure:** Medium-long. Problem → your enlarged claim → specifics → comparative proof → CTA.
-- **Example:** "The average business website costs $12,000. Yours could cost $20/month and be live by Friday."
-
-#### Problem-aware + Stage 3 (Mechanism required)
-
-The reader feels the pain. They've heard the promises. They need to understand *how* yours is different.
-
-- **Headline:** Problem + new mechanism. Name the pain, then introduce your unique approach.
-- **Lead:** Brief empathy, then pivot to mechanism. "Here's why the old way costs so much, and what changed."
-- **Copy structure:** Medium. Problem → why old solutions fail → your mechanism → mechanism proof → CTA.
-- **Example:** "Website agencies charge $15K because they're translating your vision into code. What if you skipped the translator?"
-
-#### Problem-aware + Stage 4 (Mechanism arms race)
-
-The reader feels the pain. Multiple solutions claim unique mechanisms. Yours needs proof stacked on top.
-
-- **Headline:** Problem + proven mechanism. Lead with evidence, not just the approach.
-- **Lead:** Problem → "you've probably seen tools that claim X" → "here's what actually works, and here's the proof."
-- **Copy structure:** Medium. Problem → mechanism landscape → your proven mechanism → stacked proof (numbers, testimonials, demos) → CTA.
-- **Example:** "129 seconds. That's the average time it takes to build a working site on [Product]. Here's what three founders shipped."
-
-#### Problem-aware + Stage 5 (Market skepticism)
-
-The reader feels the pain but doesn't trust any solution anymore. Identity and empathy are your only tools.
-
-- **Headline:** Empathy without promises. Validate the frustration with the market itself.
-- **Lead:** "You've probably seen a dozen tools claiming to solve this. You're right to be skeptical."
-- **Copy structure:** Medium-long. Empathy with skepticism → honest acknowledgment of market noise → identity-based differentiation → low-risk proof → soft CTA.
-- **Example:** "You don't need another tool that promises to build your website. You need 30 minutes to see if this one actually does."
+**Unaware, stage 5 (the market distrusts every claim).** Make no claims. Speak to identity and shared values, introduce the product softly, and let community proof do the work.
+- Example: "You didn't go freelance to become your own accounts department."
 
 ---
 
-### Row 3: Solution-aware reader
+## Row 2: Problem-aware
 
-The reader knows solutions exist and is comparing options.
+The reader feels the pain and hasn't settled on a fix.
 
-#### Solution-aware + Stage 1 (First to market)
+**Problem-aware, stage 1 (you're first).** The highest-converting cell. Name the pain, promise the fix, keep it short.
+- Example: "Chasing invoices takes hours you aren't billing. Ledgerly does it for you."
 
-Rare combination: the reader knows the category but you're first. Usually happens when you're creating a new sub-category.
+**Problem-aware, stage 2 (competitors are answering the same pain).** Name the pain, then push the promise past what competitors claim: bigger, faster, cheaper, stated with numbers.
+- Example: "Most invoicing tools save you a few hours a month. Ledgerly gets your average payment time under nine days."
 
-- **Headline:** Category claim. "The first [mechanism] for [audience]."
-- **Lead:** Acknowledge what they've been doing (the old way), then introduce your new category.
-- **Copy structure:** Medium. Old way → new category → how it works → proof → CTA.
-- **Example:** "You've used templates. You've hired agencies. This is the first tool that builds from your description."
+**Problem-aware, stage 3 (the reader has heard the promises and wants the difference).** Name the pain, say why the old options fail, then explain the mechanism that's different.
+- Example: "Accounting software still expects you to chase clients yourself. Ledgerly chases them."
 
-#### Solution-aware + Stage 2 (Competition emerging)
+**Problem-aware, stage 4 (several mechanisms claim to be unique).** Lead with proof, not the approach. Describe the mechanisms briefly, then show what your own process produced.
+- Example: "Three hundred freelancers, median payment time down from 31 days to 9. Here's the reminder schedule that did it."
 
-The reader is shopping. Your claim needs to be the biggest and most specific.
-
-- **Headline:** Direct comparison. Your biggest advantage, stated as a fact.
-- **Lead:** Acknowledge alternatives, then make your enlarged claim with specifics.
-- **Copy structure:** Medium. Comparison → your advantage → evidence → CTA.
-- **Example:** "Other tools in the category give you templates. [Product] gives you real, editable, deployable code."
-
-#### Solution-aware + Stage 3 (Mechanism required)
-
-The reader is shopping and has heard similar claims from everyone. Your mechanism is the differentiator.
-
-- **Headline:** Mechanism-led differentiation. How yours works differently.
-- **Lead:** "You've seen the promises. Here's how ours actually delivers."
-- **Copy structure:** Medium. Mechanism explanation → why it matters → comparison table → proof → CTA.
-- **Example:** "Most tools in the category run on remote servers. [Product] runs in your browser: zero latency, full control."
-
-#### Solution-aware + Stage 4 (Mechanism arms race)
-
-The reader is comparing mechanisms. Everyone has one. Yours needs superior proof.
-
-- **Headline:** Proof-led. Lead with results, then explain the mechanism behind them.
-- **Lead:** "Here's what happened when [specific person/company] tried it."
-- **Copy structure:** Medium. Case study/testimonial → mechanism behind the results → comparison → CTA.
-- **Example:** "A landscaping company built their full site in an afternoon. A tutor built a learning platform in a weekend. Here's how."
-
-#### Solution-aware + Stage 5 (Market skepticism)
-
-The reader is shopping but trusts no one. They're looking for reasons to eliminate, not choose.
-
-- **Headline:** Risk reversal or radical transparency. Remove the barrier to trying.
-- **Lead:** "Don't trust the claims. Try it yourself for free and see."
-- **Copy structure:** Short-medium. Honest framing → free trial/demo → what to expect → zero-risk CTA.
-- **Example:** "Skip the sales pitch. Build something in 5 minutes. If it's not what you need, you've lost nothing."
+**Problem-aware, stage 5 (no solution is trusted).** Use empathy, and admit the market's noise. Differentiate through identity, and offer a low-risk way to test.
+- Example: "You've tried a dozen tools that promised to fix this. Spend ten minutes seeing whether this one does."
 
 ---
 
-### Row 4: Product-aware reader
+## Row 3: Solution-aware
 
-The reader knows your product but hasn't bought. Something is holding them back.
+The reader knows solutions exist and is comparing them.
 
-#### Product-aware + Stage 1 (First to market)
+**Solution-aware, stage 1 (you're creating the category).** The reader knows the category, but you're first to fill a gap in it. Name the old way, then the new category.
+- Example: "You've used spreadsheets and bookkeepers. Ledgerly is the first tool built around the late-payment problem."
 
-They know you, you're the only option, and they haven't converted. Friction or timing issue.
+**Solution-aware, stage 2 (shoppers are comparing).** Name the alternatives fairly, then state your strongest advantage as a fact.
+- Example: "Most tools in the category give you templates. Ledgerly gives you automatic follow-ups that go out when an invoice goes overdue."
 
-- **Headline:** Offer or urgency. Remove the barrier.
-- **Lead:** "You've seen what [product] does. Here's why now."
-- **Copy structure:** Short. Restate value → remove objection → time-sensitive offer → CTA.
-- **Example:** "You've been thinking about it. Pro is free for 14 days. No credit card needed."
+**Solution-aware, stage 3 (every option sounds the same).** Lead with the mechanism that separates you, explain why it matters, and put proof next to it.
+- Example: "Most tools run the reminders on a schedule you set. Ledgerly watches each client's payment history and times them to fit."
 
-#### Product-aware + Stage 2 (Competition emerging)
+**Solution-aware, stage 4 (everyone has a mechanism).** Lead with a result from a real customer, then explain the mechanism behind it.
+- Example: "A design studio cut its collection time in half in one quarter. Here's the setting they changed."
 
-They know you, competitors exist, and they're comparing. They need a reason to choose you over alternatives.
-
-- **Headline:** Competitive advantage. What you have that they don't.
-- **Lead:** Direct comparison on the dimension that matters most.
-- **Copy structure:** Short-medium. Comparison → your advantage → offer → CTA.
-- **Example:** "Unlike [alternative], [Product] gives you full code ownership. Export and deploy anywhere."
-
-#### Product-aware + Stage 3 (Mechanism required)
-
-They know you, they know competitors, and they need your mechanism explained more clearly.
-
-- **Headline:** Mechanism clarity. "Here's exactly how it works."
-- **Lead:** Walk through the mechanism step by step with a real example.
-- **Copy structure:** Medium. Mechanism walkthrough → real example → "try it yourself" CTA.
-- **Example:** "Type what you want. Watch it build. Change anything in plain English. Deploy when ready. That's it."
-
-#### Product-aware + Stage 4 (Mechanism arms race)
-
-They know you, competitors have similar mechanisms, and they need proof yours delivers.
-
-- **Headline:** Fresh proof. New testimonial, new metric, new case study.
-- **Lead:** Lead with the newest, most specific evidence.
-- **Copy structure:** Short-medium. New proof → restate mechanism advantage → urgency → CTA.
-- **Example:** "Last month, 12,000 new sites were deployed on [Product]. Here's what the builders said."
-
-#### Product-aware + Stage 5 (Market skepticism)
-
-They know you, trust is low across the market, and they need radical transparency.
-
-- **Headline:** Honesty and risk removal. "Here's what we can't do" builds more trust than "here's what we can."
-- **Lead:** Transparent limitations followed by genuine strengths.
-- **Copy structure:** Short. Honest assessment → where you genuinely excel → zero-risk trial → CTA.
-- **Example:** "[Product] won't replace a custom dev team for enterprise apps. But for your business site, it's worth 30 minutes to find out."
+**Solution-aware, stage 5 (shoppers are looking for reasons to rule you out).** Remove the risk. Be frank about what the product doesn't do, and make trying it cheap.
+- Example: "No sales call. Connect your bank account, send one invoice, and cancel in a click if it isn't for you."
 
 ---
 
-### Row 5: Most-aware reader
+## Row 4: Product-aware
 
-The reader knows your product and wants it. They just need a trigger.
+The reader knows your product and hasn't bought. Something is holding them back.
 
-#### Most-aware + Any sophistication level
+**Product-aware, stage 1 (you're the only option).** The problem is friction or timing. Remove the barrier with an offer and a deadline.
+- Example: "You've looked at Ledgerly twice. The first three months are free, with no card to start."
 
-At maximum awareness, sophistication level matters less. The reader has already decided. Your only job is to make the action frictionless.
+**Product-aware, stage 2 (they're comparing you).** Name the one dimension that matters most and show where you win on it.
+- Example: "Unlike other tools, Ledgerly keeps your client history if you cancel. Export it anytime."
 
-- **Headline:** The offer. Price, discount, bonus, deadline. Nothing else.
-- **Lead:** The deal, stated plainly.
-- **Copy structure:** Short. Offer → deadline/scarcity → CTA. That's it.
-- **Example:** "[Product] Pro. $20/month. Start free for 14 days."
+**Product-aware, stage 3 (they need the mechanism explained more clearly).** Walk through it step by step with a real example.
+- Example: "An invoice goes out. It's three days late. A reminder goes out in your name, with the client's last payment date. Here's what the client sees."
+
+**Product-aware, stage 4 (mechanisms are similar; they need current proof).** Lead with the newest and most specific evidence you have.
+- Example: "Last month, freelancers sent 40,000 reminders through Ledgerly. Here's what changed for three of them."
+
+**Product-aware, stage 5 (trust is low across the market).** Be honest about the limits first, then about the strengths.
+- Example: "Ledgerly won't run payroll for a company with twenty staff. For a solo practice, it's worth ten minutes to see if it fits."
 
 ---
 
-## How to Diagnose the Intersection
+## Row 5: Most aware
 
-### Step 1: Assess awareness
+The reader already wants the product. Only the trigger is missing, so sophistication matters little.
 
-Ask: What does this reader already know?
+**Most aware, any stage.** The offer, stated plainly, with a deadline or a bonus if one exists. Nothing else.
+- Example: "Ledgerly Pro: $19 a month. Start free for 30 days."
 
-| If they... | They're... |
+---
+
+## Diagnosing the cell
+
+**Step 1, awareness:**
+
+| The reader... | Awareness |
 |---|---|
-| Don't know they have a problem | Unaware |
-| Feel the pain but haven't looked for solutions | Problem-aware |
-| Are actively comparing solutions | Solution-aware |
-| Know your product but haven't bought | Product-aware |
-| Want your product and just need a push | Most aware |
+| doesn't know they have the problem | Unaware |
+| feels the pain but hasn't looked for fixes | Problem-aware |
+| is comparing solutions | Solution-aware |
+| knows your product and hasn't bought | Product-aware |
+| wants your product and needs a push | Most aware |
 
-### Step 2: Assess sophistication
+**Step 2, sophistication:** how many competitors have already made this promise to this audience?
 
-Ask: How many competitors have already made this promise to this audience?
-
-| If the market has... | It's... |
+| The market has... | Stage |
 |---|---|
-| No one making this promise | Stage 1 |
-| A few competitors with similar claims | Stage 2 |
-| Many competitors, audience fatigued by claims | Stage 3 |
-| Competitors with their own unique mechanisms | Stage 4 |
-| Total skepticism, audience trusts no one | Stage 5 |
+| No one making the promise | 1 |
+| A few competitors with similar claims | 2 |
+| Many claims, and the audience is tired of them | 3 |
+| Competitors with their own distinct mechanisms | 4 |
+| Total distrust, no one believed | 5 |
 
-### Step 3: Find the intersection
-
-Cross-reference awareness (row) with sophistication (column) in the matrix above. That intersection determines your headline, lead, copy length, proof type, and CTA approach.
+**Step 3:** the cell at that intersection sets the headline strategy, the lead, the copy length, the proof, and the call to action.
 
 ---
 
-## Decision Shortcuts
+## Shortcuts
 
-**Highest conversion potential:** Problem-aware + Stage 1. They feel the pain, you're the only solution. Write the simplest, most direct copy possible.
-
-**Hardest to crack:** Unaware + Stage 5. They don't know they have a problem and they don't trust anyone. Lead with identity and community. Long copy. Patience.
-
-**Most common B2B scenario:** Solution-aware + Stage 3-4. They're comparing options and everyone sounds the same. Mechanism + proof wins.
-
-**Most common consumer scenario:** Problem-aware + Stage 2-3. They know the problem, multiple solutions exist. Enlarged claims or fresh mechanisms win.
-
-**When nothing else works:** Drop to identity (sophistication Stage 5 strategy) regardless of awareness level. When claims, mechanisms, and proof all fail, belonging and identity still connect.
+- **Best odds:** problem-aware, stage 1. The reader feels the pain and you're the only answer. Keep the copy plain and direct.
+- **Hardest cell:** unaware, stage 5. The reader doesn't know they have a problem and trusts no one. Lead with identity and community, write long, and be patient.
+- **Typical B2B case:** solution-aware, stages 3 and 4. Everyone sounds alike, so the mechanism and the proof decide it.
+- **Typical consumer case:** problem-aware, stages 2 and 3. Enlarged claims or a fresh mechanism win.
+- **When everything else fails:** fall back to identity, the stage-5 approach, whatever the awareness level. Belonging still connects when claims don't.

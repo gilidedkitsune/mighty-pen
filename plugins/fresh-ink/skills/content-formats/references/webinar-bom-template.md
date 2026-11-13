@@ -1,241 +1,173 @@
-# Webinar Bill of Materials (BOM) Template
+# Webinar bill of materials
 
-A production checklist and content template for webinars. Covers everything from planning through post-event content. Work through each section in order; skip what doesn't apply.
+A production checklist for a webinar, from planning through the post-event content. Fill in the event details first, since everything else depends on them. Work through the sections in order and skip what doesn't apply.
 
 ---
 
-## Export the finished BOM (optional)
+## Filing the finished package (optional)
 
-By default the finished package (all drafted assets plus the run of show) exports like any other piece: a `.docx` through craft's Step 6. If the user keeps a team wiki or an editorial calendar and it's connected to the session, offer to file it there instead. Never assume either exists; ask which one, if any.
+By default the finished package (every drafted asset plus the run of show) is delivered like any other piece: a `.docx` through craft's Step 6. If the user keeps a team wiki or an editorial calendar that's connected to the session, offer to file it there. Ask which one, if either, before writing anything.
 
-### Option A: a team wiki page (Notion, Confluence, or similar)
+**A wiki page** (Notion, Confluence, or similar): one page per webinar, under whatever parent the user names. Use the wiki's collapsible sections for the review checklist, partner details, and SEO and GEO. Use checkboxes for checklist items and tables for the asset tracker and run of show. For Notion, read its enhanced-markdown spec first so the formatting renders. Confirm before creating, and return the page's link.
 
-One page per webinar, filed under whatever parent page the user names (for example, a Webinar Hub).
-
-- **Title:** the webinar title (append the date if the title alone is ambiguous)
-- **Content:** the filled-in BOM below. Use the wiki's collapsible sections for the Content Review Checklist, Partner Details, and SEO & GEO; checkboxes for checklist items; tables for the content BOM tracker and the run-of-show timeline.
-- For Notion, fetch its enhanced-markdown spec resource (`notion://docs/enhanced-markdown-spec`) before building the page so the syntax renders.
-- Confirm with the user before creating; return the new page URL when done.
-
-### Option B: an editorial calendar entry
-
-If the user tracks content in a calendar tool and it's connected (through its own connector or a database connector), log the webinar there.
-
-- Ask which workspace or project it belongs to, then confirm exactly what you're about to create.
-- Fields to fill, mapped to whatever the tool calls them: title, content type (Webinar), status, channel, due or publish date (the webinar date), owner, and a one-line description **with the wiki page URL from Option A**, if there is one, so the entry and the doc stay connected.
-- Optionally offer one entry per major asset (landing page, email invite, social, recap) instead of a single entry.
-- If the tool is a database, check the current columns before writing (a `SELECT ... LIMIT 1` or equivalent), and confirm with the user before any write.
+**A calendar entry:** if the calendar is a connected tool or database, ask which workspace or project it belongs to and confirm the exact fields before writing. Map these to whatever the tool calls them: title, content type (webinar), status, channel, date (the webinar date), owner, and a one-line description that links back to the wiki page if there is one. Log one entry per major asset instead of one per event if that fits the team's board. For a database, check its columns before inserting anything.
 
 ---
 
 ## Event details
 
-Fill these in first. Everything else flows from them.
-
-- **Webinar title:**
-- **Date and time:** (include timezone)
-- **Duration:** (default: 45 min + 15 min Q&A)
+- **Title:**
+- **Date and time, with timezone:**
+- **Length:** (a common default is 45 minutes of content plus 15 for questions)
 - **Format:** (live demo, panel, fireside chat, workshop, AMA)
-- **Platform:** (Luma, Zoom, StreamYard, etc.)
-- **Recording plan:** (live only, recorded for replay, both)
+- **Platform:**
+- **Recording:** (live only, recorded for replay, or both)
 
-### Speakers and roles
+### Speakers
 
-| Role | Name | Company | Bio needed? | Headshot needed? |
-|------|------|---------|-------------|-----------------|
-| Host / moderator | | | | |
+| Role | Name | Company | Bio needed | Headshot needed |
+|---|---|---|---|---|
+| Host or moderator | | | | |
 | Speaker 1 | | | | |
 | Speaker 2 | | | | |
-| Guest / partner | | | | |
+| Guest or partner | | | | |
 
-### Partner details
+### Partner (if co-marketed)
 
-If co-hosted or co-marketed with a partner:
-
-- **Partner company:**
-- **Co-marketing goals:** (what both sides want out of this)
-- **Partner goals:** (what the partner specifically needs: leads, brand exposure, product demo)
-- **Partner deliverables:** (what they're providing: speaker, audience, promotion, content)
-- **Approval process:** (who signs off on what, and by when)
+- **Company:**
+- **What both sides want from it:**
+- **What the partner needs specifically:** (leads, brand exposure, a demo)
+- **What they're providing:** (speaker, audience, promotion, content)
+- **Who approves what, and by when:**
 
 ---
 
 ## Audience and positioning
 
-- **Target audience:** (ask directly: role, seniority, and what they already know. There is no general-reader option; a broad webinar still names a specific reader.)
-- **Funnel stage:** (TOFU / MOFU / BOFU)
-- **Campaign type:** (thought leadership, product education, customer showcase, partner co-marketing)
-- **What the audience gets out of it:** (be specific: not "learn about AI" but "see how to build a working site in 30 minutes")
-- **Why they should care enough to register:** (the hook: what makes this worth an hour of their day)
+- **Reader:** a role, a seniority level, and what they already know. A broad webinar still names one reader.
+- **Funnel stage:** top, middle, or bottom.
+- **Type:** thought leadership, product education, customer showcase, or partner co-marketing.
+- **What they leave with:** specific, such as "a working site built in 30 minutes" rather than "an understanding of AI."
+- **Why they register:** the hook that makes an hour of their day worth it.
 
 ---
 
-## Content BOM
+## Content checklist
 
-Every webinar generates multiple content assets. Check off what's needed and track status. Date fields are blank by default; fill in as dates are confirmed.
+Each webinar produces many assets. Mark what's needed, then track owner, due date, and status as dates get confirmed.
 
-### Pre-event content
+### Before the event
 
-| Asset | Owner | Due date | Status | Notes |
-|-------|-------|----------|--------|-------|
-| Landing page / Luma description | | | | |
-| Registration confirmation email | | | | |
-| Reminder email (24 hours before) | | | | |
-| Reminder email (1 hour before) | | | | |
-| Email invite to existing list | | | | |
-| Social: [Speaker] LinkedIn announcement | | | | |
-| Social: [Speaker] X announcement | | | | |
-| Social: Brand LinkedIn announcement | | | | |
-| Social: Brand X announcement | | | | |
-| Social: LinkedIn reminder (day of) | | | | |
-| Social: X reminder (day of) | | | | |
-| Partner cross-promotion posts | | | | |
-| Slide deck / visual assets | | | | |
-| Speaker prep doc / talking points | | | | |
-| Demo script (if live demo) | | | | |
+| Asset | Owner | Due | Status |
+|---|---|---|---|
+| Landing page or event listing | | | |
+| Registration confirmation email | | | |
+| Reminder, 24 hours out | | | |
+| Reminder, 1 hour out | | | |
+| Invite to the existing list | | | |
+| Speaker announcement, LinkedIn and X | | | |
+| Brand announcement, LinkedIn and X | | | |
+| Day-of reminder, LinkedIn and X | | | |
+| Partner cross-posts | | | |
+| Slides and visuals | | | |
+| Speaker prep notes | | | |
+| Demo script (if live) | | | |
 
-### Day-of content
+### During the event
 
-| Asset | Owner | Due date | Status | Notes |
-|-------|-------|----------|--------|-------|
-| Opening script / host intro | | | | |
-| Q&A moderation plan | | | | |
-| Live social posts during event | | | | |
-| CTA slide / closing offer | | | | |
+| Asset | Owner | Due | Status |
+|---|---|---|---|
+| Host opening and introductions | | | |
+| Q&A moderation plan | | | |
+| Live posts during the event | | | |
+| Closing slide and offer | | | |
 
-### Post-event content
+### After the event
 
-| Asset | Owner | Due date | Status | Notes |
-|-------|-------|----------|--------|-------|
-| Recording upload and hosting | | | | |
-| Follow-up email (attendees) | | | | |
-| Follow-up email (no-shows + recording link) | | | | |
-| Social: [Speaker] recap (LinkedIn) | | | | |
-| Social: [Speaker] recap (X) | | | | |
-| Social: Brand recap (LinkedIn) | | | | |
-| Social: Brand recap (X) | | | | |
-| Blog recap or writeup | | | | |
-| Short video clips from recording | | | | |
-| Quote cards from speakers | | | | |
-| Slide deck share (if applicable) | | | | |
+| Asset | Owner | Due | Status |
+|---|---|---|---|
+| Recording uploaded and hosted | | | |
+| Email to attendees | | | |
+| Email to no-shows, with the recording | | | |
+| Speaker recap posts, LinkedIn and X | | | |
+| Brand recap posts, LinkedIn and X | | | |
+| Blog recap | | | |
+| Short clips from the recording | | | |
+| Quote graphics | | | |
+| Slide share (if applicable) | | | |
 
 ---
 
-## Copy templates
+## Copy patterns
 
-### Landing page / Luma description
+### Event listing
+1. **Hook:** one sentence on why the subject matters now.
+2. **What you'll learn:** three or four outcome-first bullets.
+3. **Who it's for:** one sentence naming the reader.
+4. **Speakers:** two or three sentences each, credibility first.
+5. **Button:** specific wording ("Save my seat"), not "Submit."
 
-Structure:
-1. **Hook**: one sentence on why this matters right now
-2. **What you'll learn**: three to four bullet points, outcome-oriented
-3. **Who this is for**: one sentence targeting the persona
-4. **Speaker bios**: two to three sentences each, credibility-focused
-5. **CTA**: register button with specific language ("Save your spot" not "Submit")
+### Invite email
+- **Subject:** specific and about the benefit. Not "Join us for a webinar."
+- **Order:** hook, what they'll learn, why these speakers, date and time, one button.
 
-### Email invite
+### Reminders
+- **24 hours out:** the hook again, plus the logistics. Short.
+- **1 hour out:** the link and a single line.
 
-- **Subject line:** specific and benefit-led. No "Join us for a webinar." Say what they'll get.
-- **Body:** hook → what they'll learn (bullets) → speaker credibility → date/time → CTA
-- **CTA:** single, clear ("Register now" or "Save your spot")
-
-### Reminder emails
-
-- **24-hour reminder:** restate the hook + logistics (date, time, link). Keep it short.
-- **1-hour reminder:** just the link and a one-liner. "Starting in an hour. Here's your link."
-
-### Follow-up emails
-
-- **Attendees:** thank you → key takeaway → recording link → CTA (try the product, book a demo, etc.)
-- **No-shows:** no guilt trip. "Here's what you missed" → recording link → same CTA
+### Follow-ups
+- **Attendees:** thanks, one takeaway, the recording, one next step.
+- **No-shows:** what they missed, the recording, the same next step. No guilt.
 
 ---
 
-## Social promotion
+## Social posts
 
-### Voice
+Voice follows craft's Webinar-specific rules: the default voice for brand content, and a named person's profile for posts that go out under their account (drafted by socialize).
 
-Voice rules for webinar content live in craft's Webinar-specific section: the default voice for everything, with one exception for social posts that go out under a named person's account (drafted by socialize in that person's profile).
-
-### LinkedIn posts
-
-Draft three posts minimum per account ([Speaker] + brand):
-1. **Announcement** (one to two weeks before): what the webinar covers and why it matters
-2. **Reminder** (day of or day before): shorter, urgency-focused, link to register
-3. **Recap** (day after): key takeaway, link to recording
-
-Target 800-1,300 characters. Professional with a sense of humor.
-
-### X posts
-
-Draft three posts minimum per account ([Speaker] + brand):
-1. **Announcement**: hook + link. Target ~250 characters.
-2. **Day-of reminder**: "Starting in [time]" + link
-3. **Recap / highlight**: one standout moment or quote + link to recording
-
-Brevity first. More room for personality than LinkedIn.
+**Per account, at least three posts:**
+- **LinkedIn:** an announcement one to two weeks out, a reminder on or before the day, and a recap the day after. Platform rules in socialize's LinkedIn reference.
+- **X:** an announcement with the link, a same-day "starting in" post, and a recap with one standout moment. Platform rules in socialize's X reference.
 
 ---
 
-## SEO and GEO
+## Search and AI visibility (for any published recap or page)
 
-If the webinar generates a blog recap or landing page that will be published:
+- **Primary and secondary keywords, search intent, and the target results feature**
+- **Slug, meta title, and meta description**
+- **Internal and external links to include**
+- **Claims that need citing:** stats, quotes, and definitions that should carry their source
+- **Answer blocks:** FAQ-style sections that answer the questions people ask
 
-### SEO
-- **Primary keyword:**
-- **Secondary keywords:**
-- **Search intent:** (informational / navigational / commercial / transactional)
-- **Target SERP feature:** (featured snippet / people also ask / image pack / etc.)
-- **Slug / URL:**
-- **Meta title:**
-- **Meta description:**
-- **Internal links to include:**
-- **External references:**
-
-### GEO (Generative Engine Optimization)
-- **Target AI platforms:** (ChatGPT / Perplexity / Google AI Overview / etc.)
-- **Entity coverage:** (what brand, product, or concept should this content reinforce?)
-- **Citation-worthy claims:** (stats, quotes, or definitions that should be clearly attributable)
-- **Structured answer blocks:** (FAQ-style sections or direct answers to include)
+Run search-weave on the finished page to weave these in.
 
 ---
 
-## Content review checklist
+## Review
 
-### Writer self-review
-- [ ] All copy is complete and on-brief
-- [ ] Facts and claims verified
-- [ ] Internal links added where applicable
-- [ ] SEO / GEO elements incorporated (if web-published)
-- [ ] Default voice (tone-and-guidelines) applied to all content (landing page, emails, brand social, slides, recap)
-- [ ] [Speaker]'s tone applied to their social posts only
+**Writer:** all copy is complete and on the brief; every claim is sourced; the house voice is applied everywhere (the named speaker's voice only on their own posts); search elements are in place for anything published.
 
-### Editor review
-- [ ] Tone and voice on-brand
-- [ ] Legal / compliance check (if needed)
-- [ ] Final copy approved
+**Editor:** tone is on brand; legal has cleared anything that needs it; final copy is approved.
 
-### SME review
-- [ ] Product specs and demo claims accurate
-- [ ] Speaker bios and titles correct
-- [ ] Approved
+**Subject expert:** product claims and demo details are accurate; speaker bios and titles are right; approved.
 
-**Reviewer notes:**
+Reviewer notes:
 
 ---
 
 ## Timeline
 
-| Milestone | Target date | Owner | Complete |
-|-----------|------------|-------|----------|
-| Event details locked | | | - [ ] |
-| Speaker prep doc complete | | | - [ ] |
-| Landing page live | | | - [ ] |
-| First email invite sent | | | - [ ] |
-| Social announcements posted | | | - [ ] |
-| Slide deck finalized | | | - [ ] |
-| Reminder emails scheduled | | | - [ ] |
-| Webinar day | | | - [ ] |
-| Recording uploaded | | | - [ ] |
-| Follow-up emails sent | | | - [ ] |
-| Social recaps posted | | | - [ ] |
-| Blog recap published | | | - [ ] |
+| Milestone | Target date | Owner | Done |
+|---|---|---|---|
+| Event details locked | | | |
+| Speaker prep notes complete | | | |
+| Landing page live | | | |
+| First invite sent | | | |
+| Announcements posted | | | |
+| Slides final | | | |
+| Reminders scheduled | | | |
+| Event day | | | |
+| Recording uploaded | | | |
+| Follow-ups sent | | | |
+| Recap posts out | | | |
+| Blog recap published | | | |

@@ -1,91 +1,63 @@
 # Content ideation workflow
 
-Research and strategy only. No drafting happens here. The goal is a prioritized list of content ideas backed by data, competitive intelligence, and audience insight.
+Research and strategy only, with no drafting. The output is a prioritized list of content ideas, each one backed by data, competitor context, and audience insight.
 
-Loaded by craft when the content type routes to **Ideation** ("brainstorm", "content ideas", "what should we write", "topic ideas", "content plan"). The promise module in Step 1 runs first, as it does for every piece: an ideation run still names who the work is for and what it is for before generating anything.
+craft loads this when a request routes to **Ideation** ("brainstorm," "content ideas," "what should we write," "topic ideas," "content plan"). The promise module in craft Step 1 still runs first. Even an ideation session names who the work is for and what it's meant to do before it generates anything.
 
 ---
 
-This workflow is research and strategy only. No drafting happens here. The goal is a prioritized list of content ideas backed by data, competitive intelligence, and audience insight.
+## Intake
 
-### Ideation intake
+Ask in one AskUserQuestion round:
 
-Ask using AskUserQuestion:
+1. **Goal:** organic traffic, AI citation visibility, leads, thought leadership, product education, or competitive positioning.
+2. **Scope:** a single topic in depth, a full calendar, a specific gap, or a brainstorm around a theme.
+3. **Constraints:** the audience, any keywords already chosen, competitors to watch, the buyer stage to focus on, and a timeline.
 
-1. **Goal**: What are you trying to achieve? (organic traffic growth, AI citation visibility, lead generation, thought leadership, product education, competitive positioning)
-2. **Scope**: How broad? (single topic deep-dive, full content calendar, specific content gap, brainstorm around a theme)
-3. **Constraints**: Target audience, keywords you already know, competitors to watch, buyer stage focus, timeline?
+## Trend scan
 
-### Trend scan
+Before the research pass, run WebSearch on recent coverage of AI, AI app building, AI coding, and "vibe coding." Check the major tech and business press, plus developer surveys and the Hacker News front page.
 
-Before running the skill pipeline, use WebSearch to scan recent coverage of AI, AI app building, AI app builders, AI coding, and vibe coding across these sources:
+Condense the results into **five trending topics**. For each one, give:
+- **Topic:** a one-line description.
+- **Why now:** the news or cultural moment driving it.
+- **Sources:** which publications covered it, with links where possible.
+- **Angle for us:** how it connects to something this subject could credibly write about.
 
-- Wired
-- TechCrunch
-- Stack Overflow (blog and surveys)
-- Forbes
-- The Economist
-- Ars Technica
-- The Verge
-- Hacker News
+Show the five to the user before continuing. They're context for the conversation, not commitments. The user may build on one, ignore them all, or use them as background for something else.
 
-Condense findings into **5 trending topics**: the themes, debates, product launches, or shifts getting the most attention right now. For each topic, include:
+## Research pass
 
-- **Topic**: one-line description
-- **Why it's trending**: the news hook or cultural moment driving it
-- **Source(s)**: which publications covered it, with links where available
-- **Subject angle**: how this trend connects to something the subject could credibly write about
+Run a focused SEO and GEO pass so the ideas rest on evidence, and weave the findings into the conversation rather than dumping a report. Without data tools, that means the trend scan plus whatever keywords, queries, or performance numbers the user can share. If the Insights plugin is installed and wired, its `seo-geo` skill supplies the tool sequence and the site's real numbers, and `aeo-insights` supplies AI-answer visibility. Delegate there instead of repeating that here.
 
-Present the 5 trending topics to the user before moving into the skill pipeline. These trends inform the ideation conversation; they're context, not commitments. The user may want to build on one, ignore all of them, or use them as background for a different direction.
+The useful order for ideation: content strategy and pillars first, then keyword and SERP research, then competitor and gap analysis, then topic clustering, then the site's own traffic numbers where they sharpen the angle. Offer deeper passes from Insights' map, where it's installed, based on the goal.
 
-### Research phase
+Run only the steps whose data source is connected. For anything else, ask the user for the data rather than inventing volumes, difficulty, or rankings. The trend scan and the strategy steps work with no data source at all.
 
-Run a focused SEO/GEO research pass to ground the ideation, then weave findings into the conversation (not a report dump). Without data tools, that means a web trend scan plus whatever keywords, queries, or performance numbers the user can share. If the Insights plugin is installed and wired, its `seo-geo` skill holds the tool choreography and the site's real numbers, and `aeo-insights` holds AI-answer visibility; delegate there rather than duplicating it here.
+## Schwartz pass on each idea
 
-For ideation specifically, the useful order is: content strategy and pillars first (`/content-strategy`), then keyword and SERP research (`/keyword-research`, `/serp-analysis`), competitor and gap analysis (`/competitor-analysis`, `/content-gap-analysis`), topic clustering (`/seo-cluster`), and the site's own GA4/GSC numbers where they ground the angle. Offer deeper passes (`/entity-optimizer`, `/seo-content-brief`, and the others in Insights' map, where installed) based on the goal.
-
-Run only the steps whose backend is connected; for anything that isn't, ask the user for the data instead of fabricating volumes, difficulty, or rankings. Steps 1, 4, and 6 plus the trend scan run fine with no backend.
-
-### Schwartz thought exercise
-
-After the research phase, before finalizing output, run each promising content idea through a quick Schwartz diagnosis. This sharpens the ideation by forcing you to think about how the piece will actually open, not just what it covers.
+After research and before the final list, run each strong idea through a quick Schwartz diagnosis. This shows how the piece should open, not only what it covers.
 
 For each top idea, answer:
+1. **Reader awareness:** where the target reader stands (unaware through most aware).
+2. **Market sophistication:** how crowded the conversation is (stages 1 to 5).
+3. **Messaging implication:** what the headline and lead need to do at that intersection. For example, "problem-aware and stage 3 means lead with the mechanism, not the promise."
 
-1. **Reader awareness**: Where is the target reader for this piece? (Unaware, Problem-aware, Solution-aware, Product-aware, Most aware)
-2. **Market sophistication**: How crowded is the conversation around this topic? (Stage 1–5)
-3. **Messaging implication**: Based on the intersection, what does the headline and lead need to do? (e.g., "Problem-aware + Stage 3 = lead with mechanism, not the promise")
+Work this into each idea as one or two sentences. Don't build a table. The idea description should tell the user how to write the piece, not only what to write. The grid is in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md`. Flag unusual intersections, such as unaware and stage 5, because those need longer copy and a different approach.
 
-Don't present this as a formal table. Weave it into the idea description naturally: one or two sentences per idea that explain the messaging angle the Schwartz diagnosis suggests. This gives the user a head start on *how* to write each piece, not just *what* to write about.
+## Output
 
-Reference `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` for the full matrix. If an idea sits at an unusual intersection (e.g., Unaware + Stage 5), flag it; those combinations require specific approaches and longer copy.
+Present a prioritized list. For each idea:
+- **Working title and target keyword(s)**, with volume and difficulty if a data source supplied them
+- **Content type:** blog, landing page, comparison page, long-form, and so on
+- **Buyer stage:** awareness, consideration, or decision
+- **Messaging angle:** the Schwartz-informed direction for the headline and lead, in one or two sentences
+- **Why this one:** the data point or gap that justifies it
+- **Effort:** light, medium, or heavy
+- **AI citation opportunity:** grounded in an aeo-insights pull, with its window stated. If that isn't available, mark it "not grounded" rather than guessing.
 
-### Ideation output
+Order by impact: quick wins first, then strategic investments, then long-tail topics.
 
-After research and the Schwartz thought exercise, present a prioritized content ideas list. For each idea, include:
+## Handoff
 
-- **Topic / working title**
-- **Target keyword(s)** with volume and difficulty
-- **Content type** (blog, landing page, comparison page, long-form, etc.)
-- **Buyer stage** (awareness, consideration, decision)
-- **Messaging angle**: the Schwartz-informed headline/lead direction (one to two sentences)
-- **Why this idea**: the data point or gap that makes it worth doing
-- **Estimated effort** (light, medium, heavy)
-- **GEO opportunity**: whether this topic has AI citation potential. Ground it in an aeo-insights pull (Insights, where wired) and state the window; if that isn't available, mark this "not grounded" rather than guessing
-
-Organize by priority: high-impact quick wins first, then strategic investments, then long-tail opportunities.
-
-### Handoff to content creation
-
-After the user reviews and selects ideas, prompt:
-
-> "Ready to start creating? Pick a topic from the list and I'll run the full writing workflow: intake, research, outline, draft, audit, and present. Which one do you want to tackle first?"
-
-If the user selects a topic, route it through the standard content type workflow (Full, Medium, Light, or Template depending on the content type). The Schwartz diagnosis from ideation carries forward into the content strategy check; no need to redo it unless the user changes the target audience. If the user wants a content brief first, run `/seo-content-brief` to bridge from ideation to execution.
-
-
----
-
----
-
-*Moved out of craft's SKILL.md on September 17, 2026. It is a Taylor-only workflow in practice (the team uses the drafting and editing path), and it was 83 lines loading on every run of every content type.*
+After the user picks, offer to start the full writing workflow on that topic. Use the content type's standard path (Full, Medium, Light, or Template). The Schwartz pass carries forward, so don't repeat it unless the audience changes. If the user wants a brief before writing, the blog skill's brief workflow covers it.

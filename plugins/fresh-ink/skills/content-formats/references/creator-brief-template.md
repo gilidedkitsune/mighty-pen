@@ -1,197 +1,100 @@
-# Content Creator Brief Template
+# Creator brief scaffold
 
-*Internal framework: use this structure for every external creator or influencer brief. The goal is a brief a creator can execute cold, with no follow-up call. Adapt section lengths to the collaboration, but hit every section.*
-
-A good brief gives the creator everything they need to deliver on the first try: what we want, who they're reaching, what to say, what to avoid, and how we'll review it. A vague brief produces vague content and three rounds of revisions. Be specific.
+Nine sections, in order. The test for a finished brief: a creator who has never worked with us could produce the deliverable from it alone, with no follow-up call. Section lengths flex with the collaboration. Every section still appears.
 
 ---
 
-## Pre-Brief Checklist
+## Before writing
 
-Answer these before you write the brief. If you can't answer one, find out before sending.
+Each of these needs an answer. If one is missing, find it out before the brief goes anywhere:
 
-- **Who's the creator?** Name, platform(s), audience size, and why they're a fit (their audience overlaps with ours, their style matches our voice, they've used the product).
-- **What's the one outcome?** Awareness, signups, a specific launch, event registrations. Pick one. A brief with five goals has none.
-- **What's the offer?** Paid, gifted, affiliate, or organic partnership. What are they getting, and what are we getting?
-- **What's the budget and timeline?** Both shape what you can reasonably ask for.
-- **Who approves?** Name the person who signs off before anything publishes, and how long they need.
-- **What's the persona?** Ask directly: role, seniority, and what they already know. Creators themselves are often a different audience than the people they're creating for, so a brief aimed at their audience and a brief aimed at them may need different calibration.
+- **Creator:** name, platforms, audience size, and the reason they fit (audience overlap, a voice close to ours, prior use of the product).
+- **Outcome:** one. Awareness, signups, a launch date, event registrations. A brief with five goals has no goal.
+- **Terms:** paid, gifted, affiliate, or an organic partnership, and what each side gets.
+- **Money and time:** budget and calendar. Both limit what is fair to ask.
+- **Sign-off:** the named person who approves before anything goes live, and how long they need.
+- **Reader:** who the content is for, stated as a role, seniority, and what they already know. The creator's audience and the people we want reached are not always the same, so say which one this brief is calibrated for.
 
 ---
 
-## Brief Structure
+## The nine sections
 
 ### 1. Objective
-**Length:** 2-4 sentences
-**Tone:** Direct. State the one outcome and why this creator, on this platform, gets us there.
-
-*Prompts:*
-- What's the single result this collaboration is for? (signups, awareness for a launch, event registrations)
-- Why this creator and this platform specifically?
-- How will we know it worked? (the metric that matters)
-
-**Notes:** One outcome. If there's a secondary goal, name it as secondary. Don't bury the creator in objectives.
-
----
+**Length:** two to four sentences.
+State the single outcome, why this creator on this platform gets there, and how success gets measured. A secondary goal may appear, labeled as secondary.
 
 ### 2. Audience
-**Length:** 75-125 words
-**Tone:** Concrete. Describe who the creator is reaching and what those people care about.
+**Length:** 75 to 125 words.
+Describe the reader concretely enough that the creator can picture them: their role, what they already know about the product, and what would make them stop scrolling. Match the register to the reader. A design-literate audience judges craft; a founder audience wants plain outcomes.
 
-*Prompts:*
-- Who is the creator's audience, and how does it overlap with ours?
-- Who is this audience, specifically? (Name the role, seniority, and what they already know here.)
-- What does this audience already know about the product, and what do they care about?
-- What would make this audience stop scrolling?
+### 3. Messages and guardrails
+**Length:** two or three messages, then a guardrail list.
+- **Messages:** the points the audience should leave believing, each stated in one plain sentence the creator can rephrase in their own voice. Give the point, not a script. Lead with the most important one.
+- **Guardrails:** claims that are off limits (no "fully autonomous", no guaranteed results), comparisons to avoid, anything in beta or unannounced, and topics to steer around. If a claim needs a qualifier ("most projects", not "every project"), write the qualifier into the brief.
 
-**Notes:** Tie the audience to a specific reader so the creator understands the register. A visually literate, craft-respecting audience wants to see deliverable quality; a small-business/founder audience wants relatable outcomes and plain language. Give the creator that reader's real pain points so they can speak to something true.
+### 4. Deliverables
+**Length:** one table row per asset.
 
----
+| Field | What to specify |
+|---|---|
+| Format | Short video, carousel, livestream, post, thread, reel |
+| Platform | Where it publishes |
+| Length | Duration, slide count, or word count |
+| Quantity | Main asset plus any cutdowns |
+| Live by | Publish date |
 
-### 3. Key Messages and Guardrails
-**Length:** 2-3 key messages, plus a short guardrails list
-**Tone:** Clear and quotable. These are the points that must land.
+If there's a moment you want captured (a live build, a before-and-after, a screen recording of a real workflow), name it here. Specificity in the spec is what keeps the result specific.
 
-**Key messages (the 2-3 points to land):**
+### 5. Brand rules
+**Length:** a short reference block. These are the non-negotiables, written out here because the creator may never see our style guide.
+- **Product name:** full name on first mention, short form after, in captions, voiceover, and on-screen text.
+- **Voice:** share the tone guide. Their own voice, inside ours: plain, direct, no hype, no buzzwords.
+- **Do:** show real output, be concrete ("built this in an afternoon"), name a real use case.
+- **Don't:** buzzword salad, overpromising, "this will change everything", knocking competitors, em dashes in on-screen text or captions.
+- **Visual and logo:** where the logo lives, clear space, colors, "don't alter" rules, and any required on-screen branding with its placement.
 
-*Prompts:*
-- What are the two or three things the audience should walk away believing?
-- What's the single most important one? (Lead with it.)
-- Can each message be said in one sentence?
+### 6. Required elements
+**Length:** a checklist. These must appear or the deliverable doesn't ship.
+- [ ] The call to action: exact wording and where it goes (caption, spoken, on-screen, bio link).
+- [ ] The tracking link, already built with its UTM parameters. Don't make the creator assemble it.
+- [ ] The disclosure: exact wording and placement. This is a legal requirement, so state it, don't suggest it.
+- [ ] Any legally required language: trademark notices, claim qualifiers, age or region limits, platform paid-partnership rules.
 
-State each message in plain language the creator can adapt to their own voice. Do not script them word for word: creators perform best in their own register. Give them the point, not the paragraph.
+A missing disclosure is a compliance failure, not a style note.
 
-**Guardrails (what NOT to say):**
-
-*Prompts:*
-- What claims are off-limits? (No "fully autonomous," no "replaces your developer," no guarantees about specific results.)
-- What comparisons should they avoid? (Don't name or knock competitors unless we've cleared it.)
-- What's not true yet? (Features in beta, roadmap items, anything unannounced.)
-- Any topics to steer around entirely?
-
-**Notes:** Be explicit about claims to avoid. Creators don't know our legal and product boundaries. If a claim needs a qualifier ("most projects" not "every project"), say so here.
-
----
-
-### 4. The Deliverable(s)
-**Length:** A clear spec, one row per deliverable
-**Tone:** Precise. Ambiguity here is what causes redo's.
-
-Specify for each deliverable:
-
-| Field | Detail |
-|-------|--------|
-| Format | (short-form video, carousel, livestream, blog post, X thread, reel) |
-| Platform | (YouTube, TikTok, Instagram, LinkedIn, X, their blog) |
-| Length / duration | (e.g. 60-90 sec video, 8-slide carousel, 1,200-word post) |
-| Quantity | (e.g. 1 main video + 2 short cutdowns) |
-| Live by | (publish date) |
-
-*Prompts:*
-- Exactly what are they making, and how many?
-- What's the format and length for each?
-- Where does each one publish?
-- Are cutdowns, repurposing, or cross-posting included?
-
-**Notes:** If you want a specific moment (a live build, a before/after, a screen recording of a prompt-to-app flow), say so here. Specificity in the spec is specificity in the result.
-
----
-
-### 5. Brand Guardrails
-**Length:** A short reference block
-**Tone:** Firm but not fussy. These are the non-negotiables.
-
-- **Product naming:** Use the product's full name on first mention, short form after, unless the brief says otherwise. This matters in voiceover, on-screen text, and captions.
-- **Voice:** Share `tone-and-guidelines` with the creator (it's built to be downloadable and shareable). Ask them to keep their own voice but stay inside our tone: plain, direct, no hype, no buzzwords.
-- **Do's:** Show real output. Be specific ("built this in an afternoon"). Speak to a real use case. Let their personality through.
-- **Don'ts:** No buzzword salad. No overpromising. No "this will change everything." No knocking competitors. No em dashes in on-screen text or captions (use commas, colons, periods, or parentheses).
-- **Visual / logo notes:** Where to get the logo, clear space, color, and any "don't alter the logo" rules. Note whether on-screen branding is required and where.
-
-*Prompts:*
-- Have you sent them the TOV guide and the logo assets?
-- Are there on-screen branding requirements (logo placement, lower-third, end card)?
-- Any visual treatments we want or want to avoid?
-
-**Notes:** The naming convention is the rule creators break most. Call it out twice if you have to.
-
----
-
-### 6. Required Elements
-**Length:** A checklist
-**Tone:** Non-negotiable. These have to appear or the deliverable doesn't ship.
-
-- [ ] **CTA:** The exact call to action and where it goes (in-caption, verbal, on-screen, link in bio).
-- [ ] **Tracking link / UTM:** The specific link to use. Provide it built; don't make the creator construct it.
-- [ ] **Disclosure:** Required ad disclosure (#ad, "Sponsored by [Brand]," paid-partnership label). State the exact wording and placement. This is a legal requirement, not a preference.
-- [ ] **Anything legally required:** Trademark notices, claim qualifiers, age or region restrictions, platform-specific rules.
-
-*Prompts:*
-- What's the one CTA, and what's the exact link?
-- What disclosure does this partnership legally require, and where does it go?
-- Are there platform rules (FTC, ASA, or platform paid-partnership tools) we need them to follow?
-
-**Notes:** Disclosure is not optional and not negotiable. Give the creator the exact language and placement so there's no guesswork. A missing disclosure is a compliance problem, not a style note.
-
----
-
-### 7. Timeline and Milestones
-**Length:** A short table
-**Tone:** Concrete dates, named owners.
+### 7. Timeline
+**Length:** a short table.
 
 | Milestone | Date | Owner |
-|-----------|------|-------|
-| Brief approved and sent to creator | | |
-| Concept / outline due (optional) | | |
+|---|---|---|
+| Brief sent | | |
+| Outline due (optional) | | |
 | First draft due | | |
-| Our review and feedback returned | | |
+| Our feedback returned | | |
 | Revisions due | | |
 | Final approval | | |
 | Publish | | |
 
-*Prompts:*
-- When does each stage happen, and who owns it on our side?
-- How many revision rounds are included? (State it. Unlimited revisions is how scope and budget blow up.)
-- Is there a hard publish date tied to a launch or event?
+State the number of revision rounds in the brief itself. Unlimited revisions is how scope and budget blow up. Our side needs real review time: an approver who takes two days can't turn feedback around in two hours.
 
-**Notes:** State the number of revision rounds in the brief, not after the first draft. Build in real review time on our side: an approver who needs two days can't turn it around in two hours.
+### 8. References
+**Length:** three to six links, one line each.
+Examples communicate faster than adjectives. Annotate each link with the single thing to take from it. An anti-example is useful too ("great creator, but this one reads too salesy for us").
 
----
+### 9. Review, approval, and usage
+**Length:** a short reference block, with clear terms.
+- **Review:** who reviews, in what order, and turnaround for each step.
+- **Approval:** who gives the final yes, and a plain statement that nothing publishes without it.
+- **Usage rights:** whether we can repost, run the content as paid ads, how long, and in which regions.
+- **Exclusivity:** any window during which the creator can't work with competitors, and whether the fee reflects it.
 
-### 8. References and Examples
-**Length:** 3-6 links with one line each
-**Tone:** Show, don't tell.
-
-*Prompts:*
-- What past content (theirs or others') nails the vibe we want?
-- Are there existing pieces that show the voice and quality bar?
-- Any anti-examples worth flagging? ("Great creator, but this one's too salesy for us.")
-
-**Notes:** Examples communicate faster than adjectives. One link that shows the tone we want beats a paragraph describing it. Annotate each link with the one thing to take from it.
+Usage rights are cheap to set now and expensive to renegotiate after the work exists.
 
 ---
 
-### 9. Review, Approvals, and Usage Rights
-**Length:** A short reference block
-**Tone:** Clear terms. No surprises later.
+## Writing notes
 
-- **Review process:** Who reviews, in what order, and the turnaround for each.
-- **Approval:** Who gives the final yes before publish, and confirmation that nothing publishes without it.
-- **Usage rights:** What we can do with the content after it's live. (Can we repost on our channels? Run it as a paid ad? For how long? In which regions?) Spell this out.
-- **Exclusivity (if any):** Whether the creator can work with competitors during a defined window.
-
-*Prompts:*
-- Who has final sign-off, and by when?
-- What usage rights do we need? (organic reshare, paid amplification, duration, territory)
-- Is there an exclusivity window, and is it reasonable for the fee?
-
-**Notes:** Usage rights are easy to forget and expensive to renegotiate. If we plan to run the content as an ad or keep it up indefinitely, agree to that in the brief, before the work is made.
-
----
-
-## Tone Reminders
-
-- **Specific beats vague.** "60-second video showing a prompt-to-live-site build" beats "a fun video about the product."
-- **One outcome.** A brief that wants everything gets nothing.
-- **Let the creator be the creator.** Give them the message and the guardrails, not a script. They know their audience better than we do.
-- **Spell out the boring parts.** Disclosure, tracking links, usage rights, revision count. The unglamorous details are what keep the collaboration clean.
-- **The guardrails in section 5 are the creator's copy of the house rules** (product naming, no em dashes); they're spelled out there so the creator has them in the brief itself, not only in a shared style guide.
+- Specific beats vague. "A 60-second build of a prompt becoming a live site" gives the creator something to make; "a fun video about the product" doesn't.
+- One outcome per brief.
+- Give the message and the guardrails, not the script. The creator knows their audience better than we do.
+- The unglamorous details (disclosure, links, usage, revisions) are what keep a collaboration clean. Don't leave them for later.

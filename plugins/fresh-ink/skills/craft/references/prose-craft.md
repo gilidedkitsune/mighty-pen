@@ -1,130 +1,126 @@
-# Prose craft: build it right the first time
+# Prose craft: building the draft
 
-The generative counterpart to `no-slops`. That skill's rules are pass 0 here, so they shape the draft from the first word; its audit runs after, as verification, and should find nothing. Sanding can't add life a draft never had, and a tell sanded out of a finished sentence leaves a sentence that was built around the tell. Flat copy that passes every filter is still flat: craft happens at generation, not correction.
+The generative side of no-slops. no-slops's rules serve as pass 0 here, so they shape the draft from its first word. Its audit runs afterward as verification and should find little. Removing a tell from a finished sentence leaves a sentence built around the tell. Copy written clean from the start reads differently, and craft happens while drafting, not in cleanup.
 
-Work the passes in order. Pass 0 is the constraint set you write inside; the rest match how a piece actually gets built: promise, lead, sentences, specifics, rhythm, thread, ending, cut. Product examples in this file are invented for teaching; never reuse them as real product claims.
+Work the passes in order. Pass 0 is the set of constraints you write inside. Passes 1 through 8 cover the build itself: promise, lead, sentences, concreteness, rhythm, thread, ending, cut. Product examples are invented; don't reuse them as claims.
 
 ---
 
-## 0. Before anything: know the tells
+## 0. Before drafting: know the tells
 
-**Why the tells exist, which is why pass 0 works.** A model writes whatever is most likely to come next, so by default it makes the choice that fits the widest range of readers and subjects. A person writes for one reader and one subject, so their choices come out uneven and specific. Every tell in the catalog is a form of that default choice: a sentence that signals importance instead of adding a fact, rhythm or formatting applied by rule, an ordinary fact dressed as a pivotal one. Knowing that, you can catch a tell the list hasn't named yet: ask whether this sentence was chosen for *this* reader, or would fit any reader of any piece.
+A model writes whatever is most probable next, which favors the choice that suits the most readers and subjects. A person writes for one reader and one subject, so their choices come out uneven and specific. Each tell is a form of the probable default: a sentence announcing importance instead of adding a fact, rhythm applied by rule, an ordinary point presented as a revelation. A useful question while drafting: was this sentence chosen for this reader and this subject, or would it fit anywhere?
 
-No-slops's rulebook is a drafting constraint, not an audit you meet later. Before the first sentence, have it open: the banned list in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`, the Tier 1 vocabulary and the §0 fingerprint patterns in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`, and the structural tells in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/structures.md`. Read one pair in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/slop-vs-gold.md` so the bar is in your ear, not only on your checklist.
+Open no-slops's rulebook before the first sentence. It's a set of constraints, not a checklist for later: the phrase catalog and Tier 1 vocabulary in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`, the §0 artifacts and mechanical sweep in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`, and the sentence shapes in `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/structures.md`. Also read one pair from `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/slop-vs-gold.md` so the bar is familiar before you start.
 
-Then write inside the constraints. Zero em dashes, and watch what replaces them (§5 covers the colon pileup). No adverb reflex; if the verb needs propping, find a better verb (§3). No fingerprint openers, no copula costumes ("serves as," "stands as"), no compulsive-summary closers (§7). No Tier 1 vocabulary, ever, in any voice, including a team member's.
+Write within those limits: no em dashes, and watch what replaces them (§5). No adverbs; if a verb needs help, pick a stronger verb (§3). No fingerprint openers, no inflated copulas, no recap closers (§7). No Tier 1 vocabulary in any voice, including a team member's.
 
-The reason this is pass 0 and not a final check: a tell removed from a finished sentence leaves a sentence that was built around the tell. Copy written clean from the first word is built differently, and it reads differently. No-slops still runs at the end, as verification. If it finds something, the failure happened here.
+No-slops still runs at the end, but as a check. If it finds something, the failure happened here.
 
-## 1. Before the first sentence: the promise
+## 1. The promise, written above the draft
 
-Write one sentence above the draft, for nobody but you: **who this is for and what they walk away with.** Not the topic. The takeaway. In craft this sentence is Step 1, answered before any intake (who, what it is for, why they should give a shit); here you carry it to the top of the draft.
+Write one sentence, for yourself, at the top of the page: who this is for and what they'll walk away with. Not the topic. The takeaway. Craft's intake produces this sentence; here it becomes the test for every section.
 
-- Weak: "This post is about AI prototyping for enterprise teams."
-- Ready: "An enterprise PM leaves knowing the three gates that stall AI prototypes in procurement, and what to bring to each one."
+- Topic: "This post is about AI prototyping for enterprise teams."
+- Promise: "An enterprise PM leaves knowing the three approval gates that stall AI prototypes, and what to bring to each one."
 
-If the sentence won't come, the piece has no thesis yet. Go back to research; drafting won't fix it. Once it exists, it becomes the kill test for every section: anything that doesn't serve the promise is a darling, and it dies at the outline.
+If the sentence won't come, the piece has no thesis yet. Return to research, because drafting won't produce one. Once the sentence exists, every section gets checked against it, and anything that doesn't serve it is a favorite line that should be cut before drafting.
 
 ## 2. The lead
 
-John McPhee calls the lead "a flashlight that shines down into the story." It aims the whole piece. It is also a promise about what kind of piece this is, and the piece has to keep it.
+The opening sets the whole piece's direction and makes a promise about what kind of piece it is. The piece has to keep that promise.
 
-**Start with the thing, not the topic.** The specific fact, number, person, or scene. Never the category, the era, or the landscape. The slop-vs-gold file shows Orwell opening by picking a fight with an assumption while the slop version announces a topic. Announcing a topic is not a lead.
+**Start with the thing, not the topic.** Open on a specific fact, number, person, or scene. Don't open on a category, an era, or a landscape. An opening that names a subject without saying anything about it isn't a lead.
 
 - Topic: "AI app builders are changing how enterprise teams think about prototyping."
-- Thing: "A designer at an insurance company built in one afternoon what her engineering queue had priced at six weeks."
+- Thing: "A designer at an insurance company built in one afternoon what her engineering queue had estimated at six weeks."
 
-**The first sentence must be arguable or picturable.** If no reader could disagree with it and no reader can picture it, it's throat-clearing with good posture.
+**The first sentence has to be arguable or picturable.** If no reader could disagree with it and no reader can see it, it's a warm-up.
 
-**Write past the warm-up, then cut back to where it starts.** First drafts clear their throat for a paragraph; that's fine, drafting is thinking. The fix is the delete-the-first-paragraph test: remove it and reread. If the piece still works, and it usually does, the real lead was sitting in paragraph two.
+**Draft past the warm-up, then cut back to the start.** First drafts often clear their throat for a paragraph. That's thinking, and it's fine. Delete the opening paragraph and reread. Usually the piece still works without it, which means the real lead was in paragraph two.
 
-**Keep the promise.** Don't open with a stat the piece never returns to. Don't promise a how and deliver a why. If the lead and the piece disagree, one of them is lying: fix whichever one it is.
+**Keep the promise.** Don't open with a statistic the piece never returns to. Don't promise how and deliver why. If the lead and the body disagree, fix whichever one is wrong.
 
-## 3. Sentences: engineering rules
+## 3. Sentence construction
 
-Five rules, applied while writing, not after.
+Five rules, applied as you write.
 
-**Actor does action.** Put the doer in the subject slot and the deed in the verb. Nouns ending in -tion, -ment, -ness, -ity are usually verbs in hiding, dragging the sentence into abstraction. "The implementation of the migration resulted in improved build times" hides two actions and an actor. "We migrated, and builds got faster" hides nothing. (red-pen hunts nominalizations during edits; write them out of existence first.)
+**The doer is the subject, the action is the verb.** Nouns ending in -tion, -ment, -ness, or -ity are often verbs disguised as nouns, and they drag the sentence into abstraction. "The implementation of the migration produced improved build times" hides both the actor and the action. "We migrated, and builds got faster" hides nothing. red-pen catches these during edits; write them out in the first draft.
 
-**Subject and verb inside the first six words.** Then branch right. A sentence that opens with stacked qualifiers ("While it's true that, for most enterprise contexts, ...") makes the reader hold their breath waiting for the point. Say who does what, then qualify.
+**Subject and verb in the first six words.** Qualify after you've said who did what. A sentence that opens with three clauses of hedging makes the reader wait for the point.
 
-**End on the payload.** The last slot before the period carries the most weight; that's the stress position. Park the number, the name, or the claim there, and let the furniture sit mid-sentence. "The new onboarding flow drove a 40% jump in signups" lands. "A 40% jump in signups resulted from the new onboarding flow" trails off into upholstery. Run this on every sentence that carries weight: claims, openers, closers, headers.
+**End on the payload.** The last position before the period carries the most weight, so put the number, the name, or the claim there. "The new onboarding flow drove a 40% jump in signups" lands. "A 40% jump in signups followed from the new onboarding flow" trails off. Apply this to every sentence that matters: claims, openers, closers, headers.
 
-**Pick verbs a camera could film.** Cut, ship, stall, drain, break. If the verb can't be filmed, a stronger one is usually buried nearby in a noun or an adjective. "Provides acceleration for" is "speeds up" wearing a lanyard.
+**Use verbs a camera could record.** Cut, ship, stall, drain, break. If the verb can't be filmed, a stronger one is usually hiding in a noun or an adjective. "Provides acceleration for" is "speeds up" in formal dress.
 
-**Budget the copulas.** Plain "is" beats dressed-up "serves as," and no-slops kills the costumes on sight. But three "is" sentences in a row means nothing in the paragraph is happening. That's not a vocabulary problem, it's an action shortage: find what actually moves, and let it.
+**Limit the copulas.** Plain "is" is better than "serves as," and no-slops removes the costume forms. But three "is" sentences in a row mean the paragraph has no action in it. That's an action shortage, so find what actually happens and write it.
 
-## 4. Concreteness: climb down the ladder
+## 4. Concreteness
 
-Abstraction is where copy goes to die politely. Every rung down the ladder buys belief:
+Abstract writing persuades no one. Each step down from the abstract to the specific buys belief:
 
 > faster iteration → prototype to stakeholder review in a day → she demoed on Tuesday what she scoped on Monday
 
-**The one-breath rule.** An abstract claim must touch ground within one sentence, before or after it. State the principle, then point at something: a number, a name, an artifact, a timestamp. If the paragraph is all principle, the reader has nothing to hold.
+**One breath, one anchor.** Any abstract claim touches something concrete in the same sentence or the next: a number, a name, an artifact, a date. A paragraph of pure principle gives the reader nothing to hold onto.
 
-**The point-at-it test.** Can the reader picture it, count it, or catch it being false? This is the TOV three-rules test doing draft-time work: run it on every headline, claim, opener, and CTA as you write them, not just in the audit.
+**The three-rules test while drafting.** Can the reader picture it? Can they count it or check it? Could it be false? That's the tone-and-guidelines test, applied at the moment of writing to headlines, claims, openers, and CTAs.
 
-**Prefer the proper noun.** "Supabase migrations" beats "database tooling" beats "infrastructure." The specific term costs nothing and pays in trust; the reader who knows the term trusts you more, and the reader who doesn't still trusts the confidence.
+**Use the proper noun.** "Supabase migrations" beats "database tooling," which beats "infrastructure." A reader who knows the term trusts you more, and a reader who doesn't still trusts the precision.
 
-**Numbers do the believing for you.** "1,000 songs in your pocket" needed no adjective. When a line goes abstract, don't decorate it. Descend it.
+**Let numbers carry belief.** A concrete figure needs no adjective around it. When a line turns abstract, don't decorate it; go find the specific.
 
-## 5. The music
+## 5. Rhythm
 
-Sentence-length monotony is what makes clean copy read dead. Gary Provost's five-word-sentences demonstration is the canonical proof (look it up once; it teaches the whole lesson in a paragraph): keep sentences the same length and the ear checks out; vary them and the writing sings.
+Uniform sentence length makes clean copy sound lifeless. Vary it, and the sentences carry a sense of movement.
 
-Make it mechanical:
+- **In any run of five sentences, at least one under eight words and one over twenty.** If three consecutive sentences are the same length, change one. Short sentences land points. A paragraph made only of short sentences reads like a drumbeat, though: readers start bracing for the next jab. Let one sentence run long and carry the argument, then stop.
+- **Save the period for what matters.** A short sentence after a long build hits hardest. Don't spend it on filler.
+- **Watch the substitution.** Without em dashes, drafts fill with colons and semicolons. no-slops §4 (punctuation displacement) sets the limit.
+- **Read it aloud.** The ear catches a monotone the eye skips. no-slops does the same check at the end, and doing it while drafting is cheaper.
 
-- **In any run of five sentences, at least one under eight words and one over twenty.** If three consecutive sentences match length, break one. Short works. Short lands the point. But a paragraph built only of jabs reads like a countdown, and the reader starts bracing for the next hit instead of listening, so you open one sentence's shoulders and let it carry the argument the whole way across the paragraph before you stop. Like that.
-- **The period is the strongest punctuation you own.** A short declarative after a long build hits hardest. Spend it on the line that deserves it.
-- **Watch the displacement.** Banning em dashes pushes drafts into colon pileups; no-slops §4 (Punctuation displacement) sets the limit.
-- **Read it aloud.** The ear catches the drone the eye forgives. This is no-slops's final test too; running it while drafting is cheaper.
+## 6. Paragraphs and flow
 
-## 6. Paragraphs and the thread
+**One move per paragraph.** Make one claim, prove one claim, or turn the argument once. A paragraph that does all three is three paragraphs sharing a page. The topic sentence names the move, and the rest carries it out.
 
-**One move per paragraph.** State a claim, prove a claim, or turn the argument. A paragraph doing all three is three paragraphs sharing a trench coat. The topic sentence names the move; everything after it executes.
+**Give each sentence a link backward.** Open each sentence with something the reader already holds (a word, a name, an idea from the last sentence) and close with the new thing. When a sentence opens on a subject nothing introduced, the reader feels a jolt, which is what people mean by "it doesn't flow." red-pen's cohesion check finds these in a finished draft; drafting with the link in place means there's nothing to find.
 
-**Thread given to new.** Open each sentence with something the reader already holds from the sentence before: a word, a name, an idea. Close each sentence with the new thing. When a sentence opens cold on a subject nothing set up, the thread snaps, and that snap is what readers mean by "it doesn't flow." (red-pen diagnoses this as the cohesion check. Thread it at draft time and there's nothing to diagnose.)
+**Join with "but" or "therefore," not "and then."** If a paragraph could open with "additionally," it hasn't earned its spot. It should either push back on what came before (but) or follow from it (therefore, so). A run of "and then" paragraphs is a list dressed as an argument: either make each one a real turn or merge it into a neighbor.
 
-**Connect with but or therefore, never and-then.** If a paragraph could open with "additionally," it hasn't earned its position: it should either contradict what came before (but) or follow from it (therefore, so). Trey Parker and Matt Stone's rule for story beats, and it holds for arguments. An and-then paragraph is a list item pretending to be a paragraph; either promote it to a real turn or fold it into its neighbor.
+**Let the weight be uneven.** Give the point you care about the long paragraph and the housekeeping a single line. Even coverage reads as generated. no-slops §6 asks for this texture after the fact, but it's cheaper to build it in.
 
-**Let the paragraphs be lopsided.** The point you care about gets the long paragraph; the housekeeping gets a line. Even coverage reads as generated (no-slops §6 demands this texture after the fact; it's cheaper to build than to retrofit).
+Outlines follow the same rules, with sections in place of paragraphs: one move per section, but or therefore between sections, weight where it matters. craft's outline step applies them. An outline built from "and then" sections produces a list no matter how good the sentences are.
 
-The same three rules run at outline time, on sections instead of paragraphs: one move per section, but-or-therefore joints, weight where you care. A piece drafted from an outline of and-thens will read as a list no matter how good the sentences are. craft Step 3 does exactly this.
+## 7. Endings
 
-## 7. The ending
+**End on a fact, an image, or a consequence, never a recap.** The reader has just read the piece. Recapping it is explaining a joke. The banned list already covers recap openers ("Ultimately...", "All in all..."). Land something new instead.
 
-**End on the fact, the image, or the consequence. Never the summary.** The reader just read the piece. Summarizing it back to them is the written version of explaining the joke, and the compulsive-summary closers ("Ultimately...", "At the end of the day...") are already banned in banned.md. This is what to do instead: land something.
+**The kicker is the second-best line.** The lead gets the best one. The kicker should be a specific with weight. If the last line could close any piece on the same topic, it doesn't close this one.
 
-**The kicker is the second-best line in the piece.** The lead gets the best one. Spend a real fact on the kicker, a specific with weight; Volkswagen closed on lemons and plums (the pair is in slop-vs-gold). If your last line could close any piece on the topic, it closes none of them.
+**Stop when the point is made.** The hardest rule: once you've made the point, end. If the final paragraph exists to tie things up, the piece really ended one paragraph earlier. Cut it and check.
 
-**Stop when the thing is said.** Zinsser's rule, and the hardest one: when you've made the point, leave. If the last paragraph exists to wrap up, the piece ended one paragraph ago. Cut it and see.
+**For conversion copy, the kicker sets up the ask.** The call to action isn't the ending; the line before it is. A call to action carries only as much weight as the sentence before it has earned.
 
-**For conversion copy, the kicker sets up the ask.** The CTA is not the ending; the line before it is. "Start building" lands exactly as hard as the sentence above it earned.
+## 8. The cut
 
-## 8. The 10% pass
+After the draft is done, cut about a tenth of it. Then read it aloud once. The cuts, in the order they usually pay off:
 
-Stephen King's revision formula: second draft equals first draft minus ten percent. Run it before no-slops ever sees the piece. The cuts, in order of yield:
+1. **The opening paragraph** (see §2; it was likely a warm-up).
+2. **Adverbs.** no-slops removes them anyway, so do it here first.
+3. **"That"** wherever the sentence still works without it.
+4. **Chains of prepositions.** "The utilization of this approach by the team" is a sentence with five prepositions that means "the team used it."
+5. **Favorite lines.** Anything kept because it sounds good, and doesn't serve the promise from §1. It hurts to cut, and the piece improves.
 
-1. **The first paragraph** (see §2; it was probably a warm-up).
-2. **Adverbs** (already law: no-slops kills them, so save it the trouble).
-3. **"That"** wherever the sentence survives without it.
-4. **Prepositional chains.** "The utilization of this approach by the team" is a five-preposition sentence hiding "the team used it."
-5. **The darling.** The line kept because it sounds good. If it doesn't serve the promise from §1, it goes, and it hurts, and the piece gets better.
-
-Then one read-aloud pass. Then hand it to no-slops.
-
-Track the cut rate. Under 5% means the pass didn't happen. Over 25% means draft looser and faster next time; cutting is cheaper than polishing.
+Track the cut rate. Under 5% suggests the pass didn't really happen. Over 25% means the draft was loose; next time, write tighter from the start.
 
 ---
 
-## How this file fits the stack
+## Where this file fits
 
 | File | Job | When |
 |---|---|---|
-| **prose-craft.md** (this file) | How to build prose | Outline and draft time |
-| **no-slops** | What a tell looks like (its rules), and the 35/50 gate (its audit) | Draft time via pass 0; audit time as verification |
-| **tone-and-guidelines** | Brand voice, mechanics, the three-rules test | Always |
-| **slop-vs-gold.md** | The bar, shown not told | Read one pair pre-draft |
-| **red-pen** | The same physics, run as diagnostics on finished drafts | Edit time |
+| **prose-craft.md** (this file) | How to build the prose | Outline and draft |
+| **no-slops** | What a tell looks like, plus the 35/50 gate | Before drafting (pass 0), and as the final check |
+| **tone-and-guidelines** | Voice, house style, the three-rules test | Always |
+| **slop-vs-gold.md** | The standard, shown by example | Before drafting |
+| **red-pen** | The same principles, applied as diagnostics to a finished draft | Edit time |
 
-red-pen's lenses (stress position, cohesion, thought-verbs, stance) are this file's rules pointed backward at an existing draft. If red-pen keeps flagging the same lens on your work, reread the matching section here: the fix belongs in the drafting, not the edit.
+red-pen's lenses (stress position, cohesion, thought verbs, stance) are these rules applied to a draft that already exists. If red-pen keeps flagging the same lens, reread the matching section here: the fix belongs in drafting.

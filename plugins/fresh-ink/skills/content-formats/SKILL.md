@@ -1,20 +1,26 @@
 ---
 name: content-formats
 description: >
-  Structural templates and asset specs for content types that have a fixed shape: customer stories / case studies, webinars (full bill of materials), sales enablement assets (battle cards, objection handlers, competitive one-sheets), creator briefs, career documents (cover letters, resume bullets, bios, LinkedIn About, editor pitches), plus an answer-first document scaffold (Minto/SCQA) for executive summaries, 1-pagers, bylines, and sales arguments. This skill owns FORMAT and STRUCTURE, not writing craft, and is the single source of truth for "what sections or assets does this content type need." It is loaded by craft during the matching content-type workflow. Do NOT use this skill to write or create content. It only supplies the structural skeleton. All content creation, including for these types, goes through craft, which loads these templates itself. For HOW to write (voice, persuasion, quality), see craft: this skill defines the shape, that one fills it with great copy.
+  Shape references for content with a fixed structure: customer stories, webinars (production
+  checklist), sales enablement assets (battle cards, objection handlers, one-sheets), creator
+  briefs, career documents (cover letters, resume bullets, bios, LinkedIn About, editor pitches),
+  and the pyramid-and-SCQA layout for executive summaries, one-pagers, bylines, and sales
+  arguments. Defines the sections and the length budgets; never writes the copy. Loaded by craft
+  during the matching content-type workflow. Use it to answer "what does this type need to
+  contain?", not to produce text.
 ---
 
-# Content Formats
+# Content formats
 
-Structural scaffolding for the content types that have a defined shape. Writing craft lives in `craft`; asset shape lives here. When a content-type workflow needs a structure, load the matching reference file below and work through its checklist. Voice, tone, persuasion, and the quality bar get applied on top, from craft.
+Structure and budgets for content types that have a set shape. The copy itself comes from craft, which loads these references during the matching workflow. Voice, persuasion, and quality are applied on top, by craft and its sources.
 
-| Content type | Scaffold | What it defines |
+| Content type | Reference | What's in it |
 |---|---|---|
-| Customer story / case study | [references/customer-story-template.md](references/customer-story-template.md) | Pre-draft checklist, the 9-section narrative structure, interview question bank, tone reminders |
-| Webinar | [references/webinar-bom-template.md](references/webinar-bom-template.md) | Full bill of materials, event details, asset checklist, optional export to a connected team wiki or calendar, timeline |
-| Sales enablement | [references/sales-enablement-template.md](references/sales-enablement-template.md) | Battle card, objection handler, and competitive one-sheet formats with worked examples |
-| Creator brief | [references/creator-brief-template.md](references/creator-brief-template.md) | The 9-section brief: objective, audience, key messages, deliverables, guardrails, timeline |
-| Career docs and pitches | [references/career-docs-template.md](references/career-docs-template.md) | The truth gate and proof bank, then cover letter, resume bullet, three-length bio, LinkedIn About, and editor-pitch specs |
-| Exec summary / 1-pager / byline / sales argument | [references/minto-scaffold.md](references/minto-scaffold.md) | Answer-first document skeleton: governing thesis, SCQA lead, MECE supporting arguments, integrity check |
+| Customer story | [references/customer-story-template.md](references/customer-story-template.md) | Nine sections with word budgets, the arc and immersion check, interview questions |
+| Webinar | [references/webinar-bom-template.md](references/webinar-bom-template.md) | Event details, asset checklists (before, during, after), copy patterns, review, timeline |
+| Sales enablement | [references/sales-enablement-template.md](references/sales-enablement-template.md) | Battle card, objection handler format, and one-sheet, with the rules they share |
+| Creator brief | [references/creator-brief-template.md](references/creator-brief-template.md) | Nine sections, from objective through usage rights, plus the required-elements checklist |
+| Career documents and pitches | [references/career-docs-template.md](references/career-docs-template.md) | The proof bank and truth gate, then specs for cover letters, resume bullets, bios in three lengths, LinkedIn About, and editor pitches |
+| Executive summary, one-pager, byline, sales argument | [references/minto-scaffold.md](references/minto-scaffold.md) | Thesis first, SCQA lead, three to five arguments that don't overlap, and an integrity check |
 
-These scaffolds carry structure plus any content-type-specific reminders. They do not define brand voice, tone of voice, or persuasion strategy: those come from `craft` and its sources (`tone-and-guidelines`, `voice-profiles`).
+The references set structure and length. Brand voice, tone, and persuasion come from `craft` and its sources (`tone-and-guidelines`, `voice-profiles`, `no-slops`).

@@ -1,206 +1,103 @@
-# Customer Story Template
+# Customer story scaffold
 
-*Internal framework: use this structure for every customer story. Adapt section lengths based on the customer's narrative, but hit every section.*
-
----
-
-## Pre-Draft Checklist
-
-Answer these before writing:
-
-- **Who's the customer?** Company name, size, industry, and the specific person(s) quoted.
-- **What did they build?** The product, app, or workflow they created with [Product].
-- **What was broken before?** The pain point, bottleneck, or gap that led them to [Product].
-- **What's the measurable outcome?** Time saved, revenue generated, speed to launch. Get a number.
-- **Who's reading this?** (e.g., enterprise buyers evaluating [Product], developers considering adoption, founders looking for proof)
+Structure for a customer story: nine sections, each with a job and a word budget. The budgets add up to 800 to 1,200 words, excluding the snapshot. The customer's own words should carry most of the weight; the writing's job is the frame around them.
 
 ---
 
-## Story Structure
+## Before drafting
+
+Settle these first. If any answer is missing, get it from the customer before writing, not after:
+
+- **The customer:** company, rough size, sector, and the person being quoted (with their title).
+- **The build:** what they made with the product, in one sentence.
+- **The friction:** what was going wrong before, and what it cost in time, money, or chances missed.
+- **The number:** one measurable result. If exact figures aren't cleared, ask for a directional one (weeks to hours, more than half).
+- **The reader:** who will read this and decide what to do next (a buyer, a developer, a founder looking for proof).
+
+---
+
+## The nine sections
 
 ### 1. Headline
-**Format:** [Result/outcome] + [who did it] + with [Product]
-**Length:** 8–12 words
-**Tone:** Concrete and specific. Lead with what they achieved, not who they are.
+**Budget:** 8 to 12 words.
+**Shape:** the result, then who got it, then the product (or the product's name in a subordinate phrase).
+**Test:** does it state an outcome a reader could check? Name the number if there is one.
 
-*Prompts:*
-- What's the single most impressive result?
-- Can you state it with a number?
+### 2. Snapshot
+**Budget:** three to five bullets, for skimmers and sales decks.
+**Cover:** the company (one line), what they built, the before, the after, and the headline number.
 
-**Examples of the shape (not actual headlines):**
-- [Company] shipped their MVP in 48 hours with [Product]
-- How [Company] cut development time by 70%
+### 3. Who they are
+**Budget:** 75 to 125 words.
+**Job:** enough context to place the story, and nothing more. Team size, stage, and technical make-up matter only when they change how the reader sees the result (a non-technical founder shipping their own product is a different story from a platform team doing it).
 
----
+### 4. What was broken
+**Budget:** 100 to 175 words.
+**Job:** make the reader recognize their own problem. This is where a direct quote earns its place.
+**Cover:** what they were trying to ship, what stopped them, how long it had gone on, what they'd already tried, and what the status quo was costing.
 
-### 2. Snapshot (the TL;DR)
-**Length:** 3–5 bullets
-**Purpose:** Scannable summary for skimmers and sales decks.
+### 5. The decision
+**Budget:** 75 to 125 words.
+**Job:** how they chose the product, told as a decision with its tradeoffs, not a feature tour. One quote, in their words, on why.
+**Cover:** how they found it, what they weighed it against, and the moment it became the obvious choice, if there was one.
 
-Include:
-- **Company:** Name, one-line description
-- **Use case:** What they built
-- **Before:** The old way / the problem
-- **After:** The [Product] way / the result
-- **Key metric:** The headline number
+### 6. The build
+**Budget:** 150 to 250 words.
+**Job:** the specifics. This is the section a technical reader checks for credibility.
+**Cover:** what was built, the workflow used, the capabilities that mattered and why, who outside the engineering team took part and how, and what surprised them. A prompt, a screenshot, or a before-and-after of the workflow is worth more than any adjective.
 
----
+### 7. The results
+**Budget:** 125 to 200 words.
+**Job:** the measured change, stated plainly.
+**Cover:** the headline metric first, then secondary effects (spend, speed, who can now build), then a comparison to the old process, then what they can now do that they couldn't before. A pull quote can carry the strongest figure.
 
-### 3. The Setup, Who They Are
-**Length:** 75–125 words
-**Tone:** Brief and contextual. Just enough to ground the reader.
+### 8. What's next
+**Budget:** 50 to 75 words.
+**Job:** momentum. The reader should finish thinking they want the same outcome.
+**Cover:** what they're building next, how it has changed how their team works, and a closing quote on whether they'd recommend it.
 
-*Prompts:*
-- What does this company do? (one sentence)
-- How big are they? (team size, revenue range, stage, whatever's relevant)
-- What's their technical profile? (Do they have a dev team? Are they non-technical founders? A design agency?)
-
-**Notes:** Don't pad this section. The reader needs context, not a company bio. Get in, get out.
-
----
-
-### 4. The Problem, What Was Broken
-**Length:** 100–175 words
-**Tone:** Empathetic but direct. Let the pain speak for itself.
-
-*Prompts:*
-- What were they trying to build or ship?
-- What was stopping them? (Cost, time, technical skill gaps, slow dev cycles, vendor lock-in)
-- How long had this been a problem?
-- What had they already tried?
-- What was the business cost of the status quo? (Lost revenue, missed launches, contractor spend)
-
-**Notes:** This is where you earn the reader's identification. The problem should feel familiar to the target audience. Use a direct customer quote here if you have one; their words will carry more weight than yours.
+### 9. Call to action
+**Budget:** one or two lines.
+**Shape:** one next step that matches the channel (try it, or talk to sales).
 
 ---
 
-### 5. The Turn, Why [Product]
-**Length:** 75–125 words
-**Tone:** Natural, not salesy. This should read like a recommendation from a colleague, not an ad.
+## The arc, and where stories go soft
 
-*Prompts:*
-- How did they find [Product]?
-- What made them try it over alternatives?
-- Was there a specific moment or feature that clicked?
+The nine sections also form a transformation arc: ordinary world and need (sections 3 and 4), the decision (5), the change itself (6), and the new state (7 and 8). Stories fail in predictable places. The before-friction is usually thin, and the moment of decision, including what it risked, is usually missing. Those two beats are worth more words than any feature list.
 
-**Notes:** Keep this tight. Don't list features; describe the decision. One quote works well here: *why* they chose [Product] in their own words.
+**Immersion check before you finalize:**
+- Does it open on a concrete moment, rather than a description of the company?
+- Are the stakes stated (what happens if the old way continues)?
+- Is there specific detail where there's summary? "The deploy failed at 2 a.m. for the third night in a row" beats "deployments were unreliable."
+- Is a named person carrying the story, or is it narrated from nowhere?
 
----
-
-### 6. The Build, What They Did With It
-**Length:** 150–250 words
-**Tone:** Specific and grounded. Show, don't tell.
-
-*Prompts:*
-- What did they build? (App, internal tool, prototype, customer-facing product)
-- What was the workflow? (Prompt-to-production, iteration cycles, team collaboration)
-- Which [Product] capabilities mattered most? (Be specific; don't just say "AI")
-- Did they involve non-technical team members? How?
-- What surprised them during the build?
-
-**Notes:** This is the meat. Get concrete about what they actually did. If they can share a prompt they used, a screenshot, or a before/after of their workflow, include it. Specificity is credibility.
+If the draft summarizes where it should show, fix that first. (red-pen's narrative checks catch the same thing on a finished draft.)
 
 ---
 
-### 7. The Results, What Changed
-**Length:** 125–200 words
-**Tone:** Let the numbers talk. Confident, not breathless.
+## Interview questions
 
-*Prompts:*
-- What's the headline metric? (Time to ship, cost savings, revenue impact, team velocity)
-- Are there secondary metrics? (Reduced contractor spend, faster iteration, expanded who can build)
-- How does this compare to their old process?
-- What can they do now that they couldn't before?
+Pick the ones that fit the customer. Nobody gets all of them.
 
-**Notes:** Lead with the strongest number. Use a pull quote for the most impactful stat. If they can't share exact figures, get directional data ("weeks to hours," "cut costs by more than half"). Avoid vague claims without supporting detail.
+**Background:** What does the company do, and who does it serve? How is the team set up for building: in-house engineers, contractors, or no-code tools?
 
----
+**Friction:** What were you trying to build when you started looking? What slowed you down most? What had you already tried? What was the slowdown costing you?
 
-### 8. The Close, What's Next
-**Length:** 50–75 words
-**Tone:** Forward-looking, grounded.
+**Decision:** How did you first hear about the product? What else did you consider? Was there a moment it became obvious?
 
-*Prompts:*
-- What are they building next with [Product]?
-- How has it changed their team's approach to building?
-- Would they recommend it? (Get a closing quote)
+**Build:** Walk me through what you made. Where did it surprise you? Did anyone outside engineering use it, and how did that go?
 
-**Notes:** End on momentum. The reader should finish thinking, "I want that result too."
+**Results:** What changed most, in numbers if you have them? How does the old process compare? What can you do now that you couldn't before?
+
+**Looking ahead:** What are you building next? How would you describe the product to someone who hasn't tried it?
 
 ---
 
-### 9. CTA
-**Length:** 1–2 lines
-**Format:** Direct link to try [Product] or talk to sales, depending on distribution channel.
+## Notes on tone
 
----
-
-## Narrative arc (overlay on the nine sections)
-
-The nine sections are the skeleton. This overlay makes sure the skeleton tells a *story*, not a feature log. Map the sections to a transformation arc, then check that the prose actually immerses the reader.
-
-**The arc (sections mapped to beats):**
-- **Ordinary world and the need:** Setup (3) and Problem (4). Who they are and the friction they lived with.
-- **The turn:** The Turn (5). The decision to change, and what it cost or risked.
-- **The road and the change:** The Build (6). What they actually did, the specifics, the surprises.
-- **The new normal:** Results (7) and Close (8). The measurably changed state, and life on the other side.
-
-The under-told beats are almost always the Problem's *stakes* and the Turn's *cost or risk*. A story with no real before-friction and no moment of decision reads as "company X used product, results were good." Protect those beats.
-
-**Immersion check (transportation):** before finalizing, confirm the story pulls the reader in rather than summarizing from a distance:
-- Is there an entering scene, a concrete moment, not just an abstract company description?
-- Are the stakes explicit (what happened if this stayed broken)?
-- Is there concrete, specific detail, not just summary? "Watched the deploy fail at 2 a.m. for the third night" beats "deployment was unreliable."
-- Does a named person carry it, or is it narrated from nowhere?
-
-If the draft summarizes where it should show, that is the fix. (Pairs with red-pen's summary-not-scene flag for narrative content.)
-
----
-
-## Total Target Length
-**800–1,200 words** for the full story (excluding snapshot). Shorter is almost always better.
-
----
-
-## Interview Question Bank
-
-Use these when interviewing the customer. You won't use all of them; pick the ones that fit.
-
-**Background:**
-- What does your company do, and who do you serve?
-- What's your team's technical setup? (In-house devs, contractors, no-code tools, etc.)
-
-**Problem:**
-- What were you trying to build when you found [Product]?
-- What was your biggest bottleneck before?
-- What had you tried that didn't work?
-- What was that costing you, in time, money, or missed opportunities?
-
-**Discovery and decision:**
-- How did you hear about [Product]?
-- What made you try it?
-- Was there a specific moment where it clicked?
-
-**Build:**
-- Walk me through what you built.
-- What surprised you about the process?
-- Did anyone non-technical on your team use it? How'd that go?
-
-**Results:**
-- What's the biggest measurable impact?
-- How does your current workflow compare to before?
-- What can you do now that you couldn't before?
-
-**Forward-looking:**
-- What are you planning to build next?
-- How would you describe [Product] to a peer who hasn't tried it?
-
----
-
-## Tone Reminders
-
-- **Real talk.** Write like a person. Read it out loud.
-- **Specific > superlative.** "Shipped in 48 hours" beats "incredibly fast."
-- **Customer's voice > your voice.** Let their quotes carry the story. Your job is structure and connective tissue.
-- **No fluff.** If a sentence doesn't add information or momentum, cut it.
-- **Every claim carries a number or a direct quote.**
+- Write it the way the customer would say it on a call. Read it aloud once.
+- Prefer the measured claim to the superlative: "shipped in 48 hours" beats "incredibly fast."
+- The customer's voice carries the story; yours holds it together.
+- Cut any sentence that adds neither information nor momentum.
+- Every claim gets a number or a direct quote, or it goes.

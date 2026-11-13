@@ -1,7 +1,7 @@
 {
   "name": "insights",
   "description": "The measure-it tool: live GA4 and Search Console numbers, the SEO tool map, and AI-answer visibility (named vs cited, term winnability, before-and-after). Dormant until wired: without a connection it says so and stays out of the way.",
-  "version": "2.7.4",
+  "version": "2.8.0",
   "author": {
     "name": "Taylor"
   }

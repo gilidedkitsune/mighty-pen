@@ -1,45 +1,45 @@
-# Voice-of-Customer Message Mining
+# Customer-language mining
 
-A sharpening tool for craft, not a gate. VoC mines the customer's real words so a draft can be validated and enriched against how customers actually talk. It is always available as a check. It is never a tribunal. Do not interrogate every line ("did a customer say this?"), and never block a draft or demand customer proof for content that is legitimately led by search intent, brand point of view, or creative.
+A way to sharpen copy with the customer's own words. It's a check, not a gate: use it where customer truth matters, and skip it where the piece is led by search intent, a point of view, or a creative idea. It never blocks a draft, and it doesn't ask for proof on every sentence.
 
-## When to lean in, when to lighten up
+## Where to lean in
 
-- **Lean in (VoC is core raw material):** customer stories, conversion web and landing copy, sales enablement (objection handlers especially), nurture email. Here the customer's language is the point; draft from it.
-- **Opportunistic (VoC sharpens, it does not lead):** SEO blogs, long-form. The angle is led by search intent or strategy. Pull a customer phrase where it lands, skip it where it doesn't.
-- **Light touch (VoC is just a gut-check):** ad copy, social, event copy. Creative leads; use VoC only to confirm the hook rings true.
+- **Lean in** (the customer's language is the material): customer stories, conversion pages, sales enablement (especially objection handlers), and nurture email. Draft from what customers said.
+- **Opportunistic** (it sharpens, it doesn't lead): SEO blogs and long-form. Search intent or strategy leads. Use a customer phrase where it fits and skip it where it doesn't.
+- **Light touch** (a gut-check only): ads, social, and event copy. The creative leads; check that the hook rings true to a customer.
 
-The running gut-check, applied to claims about the customer's pain or experience (not to every sentence): **is this validated by the customer, or am I asserting it?** If a headline or a pain claim is pure assertion and the piece is one where customer truth matters, go find the real words. If the piece is search-led or creative, note it and move on. Agility over dogma.
+The running question, asked of claims about a customer's pain or experience (not every sentence): **is a customer validating this, or am I asserting it?** If the claim is only an assertion and the piece is one where the customer's reality matters, go find their words. If the piece is search-led or creative, note it and move on.
 
-## The six buckets
+## Six buckets
 
-Sort what you mine into these. Each maps to a draft slot:
+Sort what you collect into these. Each one feeds a specific part of the draft:
 
 | Bucket | What it captures | Feeds |
 |---|---|---|
-| Problems in their world | the pain, in their words | hook, lead, "why care" |
-| Problems with current tools | what the alternative fails at | competitive framing, "vs" angles |
-| Motivations | what they're really trying to do | headline, promise |
-| Desired outcomes | the after-state they want | promise, proof, CTA |
-| Loved features | what delights existing users | proof points (feeds Ogilvy's facts) |
-| Anxieties and hesitations | what makes them hesitate to switch | objection handling, CTA-adjacent reassurance (feeds JTBD Four Forces) |
+| Problems in their world | the pain, in their words | the hook, the lead, the "why care" |
+| Problems with current tools | where the alternative fails them | comparison and "vs" framing |
+| Motivations | what they're actually trying to do | headline and promise |
+| Desired outcomes | the after-state they want | promise, proof, call to action |
+| Loved features | what existing users praise | proof points (Ogilvy's fact-based proof) |
+| Anxieties and hesitations | what stops them from switching | objection handling and reassurance near the call to action (the JTBD four-forces model) |
 
-The last two buckets are the ones the rest of the stack misses. Loved features feed Ogilvy's proof discipline; anxieties feed the Four Forces switching model.
+The last two buckets are the ones most teams miss. Loved features give you proof; anxieties show you what the switching model needs to address.
 
 ## Where to mine
 
-- **Sales calls: a Sybill connector, where one is set up.** The richest seam by far, and the one to reach for first on lean-in content. Sybill carries full transcripts plus structured summaries (Outcome, Key Takeaways, Pain Points, FAQ) with CRM account and deal links, so prospect language, objections, and competitor mentions come pre-sorted. It maps almost directly onto the last two buckets, which are the ones everything else misses.
-- Internal meetings and user interviews (a meeting-notes connector like Granola, where one is set up), and email threads (a mail connector like Gmail, where connected). If none are connected, ask the user to paste transcripts or notes.
-- Reviews and ratings (G2, app stores, Trustpilot).
-- Reddit, X, Discord, Hacker News threads about the product and the category.
-- Support threads and tickets.
-- The customer-story interview bank already captures this for that one content type.
+- **Sales calls**, through a call-intelligence connector if one is set up. This is usually the richest source. Good tools return full transcripts plus structured summaries (outcome, takeaways, pain points, questions) linked to accounts and deals, so prospect language and objections come pre-sorted. Those summaries map almost directly onto the last two buckets.
+- **Internal meetings and interviews**, through a meeting-notes connector, and **email threads**, through a mail connector, where connected. If nothing is connected, ask the user to paste transcripts or notes.
+- **Reviews and ratings**: G2, app stores, Trustpilot, and similar.
+- **Public discussion**: Reddit, X, Discord, and Hacker News threads about the product and its category.
+- **Support threads and tickets.**
+- **The interview bank** in the customer-story template, which already captures this for that one type.
 
-Pull verbatim. The exact phrasing ("I was tired of waiting on a dev to ship a landing page") is the asset; paraphrase loses it. Trace every quote to its source.
+Quote verbatim. The exact phrasing ("I was tired of waiting on a dev to ship a landing page") is the asset, and paraphrase loses it. Record the source for every quote.
 
-**Consent gate on anything sourced from calls.** Call and meeting material is real named prospects and customers who did not sign up to be quoted. Mine it freely for *understanding*: the pain, the phrasing, the objection patterns. But a named account's words never reach audience-facing copy without a consent check (the customer's approval on record, or the team's customer-stories consent list where one exists). Unattributed pattern language ("teams keep telling us the review queue is the bottleneck") is fine; a quote with a company attached is not, until consent says otherwise.
+**Consent gate.** Material from calls comes from real people who did not agree to be quoted. Use it freely to understand the pain, the vocabulary, and the objection patterns. A named account's words never go into audience-facing copy without consent on record (the customer's approval, or the team's consent list if there is one). Unattributed patterns ("teams keep telling us the review queue is the bottleneck") are fine. A quote with a company name attached is not, until consent says otherwise.
 
-## Using it in the workflow
+## In the workflow
 
-In Step 2, Content Bonanza tier, for lean-in content types: do a quick VoC pull into the six buckets before the Schwartz diagnosis, then let the buckets inform the angle and supply real language. For opportunistic and light-touch types, skip the formal pull and just keep the gut-check available. Do not run it on a quick-and-dirty draft unless asked.
+For lean-in content types, do a quick pass into the six buckets during research, before the Schwartz diagnosis, and let the buckets supply the angle and the language. For opportunistic and light-touch types, skip the formal pass and keep the gut-check available. Don't run it on a quick, rough draft unless asked.
 
-This is the single home for the customer's-words principle. The "voice of customer" note in web-copy-best-practices points here rather than restating it.
+This file owns the customer-language principle. Other files point here rather than restating it.

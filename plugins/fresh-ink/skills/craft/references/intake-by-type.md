@@ -1,93 +1,92 @@
 # Intake by content type
 
-The per-type intake questions for craft Step 1. Read only the block for the detected content type. Pick the two that matter most for Round 1 (they batch with the audience and mode questions in one AskUserQuestion call) and carry the rest into Round 2. Skip anything the brief already answered.
+Questions to ask for each content type, used in craft Step 1. Open only the block for the type you've detected. Choose the two that matter most for Round 1, which go into the same AskUserQuestion call as the mode and audience questions. Carry the rest into Round 2. Drop any question the brief already answers.
 
-Where a block says to load a template from `content-formats`, that template's own pre-draft checklist is part of the intake for that type.
+If a block points to a template in `content-formats`, that template's pre-draft checklist counts as part of the intake for that type.
 
 ---
 
-**Blog:** delegated to `blog` at routing; it runs its own intake. Don't run blog intake here.
+**Blog:** routed to `blog`, which runs its own intake. Don't repeat it here.
 
 **Customer story:**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md` and work through its Pre-Draft Checklist
-- Customer name, company, what they built, the problem before, the measurable outcome
-- Available assets: interview transcript, quotes, screenshots, data?
+- Work through the pre-draft checklist in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`
+- The customer, their company, what they built, what was broken before, and the measurable result
+- Materials available: an interview transcript, quotes, screenshots, data
 
-**Social:** delegated to `socialize`, which runs its own brief (platforms, whose account, the author's stake, the goal).
+**Social:** routed to `socialize`, which runs its own brief (platforms, the account, the author's stake, the goal).
 
 **Email:**
-- Email type (announcement, nurture, transactional, sequence)
-- Subject line direction (if the user has one in mind)
-- Single CTA: what should the reader do?
+- The kind of email: announcement, nurture, transactional, or a sequence
+- A subject line direction, if one is already in mind
+- The one action the reader should take
 
 **Website copy:**
-- Page type: general web copy (homepage, feature page, pricing page, solution page, persona page, industry page) or single-use landing page (campaign, ad, event)?
-- Primary CTA
+- The page type. General web copy covers homepages, feature, pricing, solution, persona, and industry pages. Single-use landing pages cover campaigns, ads, and events.
+- The primary action
 
-Then ask page-type-specific follow-ups:
+Then the follow-ups for that page type:
+- **General web copy:** the page's main job, the kind of page, and the differentiators or messages it has to land.
+- **Single-use landing page:** the traffic source (paid, email, social, event), what the referring content promised, and the one conversion goal.
 
-- **General web copy:** What kind of page? (homepage, feature, pricing, solution, persona, industry, etc.) What's the page's primary job? Key differentiators or messaging to hit?
-- **Single-use landing page:** Traffic source (paid ad, email, social, event)? What does the referring content promise? Single conversion goal?
-
-**Long-form (whitepaper, ebook, guide, survey/research report):**
-- Topic and thesis
-- Target length (~2,000–5,000+ words)
-- Chapter/section structure (if the user has one)
-- Source material and citation constraints (the format itself is fixed: Chicago superscript + Works Cited, per tone-and-guidelines)
-- Survey/research report variant, also ask: data source (spreadsheet, survey tool, raw data), key findings the user wants highlighted, visualization needs (tables, charts to describe)
+**Long-form** (whitepaper, ebook, guide, survey or research report):
+- The topic and the thesis
+- Target length, roughly 2,000 to 5,000 words or more
+- The chapter or section plan, if the user has one
+- Sources and citation limits. The format is fixed: Chicago superscripts with a Works Cited list, per tone-and-guidelines.
+- For a research report, also: the data source (spreadsheet, survey tool, raw files), the findings to foreground, and which tables or charts should be described
 
 **Ad copy:**
-- Platform and format (Google Ads, Meta, LinkedIn, display)
+- Platform and format (search, paid social, professional network, display)
 - Character limits
-- Target audience (which persona, this drives the variant output)
-- Key message or offer
-- Landing page URL (for message match)
+- The target reader, since it drives how many variants to produce
+- The key message or offer
+- The landing page URL, so the ad and the page match
 
-**Executive brief / 1-pager:**
-- Format: executive summary (1-2 pages, summarizes a source document) or 1-pager (single page, stands alone)?
-- Source document or subject, and the goal
-- Key decisions, recommendations, or must-include points to surface
-- Distribution context (sales leave-behind, conference handout, email attachment)
+**Executive summary or one-pager:**
+- Format: an executive summary (one or two pages, condensing a source document) or a one-pager (a single standalone page)
+- The source document or subject, and what it should accomplish
+- The decisions, recommendations, or must-include points
+- Where it will be used: a sales leave-behind, a conference handout, an email attachment
 
-**Byline / thought leadership:**
-- Named author and their voice/perspective
-- Publication target (if any)
-- Core argument or thesis
+**Byline or thought piece:**
+- The named author and their perspective or voice
+- The target publication, if any
+- The core argument or thesis
 
 **Webinar:**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md` and work through the Event Details section first
-- Webinar title, date/time, format, platform, speakers
-- Partner details (if co-hosted)
-- Target persona and funnel stage
-- Which content assets are needed (the BOM checklist: landing page, emails, social, slides, recap)
-- Voice: default, except social posts under a named person's account (see Webinar-specific in Step 4)
+- Work through the event-details section of `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md` first
+- Title, date and time, format, platform, and speakers
+- Partner details, if it's co-hosted
+- The target reader and funnel stage
+- Which assets are needed from the checklist: landing page, emails, social, slides, recap
+- Voice: the default voice, except social posts that go out under a named person's account (Webinar-specific, craft Step 4)
 
 **Sales enablement:**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` and work through the relevant asset's checklist
-- Asset type (battle card, objection handler, competitive one-sheet)
-- Target buyer persona
-- Key objections or competitive positioning
+- Work through the matching asset checklist in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md`
+- Which asset: battle card, objection handler, or one-sheet
+- The target buyer
+- The objections or the competitive position to address
 
 **Creator brief:**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md` and work through its Pre-Brief Checklist
-- Creator type (influencer, content partner, agency)
-- Deliverables expected
-- Key messages and guardrails
+- Work through the pre-brief checklist in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`
+- The kind of creator: influencer, content partner, or agency
+- The deliverables
+- The key messages and the guardrails
 
-**Career docs (cover letter, resume, bio, LinkedIn About):**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` and build the proof bank first
-- Which documents, and for what target (paste the job description, or name the venue or audience)
-- Source material: current resume, past bios, portfolio links, LinkedIn
-- Anything to emphasize, downplay, or leave out; any requirement they know they don't meet
+**Career documents** (cover letter, resume, bio, LinkedIn About):
+- Build the proof bank first, using `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md`
+- Which documents, and for what target: paste the job description, or name the venue or audience
+- Source material: the current resume, past bios, portfolio links, LinkedIn
+- What to emphasize, what to leave out, and any requirement they know they don't meet
 
-**Pitch (op-ed, guest post, story):**
-- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` (Pitch to an editor)
-- Target outlet and, if known, the editor
-- The argument or angle in one sentence, and why now
+**Pitch** (op-ed, guest post, story):
+- The pitch section of the career-docs template
+- The target outlet and, if known, the editor
+- The argument in one sentence, and why it matters now
 - Clips to link, and whether a draft exists
 
 **Personal essay:**
-- Where it will run (newsletter, publication, their own site) and target length
-- The moment or scene at the center of it
-- What the user wants the reader to feel or understand by the end (the felt truth, not a lesson)
-- Anything off limits: people who shouldn't be named, details to keep private
+- Where it will run (a newsletter, a publication, their own site) and the target length
+- The moment or scene at the center
+- What the reader should feel or understand by the end. The emotional truth, not a lesson.
+- What's off limits: people who shouldn't be named, details that stay private

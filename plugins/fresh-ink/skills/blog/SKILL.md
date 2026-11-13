@@ -1,195 +1,185 @@
 ---
 name: blog
 description: >
-  Write blog posts and SEO blog content. Use this skill for any blog content task: write a post from scratch, produce a content brief or outline, optimize an existing draft, or analyze a competitor URL and write a post to outrank it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief", "blog brief", "optimize this post", "outrank this article", or any request for blog content. Do NOT trigger for other content types (social posts, emails, ads, landing pages, 1-pagers); those route through craft. This skill runs robust intake and research, drafts to the locked SEO-blog shape with the default voice from tone-and-guidelines in the register the post calls for (B2B tech buyer for technical-product posts, personal for Taylor's own), and audits with no-slops before presenting clean copy.
+  Blog posts and SEO blog content: write a post from scratch, produce a brief or outline,
+  optimize an existing draft for search, or analyze a competitor's page and write one that
+  outranks it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief",
+  "blog brief", "optimize this post", "outrank this article", or any request for blog content.
+  Not for other types (social, email, ads, landing pages, one-pagers), which route through craft.
+  Runs its own promise step and research, drafts in the register the post calls for, and checks
+  the result with no-slops before presenting it.
 ---
 
-# Blog Writer
+# Blog
 
-You write blog content. craft delegates every blog request here, so this skill owns the blog's shape: the four workflows, the post structure, the brief template, on-page SEO, and the citation format. Everything that isn't blog-specific (the promise, research, drafting craft, voice, and the edit order) follows craft's workflow in `${CLAUDE_PLUGIN_ROOT}/skills/craft/SKILL.md`; this file points there instead of repeating it, so the two can't drift apart.
+The blog skill owns the blog's shape: its four workflows, its structure, its brief template, on-page SEO, and its edit order. Everything else is shared with craft and linked, not repeated: the promise questions, the research and sourcing rules, the drafting craft, the voice, and the review passes. Read those in their homes:
 
-**Before writing anything,** read the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` (pass 0 puts no-slops's rulebook in front of you as drafting constraints) and the voice in `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`, in the register the post calls for. **No-slops runs on every output,** briefs, outlines, FAQs, and meta copy included: the 35/50 gate, zero em dashes.
+- Drafting craft: `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`
+- Voice and citation format: `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`
+- The filter: `${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`, which runs on every output, including briefs, outlines, FAQs, and meta copy. Zero em dashes.
+- The shared workflow and promise steps: `${CLAUDE_PLUGIN_ROOT}/skills/craft/SKILL.md`
 
 ## Four workflows
 
-| Input | Workflow |
+| The user has | Workflow |
 |---|---|
-| Topic or keyword | 1. Write from scratch (outline first if the user wants to approve one) |
-| A brief, or "outline this first" | 2. Outline & brief |
+| A topic or keyword | 1. Write from scratch (or 2 first, if they want to approve an outline) |
+| A brief, or asks for an outline first | 2. Outline and brief |
 | An existing draft | 3. Optimize |
 | A competitor URL | 4. Outrank (analyze, brief, then write) |
 
-If it isn't clear which one they want, ask: "Do you want a full post, an outline, or an optimization pass?"
+If it's unclear which one they want, ask: "Do you want a full post, an outline, or an optimization pass?"
 
 ---
 
-## Step 1: The promise, then the blog specifics
+## Step 1: Promise and blog specifics
 
-Run craft's promise module first (craft Step 1, "The promise"): who it's for, what it's for, and why they should care, confirmed in one round. Most blogs are AEO/GEO with a buyer stage; name both. No answer to "why should they care" means no thesis yet; stop.
+Run craft's promise step first: who the post is for, what it's for (most blog posts serve search and AI answers and a buyer stage, so name both), and why the reader should care, confirmed in one round. If there's no answer to "why should they care," the post has no thesis yet, so stop there.
 
-Then one more round for what only a blog needs:
-1. **Target keyword**, primary plus any secondaries (search-weave will ask for questions and citations later; collect them now if the user has them)
-2. **Content style:** thought leadership, how-to, or product-led
-3. **Target length:** let the topic decide; don't pad or cut to a number
-4. **CTA:** the specific next step (signup, newsletter, a feature page)
+Then one more round, for what only a blog needs:
+1. **Target keyword:** the primary phrase, plus any secondaries. search-weave asks for questions and citations later, so collect them now if the user has them.
+2. **Style:** thought leadership, how-to, or product-led.
+3. **Length:** let the topic decide. Don't pad or trim to hit a number.
+4. **Call to action:** the specific next step (sign up, subscribe, open a feature page).
+
+---
 
 ## Step 2: Research
 
-Follow craft Step 2: web research, internal context only from connectors that are actually there, and every stat or quote handed to **cited-works** by name (or cited origin-first by hand if it isn't installed). Two blog-specific rules on top:
+Follow craft's research step. Web research for the current conversation and figures. Internal material only from connectors that actually exist. Every figure, quote, or claim goes to **cited-works**, or, if it isn't installed, gets traced to its origin by hand.
 
-- **At least two credible sources** per post, internal or external.
-- **Citations use the two-part inline format** (the stat phrase hyperlinked, then a plain "(Publisher, date)" closing the sentence), defined in tone-and-guidelines, Bibliography and attribution (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`). No footnotes or works-cited block on a blog. Ask cited-works to return citations in this format.
+Two rules specific to blogs:
+- At least two credible sources per post, internal or external.
+- Citations use the two-part inline format from tone-and-guidelines: the claim hyperlinked to its source, then a plain "(Publisher, year)" closing the sentence. No footnotes, bibliography, or works-cited list. Chicago belongs to long-form, which goes through craft. Ask cited-works to return citations in this format.
 
-**Position the post** before drafting: searchable, shareable, or both; buyer stage; pillar and internal-link opportunities; and the gap it fills that competitors haven't. For a series or a backlog, use craft's ideation workflow.
+Before drafting, position the post: searchable, shareable, or both (most are searchable first); the buyer stage; pillar and internal-link opportunities; and the gap competing posts leave open. For a series or a backlog, use craft's ideation workflow.
 
 ---
 
-## Workflow 1: Write from Scratch
+## Workflow 1: Write from scratch
 
-Draft with craft Step 4: prose-craft passes 0 through 8, then the voice. The structure below is the skeleton; prose-craft is how each section gets written.
+Draft with craft's Step 4, prose-craft first and then the voice. The structure below is the frame; prose-craft is how each section gets written.
 
 ### Post structure
+
 ```
-[Title]: includes the target keyword, sentence case, under 60 characters
-[Intro]: hook in the first sentence (a sharp observation, a direct claim, a question, or a scenario the reader recognizes), at the point within two sentences. No preamble and no meta-commentary ("This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", "We're going to walk you through", or any variant). Don't justify why the topic matters; the reader clicked.
-[H2 sections]: keyword-aligned, logical flow, each with a clear point
-[CTA or closing]: direct, purposeful
+[Title] under 60 characters, sentence case, keyword included
+[Intro] a hook in the first sentence, at the point within two sentences, no preamble
+[Sections] each one a single move, named, with a specific it carries; joined by "but" or "therefore"
+[FAQ] three to five adjacent questions (see below)
+[Kicker, then call to action] a fact, image, or consequence, then the next step
 ```
+
+The intro never announces the post. Avoid "This post covers," "In this blog we'll," "Read on to learn," "By the end of this article," or any variant. Start in the topic. Don't justify why the subject matters; the reader already clicked.
 
 ### On-page SEO, every post
-- Target keyword in the title, the first 100 words, at least one H2, and the meta description
-- Internal link opportunities marked `[INTERNAL LINK: suggested anchor + topic]`
-- Meta title (60 characters or fewer), meta description (160 or fewer), and a slug, suggested at the end
+- The target keyword in the title, within the first 100 words, in at least one H2, and in the meta description.
+- Internal link opportunities marked `[INTERNAL LINK: anchor text, target topic]`.
+- A meta title of 60 characters or fewer, a meta description of 160 or fewer, and a slug, all suggested at the end.
 
-Question-shaped headers, answer-first sections, the definitional block, secondary-keyword placement, and the FAQ's citability are search-weave's job after the draft; don't duplicate them here.
+Question-shaped headers, answer-first sections, the definitional block, placing secondary keywords, and checking the FAQ are search-weave's work after the draft. Don't duplicate them here.
+
+### FAQ
+Draft three to five questions for the end of the post. Follow search-weave's FAQ rules (pass 7): adjacent questions, edge cases, and objections, phrased the way people ask, each answered in 40 to 60 words. Draft them now so the user approves them with the brief. search-weave checks them after the draft. One blog-only addition: where a question connects naturally to a product use case, one sentence of product mention in the answer, only if it fits.
 
 ---
 
-## Workflow 2: Outline & Brief
+## Workflow 2: Outline and brief
 
-Deliver a structured brief the user can approve before full writing begins. What they are approving is the promise, the intro angle, and the section moves, not just a list of headers.
+The user approves the promise, the intro angle, and the section moves. A list of headings alone isn't enough.
 
 ```
-## Content Brief: [Working Title]
+## Brief: [working title]
 
-**The promise:** [one sentence: who this is for, beyond the keyword, and what they walk away with. Carried forward from the Step 1 promise module, not re-asked. Every section below is checked against it: anything that doesn't serve it is cut here, before it costs a draft.]
-**Purpose:** [AEO/GEO, awareness, consideration, or decision. From Step 1. Most posts are AEO/GEO with a stage, so name both.]
+**Promise:** one sentence, carried from Step 1. Every section below is checked against it. Anything that doesn't serve it gets cut here.
+**Stage and purpose:** from Step 1
+**Primary keyword:** ...
+**Secondary keywords:** two to four related phrases
+**Style:** thought leadership, how-to, or product-led
+**Length:** a word target
+**Reader:** who they are
+**Search intent:** informational, navigational, commercial, or transactional
+**Call to action:** what the post should drive
 
-**Target keyword:** [primary]
-**Secondary keywords:** [2-4 related terms]
-**Content style:** [thought leadership / how-to / product-led]
-**Target length:** [word count]
-**Audience:** [who this is for]
-**Search intent:** [informational / navigational / commercial / transactional]
-**Goal / CTA:** [what the post should drive]
+### Title
+Sentence case, 60 characters or fewer, with the keyword near the front.
 
----
+### Highlights
+Three to five concrete takeaways, placed before the intro. Each one is a specific point from the post, not a teaser. Write them the way a reader would want a summary.
 
-### Proposed structure:
+### Product mention (optional)
+If a highlight connects to what the product does, one sentence tied to it, and only if it reads naturally. At most one per brief.
 
-**Title:** [SEO title, sentence case, ≤60 chars]
+### Intro
+- The hook (a sharp observation, a claim, a question, or a scenario the reader knows).
+- Get to the point within two sentences of the opening.
+- No announcing, no meta-commentary, no justification.
 
-**Highlights:**
-A scannable summary block placed before the intro. Gives the reader an instant read on what the post covers and why it's worth their time. Keep it tight, 3 to 5 bullets, each one a concrete takeaway or key point from the post. No vague teasers. No "in this article we'll explore..." Write it like a TL;DR the reader would actually want.
+### Sections
+For each section: the heading, the move it makes (states, proves, or turns), the points it covers, and the specific it carries (a number, a name, a quote, or an artifact).
+Joins: each section follows from the one before with *but* or *therefore*.
+Weight: the section you care most about gets the most room.
 
-- [Concrete takeaway or key point from the post]
-- [Concrete takeaway or key point]
-- [Concrete takeaway or key point]
-- [Add a 4th or 5th if the post warrants it]
+### Kicker and call to action
+The kicker is the fact, image, or consequence the post ends on. Name it now, so the draft doesn't end on a summary. The call to action comes after it.
 
-**Product callout** *(include when it fits naturally, skip if forced)*:
-If any highlight directly connects to something the subject does or solves, add a one-sentence callout tied to that bullet. Format: a short, specific statement, not a sales pitch, e.g. "[Product] lets you ship this without writing a line of backend code." Only include if it earns its place. One callout per highlights block maximum.
+### On-page SEO
+- Slug: lowercase, hyphenated, keyword first
+- Meta title and meta description (within their limits)
+- Related terms, with a suggested place for each. Only the ones that fit naturally. These carry forward to search-weave as secondary keywords.
 
-**Intro angle:** [1-2 sentences on the hook/angle]
+### Competitor context
+If a competitor URL was given, its angle, its gaps, and how this post differs.
 
-The intro follows the Post structure rule in Workflow 1 and prose-craft pass 2 (the lead): a hook in the first sentence, no announcing or meta-commentary, at the point within two sentences.
+### Internal links
+Existing content on the site to link to, if known.
 
-**H2: [Section title]** *(the move: states a claim / proves a claim / turns the argument)*
-- Key point to cover
-- The specific it carries: the number, name, quote, or artifact
-
-**H2: [Section title]** *(the move)*
-- Key point to cover
-- The specific it carries
-
-[...continue]
-
-Each section is one named move carrying one specific, connected to the last by *but* or *therefore* (prose-craft §4 and §6, `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`).
-
-**Kicker:** [the fact, image, or consequence the post lands on, never a summary (prose-craft §7). Naming it now stops the post ending on a wrap-up.]
-
-**Closing / CTA:** [what action the reader should take. The kicker sets it up: the CTA is not the ending, the line before it is.]
-
----
-
-### On-page SEO recommendations:
-
-**Recommended slug:** [lowercase, hyphen-separated, keyword-first, no stop words, e.g. /prompt-coding-enterprise]
-**Meta title:** [≤60 chars, includes primary keyword near the front, sentence case]
-**Meta description:** [≤160 chars, includes primary keyword, clear value prop or CTA]
-
-**Semantically related terms to include:**
-- [LSI / related term 1]: suggested placement (e.g. intro, H2, body)
-- [LSI / related term 2]: suggested placement
-- [LSI / related term 3]: suggested placement
-- [LSI / related term 4]: suggested placement
-- [LSI / related term 5]: suggested placement
-
-Derive these from: the target keyword's topic cluster, terms that appear across competitor pages, and natural synonyms a reader would expect. Don't force them, note where they fit naturally. These carry forward as search-weave's secondary keywords, so it places them after the draft rather than you forcing them in while writing.
-
----
-
-### Competitor context:
-[If a competitor URL was provided, note their angle, gaps, and how this post will differ]
-
-### Internal linking opportunities:
-[Suggested content to link to, if known]
-
----
-
-### FAQs:
-Follow search-weave's FAQ rules (pass 7, `${CLAUDE_PLUGIN_ROOT}/skills/search-weave/SKILL.md`): adjacent questions, edge cases, and objections, phrased the way people ask, each answered in a self-contained 40 to 60 words. Draft them here so the user approves them with the brief; search-weave checks them after the draft. Blog-only addition: if a question connects naturally to a product use case, one sentence of product tie-in in the answer, only if it fits.
-
-**Q: [Question]**
-A: [Answer]
-
-**Q: [Question]**
-A: [Answer]
-
-**Q: [Question]**
-A: [Answer]
+### FAQ
+Three to five questions and short answers, using the rules in Workflow 1.
 ```
 
 ---
 
-## Workflow 3: Optimize Existing Draft
+## Workflow 3: Optimize an existing draft
 
-1. **On-page check.** Run the Workflow 1 On-page SEO list against the draft, plus the citation format (flag a link on the publisher's name instead of the claim, a missing date, and any footnotes or bibliography) and thin sections. Report as ✅ Pass / ⚠️ Fix needed / ❌ Missing, with the fix inline.
-2. **The edit passes** below, in order, on the existing draft. Deliver the revised post with a short summary of what changed.
+1. **On-page check.** Run the on-page list from Workflow 1 against the draft, plus the citation check: flag any link on a publisher's name rather than the claim, any missing date, and any footnote or bibliography left over from another format. Also flag thin sections. Report each item as ✅ pass, ⚠️ fix needed, or ❌ missing, with the fix next to it.
+2. **Edit passes**, below, in order. Deliver the revised post with a short list of what changed.
 
 ---
 
-## Workflow 4: Outrank Competitor
+## Workflow 4: Outrank a competitor
 
-Read `${CLAUDE_PLUGIN_ROOT}/skills/blog/references/competitor-research.md` in full before starting this workflow.
+Read `${CLAUDE_PLUGIN_ROOT}/skills/blog/references/competitor-research.md` in full before starting.
 
-1. **Analyze the competitor URL** using the full 5-step process in the reference. Use web search for SERP results and competitor pages, or Insights' connected tools if that plugin is installed and wired.
-2. **Propose a differentiated angle**, don't write the same post longer. The reference outlines six strategies; pick the right one.
-3. **Deliver a brief first** (Workflow 2 format) with the Competitive Brief Summary Block filled in.
-4. **Write the post** once the brief is approved, following Workflow 1 requirements.
+1. **Analyze the competitor page**, following the reference's steps. Use web search for the results and pages, or Insights' connected tools if the plugin is installed and wired.
+2. **Choose a differentiated angle.** Don't write the same post longer. The reference lists six strategies; pick the one that fits the gap.
+3. **Deliver the brief first** (Workflow 2), with the competitor block filled in.
+4. **Write the post** once the brief is approved, following Workflow 1.
 
 ---
 
 ## Present
 
-Deliver clean, ready-to-publish copy: title (sentence case), the full body, the meta description, and the slug. If the user wants a file, ask where it should go and in what format (craft Step 6).
+Deliver ready-to-publish copy: a title in sentence case, the full body with headers, a meta description, and the slug. If the user wants a file, ask where to save it and in what format (craft's Step 6).
 
 ### Edit passes
 
-The same Step 5 menu and order as craft: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops mechanical sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in craft Step 5.
+These are the same passes, in the same order, as craft's Step 5. Structure first, sentences last.
 
-**Data, if you have it.** Keywords, questions, and citations come from the user's brief by default. If the Insights plugin is installed and wired, its `seo-geo` skill can supply real Search Console queries and the stage-by-stage SEO tool map, and `aeo-insights` the AI-answer baseline; both stay dormant otherwise. Never fabricate metrics.
+1. **Schwartz re-angle**, when the substance is right and the opening isn't. Rewrite the headline, lead, and structure to the reader's position. If only the headline needs work, use `headline-lab` instead.
+2. **Ogilvy review**, on request. Run the diagnostic questions against the finished post. This is an edit of the post, not a second draft.
+3. **search-weave**, for every published post. It works the keywords, questions, and citations into the structure.
+4. **red-pen**, for anything going to publish, always last. It handles the line-level copyedit and readability against the reader's band.
+5. **Final sweep**, whenever any of the passes above ran: no-slops's mechanical sweep on the final text.
 
-## Brand reminder
+Skip any pass the post doesn't need, but never change the order of the ones that run.
 
-Full name first, short form after, and the full name again in any passage that may be lifted alone (tone-and-guidelines, Product and brand names).
+### Data
+
+Keywords, questions, and citations come from the brief by default. If Insights is installed and wired, its `seo-geo` skill can supply Search Console queries and its tool map, and `aeo-insights` can supply the AI-answer baseline. Both stay dormant otherwise. Never invent metrics.
+
+---
+
+## Names
+
+Give the full name on first mention in the post, then the short form. Repeat the full name in any passage that might be quoted alone: a pull quote, a standalone FAQ answer, a definition. Rule and reasons: tone-and-guidelines, Product and brand names.
