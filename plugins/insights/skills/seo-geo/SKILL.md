@@ -1,12 +1,24 @@
 ---
 name: seo-geo
 description: >
-  First-party, CONNECTED source for your site's live SEO and traffic data: Google Analytics 4 (sessions, users, engagement, traffic by channel) and Google Search Console (impressions, clicks, CTR, position, top queries and pages), authenticated as the user. AI-visibility (GEO/AEO) numbers are NOT here: they come from a Cairrot connector, where one is configured. Use whenever the task needs your site's REAL numbers — "how's our traffic", "traffic by channel", "top search queries", "what are we ranking for", "Search Console", "GSC", "GA4", "organic clicks", "impressions", "CTR", "AI visibility", "share of voice", "are we cited by AI", "AEO" — or to feed live data into a performance report or content refresh. Also use to set up or troubleshoot the GA4 / Search Console connection, and to check what SEO data is connected vs. gated before running any /seo-* skill (never fabricate metrics; if a backend isn't connected, this skill says so). Prefer it over generic SEO skills when the task needs your site's actual data. Carries real Google credentials and whatever property IDs you configure — handle it with the same care as any other analytics access.
+  Part of the Insights plugin, and dormant until wired: if GA4 and Search Console haven't been
+  set up on this machine, it says so in one line and does nothing else. Once wired, it's the
+  first-party, connected source for your site's live SEO and traffic data: Google Analytics 4 (sessions, users, engagement, traffic by channel) and Google Search Console (impressions, clicks, CTR, position, top queries and pages), authenticated as the user. AI-visibility (GEO/AEO) numbers are NOT here: they come from the aeo-tracker skill, where a Cairrot connector is configured. Do not trigger for writing or editing tasks; fresh-ink's search-weave handles keywords and AEO structure from inputs the user supplies. Use whenever the task needs your site's REAL numbers — "how's our traffic", "traffic by channel", "top search queries", "what are we ranking for", "Search Console", "GSC", "GA4", "organic clicks", "impressions", "CTR", "AI visibility", "share of voice", "are we cited by AI", "AEO" — or to feed live data into a performance report or content refresh. Also use to set up or troubleshoot the GA4 / Search Console connection, and to check what SEO data is connected vs. gated before running any /seo-* skill (never fabricate metrics; if a backend isn't connected, this skill says so). Prefer it over generic SEO skills when the task needs your site's actual data. Carries real Google credentials and whatever property IDs you configure — handle it with the same care as any other analytics access.
 ---
 
 # seo-geo — live GA4 + Search Console for your site (plus the AI-visibility snapshot)
 
 > **Handle with care.** This skill reads through your own real Google credentials, and the GA4 property ID / Search Console domain it uses come from your own config (see setup below), not a baked-in default. It contains **no passwords** — every user authenticates with their own Google account that already has access to the site's Analytics and Search Console. Do not redistribute a configured copy publicly. Credential handling is covered under **Sharing & credentials** at the bottom; read it before you hand this to anyone.
+
+## Dormant until wired (check this first, every time)
+
+Before doing anything else, check whether this machine is set up: `~/.config/claude-seo/token.json` exists and `python3 ${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/scripts/seo_pull.py ga4 --days 1` returns data rather than an auth or missing-client error.
+
+- **Not set up:** say so in one line ("GA4 and Search Console aren't connected here, so I have no live numbers") and stop. Don't walk the user through setup unless they ask for it, don't estimate, and don't block the task that called you: the writing skills carry on with whatever the user supplied.
+- **Set up but the sign-in expired:** say so, offer to run `auth`, and wait.
+- **Set up and working:** carry on below.
+
+Other skills only call this one when the Insights plugin is installed. If a skill asks for data and this check fails, the answer is "not connected," never a number.
 
 This skill pulls **real** traffic and search-performance numbers for your site and provides the honest map of which SEO data sources are connected. Two jobs:
 
@@ -23,14 +35,14 @@ Read this before running any data skill. The rule that matters: **if a backend i
 - **GA4** — sessions, users, engagement rate, page views, broken out by default channel group (Organic Search, Direct, Referral, etc.). Answers "how much traffic, from where, how engaged."
 - **Search Console** — impressions, clicks, CTR, average position, by query or by page. Answers "what are we ranking for and how does it perform in Google."
 
-**✅ CONNECTED where configured — AI-answer visibility, via Cairrot.** Live AEO numbers — visibility, named-vs-cited, per-model breakdown, competitor leaderboard, sentiment, AI-crawler hits — come from a **Cairrot** connector when one is set up (per-user setup in `aeo-craft`). **Use Cairrot for every AI-visibility question**; this skill doesn't carry that data itself. If you ever replace your AI-visibility tool, don't mix numbers across tools in one table or report the gap as a decline: different methodologies over different prompt sets aren't comparable, it's a change of instrument. Always name the source and the date window on every number.
+**✅ CONNECTED where configured — AI-answer visibility, via Cairrot.** Live AEO numbers — visibility, named-vs-cited, per-model breakdown, competitor leaderboard, sentiment, AI-crawler hits — come from a **Cairrot** connector when one is set up (per-user setup in `aeo-tracker`, this plugin). **Use Cairrot for every AI-visibility question**; this skill doesn't carry that data itself. If you ever replace your AI-visibility tool, don't mix numbers across tools in one table or report the gap as a decline: different methodologies over different prompt sets aren't comparable, it's a change of instrument. Always name the source and the date window on every number.
 
 **❌ NOT connected — keep gated, never fabricate:**
 - **DataForSEO** (live SERP, search volume, keyword difficulty): the data parts of `/keyword-research`, `/serp-analysis`, `/seo-cluster`, `/seo-content-brief`, `/seo-dataforseo`, `/competitor-analysis`, `/seo-backlinks`.
 - **Firecrawl** (full-site crawl): `/seo-firecrawl`, and the crawl steps in `/seo-audit`.
 - **PageSpeed / CrUX** (Core Web Vitals field data): not wired.
 
-**Always safe with no backend** (logic/judgment, no live data): `/content-strategy`, `/meta-tags-optimizer`, `/schema-markup-generator`, `/internal-linking-optimizer`, and any WebSearch-driven trend scan. For AI-citation optimization, `aeo-craft` replaced the generic `/geo-content-optimizer` (retired Sep 2026); its Plan and Sculpt modes run without a backend, flagged blind, and only Measure needs Cairrot. Repurposing for social and email moved to fresh-ink's own `socialize` skill.
+**Always safe with no backend** (logic/judgment, no live data): `/content-strategy`, `/meta-tags-optimizer`, `/schema-markup-generator`, `/internal-linking-optimizer`, and any WebSearch-driven trend scan. For AI-citation structure, fresh-ink's `search-weave` replaced the generic `/geo-content-optimizer`; it runs on the keywords and citations the user supplies and needs no backend. AI-visibility measurement is `aeo-tracker`, in this plugin. Repurposing for social and email is fresh-ink's `socialize`.
 
 Connecting DataForSEO or Firecrawl is a one-time install for whoever owns the skills, not a content task. Hand it off rather than wiring it mid-draft.
 
@@ -38,7 +50,7 @@ Connecting DataForSEO or Firecrawl is a one-time install for whoever owns the sk
 
 ## Pulling data
 
-The bundled puller is `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/scripts/seo_pull.py` (on a standard install: `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/scripts/seo_pull.py`). Once `config.json` is set (see setup below), the data commands need no arguments; otherwise pass `--property`/`--site` on each call. Run it with the system `python3`.
+The bundled puller is `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/scripts/seo_pull.py` . Once `config.json` is set (see setup below), the data commands need no arguments; otherwise pass `--property`/`--site` on each call. Run it with the system `python3`.
 
 ```bash
 # GA4 — traffic by channel, last 28 days (default)

@@ -296,6 +296,6 @@ Context-dependent: this is a tell in most prose, and the deliberate point in AEO
 | Context | Call |
 |---|---|
 | Blog, long-form, docs, standard section headers | Tell. "Why Does This Matter?" as a header is a crutch; a stated header ("The Cost of Waiting") does the same job without the question-mark fishing. |
-| AEO/GEO-targeted content (see `aeo-craft`) | Deliberate and correct. Question-shaped headers ("What is X?", "How does Y work?") match what readers type and what AI answer engines extract. This is the one context where the pattern is the craft, not the tell. |
+| AEO/GEO-targeted content (see `search-weave`) | Deliberate and correct. Question-shaped headers ("What is X?", "How does Y work?") match what readers type and what AI answer engines extract. This is the one context where the pattern is the craft, not the tell. |
 
-**Fix:** Check which content type this is before flagging it. A question header on a standard blog section is a finding; the same header on an aeo-craft-targeted definitional piece is the assignment.
+**Fix:** Check which content type this is before flagging it. A question header on a standard blog section is a finding; the same header on an search-weave-targeted definitional piece is the assignment.

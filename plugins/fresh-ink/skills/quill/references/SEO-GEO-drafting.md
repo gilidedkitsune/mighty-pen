@@ -2,7 +2,7 @@
 
 The embedded drafting layer for quill: how to draft copy that ranks in Google **and** gets cited by AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot). Apply to blog, long-form, and website copy. Layers on top of tone-and-guidelines and no-slops; it does not replace either.
 
-This file is the **writing** layer only: how the words on the page earn rankings and citations. The **tooling** (keyword research, SERP analysis, audits, data pulls, post-draft optimizers) lives in the `seo-geo` skill. When the workflow needs a tool, delegate there.
+This file is the **writing** layer only: how the words on the page earn rankings and citations. The structural pass on a finished draft is `search-weave`. The **tooling** (keyword research, SERP analysis, audits, data pulls, AI-visibility measurement) lives in the separate Insights plugin, which is optional and dormant until wired.
 
 ---
 

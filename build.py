@@ -25,10 +25,11 @@ VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 
 KIT = ["quill", "tone-and-guidelines", "voice-profiles",
        "no-slops", "content-formats",
-       "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft",
+       "ogilvy-copywriting", "blog", "search-weave",
        "headline-lab", "socialize"]
 STANDALONE = ["red-pen"]
 RESEARCH = ["cited-works"]
+INSIGHTS = ["seo-geo", "aeo-tracker"]
 
 EXCLUDE_NAMES  = {".last-source-check", ".DS_Store", "__pycache__", ".git"}
 EXCLUDE_SUFFIX = (".pyc",)
@@ -92,7 +93,8 @@ def main():
     build_plugin("fresh-ink", KIT,
         "The make-it kit: routing spine, three voice registers (personal, professional, "
         "B2B tech buyer), voice capture, content and career formats, headline lab, "
-        "per-platform social writing, Ogilvy, slop audit, and SEO/GEO data for written content.")
+        "per-platform social writing, Ogilvy, slop audit, and search-weave, the SEO and "
+        "AEO structural pass.")
     build_plugin("red-pen", STANDALONE,
         "The fix-it tool: a tough, exacting copyeditor with verdict-first review, "
         "quick-fix or full report, developmental and proofread-only modes, and "
@@ -102,19 +104,26 @@ def main():
         "every stat to its primary source, dates it, checks it against a do-not-cite "
         "trap list, delivers a ready-to-use citation, and fact-checks finished drafts "
         "claim by claim.")
+    build_plugin("insights", INSIGHTS,
+        "The measure-it tool: live GA4 and Search Console numbers, the SEO tool map, and "
+        "AI-answer visibility (named vs cited, term winnability, before-and-after). Dormant "
+        "until wired: without a connection it says so and stays out of the way.")
     marketplace = {
         "name": "mighty-pen",
         "owner": {"name": "Taylor"},
         "description": "Personal writing and editing skills: research, draft, and edit.",
         "plugins": [
             {"name": "fresh-ink", "source": "./plugins/fresh-ink",
-             "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + social + SEO/GEO.",
+             "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + social + SEO/AEO structure.",
              "version": VERSION},
             {"name": "red-pen", "source": "./plugins/red-pen",
              "description": "The fix-it tool: verdict-first copyedit, developmental and proofread modes, concreteness scoring.",
              "version": VERSION},
             {"name": "cited-works", "source": "./plugins/cited-works",
              "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations, draft fact-checks.",
+             "version": VERSION},
+            {"name": "insights", "source": "./plugins/insights",
+             "description": "The measure-it tool: GA4, Search Console, and AI-answer visibility. Dormant until wired.",
              "version": VERSION},
         ],
     }

@@ -3,7 +3,7 @@ name: headline-lab
 description: >
   Generates about 10 headline, title, or subject-line variants for a piece, each built on a
   different angle, then scores them against Ogilvy's headline rules and, for anything that
-  has to be found in search or AI answers, aeo-craft's term winnability. Returns a ranked
+  has to be found in search or AI answers, search-weave's term winnability rule. Returns a ranked
   shortlist with the reasoning. Trigger on "headline options", "headline variants", "title
   ideas", "give me headlines", "subject line options", "what should I call this", "headline
   lab", or when quill or blog needs a headline tested. Works on a finished draft, an outline,
@@ -52,7 +52,7 @@ Score each variant out of 10 on the checks that apply to where it runs.
 - Specific: a number, a name, a mechanism, a scene (1)
 - No negative framing, and any curiosity it opens, the body pays off (1)
 
-**Findability (search, web, and AEO pieces, 4 points).** From `${CLAUDE_PLUGIN_ROOT}/skills/aeo-craft/SKILL.md`, Term winnability:
+**Findability (search, web, and AEO pieces, 4 points).** From `${CLAUDE_PLUGIN_ROOT}/skills/search-weave/SKILL.md`, pass 1 (the term), using aeo-tracker's verdict if Insights is wired:
 - Contains the target term or the reader's phrasing of it (1)
 - The term is winnable: greenfield, or scoped to the entity, not a head-on run at an owned term (2)
 - Works as a lifted answer: an engine could quote it and it would still make sense (1)

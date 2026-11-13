@@ -25,8 +25,7 @@ These fire when their stage and conditions are met **and** the data backend each
 
 | Condition | Action |
 |-----------|--------|
-| Content type is blog, long-form, or website copy | Apply GEO/AEO rules from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` while drafting. A drafting rule, not a post-draft skill. |
-| Content type is ad copy | Run the Schwartz diagnosis from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md` to set headline and lead strategy. Feeds the three-variant output. |
+| Content type is blog, long-form, or website copy | fresh-ink applies its SEO/GEO drafting rules (quill's SEO-GEO-drafting reference) while drafting. A drafting rule, not a post-draft skill. |
 
 ### After drafting (Step 5–6)
 
@@ -35,7 +34,7 @@ These fire when their stage and conditions are met **and** the data backend each
 | Content will be published (blog, landing page, website copy) | Generate meta title + description. Offer `/meta-tags-optimizer` for alternatives. |
 | Content includes FAQ or how-to sections | Offer `/schema-markup-generator` for FAQ, Article, or HowTo JSON-LD. |
 | Content is a blog referencing other content on the same site | Run `/internal-linking-optimizer` to validate link structure and anchor text. |
-| GEO priority is high (user stated it, or topic targets question/definition/comparison queries) — and by default for every published blog or website piece | Run `/aeo-craft` (Sculpt mode) after the no-slops audit: the house AEO pass — term winnability, question tree, answer-first blocks, definitional blocks, receipts, liftable formats, FAQ, freshness, and the claim-safety glaze. Replaces the generic `/geo-content-optimizer` in this stack. For definitional/comparison pieces, also run `/aeo-craft` Plan mode BEFORE the outline is locked. |
+| GEO priority is high (user stated it, or topic targets question/definition/comparison queries) — and by default for every published blog or website piece | fresh-ink runs `search-weave` after the no-slops gate, weaving the target keywords, questions, and citations into the structure. Hand it what this plugin found: GSC queries the page already ranks for, and `aeo-tracker`'s named-vs-cited read and engine sub-questions for the topic. For definitional or comparison pieces, run `aeo-tracker`'s winnability check BEFORE the outline is locked. |
 
 ---
 
@@ -83,7 +82,7 @@ Offer when the user shares a live URL or asks about performance:
 | Skill / source | Connects to | Status | When to use |
 |----------------|-------------|--------|-------------|
 | **seo-geo** (this skill) | GA4 + Search Console for the configured site | ✅ connected, once set up | Real traffic and search-performance numbers for the site. The default for "our actual data." |
-| **Cairrot** (MCP connector) | AI answer visibility (ChatGPT, Gemini, Claude, Perplexity, AI Overviews, DeepSeek, Grok) | ✅ connected where set up (per-user setup in `aeo-craft`) | Visibility, named vs cited, per-topic and per-model, competitor leaderboard, sentiment, crawler hits. |
+| **Cairrot** (MCP connector) | AI answer visibility (ChatGPT, Gemini, Claude, Perplexity, AI Overviews, DeepSeek, Grok) | ✅ connected where set up (per-user setup in `aeo-tracker`) | Visibility, named vs cited, per-topic and per-model, competitor leaderboard, sentiment, crawler hits. |
 | `/seo-google` | GSC, PageSpeed, CrUX, GA4 (generic) | partial | Generic Google-API skill. Prefer this skill's puller once configured; `/seo-google` is for the PageSpeed/CrUX angles, which aren't wired. |
 | `/seo-dataforseo` | Live SERP, keyword metrics, backlinks | ❌ gated | Search volume, difficulty, SERP features, competitor data — only with the DataForSEO extension. |
 | `/seo-firecrawl` | Full-site crawl | ❌ gated | Site crawl, internal-link inventory — only with Firecrawl. |
@@ -97,7 +96,7 @@ Offer when the user shares a live URL or asks about performance:
 ```
 RESEARCH PHASE
   └─ Need the site's current numbers? → seo-geo: ga4 / gsc  (connected once configured)
-  └─ Need AI-answer visibility (GEO)? → Cairrot connector  (where set up)
+  └─ Need AI-answer visibility (GEO)? → aeo-tracker  (Cairrot, where set up)
   └─ Do we have keywords?
        ├─ No → /keyword-research  (DataForSEO gated → ask user for keywords)
        └─ Yes → Do we know what's ranking?
@@ -110,7 +109,7 @@ OUTLINE APPROVED
 DRAFT COMPLETE
   └─ Will this be published (blog, landing page, website copy)?
        ├─ Yes → meta tags, internal links
-       │    ├─ AEO pass (default for published pieces) → /aeo-craft
+       │    ├─ AEO structure (default for published pieces) → fresh-ink's search-weave, fed by aeo-tracker if connected
        │    └─ Has FAQ/HowTo? → /schema-markup-generator
        └─ No (social, email, internal) → skip SEO/GEO skills
 

@@ -1,20 +1,27 @@
 # Mighty Pen
 
-Three Claude Code plugins for written content. One researches, one writes, one edits. Install all three and they form a find-then-make-then-fix workflow.
+Three Claude Code plugins for written content, plus an optional fourth for data. One researches, one writes, one edits. Install the three and they form a find-then-make-then-fix workflow; add Insights if you have analytics to connect.
 
 - **cited-works** researches: stats, quotes, and sources traced to their primary origin, with a do-not-cite trap list and ready-to-use citations.
-- **fresh-ink** writes the draft (11 skills behind one routing spine).
+- **fresh-ink** writes the draft (10 skills behind one routing spine).
 - **red-pen** edits the draft (verdict-first review, then quick-fix or full report; developmental and proofread-only modes too).
+- **insights** (optional) measures: live GA4 and Search Console numbers and AI-answer visibility. Dormant until you wire it up; without a connection it says so in one line and stays out of the way.
 
 ## Install (one time)
 
-In Claude Code, add this marketplace, then install all three plugins:
+In Claude Code, add this marketplace, then install the three core plugins:
 
 ```
 /plugin marketplace add gilidedkitsune/mighty-pen
 /plugin install cited-works@mighty-pen
 /plugin install fresh-ink@mighty-pen
 /plugin install red-pen@mighty-pen
+```
+
+Optional, if you'll connect GA4, Search Console, or an AI-visibility tool:
+
+```
+/plugin install insights@mighty-pen
 ```
 
 You will be asked to trust the marketplace the first time. After that you are set.
@@ -44,7 +51,7 @@ To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 1. **Research** in cited-works, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste. fresh-ink hands its sourcing needs here by name, so there's one sourcing standard, not five.
 2. **Draft** in fresh-ink. It picks the workflow for your content type and the voice register that goes with it (personal, professional, or B2B tech buyer; or a specific person's, from voice-profiles), asks who it's for, pulls live SEO/GEO data when the piece needs it, and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
-3. **Sharpen** with the edit menu, structure first and sentences last: the no-slops gate, then whichever the piece needs (the Schwartz re-angle, the Ogilvy pass for persuasion, aeo-craft for citability on anything bound for publication), then red-pen's copyedit, then a final no-slops sweep. red-pen flags unverified claims and hands them back to cited-works to verify.
+3. **Sharpen** with the edit menu, structure first and sentences last: the no-slops gate, then whichever the piece needs (the Schwartz re-angle, the Ogilvy pass for persuasion, search-weave to work target keywords, questions, and citations into anything bound for publication), then red-pen's copyedit, then a final no-slops sweep. red-pen flags unverified claims and hands them back to cited-works to verify.
 4. **Loop** as needed. A structural rewrite goes back to fresh-ink (or red-pen's developmental mode first); line-level polish stays in red-pen; a thin or stale source goes back to cited-works.
 
 > **Using red-pen on its own?** It catches the slop that survives a cleaning and flags heavy clusters, but the full AI-tell filter and 35/50 rubric live in no-slops, which ships in fresh-ink. Without fresh-ink installed, red-pen's slop pass is the lighter one. Install both for the full check.
@@ -62,16 +69,22 @@ quill is the front door; it loads the others only when a job needs them.
 | blog | The blog content-type default: write, brief, optimize, outrank a competitor |
 | ogilvy-copywriting | Persuasion principles, plus an optional voice |
 | no-slops | The AI-tells filter and the 35/50 gate, applied as drafting constraints |
-| aeo-craft | The citability sculpt for published work: gets a draft found, extracted, and cited by AI answer engines |
-| seo-geo | Live SEO/GEO data and tooling (setup below) |
-| headline-lab | About 10 headline variants on different angles, scored against Ogilvy and aeo-craft winnability |
+| search-weave | The SEO and AEO structural pass: give it target keywords, questions, and citations, and it weaves them into the copy so it ranks and AI engines can lift and credit it. No data connection needed |
+| headline-lab | About 10 headline variants on different angles, scored against Ogilvy and search-weave's term winnability |
 | socialize | Social posts from scratch or rebuilt from a finished piece, with one reference per platform: LinkedIn, X, Threads, Bluesky, Mastodon, Reddit, Hacker News, Instagram, TikTok, Shorts, newsletter, email |
 
 There's no persona library anymore: quill asks who a piece is for directly (role, seniority, what they already know) instead of picking from a ranked list.
 
-## seo-geo setup (per person)
+## What is in insights (optional)
 
-seo-geo reads your site's real Google Analytics and Search Console numbers using **your own** Google sign-in. Credentials live in `~/.config/claude-seo/` on your machine and are never stored in this repo; the GA4 property and Search Console domain it targets come from a `config.json` you set up, not a baked-in default. The first time you use it, follow the setup steps inside the skill.
+| Skill | Job |
+|---|---|
+| seo-geo | Your site's real GA4 and Search Console numbers, plus the map of which SEO tools to run at each stage |
+| aeo-tracker | AI-answer visibility: named versus cited, per engine, term winnability, and before-and-after measurement (needs a Cairrot connector or similar) |
+
+Both are **dormant until wired**. Each one checks for its connection first; if it isn't there, it says so in one line and stops, and fresh-ink carries on with whatever keywords and citations you supplied. When they are wired, search-weave can pull its inputs from them instead of asking you.
+
+**Setup (per person, only if you want the data):** seo-geo reads GA4 and Search Console through **your own** Google sign-in; credentials live in `~/.config/claude-seo/` on your machine and never in this repo, and the property and domain come from a `config.json` you create. aeo-tracker needs an AI-visibility connector added in Claude's settings. Ask either skill to "set it up" and it walks you through the steps.
 
 ## cited-works setup (per person)
 
@@ -95,6 +108,7 @@ When a new version is pushed, you receive it automatically on next launch, or pu
 /plugin update cited-works@mighty-pen
 /plugin update fresh-ink@mighty-pen
 /plugin update red-pen@mighty-pen
+/plugin update insights@mighty-pen     # if installed
 ```
 
 ## For the maintainer

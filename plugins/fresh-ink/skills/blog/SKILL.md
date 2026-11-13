@@ -226,7 +226,7 @@ Run the `no-slops` skill and fix violations in the text. Then check readability 
 
 Read `${CLAUDE_PLUGIN_ROOT}/skills/blog/references/competitor-research.md` in full before starting this workflow.
 
-1. **Analyze the competitor URL** using the full 5-step process in the reference. Pull SERP results and competitor pages through `seo-geo`'s connected tools when available; fall back to web search if they aren't.
+1. **Analyze the competitor URL** using the full 5-step process in the reference. Use web search for SERP results and competitor pages, or Insights' connected tools if that plugin is installed and wired.
 2. **Propose a differentiated angle**, don't write the same post longer. The reference outlines six strategies; pick the right one.
 3. **Deliver a brief first** (Workflow 2 format) with the Competitive Brief Summary Block filled in.
 4. **Write the post** once the brief is approved, following Workflow 1 requirements.
@@ -248,7 +248,7 @@ Each is a separate tool applied to the finished post, the same Step 5 menu quill
 
 1. **Schwartz re-angle** (when the substance is right and the opening isn't): rewrite headline, lead, and structure to the reader's awareness cell per `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`. If only the headline is in question, run `headline-lab` instead.
 2. **Ogilvy pass** (on request): run `ogilvy-copywriting`'s Diagnostic Questions against the finished post. Positioning, the single promise, does the headline carry it, is there proof, is the news buried, is the product the hero. Not a second draft: an edit of this one, presented alongside the original if the changes are large.
-3. **aeo-craft** (default for every published post): sculpt for AI-answer citability, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as the rulebook and Cairrot as the measurement spine. TOV and accuracy win every disagreement.
+3. **search-weave** (default for every published post): weave the target keywords, questions, and citations into the structure so the post ranks and AI engines can lift and credit it. TOV and accuracy win every disagreement.
 4. **red-pen** (default for anything going to publish, and always last): the line-level copyedit, with the readability script against the target reader's Flesch band and the numbered 🔴🟡🔵 findings.
 5. **Final sweep** (whenever any pass above ran): no-slops's mechanical checks once more on the final text (§0 fingerprints, Tier 1 vocabulary, banned phrases, em dashes, adverbs).
 
@@ -258,7 +258,7 @@ Each is a separate tool applied to the finished post, the same Step 5 menu quill
 
 When drafting, apply the GEO/AEO writing rules (answer-first passages, passage-level extractability, AI-citation optimization) in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`. That is the drafting layer; the tooling layer follows.
 
-The full stage-by-stage tool map (pre-draft research and briefs, post-draft optimization, post-publish monitoring, and data integrations) lives in `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/references/seo-geo-toolkit.md`. Reach for it for keyword research, competitive content briefs, SERP and competitor analysis, schema, internal linking, and performance tracking. This skill delegates there; it does not duplicate the catalog. Before running any `/seo-*` tool, `seo-geo` says what is connected versus gated, so never fabricate metrics.
+Target keywords and AEO inputs come from the user's brief, and `search-weave` works them into the finished post. If the Insights plugin is installed and wired, its `seo-geo` skill holds the stage-by-stage tool map (keyword research, SERP analysis, schema, internal linking, performance tracking) and the site's real numbers; it stays dormant otherwise. Never fabricate metrics.
 
 ## Brand reminder
 

@@ -70,7 +70,7 @@ Every piece quill keeps starts here, at every workflow depth, quick-and-dirty in
 
 1. **Who is this for?** Ask directly if the brief doesn't already say: role, seniority, and how much they already know. There is no general reader; name the specific one, and calibrate register and jargon to them.
 2. **What is it for?** One purpose, and it decides the shape before a word is drafted:
-   - **AEO/GEO.** The piece has to be found, extracted, and cited by AI answer engines. Answer-first sections and question-shaped headers (`${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`), and the aeo-craft pass in Step 5. Most blog and web content lives here.
+   - **AEO/GEO.** The piece has to be found, extracted, and cited by AI answer engines. Answer-first sections and question-shaped headers (`${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`), and the search-weave pass in Step 5. Most blog and web content lives here.
    - **Awareness.** The reader is meeting the idea, or the product, for the first time. Accessible register, light product mention, a "try it" CTA.
    - **Consideration.** The reader is weighing it. Proof, comparison, the customer's own words, and the Schwartz diagnosis earn their keep here.
    - **Decision.** The reader is ready to act. Objections, specifics, pricing where it belongs, a CTA to the exact next step. The Ogilvy pass is usually worth it.
@@ -349,7 +349,7 @@ The draft is finished. Everything from here is a separate tool with a separate j
 1. **5a. No-slops gate** (mandatory). Catch the tells before anyone edits around them.
 2. **5b. Schwartz re-angle** (optional). Changes the headline, lead, and structure, so it goes before anything that polishes them.
 3. **5c. Ogilvy** (default on some types). Promise, proof, and headline: what the piece says.
-4. **5d. aeo-craft** (published web content). Reshapes sections and headers for extraction.
+4. **5d. search-weave** (published web content). Works the target keywords, questions, and citations into the structure.
 5. **5e. red-pen** (anything going to publish). The line-level copyedit, last, on structure that is no longer moving.
 6. **5f. Final sweep** (mandatory). no-slops's mechanical checks once more, because every rewrite is a fresh chance for a tell to get in.
 
@@ -371,9 +371,9 @@ Diagnose the reader's awareness level and market sophistication with `${CLAUDE_P
 
 This is discipline, not a voice. It applies on top of whatever voice the draft is in, a team member's included, and it never rewrites voice. On the default types, offer it after the no-slops gate without being asked. On everything else, run it when the user asks, or when the piece has to sell something and isn't.
 
-### 5d. aeo-craft (the citability sculpt)
+### 5d. search-weave (keywords, questions, citations)
 
-Every blog post and web page that will be published goes through `aeo-craft` before the copyedit. It reshapes the finished draft so AI answer engines can find, extract, and cite it, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as its rulebook and Cairrot as its measurement spine. It is a sculpt, not a rewrite: TOV and accuracy win every disagreement. Its Plan mode runs earlier, before the outline is locked, when the piece targets a definitional or question-shaped query.
+Every blog post and web page that will be published goes through `search-weave` before the copyedit. It asks for the target keywords, the questions the piece should answer, and the citations to work in (or takes them from Insights, when that's installed and wired), then weaves them into the finished draft: question-shaped headers, answer-first sections, a definitional block, attributed receipts, liftable formats, an FAQ, and dated facts. It's a structural pass, not a rewrite, and never keyword-stuffing: voice and accuracy win every disagreement.
 
 ### 5e. red-pen (the copyedit, last)
 
@@ -391,7 +391,7 @@ Deliver clean, ready-to-use copy. Include:
 - The full content with proper formatting
 - A suggested meta description (under 160 characters) for any web-published content
 
-The optional edit passes (the Schwartz re-angle, Ogilvy, aeo-craft, red-pen) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
+The optional edit passes (the Schwartz re-angle, Ogilvy, search-weave, red-pen) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
 
 **For any content type**, if the user asks to export, ask where it should go and in what format (a `.docx` via the `anthropic-skills:docx` skill is the usual default), unless they've already said this session or in their CLAUDE.md. A local folder, a synced cloud-drive folder, or a connected docs tool all work; if the destination needs a tool that isn't connected, save the file locally and say where. When delivering to Google Drive, prefer uploading the finished `.docx` over building a native Google Doc through a connector, which tends to lose formatting. (Webinar BOMs can go to a connected team wiki instead; see Webinar-specific in Step 4.)
 
@@ -421,13 +421,8 @@ Use when the user wants to tighten a draft that's already been through the prima
 
 Route it to Step 5. `red-pen` owns the readability analysis (the Flesch band appropriate to the audience named in Step 1, sentence and paragraph length, passive voice, jargon density), and it runs the readability script rather than estimating. Take its redline, then re-run no-slops, and present the revised draft with a before-and-after readability comparison. For standalone scoring outside this workflow, use `/readability`.
 
-## SEO/GEO toolkit
+## SEO and AEO: inputs, not tools
 
-SEO/GEO data, tooling, and the full stage-by-stage orchestration (which `/seo-*` skill to run at research, draft, and post-draft, plus what data is connected) all live in the **`seo-geo`** skill, mapped in `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/references/seo-geo-toolkit.md`. This skill does not duplicate that choreography; it delegates to it. (Drafting itself is governed by `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`, which is a writing rule, not a tool.)
+fresh-ink doesn't pull data. SEO and AEO work here runs on inputs: the target keywords, the questions to answer, and the citations to work in. `search-weave` asks for them in Step 5d and weaves them into the structure. Drafting follows `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`, a writing rule, not a tool.
 
-When to reach for `seo-geo`:
-- **Research (Step 2):** you need keywords, SERP or competitor analysis, a topic cluster, or the site's real traffic and search numbers.
-- **Post-draft (Steps 5-6):** the piece will be published and needs meta tags, schema, internal-linking, or GEO citation optimization.
-- **Any data skill, any stage:** confirm the backend is connected in `seo-geo` first. Google (GA4 + Search Console) is wired once configured; AI-answer visibility is wired via Cairrot where connected. DataForSEO and Firecrawl are not connected. Never fabricate volumes, difficulty, or rankings; skip or ask the user for the data instead. Skip any trigger when the user already provided the data it would fetch.
-
-Consult `seo-geo`'s map for the exact firing conditions, the offer-based options (presented with AskUserQuestion, `multiSelect: true`), and the decision tree.
+**If the Insights plugin is installed and wired,** it can supply those inputs instead of the user: `seo-geo` for the site's real GA4 and Search Console numbers (traffic, the queries a page already ranks for) and its map of which `/seo-*` tools to run at each stage, and `aeo-tracker` for AI-answer visibility (named versus cited, term winnability, the sub-questions engines ran). Both stay dormant when they aren't connected; if one says it isn't connected, take that as the answer and work from what the user gives you. Never fabricate volumes, difficulty, rankings, or citation numbers, and skip any data step when the user already supplied what it would fetch.
