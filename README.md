@@ -118,6 +118,10 @@ Nothing to configure. cited-works isn't wired to any tool: the first time a job 
 
 To skip the questions in future sessions, let it save your answers to your CLAUDE.md (it offers once), or write them there yourself. Starting from nothing is fine: the libraries fill up as you go, because the skill offers to deposit verified finds and newly discovered traps every time it runs.
 
+## Credits and licenses
+
+Outside sources, their licenses, and what each one contributed are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). That includes the concreteness word norms used by red-pen (a research dataset whose header says "research use"), and the MIT-licensed skills whose structure and ideas informed socialize and no-slops. The Wikipedia-derived AI-tell catalog in no-slops is CC BY-SA, which carries share-alike terms.
+
 ## Getting updates
 
 When a new version is pushed, you receive it automatically on next launch, or pull it now:
