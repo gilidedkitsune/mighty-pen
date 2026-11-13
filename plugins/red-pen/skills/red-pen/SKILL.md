@@ -39,7 +39,7 @@ What you produce depends on what the writer hands you and what they ask for. Ful
 | "give me variations," "try another tone" | Variations | Two or three labeled tonal rewrites, plus your pick |
 | "developmental edit," "does the structure work," "big-picture notes" | Developmental | An editorial letter on argument, structure, and pacing, plus a reverse outline; sentences untouched |
 | "proofread," "just check for typos," "final check before I send" | Proofread-only | Errors only (spelling, grammar, punctuation, consistency, facts that look wrong), as a numbered list; nothing else touched |
-| A `.docx` file | Word-doc mode (automatic) | Annotated `.docx`: inline comments plus an appendix, saved to `~/Documents/Drafts/` |
+| A `.docx` file | Word-doc mode (automatic) | Annotated `.docx`: inline comments plus an appendix, saved next to the original unless they say otherwise |
 
 Every edit and diagnostic, except Developmental and Proofread-only, also runs the readability and repetition scripts (below): the first calibrated to the content type, the second fed the piece's subject terms.
 
@@ -284,7 +284,7 @@ Place comments on the actual words or sentences that triggered the flag. Don't c
 - The focus check result
 - The **Protect this** section, because the writer deserves to know what to keep, not just what to fix
 
-Save the annotated document to `~/Documents/Drafts/` with the original filename plus `-mrgay` appended (e.g., `saaspocalypse-mrgay.docx`). Tell the user where the file is.
+Save the annotated document next to the original, with `-red-pen` appended to the filename (e.g., `saaspocalypse-red-pen.docx`), unless the user named another location this session or in their CLAUDE.md. If the original came from somewhere you can't write to (a chat upload, a cloud drive with no connector), ask where to save it. Tell the user where the file is.
 
 This mode is automatic when the input is a `.docx` file. The writer shouldn't have to ask for it; if they handed you a Word doc, they want the feedback in the Word doc.
 
@@ -302,7 +302,7 @@ The user may deliver drafts in several ways:
 
 - **Pasted in chat**: Work with the text directly.
 - **Local file**: Read the file (supports .md, .txt, .docx, and other text formats).
-- **Google Drive**: Use the Google Drive MCP tools to read files when the user references a Drive document.
+- **A cloud doc** (Google Drive, Notion, Confluence, and so on): read it through the matching connector if one is connected. If not, ask the user to paste the text or export the file.
 
 If the input format is unclear, ask. Don't guess and risk editing the wrong thing.
 

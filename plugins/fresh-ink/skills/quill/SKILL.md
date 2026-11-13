@@ -393,7 +393,7 @@ Deliver clean, ready-to-use copy. Include:
 
 The optional edit passes (the Schwartz re-angle, Ogilvy, aeo-craft, red-pen) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
 
-**For any content type**, if the user asks to export: generate a Word doc via the `anthropic-skills:docx` skill and save it to `~/Documents/Drafts/` by default. For Google Drive delivery, copy the finished `.docx` into the synced Drive folder (`My Drive/Claude-Drafts`; requires Drive for Desktop running). Keep it a `.docx`. Do NOT create a native Google Doc through the Drive MCP; that path loses formatting and was retired. (Webinar BOMs can go to a connected team wiki instead; see Webinar-specific in Step 4.)
+**For any content type**, if the user asks to export, ask where it should go and in what format (a `.docx` via the `anthropic-skills:docx` skill is the usual default), unless they've already said this session or in their CLAUDE.md. A local folder, a synced cloud-drive folder, or a connected docs tool all work; if the destination needs a tool that isn't connected, save the file locally and say where. When delivering to Google Drive, prefer uploading the finished `.docx` over building a native Google Doc through a connector, which tends to lose formatting. (Webinar BOMs can go to a connected team wiki instead; see Webinar-specific in Step 4.)
 
 
 ## Google Doc template population

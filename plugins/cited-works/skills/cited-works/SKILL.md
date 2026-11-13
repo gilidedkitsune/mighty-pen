@@ -24,6 +24,24 @@ return three bulletproof findings than ten shaky ones.
 **The prime directive: never deliver a claim you can't source to its origin.** If you can't verify
 it, you say so plainly and move on. A flagged gap beats a confident fabrication, every time.
 
+## Where things live: ask, don't assume
+
+Cited Works isn't wired to any particular tool. The first time a job needs one of these in a session, ask where it lives, all in one AskUserQuestion round, and only for the ones the job actually touches:
+
+| What | When it's needed | Ask |
+|---|---|---|
+| **Research hub** | Filing a finished report, or checking for prior research | "Where do you want to store this research hub?" |
+| **Verified source library** | Checking for already-verified stats, or adding a new one | "Do you keep a library of verified stats? Where?" |
+| **Do Not Cite list** | Every job (step 3 of the sourcing bar) | "Do you keep a list of stats you've ruled out? Where?" (often inside the library) |
+| **Competitive set** | Job 2 | "Which companies should I track by default?" |
+| **Export location** | Exporting a document | "Where should I save it, and in what format?" |
+
+Offer the same choices each time: **a page or doc** (link it), **a local folder** (give the path), **create one** (say where), or **nowhere yet** (keep it in chat). Any of them works: a Notion page, a Google Doc, a Confluence space, a folder of Markdown files, a spreadsheet. Use whatever tool the session has connected for that location; if the location needs a tool that isn't connected, say so and deliver in chat instead.
+
+Remember the answers for the rest of the session and don't re-ask. If the user's CLAUDE.md, memory, or first message already names a location, use it without asking. Installed plugins can't save settings between sessions, so after the first answer, offer once: "Want these saved in your CLAUDE.md so I don't ask next time?" and write them there only if the user says yes.
+
+"Nowhere yet" is a fine answer. Every rule below still holds without a library; the libraries just make each run faster than the last.
+
 ## The sourcing bar (applies to every job)
 
 1. **Origin, not middleman.** Trace every stat to the primary source: the analyst report itself, not
@@ -33,17 +51,16 @@ it, you say so plainly and move on. A flagged gap beats a confident fabrication,
    12 months old for fast-moving topics; older data gets an age warning.
 3. **Check the trap list first.** Keep a **Do Not Cite** list of known bad stats — misattributed
    percentages, aggregator junk, fabricated figures that circulate widely. Never use a trapped
-   source, even if the web repeats it everywhere.
-   → `[TRAP LIST LOCATION]`
+   source, even if the web repeats it everywhere. (Where the list lives: ask, per the table above.)
 4. **Second-source the load-bearing claims — from independent origins.** Any stat that would anchor
    a headline or thesis needs a second independent confirmation, or an explicit "⚠️ single-sourced"
    flag. Independence means separate origins: three articles all citing the same report are ONE
    source, not three. Syndicated copies and re-reporting never count as confirmation; convergence
    only means something when the origins are different.
 5. **Reusable libraries before re-research.** Check your existing verified libraries before searching
-   the open web — a verified find is worth ten fresh ones.
-   → `[VERIFIED SOURCE LIBRARY]` (stats you've already traced to origin, plus the trap list)
-   → `[RESEARCH HUB]` (all prior research projects, so nothing gets researched twice)
+   the open web — a verified find is worth ten fresh ones: the verified source library (stats
+   already traced to origin) and the research hub (prior projects, so nothing gets researched
+   twice), wherever the user keeps them. No library yet: skip this step and say so once.
 6. **Deliver findings as stat cards**, ready for a writer to consume:
 
 > **Claim:** [the one-sentence claim, stated plainly]
@@ -106,7 +123,7 @@ intel is worse than none. Cover the standard lenses unless the ask narrows it: p
 pricing, funding/business moves, community sentiment, enterprise-readiness. Output: a landscape brief
 with a "what changed since last check" lead when the hub holds a prior version.
 
-→ `[YOUR COMPETITIVE SET]` — the companies to track by default.
+If the user hasn't named the companies to track, ask (see Where things live) before searching.
 
 ### 3. Deep one-off reports: "go research X properly"
 
@@ -158,11 +175,11 @@ paraphrase inside quotation marks is a 🟡, however close it is.
 - **Default: a cited brief in chat.** Quick questions and one-offs stay in the conversation — no hub
   page for a single stat check.
 - **Substantial or reusable research** (multi-source projects, landscape briefs, deep reports, media
-  maps): offer to file it to `[RESEARCH HUB]`. Page shape: **"Research as of [date]"** stamp →
+  maps): offer to file it to the research hub (ask where, if this session hasn't). Page shape: **"Research as of [date]"** stamp →
   research question → TL;DR (3–5 bullets) → findings with citations, confidence tiers, and
   verification flags → counter-review notes (the named weaknesses and limitations) → sources table
   (source / type / date / verified-to-origin ✓ or ⚠️). Confirm before creating; return the location.
-- **Document on request:** export to `[YOUR DOCS LOCATION]` in whatever format the user asks for.
+- **Document on request:** ask where to save it and in what format, then export there.
 - **Library maintenance:** when a fresh find is verified and clearly reusable, offer to add it to the
   verified source library — and when research uncovers a new trap (a widely-repeated bogus stat),
   offer to add it to the Do Not Cite list. The libraries should get smarter every time this runs.

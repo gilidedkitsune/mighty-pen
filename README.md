@@ -75,17 +75,17 @@ seo-geo reads your site's real Google Analytics and Search Console numbers using
 
 ## cited-works setup (per person)
 
-cited-works points at your own research libraries so verified finds and known-bad stats compound over time instead of getting re-researched every run. It ships with five placeholders left blank in `cited-works/SKILL.md`; fill each in with wherever that material lives for you (a Notion page, a Google Doc, a folder, a URL, it doesn't matter):
+Nothing to configure. cited-works isn't wired to any tool: the first time a job needs a place to read from or file to, it asks, for example "Where do you want to store this research hub?" Answer with a link, a folder path, "create one," or "nowhere yet" and it uses that for the rest of the session. It asks about five things, and only when a job touches them:
 
-| Placeholder | What to put there |
+| It asks about | Used for |
 |---|---|
-| `[VERIFIED SOURCE LIBRARY]` | Where you keep stats you've already traced to origin |
-| `[TRAP LIST LOCATION]` | Your Do Not Cite list of known-bad stats (can live inside the library) |
-| `[RESEARCH HUB]` | Where finished research reports get filed |
-| `[YOUR COMPETITIVE SET]` | The companies to track by default for market intel |
-| `[YOUR DOCS LOCATION]` | Where exported documents should be saved |
+| Research hub | Filing finished reports and checking for prior research |
+| Verified source library | Stats you've already traced to origin |
+| Do Not Cite list | Known-bad stats to never use (can live inside the library) |
+| Competitive set | The companies to track by default for market intel |
+| Export location | Where documents get saved |
 
-Starting from nothing is fine: create two empty pages, a source library and a research hub, and let them fill up. The skill offers to deposit verified finds and newly discovered traps every time it runs.
+To skip the questions in future sessions, let it save your answers to your CLAUDE.md (it offers once), or write them there yourself. Starting from nothing is fine: the libraries fill up as you go, because the skill offers to deposit verified finds and newly discovered traps every time it runs.
 
 ## Getting updates
 
