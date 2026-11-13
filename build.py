@@ -24,10 +24,10 @@ REPO = os.path.dirname(os.path.abspath(__file__))
 VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 
 KIT = ["quill", "tone-and-guidelines", "voice-profiles",
-       "slop-filter", "content-formats",
+       "no-slops", "content-formats",
        "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft"]
-STANDALONE = ["red-pencil"]
-RESEARCH = ["the-archive"]
+STANDALONE = ["red-pen"]
+RESEARCH = ["cited-works"]
 
 EXCLUDE_NAMES  = {".last-source-check", ".DS_Store", "__pycache__", ".git"}
 EXCLUDE_SUFFIX = (".pyc",)
@@ -88,13 +88,13 @@ def build_plugin(plugin_name, skill_list, description):
     print("  built plugin %-18s (%d skills)" % (plugin_name, len(skill_list)))
 
 def main():
-    build_plugin("quill-kit", KIT,
+    build_plugin("fresh-ink", KIT,
         "The make-it kit: routing spine, brand voice, personas, content formats, "
         "Ogilvy, slop audit, and SEO/GEO data for written content.")
-    build_plugin("red-pencil", STANDALONE,
+    build_plugin("red-pen", STANDALONE,
         "The fix-it tool: a tough, exacting copyeditor with verdict-first review, "
         "quick-fix or full report, and concreteness scoring.")
-    build_plugin("the-archive", RESEARCH,
+    build_plugin("cited-works", RESEARCH,
         "The find-it tool: a research assistant with newsroom-strict sourcing. Traces "
         "every stat to its primary source, dates it, checks it against a do-not-cite "
         "trap list, and delivers a ready-to-use citation.")
@@ -103,13 +103,13 @@ def main():
         "owner": {"name": "Taylor"},
         "description": "Personal writing and editing skills: research, draft, and edit.",
         "plugins": [
-            {"name": "quill-kit", "source": "./plugins/quill-kit",
+            {"name": "fresh-ink", "source": "./plugins/fresh-ink",
              "description": "The make-it kit: routing spine + craft + voice + personas + formats + SEO/GEO.",
              "version": VERSION},
-            {"name": "red-pencil", "source": "./plugins/red-pencil",
+            {"name": "red-pen", "source": "./plugins/red-pen",
              "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring.",
              "version": VERSION},
-            {"name": "the-archive", "source": "./plugins/the-archive",
+            {"name": "cited-works", "source": "./plugins/cited-works",
              "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations.",
              "version": VERSION},
         ],

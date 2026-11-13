@@ -2,9 +2,9 @@
 
 Three Claude Code plugins for written content. One researches, one writes, one edits. Install all three and they form a find-then-make-then-fix workflow.
 
-- **the-archive** researches: stats, quotes, and sources traced to their primary origin, with a do-not-cite trap list and ready-to-use citations.
-- **quill-kit** writes the draft (9 skills behind one routing spine).
-- **red-pencil** edits the draft (verdict-first review, then quick-fix or full report).
+- **cited-works** researches: stats, quotes, and sources traced to their primary origin, with a do-not-cite trap list and ready-to-use citations.
+- **fresh-ink** writes the draft (9 skills behind one routing spine).
+- **red-pen** edits the draft (verdict-first review, then quick-fix or full report).
 
 ## Install (one time)
 
@@ -12,9 +12,9 @@ In Claude Code, add this marketplace, then install all three plugins:
 
 ```
 /plugin marketplace add gilidedkitsune/mighty-pen
-/plugin install the-archive@mighty-pen
-/plugin install quill-kit@mighty-pen
-/plugin install red-pencil@mighty-pen
+/plugin install cited-works@mighty-pen
+/plugin install fresh-ink@mighty-pen
+/plugin install red-pen@mighty-pen
 ```
 
 You will be asked to trust the marketplace the first time. After that you are set.
@@ -25,26 +25,26 @@ You will be asked to trust the marketplace the first time. After that you are se
 
 The skills **trigger automatically** when you describe a task, so most of the time you just talk:
 
-- "Find stats for this piece" or "what's the competitive landscape" starts the-archive.
-- "Draft a customer story about a team that shipped in a weekend" starts quill-kit.
-- "Edit this" with a pasted draft starts red-pencil.
+- "Find stats for this piece" or "what's the competitive landscape" starts cited-works.
+- "Draft a customer story about a team that shipped in a weekend" starts fresh-ink.
+- "Edit this" with a pasted draft starts red-pen.
 
 To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 ```
-/the-archive:the-archive             # research a claim, a stat, a landscape
-/quill-kit:quill     # start a piece
-/red-pencil:red-pencil                     # edit a piece
+/cited-works:cited-works             # research a claim, a stat, a landscape
+/fresh-ink:quill     # start a piece
+/red-pen:red-pen                     # edit a piece
 ```
 
 ### The find-make-fix flow
 
-1. **Research** in the-archive, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste.
-2. **Draft** in quill-kit. It picks the workflow for your content type, asks who it's for and applies the default voice (or a specific person's, from voice-profiles), pulls live SEO/GEO data when the piece needs it, and treats slop-filter's rules as drafting constraints from the first sentence, not a cleanup pass.
-3. **Sharpen** with the edit menu. slop-filter runs first and always, then whichever the piece needs: red-pencil for the copyedit, the Ogilvy pass for persuasion, aeo-craft for citability on anything bound for publication.
-4. **Loop** as needed. A structural rewrite goes back to quill-kit; line-level polish stays in red-pencil; a thin or stale source goes back to the-archive.
+1. **Research** in cited-works, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste.
+2. **Draft** in fresh-ink. It picks the workflow for your content type, asks who it's for and applies the default voice (or a specific person's, from voice-profiles), pulls live SEO/GEO data when the piece needs it, and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
+3. **Sharpen** with the edit menu. no-slops runs first and always, then whichever the piece needs: red-pen for the copyedit, the Ogilvy pass for persuasion, aeo-craft for citability on anything bound for publication.
+4. **Loop** as needed. A structural rewrite goes back to fresh-ink; line-level polish stays in red-pen; a thin or stale source goes back to cited-works.
 
-## What is in quill-kit
+## What is in fresh-ink
 
 quill is the front door; it loads the others only when a job needs them.
 
@@ -56,7 +56,7 @@ quill is the front door; it loads the others only when a job needs them.
 | content-formats | Templates for fixed-shape content (customer story, webinar, sales enablement, creator brief) |
 | blog | The blog content-type default: write, brief, optimize, outrank a competitor |
 | ogilvy-copywriting | Persuasion principles, plus an optional voice |
-| slop-filter | The AI-tells filter and the 35/50 gate, applied as drafting constraints |
+| no-slops | The AI-tells filter and the 35/50 gate, applied as drafting constraints |
 | aeo-craft | The citability sculpt for published work: gets a draft found, extracted, and cited by AI answer engines |
 | seo-geo | Live SEO/GEO data and tooling (setup below) |
 
@@ -66,9 +66,9 @@ There's no persona library anymore: quill asks who a piece is for directly (role
 
 seo-geo reads your site's real Google Analytics and Search Console numbers using **your own** Google sign-in. Credentials live in `~/.config/claude-seo/` on your machine and are never stored in this repo; the GA4 property and Search Console domain it targets come from a `config.json` you set up, not a baked-in default. The first time you use it, follow the setup steps inside the skill.
 
-## the-archive setup (per person)
+## cited-works setup (per person)
 
-the-archive points at your own research libraries so verified finds and known-bad stats compound over time instead of getting re-researched every run. It ships with five placeholders left blank in `the-archive/SKILL.md`; fill each in with wherever that material lives for you (a Notion page, a Google Doc, a folder, a URL, it doesn't matter):
+cited-works points at your own research libraries so verified finds and known-bad stats compound over time instead of getting re-researched every run. It ships with five placeholders left blank in `cited-works/SKILL.md`; fill each in with wherever that material lives for you (a Notion page, a Google Doc, a folder, a URL, it doesn't matter):
 
 | Placeholder | What to put there |
 |---|---|
@@ -85,9 +85,9 @@ Starting from nothing is fine: create two empty pages, a source library and a re
 When a new version is pushed, you receive it automatically on next launch, or pull it now:
 
 ```
-/plugin update the-archive@mighty-pen
-/plugin update quill-kit@mighty-pen
-/plugin update red-pencil@mighty-pen
+/plugin update cited-works@mighty-pen
+/plugin update fresh-ink@mighty-pen
+/plugin update red-pen@mighty-pen
 ```
 
 ## For the maintainer
