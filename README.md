@@ -7,6 +7,15 @@ Three Claude Code plugins for written content, plus an optional fourth for data.
 - **red-pen** edits the draft (verdict-first review, then quick-fix or full report; developmental and proofread-only modes too).
 - **insights** (optional) measures: live GA4 and Search Console numbers and AI-answer visibility. Dormant until you wire it up; without a connection it says so in one line and stays out of the way.
 
+## Plugins and skills at a glance
+
+| Plugin | Role | Skills |
+|---|---|---|
+| **cited-works** | Find: research and fact-checking | cited-works |
+| **fresh-ink** | Make: writing | craft, tone-and-guidelines, voice-profiles, content-formats, blog, ogilvy-copywriting, no-slops, search-weave, headline-lab, socialize |
+| **red-pen** | Fix: editing | red-pen |
+| **insights** (optional) | Measure: data, dormant until wired | seo-geo, aeo-insights |
+
 ## Install (one time)
 
 In Claude Code, add this marketplace, then install the three core plugins:
@@ -38,19 +47,28 @@ The skills **trigger automatically** when you describe a task, so most of the ti
 - "Fact-check this draft" starts cited-works' verify job.
 - "Give me headline options" starts headline-lab. "Write a LinkedIn post about this" or "turn this into a thread" starts socialize.
 - "Build a voice profile from these samples" starts voice-profiles' capture routine.
+- "Work these keywords into the post" or "AEO pass" starts search-weave.
+- "How's our search traffic" or "are we cited by AI" starts Insights' seo-geo or aeo-insights, if it's installed and wired.
 
 To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 ```
-/cited-works:cited-works             # research a claim, a stat, a landscape
-/fresh-ink:craft     # start a piece
-/red-pen:red-pen                     # edit a piece
+/cited-works:cited-works      # research a claim, a stat, a landscape; fact-check a draft
+/fresh-ink:craft              # start any piece (it routes to the right skill)
+/fresh-ink:blog               # blog post, brief, optimize, or outrank
+/fresh-ink:socialize          # social posts, or repurpose a finished piece
+/fresh-ink:headline-lab       # headline or subject-line options, scored
+/fresh-ink:search-weave       # SEO and AEO pass on a finished draft
+/fresh-ink:voice-profiles     # build or use a voice profile
+/red-pen:red-pen              # edit, proofread, or developmental edit
+/insights:seo-geo             # GA4 and Search Console numbers (if wired)
+/insights:aeo-insights        # AI-answer visibility (if wired)
 ```
 
 ### The find-make-fix flow
 
 1. **Research** in cited-works, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste. fresh-ink hands its sourcing needs here by name, so there's one sourcing standard, not five.
-2. **Draft** in fresh-ink. It picks the workflow for your content type and the voice register that goes with it (personal, professional, or B2B tech buyer; or a specific person's, from voice-profiles), asks who it's for, pulls live SEO/GEO data when the piece needs it, and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
+2. **Draft** in fresh-ink. It picks the workflow for your content type and the voice register that goes with it (personal, professional, or B2B tech buyer; or a specific person's, from voice-profiles), asks who it's for, uses the keywords and sources you give it (or Insights' data, if that's installed and wired), and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
 3. **Sharpen** with the edit menu, structure first and sentences last: the no-slops gate, then whichever the piece needs (the Schwartz re-angle, the Ogilvy pass for persuasion, search-weave to work target keywords, questions, and citations into anything bound for publication), then red-pen's copyedit, then a final no-slops sweep. red-pen flags unverified claims and hands them back to cited-works to verify.
 4. **Loop** as needed. A structural rewrite goes back to fresh-ink (or red-pen's developmental mode first); line-level polish stays in red-pen; a thin or stale source goes back to cited-works.
 
@@ -116,7 +134,7 @@ When a new version is pushed, you receive it automatically on next launch, or pu
 The plugin copies are **generated** from the live skills in `~/.claude/skills/` by `build.py`, which rewrites every cross-skill path to the `${CLAUDE_PLUGIN_ROOT}` form that installed plugins require. The live skills stay the single source of truth. To ship an update:
 
 1. Edit the skills in `~/.claude/skills/` as usual.
-2. Regenerate with a bumped version: `python3 build.py 1.1.0`
+2. Regenerate with a bumped version, higher than the current one: `python3 build.py 2.8.0`
 3. Commit and push (or publish from GitHub Desktop).
 
 Bumping the version is what triggers teammates' updates. Pushing new commits without a version bump will not deliver changes.
