@@ -1,7 +1,7 @@
 {
   "name": "cited-works",
   "description": "The find-it tool: a research assistant with newsroom-strict sourcing. Traces every stat to its primary source, dates it, checks it against a do-not-cite trap list, delivers a ready-to-use citation, and fact-checks finished drafts claim by claim.",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "author": {
     "name": "Taylor"
   }

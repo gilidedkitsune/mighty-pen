@@ -6,90 +6,62 @@ description: >
 
 # Blog Writer
 
-You write blog content. This skill pairs a robust process (real research, a sourcing bar, audience calibration, a separate edit menu after the draft) with a locked output shape (the four workflows and templates below). The shape is fixed. The process is what makes the output good.
+You write blog content. quill delegates every blog request here, so this skill owns the blog's shape: the four workflows, the post structure, the brief template, on-page SEO, and the citation format. Everything that isn't blog-specific (the promise, research, drafting craft, voice, and the edit order) follows quill's workflow in `${CLAUDE_PLUGIN_ROOT}/skills/quill/SKILL.md`; this file points there instead of repeating it, so the two can't drift apart.
 
-**Read before writing anything, in this order:** first the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md`, pass 0 included, which puts `no-slops`'s rulebook (the banned list, Tier 1 vocabulary, §0 fingerprint patterns, structural tells) in front of you as drafting constraints; then the default voice and editorial rules in `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`. No-slops also runs after the draft as a mandatory verification pass, and it should find nothing. Everything in it applies to blog content.
+**Before writing anything,** read the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md` (pass 0 puts no-slops's rulebook in front of you as drafting constraints) and the voice in `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`, in the register the post calls for. **No-slops runs on every output,** briefs, outlines, FAQs, and meta copy included: the 35/50 gate, zero em dashes.
 
-## Handles four workflows
-
-1. **Write from scratch** — full blog post from a topic or keyword
-2. **Outline & brief** — structured content plan before writing
-3. **Optimize existing draft** — SEO and voice pass on a draft
-4. **Outrank competitor** — analyze a URL and produce a superior post
+## Four workflows
 
 | Input | Workflow |
 |---|---|
-| Topic or keyword only | Ask for style + length, outline first, then write or deliver brief |
-| Existing draft | Optimize workflow |
-| Competitor URL | Competitor analysis, then write to outrank |
-| Content brief | Write from scratch using the brief as spec |
+| Topic or keyword | 1. Write from scratch (outline first if the user wants to approve one) |
+| A brief, or "outline this first" | 2. Outline & brief |
+| An existing draft | 3. Optimize |
+| A competitor URL | 4. Outrank (analyze, brief, then write) |
 
-Always ask the user before continuing. Never assume. Ask: "Do you want a full post, an outline, or an optimization pass?"
-
-**No-slops is mandatory on every output, posts and briefs alike.** Before delivering anything, run the `no-slops` skill (briefs, outlines, FAQs, and meta copy included). Zero em dashes in any output: restructure every sentence that uses one, using a comma, period, colon, semicolon, or parentheses. If the draft scores below 35/50, revise before delivering. This is verification: the rules were drafting constraints (prose-craft pass 0), so a finding means the draft was not built clean. Fix it and note which pass let it through.
+If it isn't clear which one they want, ask: "Do you want a full post, an outline, or an optimization pass?"
 
 ---
 
-## Step 1: The promise, then intake
+## Step 1: The promise, then the blog specifics
 
-**First, the promise**, the same three questions quill opens every piece with, answered from the brief where possible and confirmed in one AskUserQuestion round: **who is this for** (ask directly if the brief doesn't say; there is no general reader), **what is it for** (AEO/GEO, awareness, consideration, or decision; most blogs are AEO/GEO with a stage, so name both), and **why should they give a shit** (one sentence, drafted by you, confirmed by them). If that last one has no answer, stop. The post has no thesis yet, and keyword research will not supply one.
+Run quill's promise module first (quill Step 1, "The promise"): who it's for, what it's for, and why they should care, confirmed in one round. Most blogs are AEO/GEO with a buyer stage; name both. No answer to "why should they care" means no thesis yet; stop.
 
-Then confirm the blog specifics, fast, in one more round:
-
-1. **Target keyword** (primary, plus any secondary if known)
-2. **Content style** (thought leadership / how-to / product-led)
-3. **Target length** (let the topic decide; don't pad to a number, don't cut to stay short)
-4. **CTA** (the specific next step: signup, newsletter, a feature page)
-
-Do not skip intake. Once the audience is set in Step 1, calibrate angle, depth, vocabulary, examples, and CTA to that reader directly. There's no persona library to check against; use judgment based on who they said this is for.
-
----
+Then one more round for what only a blog needs:
+1. **Target keyword**, primary plus any secondaries (search-weave will ask for questions and citations later; collect them now if the user has them)
+2. **Content style:** thought leadership, how-to, or product-led
+3. **Target length:** let the topic decide; don't pad or cut to a number
+4. **CTA:** the specific next step (signup, newsletter, a feature page)
 
 ## Step 2: Research
 
-Gather context before writing. Run these in parallel when possible. Don't go down a rabbit hole: arm the draft with real detail, then move on.
+Follow quill Step 2: web research, internal context only from connectors that are actually there, and every stat or quote handed to **cited-works** by name (or cited origin-first by hand if it isn't installed). Two blog-specific rules on top:
 
-**External (web).** The current conversation on the topic, recent news or competitor moves, and credible stats worth citing.
+- **At least two credible sources** per post, internal or external.
+- **Citation format, every post.** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim; the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, bibliography, or works-cited block; Chicago belongs to long-form, which routes through quill. Ask cited-works to return citations in this format.
 
-**Internal (optional, when connected).** If the session has workspace connectors (a docs wiki, an issue tracker, team chat), pull product specs, positioning notes, shipped milestones, customer feedback, and internal framing from them. If none are connected, ask the user for source material; never invent internal facts. If the user provided source material during intake, prioritize it; supplement, don't duplicate.
-
-**Sourcing bar (every post).** At least two credible sources, internal or external, a mix is ideal. The sourcing itself is **cited-works**'s job: list each stat, quote, or claim the post needs in one line and hand the list to cited-works (job 1, content research). It traces each to the primary source, dates it, checks the do-not-cite trap list, and returns the citation already in the two-part blog format below. Use what comes back verbatim, and drop any claim it couldn't source. If cited-works isn't installed, apply its core rule by hand: cite the origin, not the middleman, and if you can't verify the primary source, don't use the stat.
-
-**Citation format (every post).** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text parenthetical, "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim, which is a signal a bare publisher name never sends, and the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, no bibliography, no works-cited block on a blog. Chicago-style Works Cited belongs to long-form assets (guides, eBooks, reports), which route through quill, not here. Source of truth: tone-and-guidelines, "Bibliography and attribution."
-
-**Content-strategy check.** Position the post before drafting:
-- Searchable, shareable, or both? Most posts are searchable first, shareable second.
-- Buyer stage: awareness, consideration, decision, or implementation?
-- Pillar alignment and internal-link opportunities.
-- What gap does this fill that competitors haven't?
-
-For deeper planning (a series, new pillars, a backlog) use `/content-strategy`. For live SEO data and the full tool map, see the SEO/GEO toolkit section at the end.
-
-**Pre-draft thinking (internal, don't show the user).** Who is this for, specifically? Why should they care? What do they get out of it? Where do they go from here (the CTA)?
+**Position the post** before drafting: searchable, shareable, or both; buyer stage; pillar and internal-link opportunities; and the gap it fills that competitors haven't. For a series or a backlog, use quill's ideation workflow.
 
 ---
 
 ## Workflow 1: Write from Scratch
 
-Draft with the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md`, in order: pass 0 (know the tells: no-slops's banned list, Tier 1 vocabulary, §0 fingerprints, and structural tells, as constraints you write inside), then the promise, the lead (start with the thing, not the topic), sentence engineering, the concreteness ladder, sentence music, given-new threading, the kicker, and the 10% cut. Then the TOV. The structure below is the skeleton; prose-craft is how each section gets written.
+Draft with quill Step 4: prose-craft passes 0 through 8, then the voice. The structure below is the skeleton; prose-craft is how each section gets written.
 
 ### Post structure
 ```
-[Title] — includes target keyword, sentence case, under 60 chars for SEO
-[Intro] — hook in the first sentence, no preamble, no meta-commentary (never: "This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", or any variant). Drop the reader into the topic.
-[H2 sections] — keyword-aligned, logical flow, each with a clear point
-[CTA or closing] — direct, purposeful
+[Title]: includes the target keyword, sentence case, under 60 characters
+[Intro]: hook in the first sentence, no preamble, no meta-commentary ("This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", or any variant). Drop the reader into the topic.
+[H2 sections]: keyword-aligned, logical flow, each with a clear point
+[CTA or closing]: direct, purposeful
 ```
 
-### SEO requirements baked into every post
-- Target keyword in: title, first 100 words, at least one H2, meta description
-- Related/LSI terms distributed naturally throughout
-- External citations two-part: the statistic phrase hyperlinked to the origin, then a plain-text "(Publisher, date)" closing the sentence. No footnotes or bibliography.
-- Internal link opportunities noted with `[INTERNAL LINK: suggested anchor + topic]`
-- Suggest meta title (≤60 chars) and meta description (≤160 chars) at the end
-- Suggest a slug
+### On-page SEO, every post
+- Target keyword in the title, the first 100 words, at least one H2, and the meta description
+- Internal link opportunities marked `[INTERNAL LINK: suggested anchor + topic]`
+- Meta title (60 characters or fewer), meta description (160 or fewer), and a slug, suggested at the end
 
-After writing, run the `no-slops` audit. Score the draft 1-10 on each dimension. If below 35/50, revise before delivering. Double-check: zero em dashes.
+Question-shaped headers, answer-first sections, the definitional block, secondary-keyword placement, and the FAQ's citability are search-weave's job after the draft; don't duplicate them here.
 
 ---
 
@@ -138,12 +110,12 @@ Intro rules, the intro must:
 - Get to the point in two sentences or fewer before the first H2
 
 **H2: [Section title]** *(the move: states a claim / proves a claim / turns the argument)*
-— Key point to cover
-— The specific it carries: the number, name, quote, or artifact
+- Key point to cover
+- The specific it carries: the number, name, quote, or artifact
 
 **H2: [Section title]** *(the move)*
-— Key point to cover
-— The specific it carries
+- Key point to cover
+- The specific it carries
 
 [...continue]
 
@@ -162,11 +134,11 @@ Section rules, from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.m
 **Meta description:** [≤160 chars, includes primary keyword, clear value prop or CTA]
 
 **Semantically related terms to include:**
-- [LSI / related term 1] — suggested placement (e.g. intro, H2, body)
-- [LSI / related term 2] — suggested placement
-- [LSI / related term 3] — suggested placement
-- [LSI / related term 4] — suggested placement
-- [LSI / related term 5] — suggested placement
+- [LSI / related term 1]: suggested placement (e.g. intro, H2, body)
+- [LSI / related term 2]: suggested placement
+- [LSI / related term 3]: suggested placement
+- [LSI / related term 4]: suggested placement
+- [LSI / related term 5]: suggested placement
 
 Derive these from: the target keyword's topic cluster, terms that appear across competitor pages, and natural synonyms a reader would expect. Don't force them, note where they fit naturally.
 
@@ -203,22 +175,8 @@ A: [Answer]
 
 ## Workflow 3: Optimize Existing Draft
 
-Run two passes.
-
-### Pass 1: SEO audit
-Check:
-- Target keyword in title, intro, at least one H2?
-- Meta title and description present and within limits?
-- Heading structure logical and keyword-aligned?
-- Internal links present with descriptive anchor text?
-- Slug clean and keyword-inclusive?
-- Citations in the two-part format (stat phrase hyperlinked, plain "(Publisher, date)" at sentence end)? Flag a link sitting on the publisher name instead of the claim, a missing date, and any footnotes or bibliography carried in from elsewhere.
-- Any thin sections that need expanding?
-
-Report findings as: ✅ Pass / ⚠️ Fix needed / ❌ Missing, with specific fixes inline.
-
-### Pass 2: Voice, readability & No-slops
-Run the `no-slops` skill and fix violations in the text. Then check readability against the reader named in Step 1: Flesch Reading Ease 60-70 by default, adjusted down toward 50-60 for a reader who explicitly wants technical depth over accessibility. Flag sentences over 30 words and paragraphs over five sentences. For a full readability and rhythm pass, hand the draft to `red-pen`. Deliver the revised draft with a short summary of what changed.
+1. **On-page check.** Keyword placement (title, intro, an H2, meta), meta title and description present and in limits, slug clean, internal links with descriptive anchors, citations in the two-part format (flag a link on the publisher's name instead of the claim, a missing date, and any footnotes or bibliography), and thin sections. Report as ✅ Pass / ⚠️ Fix needed / ❌ Missing, with the fix inline.
+2. **The edit passes** below, in order, on the existing draft. Deliver the revised post with a short summary of what changed.
 
 ---
 
@@ -235,30 +193,13 @@ Read `${CLAUDE_PLUGIN_ROOT}/skills/blog/references/competitor-research.md` in fu
 
 ## Present
 
-Deliver the final post as clean, ready-to-publish copy:
-- A suggested title (sentence casing)
-- The full body with headers
-- A suggested meta description (under 160 characters)
+Deliver clean, ready-to-publish copy: title (sentence case), the full body, the meta description, and the slug. If the user wants a file, ask where it should go and in what format (quill Step 6).
 
-To export to a Google Doc, use the `anthropic-skills:docx` skill to generate a `.docx`.
+### Edit passes
 
-### Edit passes (after the no-slops gate, before the post ships)
+The same Step 5 menu and order as quill: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in quill Step 5.
 
-Each is a separate tool applied to the finished post, the same Step 5 menu quill uses, in the same order: structure first, sentences last. Drafting craft stays in the draft; these happen to what you wrote. Skip what the post doesn't need, but never reorder what runs.
-
-1. **Schwartz re-angle** (when the substance is right and the opening isn't): rewrite headline, lead, and structure to the reader's awareness cell per `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`. If only the headline is in question, run `headline-lab` instead.
-2. **Ogilvy pass** (on request): run `ogilvy-copywriting`'s Diagnostic Questions against the finished post. Positioning, the single promise, does the headline carry it, is there proof, is the news buried, is the product the hero. Not a second draft: an edit of this one, presented alongside the original if the changes are large.
-3. **search-weave** (default for every published post): weave the target keywords, questions, and citations into the structure so the post ranks and AI engines can lift and credit it. TOV and accuracy win every disagreement.
-4. **red-pen** (default for anything going to publish, and always last): the line-level copyedit, with the readability script against the target reader's Flesch band and the numbered 🔴🟡🔵 findings.
-5. **Final sweep** (whenever any pass above ran): no-slops's mechanical checks once more on the final text (§0 fingerprints, Tier 1 vocabulary, banned phrases, em dashes, adverbs).
-
----
-
-## SEO/GEO toolkit
-
-When drafting, apply the GEO/AEO writing rules (answer-first passages, passage-level extractability, AI-citation optimization) in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`. That is the drafting layer; the tooling layer follows.
-
-Target keywords and AEO inputs come from the user's brief, and `search-weave` works them into the finished post. If the Insights plugin is installed and wired, its `seo-geo` skill holds the stage-by-stage tool map (keyword research, SERP analysis, schema, internal linking, performance tracking) and the site's real numbers; it stays dormant otherwise. Never fabricate metrics.
+**Data, if you have it.** Keywords, questions, and citations come from the user's brief by default. If the Insights plugin is installed and wired, its `seo-geo` skill can supply real Search Console queries and the stage-by-stage SEO tool map, and `aeo-tracker` the AI-answer baseline; both stay dormant otherwise. Never fabricate metrics.
 
 ## Brand reminder
 
