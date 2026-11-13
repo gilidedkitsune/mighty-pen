@@ -38,7 +38,7 @@ Then one more round for what only a blog needs:
 Follow craft Step 2: web research, internal context only from connectors that are actually there, and every stat or quote handed to **cited-works** by name (or cited origin-first by hand if it isn't installed). Two blog-specific rules on top:
 
 - **At least two credible sources** per post, internal or external.
-- **Citation format, every post.** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim; the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, bibliography, or works-cited block; Chicago belongs to long-form, which routes through craft. Ask cited-works to return citations in this format.
+- **Citations use the two-part inline format** (the stat phrase hyperlinked, then a plain "(Publisher, date)" closing the sentence), defined in tone-and-guidelines, Bibliography and attribution (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`). No footnotes or works-cited block on a blog. Ask cited-works to return citations in this format.
 
 **Position the post** before drafting: searchable, shareable, or both; buyer stage; pillar and internal-link opportunities; and the gap it fills that competitors haven't. For a series or a backlog, use craft's ideation workflow.
 
@@ -51,7 +51,7 @@ Draft with craft Step 4: prose-craft passes 0 through 8, then the voice. The str
 ### Post structure
 ```
 [Title]: includes the target keyword, sentence case, under 60 characters
-[Intro]: hook in the first sentence, no preamble, no meta-commentary ("This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", or any variant). Drop the reader into the topic.
+[Intro]: hook in the first sentence (a sharp observation, a direct claim, a question, or a scenario the reader recognizes), at the point within two sentences. No preamble and no meta-commentary ("This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", "We're going to walk you through", or any variant). Don't justify why the topic matters; the reader clicked.
 [H2 sections]: keyword-aligned, logical flow, each with a clear point
 [CTA or closing]: direct, purposeful
 ```
@@ -102,12 +102,7 @@ If any highlight directly connects to something the subject does or solves, add 
 
 **Intro angle:** [1-2 sentences on the hook/angle]
 
-Intro rules, the intro must:
-- Open with a hook: a sharp observation, a direct statement, a provocative question, or a specific scenario the reader recognizes
-- Never announce what the post is about, drop the reader into the topic, don't describe the trip
-- Never use meta-commentary: "This post covers", "In this blog we'll", "Read on to learn", "By the end of this article", "We're going to walk you through", or any variant
-- Assume the reader already knows why the topic matters, don't spend the intro justifying it
-- Get to the point in two sentences or fewer before the first H2
+The intro follows the Post structure rule in Workflow 1 and prose-craft pass 2 (the lead): a hook in the first sentence, no announcing or meta-commentary, at the point within two sentences.
 
 **H2: [Section title]** *(the move: states a claim / proves a claim / turns the argument)*
 - Key point to cover
@@ -119,9 +114,9 @@ Intro rules, the intro must:
 
 [...continue]
 
-Section rules, from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` §6 and §4: one move per section, named. Each section follows from the one before with *but* or *therefore*, never *and then*; a section that could open with "additionally" hasn't earned its slot. Every section names the specific it will carry, because a section with only a principle gives the reader nothing to hold. Let the outline be lopsided: the section you care about gets the weight.
+Each section is one named move carrying one specific, connected to the last by *but* or *therefore* (prose-craft §4 and §6, `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`).
 
-**Kicker:** [the fact, image, or consequence the post lands on. Never a summary. It will change while drafting; naming it now is what stops the post ending on a wrap-up. See prose-craft §7: the kicker is the second-best line in the piece, and the lead gets the best one.]
+**Kicker:** [the fact, image, or consequence the post lands on, never a summary (prose-craft §7). Naming it now stops the post ending on a wrap-up.]
 
 **Closing / CTA:** [what action the reader should take. The kicker sets it up: the CTA is not the ending, the line before it is.]
 
@@ -140,7 +135,7 @@ Section rules, from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.m
 - [LSI / related term 4]: suggested placement
 - [LSI / related term 5]: suggested placement
 
-Derive these from: the target keyword's topic cluster, terms that appear across competitor pages, and natural synonyms a reader would expect. Don't force them, note where they fit naturally.
+Derive these from: the target keyword's topic cluster, terms that appear across competitor pages, and natural synonyms a reader would expect. Don't force them, note where they fit naturally. These carry forward as search-weave's secondary keywords, so it places them after the draft rather than you forcing them in while writing.
 
 ---
 
@@ -153,13 +148,7 @@ Derive these from: the target keyword's topic cluster, terms that appear across 
 ---
 
 ### FAQs:
-3 to 5 questions and answers that complement the post without fitting naturally into the main flow. These are not a summary of the content, they address adjacent questions, edge cases, common misconceptions, or follow-up concerns a reader might have after finishing the post.
-
-Rules:
-- Questions should feel like something a real reader would search or ask
-- Answers should be concise, 2 to 4 sentences each
-- Suitable for FAQPage schema markup
-- If a question naturally connects to a product use case, include a brief product tie-in in the answer, one sentence max, only if it fits
+Follow search-weave's FAQ rules (pass 7, `${CLAUDE_PLUGIN_ROOT}/skills/search-weave/SKILL.md`): adjacent questions, edge cases, and objections, phrased the way people ask, each answered in a self-contained 40 to 60 words. Draft them here so the user approves them with the brief; search-weave checks them after the draft. Blog-only addition: if a question connects naturally to a product use case, one sentence of product tie-in in the answer, only if it fits.
 
 **Q: [Question]**
 A: [Answer]
@@ -175,7 +164,7 @@ A: [Answer]
 
 ## Workflow 3: Optimize Existing Draft
 
-1. **On-page check.** Keyword placement (title, intro, an H2, meta), meta title and description present and in limits, slug clean, internal links with descriptive anchors, citations in the two-part format (flag a link on the publisher's name instead of the claim, a missing date, and any footnotes or bibliography), and thin sections. Report as ✅ Pass / ⚠️ Fix needed / ❌ Missing, with the fix inline.
+1. **On-page check.** Run the Workflow 1 On-page SEO list against the draft, plus the citation format (flag a link on the publisher's name instead of the claim, a missing date, and any footnotes or bibliography) and thin sections. Report as ✅ Pass / ⚠️ Fix needed / ❌ Missing, with the fix inline.
 2. **The edit passes** below, in order, on the existing draft. Deliver the revised post with a short summary of what changed.
 
 ---
@@ -203,4 +192,4 @@ The same Step 5 menu and order as craft: the no-slops gate, then the Schwartz re
 
 ## Brand reminder
 
-Use the subject's full name on first mention, then its short form for the rest of the post, unless the brief specifies a different convention. Never use the short form before the full name has appeared, and give the full name to any passage that gets lifted on its own (a pull quote, a standalone FAQ answer).
+Full name first, short form after, and the full name again in any passage that may be lifted alone (tone-and-guidelines, Product and brand names).

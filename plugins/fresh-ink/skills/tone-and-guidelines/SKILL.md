@@ -223,6 +223,9 @@ Exceptions:
 - You can use acronyms in headlines and primary headers. Spell them out early in the body.
 - Well-established acronyms (like DVD) don't need to be spelled out if doing so would confuse the reader.
 
+### Product and brand names
+Use the subject's full name on first mention on the page (including when that first mention is a headline or hero), then its short form everywhere after, unless the brief sets a different convention. Never use the short form before the full name has appeared. Give the full name again to any passage that may be lifted on its own: a pull quote, a standalone FAQ answer, a definitional block.
+
 ### Dashes
 Don't use em dashes (—). They read as an AI tell, and they're cut here. Use a comma, colon, semicolon, parentheses, or two sentences instead. (Enforced in the no-slops filter.)
 
