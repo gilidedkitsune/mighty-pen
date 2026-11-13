@@ -154,9 +154,7 @@ Structure:
 
 ### Voice
 
-All webinar content, including brand social posts, uses the default voice from tone-and-guidelines.
-
-**Exception:** Social posts attributed to a named person (e.g. the presenting speaker) use that person's tone profile if one exists in `voice-profiles`; apply it on top of the tone-and-guidelines editorial guidelines. If no profile exists yet, flag it and use the default voice rather than inventing one. This applies only to person-attributed social posts, not to landing pages, emails, or other webinar content.
+Voice rules for webinar content live in craft's Webinar-specific section: the default voice for everything, with one exception for social posts that go out under a named person's account (drafted by socialize in that person's profile).
 
 ### LinkedIn posts
 

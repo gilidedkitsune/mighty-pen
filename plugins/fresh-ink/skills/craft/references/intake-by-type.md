@@ -60,7 +60,7 @@ Then ask page-type-specific follow-ups:
 - Partner details (if co-hosted)
 - Target persona and funnel stage
 - Which content assets are needed (the BOM checklist: landing page, emails, social, slides, recap)
-- Voice: all webinar content uses the default voice. Personal tone profiles apply only to social posts attributed to a named person (see Webinar-specific in Step 4)
+- Voice: default, except social posts under a named person's account (see Webinar-specific in Step 4)
 
 **Sales enablement:**
 - Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` and work through the relevant asset's checklist

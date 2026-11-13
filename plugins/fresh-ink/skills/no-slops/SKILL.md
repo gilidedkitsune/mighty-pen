@@ -25,6 +25,8 @@ Before the read-through, sweep for P0 fingerprints: near-certain AI artifacts th
 
 Any one of these shipping in public is worse than every other violation in this file combined.
 
+**The mechanical sweep.** Other skills call for "no-slops's mechanical sweep" on short copy and after every rewrite. It means exactly this, run for real and not by eye: the §0 fingerprints above, Tier 1 vocabulary (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`), the banned phrases, em dashes, and adverbs. No scoring; that's §7.
+
 
 ## 1. Kill dead language
 
@@ -82,7 +84,7 @@ Also in the full catalog, same severity as the patterns above: **arguing with no
 ### Active voice
 Every sentence needs a human subject doing something. Passive voice hides the actor and drains energy. "X was created" becomes "[Person] created X." "Mistakes were made" becomes "[Person] made mistakes."
 
-Find the actor. Put them at the front of the sentence.
+Find the actor. Put them at the front of the sentence. Passive is allowed on purpose, to spotlight the object when the actor doesn't matter ("The vulnerability was patched within an hour"), but never as the default.
 
 ### No adverbs
 Kill all adverbs. No -ly words. No softeners ("really," "just," "simply"), no intensifiers ("genuinely," "truly," "deeply"), no hedges ("honestly," "actually," "fundamentally").
@@ -110,7 +112,7 @@ When you're genuinely uncertain about a claim, say so plainly ("I think," "proba
 ## 4. Check the rhythm
 
 ### Sentence length
-Vary it. Mix short punchy lines with longer ones. If three consecutive sentences match length, break one. Two short sentences in a row can work. Three in a row becomes staccato posturing.
+Audit against the rhythm rule in craft's prose-craft §5 (in any run of five sentences, one under eight words and one over twenty). The tell to catch here: two short sentences in a row can work; three in a row becomes staccato posturing.
 
 ### Lists
 Two items beat three. AI defaults to tricolons (groups of three with escalating rhythm). One triple per piece is fine if it genuinely earns it. More than that is a pattern. Default to pairs.

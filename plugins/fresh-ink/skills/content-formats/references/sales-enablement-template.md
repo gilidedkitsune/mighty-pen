@@ -14,8 +14,7 @@ For voice, pain points, and proof points, ask who this is for directly (role, se
 - **Be honest about losses.** Every battle card has a "where they win" section. Reps trust a card that admits tradeoffs and stop trusting one that doesn't.
 - **Repeatable language.** Write lines a rep can say out loud, verbatim, on a call. If it reads like marketing copy, rewrite it as speech.
 - **Tie features to business outcomes.** Velocity, cost, governance, risk reduction, time to value. That's the language buyers decide in.
-- **Use the product's full name on first mention, short form after**, unless the brief specifies otherwise.
-- **No em dashes.** Use commas, colons, periods, or parentheses.
+- **One idea per asset.** The one-sheet has one positioning idea. The battle card has one competitor. The objection handler has one format.
 - **Date the facts.** Competitor pricing and positioning move fast. Note the "as of" date so reps know when a card needs a refresh.
 
 ---
@@ -204,12 +203,4 @@ Who this sheet is built for: the persona, their role, what keeps them up at nigh
 
 ---
 
-## Tone Reminders
-
-- **Benefit, not feature.** Every line answers "so what?" for the buyer.
-- **Honest beats hype.** Concede real losses on the battle card. Acknowledge real concerns in the objection handler. Reps trust honest collateral and use it.
-- **Say it out loud.** If a line can't be spoken naturally on a call, rewrite it.
-- **One idea per asset.** The one-sheet has one positioning idea. The battle card has one competitor. The objection handler has one format.
-- **Keep it current.** Date competitor facts and pricing. Flag for refresh.
-- **Use the product's full name on first mention, short form after**, unless the brief specifies otherwise.
-- **No em dashes.** Use commas, colons, periods, or parentheses.
+House style (brand names, dashes, citations) comes from tone-and-guidelines and no-slops, like everything else.

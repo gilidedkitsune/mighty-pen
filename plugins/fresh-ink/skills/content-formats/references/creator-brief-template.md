@@ -194,5 +194,4 @@ Specify for each deliverable:
 - **One outcome.** A brief that wants everything gets nothing.
 - **Let the creator be the creator.** Give them the message and the guardrails, not a script. They know their audience better than we do.
 - **Spell out the boring parts.** Disclosure, tracking links, usage rights, revision count. The unglamorous details are what keep the collaboration clean.
-- **Use the product's full name on first mention, short form after**, unless the brief specifies otherwise. In copy, captions, voiceover, and on-screen text.
-- **No em dashes.** Anywhere. Use commas, colons, periods, or parentheses.
+- **The guardrails in section 5 are the creator's copy of the house rules** (product naming, no em dashes); they're spelled out there so the creator has them in the brief itself, not only in a shared style guide.

@@ -38,31 +38,31 @@ Never invent search volumes, rankings, or citation numbers. A keyword list the u
 
 ## Step 2: Weave
 
-Work through the draft in this order. Apply fixes in place unless the user asked for audit-only.
+Work through the draft in this order. The writing rules themselves live in the rulebook (SEO-GEO-drafting, "The shared spine"); each pass below says which rule it enforces and what weaving adds on top. Apply fixes in place unless the user asked for audit-only.
 
 ### 1. The term
-Pick the phrasing the piece can actually win. A brand-new term nobody owns yet gets the bare question ("What is X?"). An established term, a competitor's brand, or a saturated head query can't be won head-on; scope it to the entity ("What is the message queue in [Product]?"). If aeo-insights returned a winnability verdict, follow it. Put the term in the title, the first 100 words, and at least one H2, in natural language.
+Pick the phrasing the piece can actually win. A brand-new term nobody owns yet gets the bare question ("What is X?"). An established term, a competitor's brand, or a saturated head query can't be won head-on; scope it to the entity ("What is the message queue in [Product]?"). If aeo-insights returned a winnability verdict, follow it. Then place the term in the title, the first 100 words, and at least one H2, in natural language.
 
-### 2. The question tree
-Every H2 and H3 is a question a real person would type or ask, in their words ("Why did my credits run out so fast?" beats "Understanding token consumption"). Map the supplied questions and secondary keywords onto headers; where a keyword doesn't fit a header naturally, it goes in the body or nowhere. Clean H1, H2, H3 hierarchy, no skipped levels. One non-question H2 for a closing section is fine.
+### 2. The question tree (spine §2)
+Map the supplied questions and secondary keywords onto the headers. Where a keyword doesn't fit a header naturally, it goes in the body or nowhere. One non-question H2 for a closing section is fine.
 
-### 3. Answer-first, self-contained sections
-Each section opens with the direct, neutral answer in about 40 to 60 words, then expands with voice, nuance, and persuasion. The screenshot test: if this section were screenshotted alone, would it fully answer its header? Restate the subject noun at the top; no pronouns reaching into the previous section. Brand energy lives below the answer, never in place of it: promotional opening sentences suppress citation.
+### 3. Answer-first sections (spine §1, and tension 1)
+Check every section against the screenshot test and the 40 to 60 word answer up top. Move brand energy below the answer where it's sitting on top.
 
-### 4. The definitional block
+### 4. The definitional block (spine §5)
 For anything the piece defines, one sentence cluster carries four things together: the **term**, the **entity tied to its category** ("[Product], a [category]"), the **claim**, and the **date** ("as of [Month Year]"). Engines lift definitions whole; one missing its entity gets lifted without credit, and one missing its date rots silently.
 
-### 5. Receipts
-Walk the supplied citations and every claim in the draft. Web copy uses the two-part inline format: hyperlink the phrase carrying the statistic to the origin, then close the sentence with a plain-text "(Publisher, year)". The plain parenthetical is what keeps attribution attached when an engine strips the markup and lifts the passage. Long-form keeps its Chicago format. Any claim without a verified origin goes to cited-works (job 5) rather than shipping. Named customers need consent on record. Two of the site's own pages contradicting each other on a number is a Red.
+### 5. Receipts (spine §3)
+Work the supplied citations into the claims they support, and check every existing claim has one, in the two-part format from tone-and-guidelines (long-form keeps Chicago). Any claim without a verified origin goes to cited-works (job 5) rather than shipping. Named customers need consent on record. Two of the site's own pages contradicting each other on a number is a Red.
 
-### 6. Liftable formats
-Tables for any comparison or multi-attribute explanation, each preceded by a plain sentence saying what it shows. Numbered steps for any process. Bullets that each stand alone. Real artifacts (commands, prompts, quotes) in quotable form; engines quote verbatim material verbatim.
+### 6. Liftable formats (spine §7)
+Turn comparisons into tables, processes into numbered steps, and fragment bullets into standalone ones, wherever the content already has that shape.
 
-### 7. The FAQ
-Five to eight questions at the end, phrased the way people ask assistants, each answered in about 40 to 60 self-contained words. Cover adjacent questions, edge cases, and objections, not the body's H2s again, and don't duplicate a sibling page's FAQ. Note that it's ready for FAQPage schema.
+### 7. The FAQ (spine §7)
+Five to eight questions at the end, taken from the supplied questions that didn't become headers, plus adjacent questions, edge cases, and objections. No repeats of the body's H2s, and no duplicates of a sibling page's FAQ. Note that it's ready for FAQPage schema.
 
-### 8. Freshness and trust
-Dates live in sentences ("as of November 2026"), never "this week" or "today." Numbers current; never a refreshed date on stale numbers. A named author, at least one real example, links to the docs and to related pages on the same site (and a note to add a link back from those pages when they're next edited).
+### 8. Freshness and trust (spine §8)
+Dates in sentences, current numbers, a named author, at least one real example, links to the docs and to related pages on the same site (and a note to add a link back from those pages when they're next edited).
 
 ### 9. The glaze (when a claim can't be confirmed in time)
 If a factual claim can't be verified before publishing (a feature awaiting confirmation, a number pending review), don't guess and don't cut the section. Rewrite it to phrasing that's true in every possible outcome, and bank the stronger version as a clearly marked note at the end of the draft, so the post-confirmation edit is a paste, not a rewrite.

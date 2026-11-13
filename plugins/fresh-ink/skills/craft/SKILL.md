@@ -21,6 +21,19 @@ Before you write a single word, read these three files, in this order:
 
 The instructions below add workflow structure and content-type-specific rules on top of those foundations.
 
+**Where each rule lives.** Every rule has one home, and everything else points to it, so nothing drifts:
+
+| Rules about | Live in |
+|---|---|
+| Voice registers, house style (citations, numbers, dashes, brand names, casing) | tone-and-guidelines |
+| AI tells, active voice, adverbs, the mechanical sweep, the 35/50 score | no-slops |
+| Leads, sentences, rhythm, concreteness, kickers, the 10% cut | prose-craft (this skill's reference) |
+| Search and AEO writing rules | SEO-GEO-drafting (this skill's reference), applied after the draft by search-weave |
+| A content type's shape, length, and type-specific reminders | that type's template in content-formats |
+| Platform formats and limits | socialize's references |
+
+If you find a rule stated in two places, the copy outside its home should become a pointer.
+
 ## Step 1: Route, then the promise, then intake
 
 The user's first message names what they need. Detect the content type from it (the table below) and, if the type is delegated, hand off now: blog runs its own promise module and its own intake, and nothing here runs twice. For everything craft keeps, the promise comes next, before mode or any other intake.
@@ -214,7 +227,7 @@ This step is the craft: everything that happens while the draft is being built. 
 
 **First, the craft.** Build with the passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`, in this order. Pass 0 is the constraint set you write inside; passes 1 through 8 are how the prose gets built. The spine, so it is in front of you and not only behind a link:
 
-0. **Know the tells before you type.** no-slops's rulebook is a drafting constraint, not audit criteria. Have it open: the banned list (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/banned.md`), the Tier 1 vocabulary and §0 fingerprint patterns (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`), and the structural tells (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/references/structures.md`). Zero em dashes. No adverb reflex. No fingerprint openers, copula costumes, or summary closers. There is no reason to draft copy with a tell in it and clean it later; a tell that reaches Step 5 is a Step 4 failure.
+0. **Know the tells before you type.** no-slops's rulebook is a drafting constraint, not audit criteria; prose-craft pass 0 lists exactly what to have open. A tell that reaches Step 5 is a Step 4 failure.
 1. **The promise.** Written in Step 1. Put it above the draft, for nobody but you, and use it as the kill test for every section.
 2. **The lead.** Start with the thing, not the topic: a fact, a number, a person, a scene. The first sentence must be arguable or picturable. Write past the warm-up, then cut back to where it actually starts.
 3. **Sentences.** Actor does action. Subject and verb inside the first six words. End on the payload, because the last slot before the period carries the weight. Pick verbs a camera could film. Budget the copulas.
@@ -241,14 +254,10 @@ Type-specific rules below.
 Social is delegated to `socialize`, which runs the voice menu itself: the default voice in the right register first, then every person in the voice-profiles roster by Menu blurb. For webinar or launch posts that go out under a named person's account, hand the post to socialize with that person named.
 
 ### Blog-specific
-Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting rules live here: blog owns the shape, citations (the two-part inline format: stat phrase hyperlinked, plain "(Publisher, date)" closing the sentence), SEO requirements, and audit. For a blog in a specific person's voice, tell blog; it reads the profile from voice-profiles.
+Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting rules live here: blog owns the shape, on-page SEO, and its workflows; citations follow tone-and-guidelines like everything else. For a blog in a specific person's voice, tell blog; it reads the profile from voice-profiles.
 
 ### Customer story-specific
-- Follow the nine-section structure in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`.
-- 800-1,200 words total (excluding snapshot). Shorter is better.
-- Customer's voice carries the story. Your job is structure and connective tissue.
-- Lead with what they achieved, not who they are.
-- Every claim needs a number or a direct quote.
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md`: the nine-section structure, length, and tone reminders all live there.
 - **Ogilvy pass on by default** (Step 5c). It fits this type almost one to one: one promise (what they achieved), the headline carries it, facts over adjectives (the numbers and the quotes), and the product is the hero of the build, not the writing.
 
 ### Social-specific
@@ -267,7 +276,7 @@ Additional rules for all website copy:
 - **Product or brand name:** full name first, short form after (tone-and-guidelines, Product and brand names).
 - Headline casing on heroes and headers.
 - Show the product. Screenshots, demos, real output. No stock illustrations.
-- Citations: the two-part inline format, never superscripts or a works-cited block. Hyperlink the phrase carrying the statistic, then close the sentence with a plain-text "(Publisher Name, date)". This is the default for ALL web copy; a rare page-level exception (e.g., a gated-asset download page) is a deliberate one-off, decided per piece. Label and link first-party data. Cite sparingly on conversion pages (hero, pricing, landing), more freely on content-style pages (industry, solution, persona, research hubs); keep each claim and its source in the same sentence. See tone-and-guidelines (Bibliography and attribution).
+- Citations: the two-part inline format (tone-and-guidelines, Bibliography and attribution, including its per-channel note on citing sparingly on conversion pages).
 - **Ogilvy pass on by default** (Step 5c). Conversion copy is its home turf: positioning before promise, headline as a standalone claim, product as hero.
 
 ### Long-form-specific
@@ -306,22 +315,19 @@ Present all versions side by side so the user can compare and pick. No-slops run
 - 1-pager format: single-page constraint; lead with the problem, present the solution, close with the CTA.
 
 ### Sales enablement-specific
-- Follow the asset structure in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` (battle card, objection handler, or competitive one-sheet).
-- Benefit-led. Tie features to business outcomes.
-- Anticipate and address objections.
-- Use language the sales team can repeat in conversations.
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` (battle card, objection handler, or competitive one-sheet) and its shared rules. B2B tech buyer register.
 - **Ogilvy pass on by default** (Step 5c). Battle cards live on one clear promise and facts a rep can say aloud; "don't bury the news" is the battle-card failure mode.
 
 ### Webinar-specific
 - **Default voice for all webinar content is the default voice.** Landing pages, emails, reminders, slide copy, recap posts, and brand social posts all use the voice from tone-and-guidelines. Do not apply a personal tone profile to these assets.
-- **Exception, social posts attributed to a named person:** when a post goes out under a team member's own account (someone announcing the webinar, someone else recapping it), read that person's tone profile from voice-profiles and draft in their voice. The post should sound like that person talking about the webinar, not marketing copy about the webinar. This applies only to person-attributed social posts; every other webinar asset stays on the default voice. If the person has no profile in voice-profiles, flag it and use the default voice rather than inventing one.
+- **Exception, social posts attributed to a named person:** when a post goes out under a team member's own account (someone announcing the webinar, someone else recapping it), hand the post to socialize with that person named; it drafts in their profile. The post should sound like that person talking about the webinar, not marketing copy about the webinar. This applies only to person-attributed social posts; every other webinar asset stays on the default voice. If the person has no profile in voice-profiles, flag it and use the default voice rather than inventing one.
 - Follow the BOM in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`. Work through each section the user needs; don't dump the whole template at once.
 - Draft all content assets in the order they're needed: landing page → email invite → social announcement → reminders → day-of → follow-up → recap.
 - **Export (optional):** by default a webinar BOM exports like any other piece (Step 6). If the user keeps a team wiki or editorial calendar and it's connected (a Notion or Confluence page, a calendar app), offer to publish the package there instead. See "Export the finished BOM" in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`.
 
 ### Career docs and pitch-specific
 - Professional register (tone-and-guidelines, Register 2). Follow the per-document rules in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md`: cover letter, resume bullets, bio (three lengths), LinkedIn About, and editor pitch.
-- **Truth gate.** Every claim maps to something the user actually did, said, or can show. Mirror the target's language only where it is true of them; never add a skill, credential, tool, or title the source material doesn't support, and ask rather than stretch. A stretched resume line costs more in the interview than it buys on the page.
+- **Truth gate** and proof bank first, per the template. Never add a skill, credential, or result the source material doesn't support; ask instead.
 - Tailored to one target. When there's a job description, extract its top 5 requirements first and make sure each is answered with proof, or flagged to the user as a gap.
 - Numbers lead. Result, scale, and timeframe before the color.
 - red-pen in Proofread-only mode before anything is sent: a typo in a cover letter is a disqualifier, not a nit.
@@ -335,9 +341,7 @@ Present all versions side by side so the user can compare and pick. No-slops run
 - red-pen's Developmental mode is the right first edit on a long draft: structure before sentences.
 
 ### Creator brief-specific
-- Follow the structure in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`.
-- Structured format: objective, audience, key messages, deliverables, timeline, brand guardrails.
-- Clear enough that an external creator can execute without a follow-up call.
+- Follow `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`: its nine sections, guardrails, and the standard it sets (a creator can execute it cold, with no follow-up call).
 
 
 ## Step 5: Edit
@@ -351,7 +355,7 @@ The draft is finished. Everything from here is a separate tool with a separate j
 3. **5c. Ogilvy** (default on some types). Promise, proof, and headline: what the piece says.
 4. **5d. search-weave** (published web content). Works the target keywords, questions, and citations into the structure.
 5. **5e. red-pen** (anything going to publish). The line-level copyedit, last, on structure that is no longer moving.
-6. **5f. Final sweep** (mandatory). no-slops's mechanical checks once more, because every rewrite is a fresh chance for a tell to get in.
+6. **5f. Final sweep** (mandatory). no-slops's mechanical sweep once more, because every rewrite is a fresh chance for a tell to get in.
 
 Skip any optional pass the piece doesn't need, but never reorder the ones that run.
 
@@ -359,7 +363,7 @@ Skip any optional pass the piece doesn't need, but never reorder the ones that r
 
 Run the `no-slops` skill against the draft (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`), the single source of truth for the AI-tell filter and the 35/50 scoring rubric. Score the draft on directness, rhythm, trust, authenticity, and density. 35/50 minimum to pass. Fix every violation before moving on. If the draft scores below 35, revise and re-audit. This is verification, not the first encounter with the rules: they were drafting constraints in Step 4 (prose-craft pass 0). A finding here means the draft was not built clean. Fix it, and note which pass let it through.
 
-**For Light workflows (social, short emails):** skip the 35/50 scoring ceremony, but run the mechanical checks for real, not mentally: the §0 fingerprint sweep, Tier 1 vocabulary, banned phrases, em dashes, and adverbs. Short copy ships more often than anything else, which makes it the main leak. "It's just a tweet" is how tells get published.
+**For Light workflows (social, short emails):** skip the 35/50 scoring ceremony, but run no-slops's mechanical sweep for real, not mentally. Short copy ships more often than anything else, which makes it the main leak. "It's just a tweet" is how tells get published.
 
 ### 5b. Schwartz re-angle (when the substance is right and the opening isn't)
 
@@ -381,7 +385,7 @@ For anything going to publish, or whenever the user says "tighten," "edit," "red
 
 ### 5f. Final sweep (mandatory)
 
-Re-run no-slops's mechanical checks on the final text: the §0 fingerprint sweep, Tier 1 vocabulary, banned phrases, em dashes, and adverbs. No rescoring unless the edits changed more than a few sentences. If no optional pass ran, 5a already covered it; skip this.
+Re-run no-slops's mechanical sweep on the final text. No rescoring unless the edits changed more than a few sentences. If no optional pass ran, 5a already covered it; skip this.
 
 
 ## Step 6: Present

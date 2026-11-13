@@ -90,7 +90,7 @@ These are on top of no-slops's rulebook (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/
 
 ## Step 5: Check and present
 
-1. Run no-slops's mechanical checks on every post (§0 fingerprints, Tier 1 vocabulary, banned phrases, em dashes, adverbs). Short copy ships most often, which makes it the main leak.
+1. Run no-slops's mechanical sweep on every post. Short copy ships most often, which makes it the main leak.
 2. Check each post against its platform's character limit and truncation point.
 3. Present each post under a platform heading, in a plain code block so line breaks paste cleanly, with: character or word count, the account it's for, the atom it's built on, and where the link goes. Then one line on why the chosen hook wins, and the runner-up hooks.
 4. Offer: alternate hooks, a posting sequence (which goes first and the spacing between them), or a version in a different voice.

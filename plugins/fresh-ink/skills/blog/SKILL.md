@@ -186,7 +186,7 @@ Deliver clean, ready-to-publish copy: title (sentence case), the full body, the 
 
 ### Edit passes
 
-The same Step 5 menu and order as craft: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in craft Step 5.
+The same Step 5 menu and order as craft: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops mechanical sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in craft Step 5.
 
 **Data, if you have it.** Keywords, questions, and citations come from the user's brief by default. If the Insights plugin is installed and wired, its `seo-geo` skill can supply real Search Console queries and the stage-by-stage SEO tool map, and `aeo-insights` the AI-answer baseline; both stay dormant otherwise. Never fabricate metrics.
 

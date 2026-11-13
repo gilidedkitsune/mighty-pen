@@ -1,7 +1,7 @@
 {
   "name": "red-pen",
   "description": "The fix-it tool: a tough, exacting copyeditor with verdict-first review, quick-fix or full report, developmental and proofread-only modes, and concreteness scoring.",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "author": {
     "name": "Taylor"
   }

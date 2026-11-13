@@ -203,4 +203,4 @@ Use these when interviewing the customer. You won't use all of them; pick the on
 - **Specific > superlative.** "Shipped in 48 hours" beats "incredibly fast."
 - **Customer's voice > your voice.** Let their quotes carry the story. Your job is structure and connective tissue.
 - **No fluff.** If a sentence doesn't add information or momentum, cut it.
-- **Use the product's full name on first mention, short form after**, unless the brief specifies otherwise.
+- **Every claim carries a number or a direct quote.**

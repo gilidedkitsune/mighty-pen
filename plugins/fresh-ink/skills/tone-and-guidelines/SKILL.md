@@ -148,9 +148,7 @@ Write like a senior practitioner explaining the product to another one, not a ve
 ## Editorial Guidelines
 
 ### Active vs. passive voice
-Draft content predominantly using the active voice. It's more impactful because it's direct: the subject performs the action. It's less wordy. Passive voice conveys hesitancy and slows the pace.
-
-You can use the passive voice on occasion, for example, to spotlight the object instead of the subject. But it should never be your default.
+Active by default; passive only on purpose. The rule and its one exception live in no-slops §3 (Active voice).
 
 ### Oxford comma
 Use the Oxford comma in all content, all the time.
@@ -271,10 +269,8 @@ If the answer is "yes" to any of these: cut and revise.
 ### Word usage: business/company vs. organization
 Use "business" or "company" most of the time. Exception: when using "enterprise" as a descriptor or writing about large, global entities where "organization" makes more sense.
 
-### Limit adverbs and adjectives
-Adverbs modify verbs. Adjectives modify nouns. Use both sparingly.
-
-If a modifier is redundant, delete it. If it's propping up a weak word, use a better verb or a stronger noun.
+### Adjectives (adverbs: see no-slops)
+Adverbs are cut outright; that rule lives in no-slops §3 (No adverbs). Adjectives are allowed, sparingly. If one is redundant, delete it. If it's propping up a weak noun, find a stronger noun.
 
 Bad: "The massive sea beast aggressively broke the boat."
 Better: "The leviathan destroyed the schooner."

@@ -76,7 +76,7 @@ Make it mechanical:
 
 - **In any run of five sentences, at least one under eight words and one over twenty.** If three consecutive sentences match length, break one. Short works. Short lands the point. But a paragraph built only of jabs reads like a countdown, and the reader starts bracing for the next hit instead of listening, so you open one sentence's shoulders and let it carry the argument the whole way across the paragraph before you stop. Like that.
 - **The period is the strongest punctuation you own.** A short declarative after a long build hits hardest. Spend it on the line that deserves it.
-- **Watch the displacement.** With em dashes banned, drafts drift into colon pileups and semicolon chains instead. One colon-driven sentence per paragraph, at most. If every sentence has a hinge, nothing hinges.
+- **Watch the displacement.** Banning em dashes pushes drafts into colon pileups; no-slops §4 (Punctuation displacement) sets the limit.
 - **Read it aloud.** The ear catches the drone the eye forgives. This is no-slops's final test too; running it while drafting is cheaper.
 
 ## 6. Paragraphs and the thread
