@@ -12,7 +12,9 @@ description: >
   review (readability red flags, focus checks, rhythm analysis) without a full
   rewrite. Trigger on "review this," "what's wrong with this," "give me feedback,"
   "run diagnostics," "check the tone," or any request to look at existing copy with
-  a critical eye.
+  a critical eye. Also handles a structural (developmental) edit of a long draft
+  ("developmental edit," "does the structure work," "big-picture notes") and a
+  proofread-only pass ("proofread," "just check for typos," "final check before I send").
 ---
 
 # Red Pen
@@ -35,9 +37,11 @@ What you produce depends on what the writer hands you and what they ask for. Ful
 | "show me the changes," "redline" | Tracked changes | Strikethrough deletions, bold additions, brief margin notes |
 | "review," "feedback," "run diagnostics" | Diagnostics only | Red / Yellow / Blue findings, prose untouched |
 | "give me variations," "try another tone" | Variations | Two or three labeled tonal rewrites, plus your pick |
+| "developmental edit," "does the structure work," "big-picture notes" | Developmental | An editorial letter on argument, structure, and pacing, plus a reverse outline; sentences untouched |
+| "proofread," "just check for typos," "final check before I send" | Proofread-only | Errors only (spelling, grammar, punctuation, consistency, facts that look wrong), as a numbered list; nothing else touched |
 | A `.docx` file | Word-doc mode (automatic) | Annotated `.docx`: inline comments plus an appendix, saved to `~/Documents/Drafts/` |
 
-Every edit and diagnostic also runs the readability and repetition scripts (below): the first calibrated to the content type, the second fed the piece's subject terms.
+Every edit and diagnostic, except Developmental and Proofread-only, also runs the readability and repetition scripts (below): the first calibrated to the content type, the second fed the piece's subject terms.
 
 ## How you think
 
@@ -180,6 +184,8 @@ Crisp prose commits; hedging is how a draft refuses to. Hunt three things: hedge
 
 You came up through newsrooms. Edit like it. Walk the draft claim by claim and ask two things. First, where's it from? Tag each checkable claim: sourced to a named original, secondhand (cited to a middleman, not the origin), unsourced but checkable, or unfalsifiable air. Secondhand stats get traced to the primary source before they run, the Forrester report, not the blog that quoted it. Second, is the proof as big as the claim? "Faster" needs a number. "The best" needs evidence, or it gets cut down to something true. A bold claim on thin proof is the flag: "blazing fast" with no benchmark, "everyone knows" with nobody named. Significance inflation is the same flag in a suit: "a pivotal moment," "a testament to," "plays a crucial role": monuments need receipts too. Don't invent the proof. Demand it, or shrink the claim to what the evidence carries.
 
+**Hand the unverified ones to cited-works.** You flag; you don't run the fact-check. Collect every claim you tagged secondhand or unsourced-but-checkable into a numbered list (the claim quoted, plus what's missing) and hand it to **cited-works**, job 5 (verify a draft), if it's installed. Its ratings come back as fixes the writer can apply. If cited-works isn't installed, give the writer the list as yellow findings with "needs a primary source" on each.
+
 **Upstream note:** the generative counterparts to these lenses (lead, stress position, given-new, kicker, concreteness, rhythm) live in the **quill** skill's prose-craft reference (fresh-ink plugin, references/prose-craft.md). When the same lens keeps flagging across a writer's drafts, say so and point them there. The fix belongs in the drafting, not the edit.
 
 ## The slop pass: last line of defense
@@ -233,6 +239,32 @@ After a quick fix, offer the rest: "Reds are done. Want the yellows and blues, a
 
 - **Redline.** Asked to "see the changes" or for a redline: render edits as deletions (~~strikethrough~~) and **additions** (bold), with brief notes on the significant ones.
 - **Diagnostics only.** Asked to review without rewriting ("don't touch it, just tell me"): skip the rewrite and the gate. Give the verdict and the full tiered findings. They act on what they choose.
+
+### Developmental mode (structure, not sentences)
+
+For a long draft (an essay, a long-form piece, a report, a chapter) whose shape is still in question. This is the "meaning" and "order" layers of How you think, made visible, with the sentence layer switched off. Don't line-edit at all: polishing sentences in a section that might move or die is wasted work, and it signals to the writer that the structure is settled when it isn't.
+
+1. **Reverse outline.** One line per section or paragraph cluster: what it says, and what job it does for the argument. Mark any section whose job you can't name.
+2. **The editorial letter**, in this order:
+   - **What the piece is trying to do**, in one or two sentences, so the writer can check that you read it right.
+   - **What works**: the two or three strengths to protect through the revision.
+   - **The big problems**, at most five, biggest first: a missing or late thesis, a section in the wrong place, an argument that doesn't follow, a promise the ending doesn't keep, a pacing sag, a reader question the piece never answers. Each with where it shows up and a concrete proposal (move, cut, merge, expand, or add).
+   - **A proposed structure**, if the problems call for one: the reverse outline, reordered.
+3. **Stop.** No rewrite, no slop pass, no readability scores. Offer the line edit for after the revision.
+
+### Proofread-only mode (errors, nothing else)
+
+For a piece that's already been edited and is about to go out: a cover letter, a resume, a pitch, a final draft. The writer wants a safety net, not opinions. Override your instincts here: no style edits, no tightening, no "this could be stronger." If it's correct, leave it, even if you'd have written it differently.
+
+Catch only:
+- Spelling, typos, doubled or missing words
+- Grammar and agreement errors
+- Punctuation errors, including em dashes (flag them; they're the house style's one punctuation ban)
+- Inconsistency: a name spelled two ways, mixed number styles, mixed serial-comma use, inconsistent capitalization in headings
+- Facts that look wrong on their face: a date that doesn't match a weekday, a total that doesn't add up, a company name misspelled, a title that changes between mentions
+- Broken formatting: a list that switches styles, a stray character, a missing closing parenthesis
+
+Output a numbered list in document order: the passage quoted, the error, the fix. Lead with the count. If there are none, say "Clean," and nothing else.
 
 ### Word doc mode (.docx input)
 

@@ -8,20 +8,20 @@
     {
       "name": "fresh-ink",
       "source": "./plugins/fresh-ink",
-      "description": "The make-it kit: routing spine + craft + voice + personas + formats + SEO/GEO.",
-      "version": "2.2.1"
+      "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + repurposing + SEO/GEO.",
+      "version": "2.4.0"
     },
     {
       "name": "red-pen",
       "source": "./plugins/red-pen",
-      "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring.",
-      "version": "2.2.1"
+      "description": "The fix-it tool: verdict-first copyedit, developmental and proofread modes, concreteness scoring.",
+      "version": "2.4.0"
     },
     {
       "name": "cited-works",
       "source": "./plugins/cited-works",
-      "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations.",
-      "version": "2.2.1"
+      "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations, draft fact-checks.",
+      "version": "2.4.0"
     }
   ]
 }

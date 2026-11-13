@@ -1,7 +1,7 @@
 ---
 name: blog
 description: >
-  Write blog posts and SEO blog content. Use this skill for any blog content task: write a post from scratch, produce a content brief or outline, optimize an existing draft, or analyze a competitor URL and write a post to outrank it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief", "blog brief", "optimize this post", "outrank this article", or any request for blog content. Do NOT trigger for other content types (social posts, emails, ads, landing pages, 1-pagers); those route through quill. This skill runs robust intake and research, drafts to the locked SEO-blog shape with the full default voice from tone-and-guidelines, and audits with no-slops before presenting clean copy.
+  Write blog posts and SEO blog content. Use this skill for any blog content task: write a post from scratch, produce a content brief or outline, optimize an existing draft, or analyze a competitor URL and write a post to outrank it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief", "blog brief", "optimize this post", "outrank this article", or any request for blog content. Do NOT trigger for other content types (social posts, emails, ads, landing pages, 1-pagers); those route through quill. This skill runs robust intake and research, drafts to the locked SEO-blog shape with the default voice from tone-and-guidelines in the register the post calls for (B2B tech buyer for technical-product posts, personal for Taylor's own), and audits with no-slops before presenting clean copy.
 ---
 
 # Blog Writer
@@ -51,9 +51,9 @@ Gather context before writing. Run these in parallel when possible. Don't go dow
 
 **External (web).** The current conversation on the topic, recent news or competitor moves, and credible stats worth citing.
 
-**Internal (Notion, Linear, Slack).** Product specs, positioning notes, shipped milestones, customer feedback, internal framing. If the user provided source material during intake, prioritize it; supplement, don't duplicate.
+**Internal (optional, when connected).** If the session has workspace connectors (a docs wiki, an issue tracker, team chat), pull product specs, positioning notes, shipped milestones, customer feedback, and internal framing from them. If none are connected, ask the user for source material; never invent internal facts. If the user provided source material during intake, prioritize it; supplement, don't duplicate.
 
-**Sourcing bar (every post).** At least two credible sources, internal or external, a mix is ideal. Always cite the origin, not the middleman: if a stat appears in a TechCrunch piece citing a Forrester report, trace it to Forrester and cite that. If you can't verify the primary source, don't use the stat.
+**Sourcing bar (every post).** At least two credible sources, internal or external, a mix is ideal. The sourcing itself is **cited-works**'s job: list each stat, quote, or claim the post needs in one line and hand the list to cited-works (job 1, content research). It traces each to the primary source, dates it, checks the do-not-cite trap list, and returns the citation already in the two-part blog format below. Use what comes back verbatim, and drop any claim it couldn't source. If cited-works isn't installed, apply its core rule by hand: cite the origin, not the middleman, and if you can't verify the primary source, don't use the stat.
 
 **Citation format (every post).** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text parenthetical, "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim, which is a signal a bare publisher name never sends, and the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, no bibliography, no works-cited block on a blog. Chicago-style Works Cited belongs to long-form assets (guides, eBooks, reports), which route through quill, not here. Source of truth: tone-and-guidelines, "Bibliography and attribution."
 
@@ -242,14 +242,15 @@ Deliver the final post as clean, ready-to-publish copy:
 
 To export to a Google Doc, use the `anthropic-skills:docx` skill to generate a `.docx`.
 
-### Edit passes (after no-slops, before the post ships)
+### Edit passes (after the no-slops gate, before the post ships)
 
-Each is a separate tool applied to the finished post, the same Step 5 menu quill uses. Drafting craft stays in the draft; these happen to what you wrote.
+Each is a separate tool applied to the finished post, the same Step 5 menu quill uses, in the same order: structure first, sentences last. Drafting craft stays in the draft; these happen to what you wrote. Skip what the post doesn't need, but never reorder what runs.
 
-- **aeo-craft** (default for every published post): sculpt for AI-answer citability, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as the rulebook and Cairrot as the measurement spine. TOV and accuracy win every disagreement.
-- **red-pen** (default for anything going to publish): the copyedit, with the readability script against the target reader's Flesch band and the numbered 🔴🟡🔵 findings.
-- **Ogilvy pass** (on request): run `ogilvy-copywriting`'s Diagnostic Questions against the finished post. Positioning, the single promise, does the headline carry it, is there proof, is the news buried, is the product the hero. Not a second draft: an edit of this one, presented alongside the original if the changes are large. Run no-slops on the result.
-- **Schwartz re-angle** (when the substance is right and the opening isn't): rewrite headline, lead, and structure to the reader's awareness cell per `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`. Run no-slops on the result.
+1. **Schwartz re-angle** (when the substance is right and the opening isn't): rewrite headline, lead, and structure to the reader's awareness cell per `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`. If only the headline is in question, run `headline-lab` instead.
+2. **Ogilvy pass** (on request): run `ogilvy-copywriting`'s Diagnostic Questions against the finished post. Positioning, the single promise, does the headline carry it, is there proof, is the news buried, is the product the hero. Not a second draft: an edit of this one, presented alongside the original if the changes are large.
+3. **aeo-craft** (default for every published post): sculpt for AI-answer citability, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as the rulebook and Cairrot as the measurement spine. TOV and accuracy win every disagreement.
+4. **red-pen** (default for anything going to publish, and always last): the line-level copyedit, with the readability script against the target reader's Flesch band and the numbered 🔴🟡🔵 findings.
+5. **Final sweep** (whenever any pass above ran): no-slops's mechanical checks once more on the final text (§0 fingerprints, Tier 1 vocabulary, banned phrases, em dashes, adverbs).
 
 ---
 

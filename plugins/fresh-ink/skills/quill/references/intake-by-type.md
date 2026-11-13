@@ -77,3 +77,21 @@ Then ask page-type-specific follow-ups:
 - Creator type (influencer, content partner, agency)
 - Deliverables expected
 - Key messages and guardrails
+
+**Career docs (cover letter, resume, bio, LinkedIn About):**
+- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` and build the proof bank first
+- Which documents, and for what target (paste the job description, or name the venue or audience)
+- Source material: current resume, past bios, portfolio links, LinkedIn
+- Anything to emphasize, downplay, or leave out; any requirement they know they don't meet
+
+**Pitch (op-ed, guest post, story):**
+- Load `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` (Pitch to an editor)
+- Target outlet and, if known, the editor
+- The argument or angle in one sentence, and why now
+- Clips to link, and whether a draft exists
+
+**Personal essay:**
+- Where it will run (newsletter, publication, their own site) and target length
+- The moment or scene at the center of it
+- What the user wants the reader to feel or understand by the end (the felt truth, not a lesson)
+- Anything off limits: people who shouldn't be named, details to keep private

@@ -25,7 +25,8 @@ VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 
 KIT = ["quill", "tone-and-guidelines", "voice-profiles",
        "no-slops", "content-formats",
-       "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft"]
+       "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft",
+       "headline-lab", "repurpose"]
 STANDALONE = ["red-pen"]
 RESEARCH = ["cited-works"]
 
@@ -89,28 +90,31 @@ def build_plugin(plugin_name, skill_list, description):
 
 def main():
     build_plugin("fresh-ink", KIT,
-        "The make-it kit: routing spine, brand voice, personas, content formats, "
-        "Ogilvy, slop audit, and SEO/GEO data for written content.")
+        "The make-it kit: routing spine, three voice registers (personal, professional, "
+        "B2B tech buyer), voice capture, content and career formats, headline lab, "
+        "repurposing, Ogilvy, slop audit, and SEO/GEO data for written content.")
     build_plugin("red-pen", STANDALONE,
         "The fix-it tool: a tough, exacting copyeditor with verdict-first review, "
-        "quick-fix or full report, and concreteness scoring.")
+        "quick-fix or full report, developmental and proofread-only modes, and "
+        "concreteness scoring.")
     build_plugin("cited-works", RESEARCH,
         "The find-it tool: a research assistant with newsroom-strict sourcing. Traces "
         "every stat to its primary source, dates it, checks it against a do-not-cite "
-        "trap list, and delivers a ready-to-use citation.")
+        "trap list, delivers a ready-to-use citation, and fact-checks finished drafts "
+        "claim by claim.")
     marketplace = {
         "name": "mighty-pen",
         "owner": {"name": "Taylor"},
         "description": "Personal writing and editing skills: research, draft, and edit.",
         "plugins": [
             {"name": "fresh-ink", "source": "./plugins/fresh-ink",
-             "description": "The make-it kit: routing spine + craft + voice + personas + formats + SEO/GEO.",
+             "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + repurposing + SEO/GEO.",
              "version": VERSION},
             {"name": "red-pen", "source": "./plugins/red-pen",
-             "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring.",
+             "description": "The fix-it tool: verdict-first copyedit, developmental and proofread modes, concreteness scoring.",
              "version": VERSION},
             {"name": "cited-works", "source": "./plugins/cited-works",
-             "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations.",
+             "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations, draft fact-checks.",
              "version": VERSION},
         ],
     }

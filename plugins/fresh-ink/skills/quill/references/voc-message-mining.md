@@ -28,7 +28,7 @@ The last two buckets are the ones the rest of the stack misses. Loved features f
 ## Where to mine
 
 - **Sales calls: a Sybill connector, where one is set up.** The richest seam by far, and the one to reach for first on lean-in content. Sybill carries full transcripts plus structured summaries (Outcome, Key Takeaways, Pain Points, FAQ) with CRM account and deal links, so prospect language, objections, and competitor mentions come pre-sorted. It maps almost directly onto the last two buckets, which are the ones everything else misses.
-- Internal meetings and user interviews (Granola), and email threads (Gmail).
+- Internal meetings and user interviews (a meeting-notes connector like Granola, where one is set up), and email threads (a mail connector like Gmail, where connected). If none are connected, ask the user to paste transcripts or notes.
 - Reviews and ratings (G2, app stores, Trustpilot).
 - Reddit, X, Discord, Hacker News threads about the product and the category.
 - Support threads and tickets.
@@ -36,7 +36,7 @@ The last two buckets are the ones the rest of the stack misses. Loved features f
 
 Pull verbatim. The exact phrasing ("I was tired of waiting on a dev to ship a landing page") is the asset; paraphrase loses it. Trace every quote to its source.
 
-**Consent gate on anything sourced from calls.** Sybill material is real named prospects and customers who did not sign up to be quoted. Mine it freely for *understanding*: the pain, the phrasing, the objection patterns. But a named account's words never reach audience-facing copy without a consent-tier check against the customer-stories database. Unattributed pattern language ("teams keep telling us the review queue is the bottleneck") is fine; a quote with a company attached is not, until consent says otherwise.
+**Consent gate on anything sourced from calls.** Call and meeting material is real named prospects and customers who did not sign up to be quoted. Mine it freely for *understanding*: the pain, the phrasing, the objection patterns. But a named account's words never reach audience-facing copy without a consent check (the customer's approval on record, or the team's customer-stories consent list where one exists). Unattributed pattern language ("teams keep telling us the review queue is the bottleneck") is fine; a quote with a company attached is not, until consent says otherwise.
 
 ## Using it in the workflow
 

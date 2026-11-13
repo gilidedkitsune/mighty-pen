@@ -1,14 +1,16 @@
 ---
 name: tone-and-guidelines
 description: >
-  Taylor's tone of voice, style guide, and quality standards. This is the default voice
-  reference for all content unless a specific person's profile is loaded from voice-profiles.
-  Use alongside any writing workflow; it defines HOW to write, not WHAT to write.
+  Taylor's tone of voice, style guide, and quality standards, in three registers: personal
+  voice, professional voice (career pieces under Taylor's name), and the B2B tech buyer voice
+  (product, sales, and technical-marketing content). The register is picked by content type.
+  Use alongside any writing workflow unless a specific person's profile is loaded from
+  voice-profiles; it defines HOW to write, not WHAT to write.
 ---
 
 # Tone of Voice & Style Guide
 
-This is the single source of truth for the default written voice. Every piece of content (blogs, social, emails, essays, long-form, cover letters, whatever the job is) passes through these guidelines before it ships, unless a specific person's profile from `voice-profiles` is loaded instead.
+This is the single source of truth for the default written voice. Every piece of content passes through these guidelines before it ships, unless a specific person's profile from `voice-profiles` is loaded instead. The voice comes in three registers, picked by content type (below); the Editorial Guidelines and Writing Tips apply to all three.
 
 Read this entire file before producing any written output.
 
@@ -16,7 +18,23 @@ This guide governs HOW to write. WHO you're writing for (register, reading level
 
 ---
 
-## Tone of Voice
+## Choosing a register
+
+Pick the register from the content type before drafting. If the type sits between two rows, or the brief points somewhere the table doesn't, ask, with your recommendation.
+
+| Register | Use it for |
+|---|---|
+| **Personal** | Personal essays, memoir, fiction, letters, personal social posts |
+| **Professional** | Cover letters, resumes and bios, LinkedIn About sections and posts under Taylor's name, bylines and op-eds under Taylor's name, pitches to editors, professional email |
+| **B2B tech buyer** | Website, landing, and product copy for technical products; sales enablement (battle cards, objection handlers, one-sheets); executive briefs and 1-pagers written for buyers; whitepapers, ebooks, and reports; technical blog posts; customer stories aimed at technical buyers; webinars; ads to technical buyers |
+
+A profile from `voice-profiles` replaces the register's personality for that person's pieces, but not the register's limits: a CTO's battle card still follows the B2B tech buyer rules on proof, tradeoffs, and hype.
+
+---
+
+## Register 1: Personal voice
+
+Full strength. This is how Taylor writes when the piece is hers and nobody is buying anything.
 
 The point of the written word is to engage the reader, to spark their curiosity and get them to ask "what happens next," even in something as plain as a work email.
 
@@ -55,6 +73,73 @@ Build a comic or dramatic moment through a sequence of concrete, itemized beats 
 - Hedged, neutral reactions dressed up as balance
 
 **Voice in 5 words:** Wry. Sensory. Self-deprecating. Ambitious. Generous.
+
+---
+
+## Register 2: Professional voice
+
+Taylor's voice, wearing work clothes. Same person, same instincts, dialed for a reader who is deciding something about her: a hiring manager, an editor, a conference organizer, a client.
+
+**What carries over:** concrete over stated, earnest underneath, metaphor that argues, escalation in specifics. Self-aimed humor survives in small doses: one light beat per piece is plenty, and it should never undercut a claim she needs the reader to believe.
+
+**What changes:**
+- **Grit becomes candor.** No vulgarity and no profane dialogue. The unsanitized instinct shows up as naming the real problem plainly: the traffic deficit, the team of one, the thing that failed first.
+- **Proof before personality.** Lead with the result and its number, then the color. A hiring manager skims for evidence; give them the evidence, then make them like the person behind it.
+- **Mid-length sentences.** Keep the rhythm varied, but trade the long clause-stacked builds for sentences a skimmer can take in one pass.
+- **Confident, not modest.** State what she did in the first person and active voice ("I grew the team from one writer to nine"), never "was responsible for" or "helped to."
+
+**Voice in 5 words:** Candid. Specific. Warm. Confident. Brief.
+
+---
+
+## Register 3: B2B tech buyer voice
+
+For readers evaluating a technical product: CTOs, VPs of engineering, platform and infrastructure leads, security reviewers, IT, technical PMs, developers running a trial, and the procurement person who has to sign. They are skeptical by profession, short on time, and they will check what you say. Write so they never have to.
+
+### Core tenets
+
+**Answer first.**
+The reader is evaluating, not browsing. Open with what it does, who it's for, and what changes for them. Context and story come after the answer, never instead of it.
+
+**Precise over impressive.**
+Name the mechanism, not the adjective. "Runs entirely in the browser, so nothing executes on a remote server" beats "blazing fast and secure." Name integrations, protocols, versions, limits, and units. If a claim can't survive a technical reader asking "how, exactly?", rewrite it until it can.
+
+**Receipts on every claim.**
+Benchmarks state their conditions. Customer claims name the customer (with consent) or say why they can't. Security claims name the certification (SOC 2 Type II, ISO 27001) or the control (SSO via SAML, audit logs, data residency), never "enterprise-grade" or "bank-level." Link the docs, the security page, the methodology.
+
+**Name the tradeoffs.**
+Say where it doesn't fit, what it doesn't do yet, and what it costs. Technical buyers trust a vendor that tells them the limits, because they'll find the limits anyway, and they remember who told them first.
+
+**Write for the whole committee.**
+A technical purchase has a champion, an economic buyer, and a reviewer whose job is to say no (security, legal, IT). Each section should answer at least one of their three questions: does it work, what does it cost, what's the risk.
+
+**Peer to peer.**
+Write like a senior practitioner explaining the product to another one, not a vendor pitching a prospect. Plain verbs, no hype, second person ("you," "your team"). Humor is rare and dry, and never at the reader's expense.
+
+### Sentence mechanics
+- Shorter sentences than the personal register; one claim per sentence in any proof-heavy section.
+- Numbers carry units and conditions ("p95 latency under 200 ms at 1,000 requests per second").
+- Jargon the reader uses is fine; jargon they might not, define on first use (see Acronyms).
+- Comparisons go in tables, preceded by one plain sentence saying what the table shows.
+- Specific beats complete: three concrete integrations named beat "integrates with your entire stack."
+
+### What to avoid
+- Superlatives without a benchmark ("fastest," "most secure," "best-in-class")
+- Category hype standing in for a mechanism ("AI-powered," "next-gen," "enterprise-grade," "revolutionary")
+- Hiding pricing, limits, or roadmap status; never present a beta or planned feature as shipped
+- Fear-selling ("don't get left behind")
+- Vague security language that a security reviewer would bounce
+- Vulgarity, profane dialogue, and the personal register's long comic builds
+
+**Before and after** (illustrative, invented for teaching; never reuse as a real claim):
+
+> Hype: "Our revolutionary AI-powered platform delivers blazing-fast deployments with enterprise-grade security."
+>
+> Buyer voice: "Deploys finish in about 90 seconds on a median 40-service repo (our benchmark, March 2026; methodology linked). SSO via SAML, audit logs, and SOC 2 Type II cover every plan. On-prem isn't supported yet."
+
+**What carries over from Taylor's voice:** concrete over stated, earnest underneath (say the real problem plainly), and self-aimed candor, which here means admitting the product's limits before a competitor does.
+
+**Voice in 5 words:** Precise. Candid. Evidence-first. Peer-level. Unhyped.
 
 
 ---

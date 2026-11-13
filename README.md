@@ -3,8 +3,8 @@
 Three Claude Code plugins for written content. One researches, one writes, one edits. Install all three and they form a find-then-make-then-fix workflow.
 
 - **cited-works** researches: stats, quotes, and sources traced to their primary origin, with a do-not-cite trap list and ready-to-use citations.
-- **fresh-ink** writes the draft (9 skills behind one routing spine).
-- **red-pen** edits the draft (verdict-first review, then quick-fix or full report).
+- **fresh-ink** writes the draft (11 skills behind one routing spine).
+- **red-pen** edits the draft (verdict-first review, then quick-fix or full report; developmental and proofread-only modes too).
 
 ## Install (one time)
 
@@ -27,7 +27,10 @@ The skills **trigger automatically** when you describe a task, so most of the ti
 
 - "Find stats for this piece" or "what's the competitive landscape" starts cited-works.
 - "Draft a customer story about a team that shipped in a weekend" starts fresh-ink.
-- "Edit this" with a pasted draft starts red-pen.
+- "Edit this" with a pasted draft starts red-pen. "Proofread this" or "developmental edit" picks its other modes.
+- "Fact-check this draft" starts cited-works' verify job.
+- "Give me headline options" or "turn this into a LinkedIn post" starts headline-lab or repurpose.
+- "Build a voice profile from these samples" starts voice-profiles' capture routine.
 
 To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
@@ -39,10 +42,12 @@ To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 ### The find-make-fix flow
 
-1. **Research** in cited-works, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste.
-2. **Draft** in fresh-ink. It picks the workflow for your content type, asks who it's for and applies the default voice (or a specific person's, from voice-profiles), pulls live SEO/GEO data when the piece needs it, and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
-3. **Sharpen** with the edit menu. no-slops runs first and always, then whichever the piece needs: red-pen for the copyedit, the Ogilvy pass for persuasion, aeo-craft for citability on anything bound for publication.
-4. **Loop** as needed. A structural rewrite goes back to fresh-ink; line-level polish stays in red-pen; a thin or stale source goes back to cited-works.
+1. **Research** in cited-works, when a piece needs real stats, quotes, or a competitive landscape, not vibes. Every finding is traced to its primary source, dated, checked against the trap list, and handed back as a stat card ready to paste. fresh-ink hands its sourcing needs here by name, so there's one sourcing standard, not five.
+2. **Draft** in fresh-ink. It picks the workflow for your content type and the voice register that goes with it (personal, professional, or B2B tech buyer; or a specific person's, from voice-profiles), asks who it's for, pulls live SEO/GEO data when the piece needs it, and treats no-slops's rules as drafting constraints from the first sentence, not a cleanup pass.
+3. **Sharpen** with the edit menu, structure first and sentences last: the no-slops gate, then whichever the piece needs (the Schwartz re-angle, the Ogilvy pass for persuasion, aeo-craft for citability on anything bound for publication), then red-pen's copyedit, then a final no-slops sweep. red-pen flags unverified claims and hands them back to cited-works to verify.
+4. **Loop** as needed. A structural rewrite goes back to fresh-ink (or red-pen's developmental mode first); line-level polish stays in red-pen; a thin or stale source goes back to cited-works.
+
+> **Using red-pen on its own?** It catches the slop that survives a cleaning and flags heavy clusters, but the full AI-tell filter and 35/50 rubric live in no-slops, which ships in fresh-ink. Without fresh-ink installed, red-pen's slop pass is the lighter one. Install both for the full check.
 
 ## What is in fresh-ink
 
@@ -51,14 +56,16 @@ quill is the front door; it loads the others only when a job needs them.
 | Skill | Job |
 |---|---|
 | quill | The writer and routing spine |
-| tone-and-guidelines | The default voice, plus editorial rules and writing tips |
-| voice-profiles | Voice profiles for writing as a specific person instead of the default. Empty for now; add a profile whenever that's the job |
-| content-formats | Templates for fixed-shape content (customer story, webinar, sales enablement, creator brief) |
+| tone-and-guidelines | The default voice in three registers (personal; professional for cover letters, bios, and pitches; B2B tech buyer for product and sales content), plus editorial rules and writing tips |
+| voice-profiles | Voice profiles for writing as a specific person, plus a capture routine that builds one from 3 to 5 samples (with an authorship check) |
+| content-formats | Templates for fixed-shape content (customer story, webinar, sales enablement, creator brief, and career docs: cover letter, resume bullets, bio, LinkedIn About, editor pitch) |
 | blog | The blog content-type default: write, brief, optimize, outrank a competitor |
 | ogilvy-copywriting | Persuasion principles, plus an optional voice |
 | no-slops | The AI-tells filter and the 35/50 gate, applied as drafting constraints |
 | aeo-craft | The citability sculpt for published work: gets a draft found, extracted, and cited by AI answer engines |
 | seo-geo | Live SEO/GEO data and tooling (setup below) |
+| headline-lab | About 10 headline variants on different angles, scored against Ogilvy and aeo-craft winnability |
+| repurpose | One finished piece rebuilt for LinkedIn, X, newsletter, and email, citations intact |
 
 There's no persona library anymore: quill asks who a piece is for directly (role, seniority, what they already know) instead of picking from a ranked list.
 

@@ -1,7 +1,7 @@
 ---
 name: quill
 description: >
-  Writing and content strategy agent. Handles all content types: blog posts, customer stories, social media, emails, website copy, long-form (whitepapers, ebooks), survey reports, ads, executive summaries, 1-pagers, bylines, webinars, event copy, sales enablement, content creator briefs, and content strategy/ideation. Trigger on: "I need a [content type]", "write a", "draft a", "brainstorm content ideas", "what should we write", "content ideation", "topic ideas", "content plan", "webinar", "webinar BOM", or any request to create written content. Also trigger when the user mentions specific formats like "LinkedIn post", "case study", "landing page copy", "whitepaper", "customer story", or "webinar content". If the output will be read by an audience beyond this conversation, this skill applies.
+  Writing and content strategy agent. Handles all content types: blog posts, customer stories, social media, emails, website copy, long-form (whitepapers, ebooks), survey reports, ads, executive summaries, 1-pagers, bylines, webinars, event copy, sales enablement, content creator briefs, cover letters, resumes, bios, LinkedIn About sections, editor pitches, personal essays, and content strategy/ideation. Routes headline options to headline-lab and repurposing to repurpose. Trigger on: "I need a [content type]", "write a", "draft a", "brainstorm content ideas", "what should we write", "content ideation", "topic ideas", "content plan", "webinar", "webinar BOM", or any request to create written content. Also trigger when the user mentions specific formats like "LinkedIn post", "case study", "landing page copy", "whitepaper", "customer story", or "webinar content", or career documents like "cover letter", "resume bullets", "bio", or "pitch an editor". If the output will be read by an audience beyond this conversation, this skill applies.
 ---
 
 # Writer
@@ -42,8 +42,15 @@ The user's first message names what they need. Detect the content type from it (
 | Webinar | "webinar", "webinar BOM", "webinar content" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md` |
 | Sales enablement | "sales deck copy", "battle card", "objection handling" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/sales-enablement-template.md` |
 | Creator brief | "creator brief", "influencer brief" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md` |
+| Career docs | "cover letter", "resume", "resume bullets", "CV", "bio", "speaker bio", "LinkedIn About", "about me" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
+| Pitch | "pitch", "op-ed pitch", "pitch an editor", "story pitch", "guest post pitch" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
+| Personal essay | "personal essay", "essay", "memoir", "personal piece", "newsletter essay" | Medium | None |
+| Headlines | "headline options", "headline variants", "title ideas", "subject lines", "headline lab" | Delegate | Hand to the **headline-lab** skill. |
+| Repurpose | "repurpose", "turn this into", "socialize", "cut this down for", "atomize" | Delegate | Hand to the **repurpose** skill. |
 
 **Reference: None** means there's no dedicated template for that type; follow tone-and-guidelines plus the type-specific rules in Step 4.
+
+**Register.** Every type has a voice register (personal, professional, or B2B tech buyer), set by the "Choosing a register" table in tone-and-guidelines. Look it up at routing, because it changes intake and drafting, not only polish: a cover letter and a battle card both need proof, but not the same proof, and not in the same voice. If the type sits between registers, ask with your recommendation.
 
 **Folded types (handled, but not standalone rows):** *Survey/research reports* run as Long-form with a findings-first structure (see the Long-form intake and drafting rules). *Event copy* (conference, meetup, booth) is composed from the Email, Social, and Website copy rules: punchy and CTA-driven (register, attend, visit the booth), with date/time formatting following regional rules. A request for either type still lands here; it just doesn't get its own workflow.
 
@@ -53,7 +60,7 @@ The user's first message names what they need. Detect the content type from it (
 - **Medium** = promise → intake → outline → draft → edit → present (skip deep research)
 - **Light** = promise → intake → draft → edit → present (skip research and outline)
 - **Template** = promise → intake → load the content-type's structural scaffold from the `content-formats` skill → work through its checklist → draft → edit → present
-- **Delegate** = hand the whole job to a dedicated skill that owns this content type (blog → `blog`, which runs its own promise module); don't run quill's workflow for it, the promise included
+- **Delegate** = hand the whole job to a dedicated skill that owns this content type (blog → `blog`, which runs its own promise module; headlines → `headline-lab`; repurposing → `repurpose`); don't run quill's workflow for it, the promise included
 
 If the content type isn't clear, ask.
 
@@ -134,21 +141,20 @@ Use WebSearch to find relevant context:
 - Credible stats or data points that strengthen the piece
 - What's already been published, so this piece adds something new
 
-### Internal research (Notion, Linear, Slack)
-Pull product and team context from connected tools:
-- **Notion:** Product specs, feature docs, positioning notes, prior content
-- **Linear:** Relevant issues, shipped milestones, project context
-- **Slack:** Team discussions, customer feedback, internal framing
+### Internal research (optional, when connected)
+If the session has workspace connectors (a docs wiki like Notion or Confluence, an issue tracker like Linear or Jira, team chat like Slack), pull product and team context from them: specs, positioning notes, shipped milestones, prior content, customer feedback, internal framing. If none are connected, ask the user for the source material instead. Never assume a tool is there, and never invent internal facts to fill the gap.
 
 Don't go down a rabbit hole. Gather what's useful, then move on.
 
 If the user provided source material during intake, prioritize that over independent research. Supplement, don't duplicate.
 
-### Source requirements
+### Source requirements: hand sourcing to cited-works
 
 Content with factual claims must include credible sources: internal insights (product data, usage stats, customer feedback) or external resources (industry reports, research papers, credible publications). A mix of both is ideal.
 
-**Always cite the origin, not the middleman.** See the tone-and-guidelines (Bibliography and Attribution) for the full rule. Short version: trace every stat to its original source.
+Sourcing is a job for **cited-works**, the research plugin, not something quill re-derives. When the piece needs a stat, a quote, or a claim checked, list each need in one line ("a 2025+ stat on developer time lost to flaky tests, primary source") and hand the list to cited-works (job 1, content research). It traces each to the primary source, dates it, checks it against its do-not-cite trap list, and returns a ready-to-paste citation in this piece's format (blog and web: the two-part inline format; long-form: Chicago superscript). Use what comes back verbatim, and drop any claim it couldn't source rather than softening it into an unsourced one.
+
+If cited-works isn't installed, apply the rule it enforces by hand: cite the origin, not the middleman (tone-and-guidelines, Bibliography and attribution), and flag any claim you couldn't trace instead of shipping it.
 
 ### Content strategy check (website copy, ad copy, and long-form)
 
@@ -220,7 +226,7 @@ This step is the craft: everything that happens while the draft is being built. 
 
 Work them on every piece longer than a one-liner. Drafting inside pass 0's constraints and to passes 1 through 8 is what makes Step 5a come back clean; it still runs, as verification. The full treatment, with the examples, is in the reference.
 
-**Then, the voice.** Apply every rule from the tone-and-guidelines style guide (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`). That file is the single source of truth for tone of voice, editorial guidelines, and writing tips: it governs how well-built prose sounds. Read it from the source; don't duplicate it here.
+**Then, the voice.** Apply every rule from the tone-and-guidelines style guide (`${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`), in the register set at routing: **personal** (the full voice), **professional** (the same voice with the grit dialed down, for pieces under Taylor's name that a hiring manager, editor, or client will judge), or **B2B tech buyer** (precise, evidence-first, unhyped, for technical-product content). That file is the single source of truth for tone of voice, editorial guidelines, and writing tips: it governs how well-built prose sounds. Read it from the source; don't duplicate it here. A loaded voice profile replaces the register's personality, never its limits.
 
 **For blog, long-form, and website copy:** also apply the GEO/AEO writing rules in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`. These rules govern passage-level extractability, answer-first structure, information gain, and AI citation optimization. They layer on top of the TOV guidelines. **Citation exception:** the GEO inline-attribution rule applies to blog and website copy only; long-form uses the Chicago superscript + Works Cited appendix format instead (see tone-and-guidelines).
 
@@ -234,10 +240,10 @@ Type-specific rules below.
 
 Before drafting social content, build the voice menu and ask which voice to use (AskUserQuestion). **Don't hardcode the roster here** — voice-profiles is the single source of truth for who's on it. The menu is a recipe:
 
-1. **Default voice** (the default choice): the voice from tone-and-guidelines.
+1. **Default voice** (the default choice): the voice from tone-and-guidelines, in the register the post calls for (personal for Taylor's own feed, professional for career posts, B2B tech buyer for a company account selling to technical buyers).
 2. **Every voice in voice-profiles**: read the Available Voices table in `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/SKILL.md` and offer each person listed, using the table's **Menu blurb** as the option description.
 
-If a person's voice is selected, read their tone profile from the file listed in that table and apply it on top of the tone-and-guidelines editorial guidelines. The tone profile shapes how the piece sounds; the editorial guidelines still govern grammar and formatting, and Step 5 still runs in full. Ogilvy is not on this menu because it is not a voice: it is an edit pass (Step 5b) that applies on top of whichever voice the draft is in.
+If a person's voice is selected, read their tone profile from the file listed in that table and apply it on top of the tone-and-guidelines editorial guidelines. The tone profile shapes how the piece sounds; the editorial guidelines still govern grammar and formatting, and Step 5 still runs in full. Ogilvy is not on this menu because it is not a voice: it is an edit pass (Step 5c) that applies on top of whichever voice the draft is in.
 
 ### Blog-specific
 Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting rules live here: blog owns the shape, citations (the two-part inline format: stat phrase hyperlinked, plain "(Publisher, date)" closing the sentence), SEO requirements, and audit. For a blog in a specific person's voice, tell blog; it reads the profile from voice-profiles.
@@ -248,7 +254,7 @@ Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting ru
 - Customer's voice carries the story. Your job is structure and connective tissue.
 - Lead with what they achieved, not who they are.
 - Every claim needs a number or a direct quote.
-- **Ogilvy pass on by default** (Step 5b). It fits this type almost one to one: one promise (what they achieved), the headline carries it, facts over adjectives (the numbers and the quotes), and the product is the hero of the build, not the writing.
+- **Ogilvy pass on by default** (Step 5c). It fits this type almost one to one: one promise (what they achieved), the headline carries it, facts over adjectives (the numbers and the quotes), and the product is the hero of the build, not the writing.
 
 ### Social-specific
 - **LinkedIn:** Professional with humor. Light emoji. Target ~250-1,300 characters depending on format.
@@ -269,7 +275,7 @@ Additional rules for all website copy:
 - Headline casing on heroes and headers.
 - Show the product. Screenshots, demos, real output. No stock illustrations.
 - Citations: the two-part inline format, never superscripts or a works-cited block. Hyperlink the phrase carrying the statistic, then close the sentence with a plain-text "(Publisher Name, date)". This is the default for ALL web copy; a rare page-level exception (e.g., a gated-asset download page) is a deliberate one-off, decided per piece. Label and link first-party data. Cite sparingly on conversion pages (hero, pricing, landing), more freely on content-style pages (industry, solution, persona, research hubs); keep each claim and its source in the same sentence. See tone-and-guidelines (Bibliography and attribution).
-- **Ogilvy pass on by default** (Step 5b). Conversion copy is its home turf: positioning before promise, headline as a standalone claim, product as hero.
+- **Ogilvy pass on by default** (Step 5c). Conversion copy is its home turf: positioning before promise, headline as a standalone claim, product as hero.
 
 ### Long-form-specific
 - Structured with chapters or major sections.
@@ -281,9 +287,9 @@ Additional rules for all website copy:
 
 Ad copy always produces a multi-variant output: two drafts and one edit pass.
 
-1. **Default-voice draft**: the voice from tone-and-guidelines. Direct, benefit-led, conversational.
+1. **Default-voice draft**: the voice from tone-and-guidelines, in its register (B2B tech buyer for technical products). Direct, benefit-led, conversational.
 2. **Schwartz draft**: diagnose the reader's awareness level and market sophistication using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`, then write the ad to match that intersection. The matrix determines whether to lead with the problem, the mechanism, the proof, or the offer.
-3. **Ogilvy pass** (Step 5b, on by default for ads): run both drafts through the Diagnostic Questions and present the edited versions. Ogilvy is not a third draft. It is the persuasion edit applied to the two angles.
+3. **Ogilvy pass** (Step 5c, on by default for ads): run both drafts through the Diagnostic Questions and present the edited versions. Ogilvy is not a third draft. It is the persuasion edit applied to the two angles.
 
 If the user specified multiple target audiences during intake, produce a full set per audience. Label each clearly by audience and by lens.
 
@@ -293,7 +299,7 @@ Rules for all versions:
 - Every word works. No filler.
 - CTA matches the landing page offer exactly.
 
-Present all versions side by side so the user can compare and pick. No-slops runs on each draft before the Ogilvy pass, and the mechanical checks run again after it.
+Present all versions side by side so the user can compare and pick. No-slops runs on each draft before the Ogilvy pass, and the final sweep (5f) runs after it.
 
 ### Byline-specific
 - Voice-matched to the named author.
@@ -311,14 +317,29 @@ Present all versions side by side so the user can compare and pick. No-slops run
 - Benefit-led. Tie features to business outcomes.
 - Anticipate and address objections.
 - Use language the sales team can repeat in conversations.
-- **Ogilvy pass on by default** (Step 5b). Battle cards live on one clear promise and facts a rep can say aloud; "don't bury the news" is the battle-card failure mode.
+- **Ogilvy pass on by default** (Step 5c). Battle cards live on one clear promise and facts a rep can say aloud; "don't bury the news" is the battle-card failure mode.
 
 ### Webinar-specific
 - **Default voice for all webinar content is the default voice.** Landing pages, emails, reminders, slide copy, recap posts, and brand social posts all use the voice from tone-and-guidelines. Do not apply a personal tone profile to these assets.
 - **Exception, social posts attributed to a named person:** when a post goes out under a team member's own account (someone announcing the webinar, someone else recapping it), read that person's tone profile from voice-profiles and draft in their voice. The post should sound like that person talking about the webinar, not marketing copy about the webinar. This applies only to person-attributed social posts; every other webinar asset stays on the default voice. If the person has no profile in voice-profiles, flag it and use the default voice rather than inventing one.
 - Follow the BOM in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`. Work through each section the user needs; don't dump the whole template at once.
 - Draft all content assets in the order they're needed: landing page → email invite → social announcement → reminders → day-of → follow-up → recap.
-- **Export (Notion + ContentedCal):** webinar BOMs do not export as `.docx`. After drafting, offer to ship the full package (assets + run of show) as a **new Notion page under the Webinar Hub**, then log it in ContentedCal (the editorial calendar of record) with the Notion page linked. See "Export the finished BOM" in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md` for both steps.
+- **Export (optional):** by default a webinar BOM exports like any other piece (Step 6). If the user keeps a team wiki or editorial calendar and it's connected (a Notion or Confluence page, a calendar app), offer to publish the package there instead. See "Export the finished BOM" in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/webinar-bom-template.md`.
+
+### Career docs and pitch-specific
+- Professional register (tone-and-guidelines, Register 2). Follow the per-document rules in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md`: cover letter, resume bullets, bio (three lengths), LinkedIn About, and editor pitch.
+- **Truth gate.** Every claim maps to something the user actually did, said, or can show. Mirror the target's language only where it is true of them; never add a skill, credential, tool, or title the source material doesn't support, and ask rather than stretch. A stretched resume line costs more in the interview than it buys on the page.
+- Tailored to one target. When there's a job description, extract its top 5 requirements first and make sure each is answered with proof, or flagged to the user as a gap.
+- Numbers lead. Result, scale, and timeframe before the color.
+- red-pen in Proofread-only mode before anything is sent: a typo in a cover letter is a disqualifier, not a nit.
+
+### Personal essay-specific
+- Personal register (tone-and-guidelines, Register 1), at full strength.
+- The promise is a felt truth, not a takeaway. The reader should leave with a changed sense of something, not a list.
+- Scene before reflection; the reflection earns its place only after the reader has been in the room.
+- Specifics carry the weight: names, objects, prices, smells, the exact thing someone said.
+- The ending lands an image or a turn, never a moral. If the piece ends by explaining itself, cut the last paragraph and check whether the one before it is the real ending.
+- red-pen's Developmental mode is the right first edit on a long draft: structure before sentences.
 
 ### Creator brief-specific
 - Follow the structure in `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/creator-brief-template.md`.
@@ -330,31 +351,44 @@ Present all versions side by side so the user can compare and pick. No-slops run
 
 The draft is finished. Everything from here is a separate tool with a separate job, applied to a draft that already exists. Don't fold these back into drafting: craft happens while you write, editing happens to what you wrote, and they stay separate thoughts.
 
-**Order.** No-slops first, always. Then whichever optional passes the piece needs, in the order below. After any optional pass, re-run no-slops's mechanical checks (the §0 fingerprint sweep, Tier 1 vocabulary, banned phrases, em dashes, adverbs): every rewrite is a fresh chance for a tell to get in.
+**Order: structure first, sentences last.** Big edits before small ones, so nothing gets polished and then rewritten:
 
-### 5a. No-slops (mandatory, every piece)
+1. **5a. No-slops gate** (mandatory). Catch the tells before anyone edits around them.
+2. **5b. Schwartz re-angle** (optional). Changes the headline, lead, and structure, so it goes before anything that polishes them.
+3. **5c. Ogilvy** (default on some types). Promise, proof, and headline: what the piece says.
+4. **5d. aeo-craft** (published web content). Reshapes sections and headers for extraction.
+5. **5e. red-pen** (anything going to publish). The line-level copyedit, last, on structure that is no longer moving.
+6. **5f. Final sweep** (mandatory). no-slops's mechanical checks once more, because every rewrite is a fresh chance for a tell to get in.
+
+Skip any optional pass the piece doesn't need, but never reorder the ones that run.
+
+### 5a. No-slops gate (mandatory, every piece)
 
 Run the `no-slops` skill against the draft (`${CLAUDE_PLUGIN_ROOT}/skills/no-slops/SKILL.md`), the single source of truth for the AI-tell filter and the 35/50 scoring rubric. Score the draft on directness, rhythm, trust, authenticity, and density. 35/50 minimum to pass. Fix every violation before moving on. If the draft scores below 35, revise and re-audit. This is verification, not the first encounter with the rules: they were drafting constraints in Step 4 (prose-craft pass 0). A finding here means the draft was not built clean. Fix it, and note which pass let it through.
 
 **For Light workflows (social, short emails):** skip the 35/50 scoring ceremony, but run the mechanical checks for real, not mentally: the §0 fingerprint sweep, Tier 1 vocabulary, banned phrases, em dashes, and adverbs. Short copy ships more often than anything else, which makes it the main leak. "It's just a tweet" is how tells get published.
 
-### 5b. Ogilvy pass (the persuasion edit)
+### 5b. Schwartz re-angle (when the substance is right and the opening isn't)
+
+Diagnose the reader's awareness level and market sophistication with `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`, then rewrite the headline, lead, and structure to match that cell. Present it alongside the original so the user can compare. Most useful on blog posts and website copy. Rarely needed when the Step 2 diagnosis was done properly. When the headline is the only thing in question, hand it to `headline-lab` instead.
+
+### 5c. Ogilvy pass (the persuasion edit)
 
 **On by default for customer stories, sales enablement, landing pages and web copy, and ad copy. On request for everything else.** Run `ogilvy-copywriting` in review mode: take its **Diagnostic Questions** and ask them of the finished draft instead of before writing. What is the positioning, and who is it for? What is the single promise, and is it the only one? Does the headline carry that promise, and the news if there is any? What proof exists, and are facts doing the work the adjectives are pretending to do? Is the news buried? Is it boring? Is the product the hero, or is the writing? Fix what fails. Leave what passes alone.
 
-This is discipline, not a voice. It applies on top of whatever voice the draft is in, a team member's included, and it never rewrites voice. On the default types, offer it after no-slops without being asked. On everything else, run it when the user asks, or when the piece has to sell something and isn't.
-
-### 5c. red-pen (the copyedit)
-
-For anything going to publish, or whenever the user says "tighten," "edit," "redline," or "check readability," hand the draft to `red-pen`. It owns the diagnostic lenses (lead, stress position, given-new cohesion, rhythm, kicker, thought-verbs, stance), the readability script against the target reader's Flesch band, and the numbered 🔴🟡🔵 findings. quill duplicates none of it. If red-pen keeps flagging the same lens on your drafts, the fix belongs in Step 4: reread the matching pass in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md`.
+This is discipline, not a voice. It applies on top of whatever voice the draft is in, a team member's included, and it never rewrites voice. On the default types, offer it after the no-slops gate without being asked. On everything else, run it when the user asks, or when the piece has to sell something and isn't.
 
 ### 5d. aeo-craft (the citability sculpt)
 
-Every blog post and web page that will be published goes through `aeo-craft` after no-slops. It reshapes the finished draft so AI answer engines can find, extract, and cite it, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as its rulebook and Cairrot as its measurement spine. It is a sculpt, not a rewrite: TOV and accuracy win every disagreement. Its Plan mode runs earlier, before the outline is locked, when the piece targets a definitional or question-shaped query.
+Every blog post and web page that will be published goes through `aeo-craft` before the copyedit. It reshapes the finished draft so AI answer engines can find, extract, and cite it, using `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` as its rulebook and Cairrot as its measurement spine. It is a sculpt, not a rewrite: TOV and accuracy win every disagreement. Its Plan mode runs earlier, before the outline is locked, when the piece targets a definitional or question-shaped query.
 
-### 5e. Schwartz re-angle (when the substance is right and the opening isn't)
+### 5e. red-pen (the copyedit, last)
 
-Diagnose the reader's awareness level and market sophistication with `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md`, then rewrite the headline, lead, and structure to match that cell. Present it alongside the original so the user can compare, and run no-slops on the result. Most useful on blog posts and website copy. Rarely needed when the Step 2 diagnosis was done properly.
+For anything going to publish, or whenever the user says "tighten," "edit," "redline," or "check readability," hand the draft to `red-pen`. It goes last because it works at the line level, and line edits on a structure that's about to move are wasted. It owns the diagnostic lenses (lead, stress position, given-new cohesion, rhythm, kicker, thought-verbs, stance, claims and proof), the readability script against the target reader's Flesch band, and the numbered 🔴🟡🔵 findings. quill duplicates none of it. Pick the red-pen mode that fits: the default verdict and reds, Developmental for a long draft whose structure is still in question (run that one before 5b instead), or Proofread-only for a piece that's already been edited. If red-pen keeps flagging the same lens on your drafts, the fix belongs in Step 4: reread the matching pass in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md`.
+
+### 5f. Final sweep (mandatory)
+
+Re-run no-slops's mechanical checks on the final text: the §0 fingerprint sweep, Tier 1 vocabulary, banned phrases, em dashes, and adverbs. No rescoring unless the edits changed more than a few sentences. If no optional pass ran, 5a already covered it; skip this.
 
 
 ## Step 6: Present
@@ -364,9 +398,9 @@ Deliver clean, ready-to-use copy. Include:
 - The full content with proper formatting
 - A suggested meta description (under 160 characters) for any web-published content
 
-The optional edit passes (Ogilvy, red-pen, aeo-craft, the Schwartz re-angle) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
+The optional edit passes (the Schwartz re-angle, Ogilvy, aeo-craft, red-pen) were offered in Step 5. Don't re-offer them here unless the user asks. Presenting is presenting.
 
-**For any content type**, if the user asks to export: generate a Word doc via the `anthropic-skills:docx` skill and save it to `~/Documents/Drafts/` by default. For Google Drive delivery, copy the finished `.docx` into the synced Drive folder (`My Drive/Claude-Drafts`; requires Drive for Desktop running). Keep it a `.docx`. Do NOT create a native Google Doc through the Drive MCP; that path loses formatting and was retired. (One exception: **webinar BOMs** export as a new Notion page under the Webinar Hub, not a `.docx` — see Webinar-specific in Step 4.)
+**For any content type**, if the user asks to export: generate a Word doc via the `anthropic-skills:docx` skill and save it to `~/Documents/Drafts/` by default. For Google Drive delivery, copy the finished `.docx` into the synced Drive folder (`My Drive/Claude-Drafts`; requires Drive for Desktop running). Keep it a `.docx`. Do NOT create a native Google Doc through the Drive MCP; that path loses formatting and was retired. (Webinar BOMs can go to a connected team wiki instead; see Webinar-specific in Step 4.)
 
 
 ## Google Doc template population

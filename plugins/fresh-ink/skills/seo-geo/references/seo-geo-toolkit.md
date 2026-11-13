@@ -61,7 +61,7 @@ Don't auto-run these. Present them as options (AskUserQuestion with `multiSelect
 | `/seo-images` | Content has images, or user asks about image SEO | Alt text, file size, format, placement |
 | `/seo-image-gen` | Content needs OG/hero/visual assets | Image generation plan with prompts (does not auto-generate) |
 | `/entity-optimizer` | User wants stronger brand/author recognition in AI systems | Knowledge Graph and entity signal recs |
-| `/socialize-content` | User wants to repurpose the piece for social | LinkedIn, X, or Reddit versions from the draft |
+| `repurpose` (fresh-ink) | User wants to repurpose the piece for other channels | Native LinkedIn, X, newsletter, and email versions from the finished piece, citations intact |
 
 ### After publish
 

@@ -3,11 +3,13 @@ name: cited-works
 description: >
   A research assistant with newsroom-strict sourcing: every stat traced to its primary source,
   dated, checked against a do-not-cite trap list, and delivered with a ready-to-use citation.
-  Four jobs: (1) content research — stats, quotes, and sources for a piece being written;
+  Five jobs: (1) content research — stats, quotes, and sources for a piece being written;
   (2) competitive and market intel — the companies you compete with and the landscape around them;
   (3) deep one-off research reports — extends a generic deep-research skill with strict sourcing
   standards; (4) PR and media research — journalists, podcasts, publications, analysts and what
-  they cover. Trigger on: "research X", "find stats/sources/data for", "dig into", "what's the
+  they cover; (5) verify a draft: extract every factual claim from a finished piece and check
+  each one against its source. Trigger on: "research X", "fact-check this", "verify this draft",
+  "check my sources", "are these stats real", "find stats/sources/data for", "dig into", "what's the
   competitive landscape", "what has [competitor] shipped", "who covers [topic]", "cited works", or
   any request for sourced facts, market intel, or media mapping. Do NOT use for drafting, editing,
   or for your own site analytics (those have their own tools).
@@ -75,11 +77,11 @@ publisher AND the year, so the citation can be written without a second lookup.
 6. **Deliver and deposit.** Stamp the output **"Research as of [date]"** at the top, deliver in the
    requested shape, and offer verified finds (and any newly discovered traps) back to the libraries.
 
-## The four jobs
+## The five jobs
 
 Detect which job the request is, confirm only if genuinely ambiguous.
 
-### 1. Content research — "find stats for the piece"
+### 1. Content research: "find stats for the piece"
 
 Fuel for something being written. Process: check the libraries first → targeted web fan-out (search,
 then fetch the primaries) → verify to origin → deliver stat cards. Group findings by the argument
@@ -88,7 +90,14 @@ its sections and flag the gaps explicitly ("no verified source found for section
 writer knows exactly where the holes are. End with: anything trapped or unverifiable that the user
 should know is OFF the table for this topic.
 
-### 2. Competitive & market intel — "what's the landscape"
+**Handoffs from the writing tools.** quill and blog hand this job a list of needs, one line each
+("a 2025+ stat on developer time lost to flaky tests, primary source"). Answer each line in order,
+and return the citation already in the format the piece uses: the two-part inline format for blog
+and web copy (stat phrase hyperlinked, then "(Publisher, date)" closing the sentence), Chicago
+superscript plus a Works Cited entry for long-form. A need you can't source comes back marked
+**no verified source**, never with a weaker stand-in.
+
+### 2. Competitive & market intel: "what's the landscape"
 
 Your competitive set and the market around it: funding, launches, pricing changes, positioning
 shifts, notable coverage. Rules of engagement: plain names, receipts on every claim, and **date every
@@ -99,7 +108,7 @@ with a "what changed since last check" lead when the hub holds a prior version.
 
 → `[YOUR COMPETITIVE SET]` — the companies to track by default.
 
-### 3. Deep one-off reports — "go research X properly"
+### 3. Deep one-off reports: "go research X properly"
 
 For big questions, delegate the heavy machinery to a **deep-research** skill (fan-out searches,
 adversarial verification, synthesis), then post-process its output through the sourcing bar above:
@@ -111,12 +120,38 @@ single source carrying more than 25% of the findings; every source tagged by typ
 academic / industry / journalism / community). A report that can't clear the gates says so and
 explains why (niche topic, paywalled primaries) rather than padding with weak sources.
 
-### 4. PR & media research — "who covers this"
+### 4. PR & media research: "who covers this"
 
 Journalists, publications, podcasts, newsletters, and analysts in your space: who they are, what
 they've written lately (linked), their angle, and a one-line "why they'd care" pitch note. For
 analysts, include firm and coverage area. Never invent coverage; if someone's recent work isn't
 findable, say so.
+
+### 5. Verify a draft: "fact-check this before it ships"
+
+The reverse of job 1: the piece already exists, and every claim in it has to earn its place. red-pen
+hands unverified claims here from its claims-and-proof lens; users can also ask directly.
+
+1. **Extract.** List every checkable claim in order: numbers, dates, names, titles, quotes,
+   attributions, causal claims ("X led to Y"), superlatives ("the first," "the largest"), and
+   anything about a competitor. Skip opinion that is clearly framed as opinion.
+2. **Check each claim** against the sourcing bar above: trace it to the origin, confirm the number
+   and its wording match, confirm the date, run it against the do-not-cite trap list, and check that
+   the cited source actually says what the sentence says it says.
+3. **Rate each claim:**
+   - ✅ **Verified:** origin found, matches, current. Give the citation in the piece's format.
+   - 🟡 **Fix:** real but wrong in the draft (misquoted number, wrong year, middleman cited instead of
+     origin, stat stretched past what the study found). Give the corrected sentence.
+   - 🔴 **Cut or source:** no primary source found, or it's on the trap list. Say which, and suggest
+     a verified replacement if one exists.
+   - ⚪ **Can't check:** internal or first-party claims ("our customers save 6 hours a week").
+     Flag them for the user to confirm against their own data; never mark them verified.
+4. **Report** as a numbered table in draft order: claim (quoted), rating, source or reason, fix.
+   Lead with the count ("23 claims: 17 ✅, 3 🟡, 2 🔴, 1 ⚪") and list the 🔴 items first if any
+   exist. Don't rewrite the piece; return the fixes and let the writer or red-pen apply them.
+
+Quotes get the strictest check: confirm the speaker, the exact wording, and the venue and date. A
+paraphrase inside quotation marks is a 🟡, however close it is.
 
 ## Where findings land
 

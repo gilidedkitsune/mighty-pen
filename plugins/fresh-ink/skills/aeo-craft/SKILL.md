@@ -17,7 +17,7 @@ description: >
 
 The sculpting pass. Other skills make the prose good; this one makes it **citable**: findable by retrieval, extractable in standalone passages, and safe to quote. It runs on drafts, not blank pages.
 
-**Where it sits in the craft topology:** prose-craft builds prose → SEO-GEO-drafting guides searchable drafting → no-slops catches AI tells → red-pen diagnoses the writing → **aeo-craft sculpts for machine citability**. Read `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` before running a pass: it is the rulebook this skill enforces, including the shared spine, the three tensions, and the per-engine notes (its FAST-MOVING section is the single source for engine behavior — don't duplicate it here, read it there).
+**Where it sits in the craft topology:** prose-craft builds prose → SEO-GEO-drafting guides searchable drafting → no-slops catches AI tells → **aeo-craft sculpts for machine citability** → red-pen copyedits last, on structure that has stopped moving (quill Step 5). Read `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` before running a pass: it is the rulebook this skill enforces, including the shared spine, the three tensions, and the per-engine notes (its FAST-MOVING section is the single source for engine behavior — don't duplicate it here, read it there).
 
 **What this skill does not do:** keyword/SERP/traffic data (that's `seo-geo`, which also says what's connected — never fabricate metrics), drafting voice (tone-and-guidelines + prose-craft), AI-tell cleanup (no-slops). If the draft hasn't passed no-slops, send it there first; sculpting slop makes citable slop.
 

@@ -2,43 +2,29 @@
 
 A production checklist and content template for webinars. Covers everything from planning through post-event content. Work through each section in order; skip what doesn't apply.
 
-Adapt the filing step below to wherever your own editorial calendar of record lives.
-
 ---
 
-## Export the finished BOM (Notion page + ContentedCal entry)
+## Export the finished BOM (optional)
 
-Webinar BOMs do **not** export as `.docx`. The finished package (all drafted assets plus the run of show) ships as a **new Notion page**, so everything lives in one doc, and then gets logged in **ContentedCal**, the editorial calendar of record. Two steps, in order:
+By default the finished package (all drafted assets plus the run of show) exports like any other piece: a `.docx` through quill's Step 6. If the user keeps a team wiki or an editorial calendar and it's connected to the session, offer to file it there instead. Never assume either exists; ask which one, if any.
 
-### 1. Create the Notion BOM page
+### Option A: a team wiki page (Notion, Confluence, or similar)
 
-Create a new page as a **child of your own Webinar Hub** (set its parent page ID once you have one) using the Notion MCP (`notion-create-pages`). One new doc per webinar, filed under the Hub.
+One page per webinar, filed under whatever parent page the user names (for example, a Webinar Hub).
 
 - **Title:** the webinar title (append the date if the title alone is ambiguous)
-- **Content:** the filled-in BOM below, rendered as Notion-flavored Markdown:
-  - Toggle headings (`{toggle="true"}`) for collapsible sections (Content Review Checklist, Partner Details, SEO & GEO)
-  - Checkboxes (`- [ ]`) for all checklist items
-  - Tables for the content BOM tracker and the run-of-show timeline
-  - Date fields rendered as `@YYYY-MM-DD` inline mentions where dates are filled in
-- Fetch the Notion enhanced-markdown-spec resource (`notion://docs/enhanced-markdown-spec`) before building the page content to ensure correct syntax.
+- **Content:** the filled-in BOM below. Use the wiki's collapsible sections for the Content Review Checklist, Partner Details, and SEO & GEO; checkboxes for checklist items; tables for the content BOM tracker and the run-of-show timeline.
+- For Notion, fetch its enhanced-markdown spec resource (`notion://docs/enhanced-markdown-spec`) before building the page so the syntax renders.
 - Confirm with the user before creating; return the new page URL when done.
 
-### 2. Log it in ContentedCal
+### Option B: an editorial calendar entry
 
-ContentedCal (contentedcal.com) is the in-house Supabase app: write through the already-connected Supabase MCP (`mcp__supabase__execute_sql`). There is no separate ContentedCal API key or connector.
+If the user tracks content in a calendar tool and it's connected (through its own connector or a database connector), log the webinar there.
 
-Before writing anything, ask the user which **workspace and project** the webinar belongs to (list their projects if needed), then confirm exactly what you're about to create. Insert into `content_items`:
-
-- `title`: webinar title
-- `content_type_id`: the workspace's "Webinar" content type
-- `status`: the workspace's Backlog or Scheduled board column (user's call)
-- `channel`: "Other" unless the user prefers a specific channel
-- `due_date`: webinar date; `publish_date`: same, unless the user says otherwise
-- `project_id`: the project the user picked
-- `assignee_ids`: the owner(s) the user names
-- `description`: one-line summary **plus the Notion BOM page URL from step 1**, so the calendar entry and the doc stay connected
-
-Optionally offer one item per major BOM asset (landing page, email invite, social, recap) instead of a single item, mirroring how launch projects are structured. The schema evolves: check current columns with a `SELECT ... LIMIT 1` before inserting, and confirm with the user before any write.
+- Ask which workspace or project it belongs to, then confirm exactly what you're about to create.
+- Fields to fill, mapped to whatever the tool calls them: title, content type (Webinar), status, channel, due or publish date (the webinar date), owner, and a one-line description **with the wiki page URL from Option A**, if there is one, so the entry and the doc stay connected.
+- Optionally offer one entry per major asset (landing page, email invite, social, recap) instead of a single entry.
+- If the tool is a database, check the current columns before writing (a `SELECT ... LIMIT 1` or equivalent), and confirm with the user before any write.
 
 ---
 
