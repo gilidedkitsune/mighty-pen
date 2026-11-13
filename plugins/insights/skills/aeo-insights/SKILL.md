@@ -1,7 +1,7 @@
 ---
 name: aeo-insights
 description: >
-  Part of the Insights plugin, and dormant until wired: if no AI-visibility source (a Cairrot
+  Part of the Insights plugin, and dormant until wired: if no AI-visibility source (an MCP
   connector or a local puller) is connected, it says so in one line and does nothing else. Once
   wired, it measures how AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini,
   Claude, Copilot, DeepSeek, Grok) treat your site for a topic: named versus cited, per engine,
@@ -20,7 +20,7 @@ The measurement half of AEO. fresh-ink's `search-weave` shapes a draft so engine
 ## Dormant until wired (check this first, every time)
 
 Look for an AI-visibility source, in this order:
-1. **A Cairrot MCP connector.** Load its tools with ToolSearch, keyword `cairrot` (the server prefix changes between sessions; search by name, never by prefix), then run `list_projects`.
+1. **An AI-visibility MCP connector.** Load its tools with ToolSearch, using the tool vendor's name as the keyword (the server prefix changes between sessions; search by name, never by prefix), then run `list_projects`.
 2. **A local REST puller** against the same API, if the user has one set up.
 
 - **Neither is there:** say so in one line ("No AI-visibility source is connected, so I can't measure this") and stop. Don't estimate, don't walk through setup unless asked, and don't block the writing skill that called you: search-weave runs on what the user supplies.
@@ -32,7 +32,7 @@ Look for an AI-visibility source, in this order:
 
 **How to pull it.** Over the MCP: read `get_index_schema`, build a filter with `build_lucene_query` scoped to the topic and a 30-day window, then run `search_mentions` (named) and `search_citations` (cited). With a puller: its `topics` view. Name the window on every number.
 
-Cairrot tools and what they're for (as of September 2026; if they've moved, `list_projects` and `get_index_schema` will orient you):
+Connector tools and what they're for (as of September 2026; if they've moved, `list_projects` and `get_index_schema` will orient you):
 - `list_projects`, `get_project`: pick the project this content belongs to
 - `get_index_schema`, `build_lucene_query`: field names, then a scoped query
 - `search_mentions`: named
@@ -76,13 +76,13 @@ Re-pull the same topic, same filters, after a few weeks. Report named and cited 
 - **Small samples swing.** A tracked prompt set is usually small, so single-window moves are noise. Prefer the trend over any one pull.
 - **It measures your configured prompt set,** not the whole internet. Competitor numbers compare fairly with yours on that basis, but they can't support a public "Nth most visible" claim.
 - **Never mix tools.** If you switch AI-visibility tools, don't put their numbers in one table or one sentence: different prompt sets aren't comparable, and the gap reads as a collapse when it's only a change of instrument.
-- **Read-only.** Cairrot's keyword and competitor lists are edited with calls that replace the whole list; one careless write wipes the tracking everyone's numbers rest on. Query; never edit.
+- **Read-only.** The keyword and competitor lists are edited with calls that replace the whole list; one careless write wipes the tracking everyone's numbers rest on. Query; never edit.
 
-## One-time setup: Cairrot (per user, about five minutes)
+## One-time setup: the connector (per user, about five minutes)
 
 Only when the user asks to wire it up.
-1. **Get a Cairrot login** for the project. In Cairrot: Account Settings, then Create API Key. Prefer a project-scoped key, and treat it like a password: never paste it into chat, a doc, or a skill file.
-2. **Add the connector** in Claude: Settings, Connectors, add a custom connector. Server: `https://api.cairrot.com/api/v1/mcp`. Auth: OAuth, Client ID `Cairrot-MCP`, the API key as the client secret. If adding a custom connector isn't offered, a workspace admin may need to allow it.
-3. **Confirm** in a new session (an open one won't see the new tools): ToolSearch `cairrot`, then `list_projects`. If the project is listed, it's wired.
+1. **Get an API login** for the project from the tool's account settings (create an API key). Prefer a project-scoped key, and treat it like a password. Prefer a project-scoped key, and treat it like a password: never paste it into chat, a doc, or a skill file.
+2. **Add the connector** in Claude: Settings, Connectors, add a custom connector. Server: the vendor's MCP address from its documentation. Auth: whatever the vendor specifies (usually OAuth, with the API key as the client secret). If adding a custom connector isn't offered, a workspace admin may need to allow it.
+3. **Confirm** in a new session (an open one won't see the new tools): ToolSearch with the vendor's name, then `list_projects`. If the project is listed, it's wired.
 
-Any other AI-visibility tool with named and cited data per topic and engine works the same way; map its calls onto the three jobs above.
+Any AI-visibility tool that reports named and cited data per topic and per engine works the same way; map its calls onto the three jobs above.

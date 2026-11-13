@@ -98,7 +98,7 @@ There's no persona library anymore: craft asks who a piece is for directly (role
 | Skill | Job |
 |---|---|
 | seo-geo | Your site's real GA4 and Search Console numbers, plus the map of which SEO tools to run at each stage |
-| aeo-insights | AI-answer visibility: named versus cited, per engine, term winnability, and before-and-after measurement (needs a Cairrot connector or similar) |
+| aeo-insights | AI-answer visibility: named versus cited, per engine, term winnability, and before-and-after measurement (needs an AI-visibility connector) |
 
 Both are **dormant until wired**. Each one checks for its connection first; if it isn't there, it says so in one line and stops, and fresh-ink carries on with whatever keywords and citations you supplied. When they are wired, search-weave can pull its inputs from them instead of asking you.
 

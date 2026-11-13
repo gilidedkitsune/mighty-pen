@@ -43,4 +43,4 @@ Historical campaign examples used in teaching material (for instance in no-slops
 
 ## Tools this repo calls at runtime
 
-These aren't bundled. Users connect them themselves: Google Analytics, Google Search Console, and Cairrot (AI-answer visibility). Each has its own terms of service.
+These aren't bundled. Users connect them themselves: Google Analytics, Google Search Console, and an AI-visibility connector. Each has its own terms of service.
