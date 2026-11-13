@@ -26,7 +26,7 @@ VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 KIT = ["quill", "tone-and-guidelines", "voice-profiles",
        "no-slops", "content-formats",
        "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft"]
-STANDALONE = ["red-pen"]
+STANDALONE = ["red-pen", "no-slops"]  # no-slops also lives in KIT: one source, copied into both plugins
 RESEARCH = ["cited-works"]
 
 EXCLUDE_NAMES  = {".last-source-check", ".DS_Store", "__pycache__", ".git"}
@@ -93,7 +93,7 @@ def main():
         "Ogilvy, slop audit, and SEO/GEO data for written content.")
     build_plugin("red-pen", STANDALONE,
         "The fix-it tool: a tough, exacting copyeditor with verdict-first review, "
-        "quick-fix or full report, and concreteness scoring.")
+        "quick-fix or full report, and concreteness scoring, plus the no-slops AI-tells filter.")
     build_plugin("cited-works", RESEARCH,
         "The find-it tool: a research assistant with newsroom-strict sourcing. Traces "
         "every stat to its primary source, dates it, checks it against a do-not-cite "

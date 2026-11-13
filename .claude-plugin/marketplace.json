@@ -9,19 +9,19 @@
       "name": "fresh-ink",
       "source": "./plugins/fresh-ink",
       "description": "The make-it kit: routing spine + craft + voice + personas + formats + SEO/GEO.",
-      "version": "2.2.1"
+      "version": "2.3.0"
     },
     {
       "name": "red-pen",
       "source": "./plugins/red-pen",
-      "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring.",
-      "version": "2.2.1"
+      "description": "The fix-it tool: verdict-first copyedit, quick-fix or full report, concreteness scoring, plus the no-slops AI-tells filter.",
+      "version": "2.3.0"
     },
     {
       "name": "cited-works",
       "source": "./plugins/cited-works",
       "description": "The find-it tool: newsroom-strict sourcing, trap-list checks, ready-to-use citations.",
-      "version": "2.2.1"
+      "version": "2.3.0"
     }
   ]
 }
