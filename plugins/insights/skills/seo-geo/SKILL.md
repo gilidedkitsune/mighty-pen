@@ -31,16 +31,17 @@ This skill pulls **real** traffic and search-performance numbers for your site a
 
 Read this before running any data skill. The rule that matters: **if a backend isn't connected, do not invent its output. Skip it (say so in one line) or ask the user for the data.** Never fabricate search volumes, keyword difficulty, rankings, or traffic.
 
-**✅ CONNECTED — Google, for your site** (this skill, read-only, signed in as the user):
+**✅ Google, for your site, once set up** (this skill, read-only, signed in as the user; the Dormant check above says whether it is):
 - **GA4** — sessions, users, engagement rate, page views, broken out by default channel group (Organic Search, Direct, Referral, etc.). Answers "how much traffic, from where, how engaged."
 - **Search Console** — impressions, clicks, CTR, average position, by query or by page. Answers "what are we ranking for and how does it perform in Google."
 
-**✅ CONNECTED where configured — AI-answer visibility, via Cairrot.** Live AEO numbers — visibility, named-vs-cited, per-model breakdown, competitor leaderboard, sentiment, AI-crawler hits — come from a **Cairrot** connector when one is set up (per-user setup in `aeo-insights`, this plugin). **Use Cairrot for every AI-visibility question**; this skill doesn't carry that data itself. If you ever replace your AI-visibility tool, don't mix numbers across tools in one table or report the gap as a decline: different methodologies over different prompt sets aren't comparable, it's a change of instrument. Always name the source and the date window on every number.
+**AI-answer visibility** (named versus cited, per engine, competitors) is not this skill's: it's `aeo-insights`, in this plugin, which owns its own connection check and the rule against mixing numbers across tools.
 
 **❌ NOT connected — keep gated, never fabricate:**
 - **DataForSEO** (live SERP, search volume, keyword difficulty): the data parts of `/keyword-research`, `/serp-analysis`, `/seo-cluster`, `/seo-content-brief`, `/seo-dataforseo`, `/competitor-analysis`, `/seo-backlinks`.
 - **Firecrawl** (full-site crawl): `/seo-firecrawl`, and the crawl steps in `/seo-audit`.
-- **PageSpeed / CrUX** (Core Web Vitals field data): not wired.
+- **PageSpeed / CrUX** (Core Web Vitals field data): not wired. The generic `/seo-google` skill covers these angles if the user has it; for GA4 and GSC, this skill's puller is preferred.
+- **Domain authority data**: `/domain-authority-auditor` needs an external authority source.
 
 **Always safe with no backend** (logic/judgment, no live data): `/content-strategy`, `/meta-tags-optimizer`, `/schema-markup-generator`, `/internal-linking-optimizer`, and any WebSearch-driven trend scan. For AI-citation structure, fresh-ink's `search-weave` replaced the generic `/geo-content-optimizer`; it runs on the keywords and citations the user supplies and needs no backend. AI-visibility measurement is `aeo-insights`, in this plugin. Repurposing for social and email is fresh-ink's `socialize`.
 
@@ -78,7 +79,7 @@ If `ga4` or `gsc` returns an auth error, the sign-in expired (see the note in se
 
 ### Feeding other skills
 
-When `/performance-reporter`, `/content-refresher`, or a content brief needs real traffic or search numbers, pull them here first, then hand the JSON to that skill. For AI-answer KPIs, pull them live from your Cairrot connector and pass the figures with their window. That's the whole point of having a connected source: those skills stop guessing.
+When `/performance-reporter`, `/content-refresher`, or a content brief needs real traffic or search numbers, pull them here first, then hand the JSON to that skill. For AI-answer KPIs, run `aeo-insights` and pass its figures with their window. That's the whole point of having a connected source: those skills stop guessing.
 
 For **which** `/seo-*` skill to run at **which** stage of a content project (research, outline, post-draft, post-publish), see `${CLAUDE_PLUGIN_ROOT}/skills/seo-geo/references/seo-geo-toolkit.md` — the full orchestration map with a decision tree. This skill owns *what's connected and how to pull it*; that reference owns *the workflow choreography*.
 

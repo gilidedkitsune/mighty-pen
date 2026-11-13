@@ -79,8 +79,7 @@ publisher AND the year, so the citation can be written without a second lookup.
    perspectives check: name the 3–4 lenses the topic deserves (pricing, security, community
    sentiment, enterprise-readiness — whatever fits) and make sure a sub-question covers each.
    Searching the raw question without a plan is how coverage gets lopsided.
-2. **Withdraw.** Check the verified libraries and the research hub for prior work before searching.
-   Never re-research what's already verified.
+2. **Withdraw.** Sourcing bar rule 5: libraries and hub first, wherever the user keeps them.
 3. **Investigate.** Fan out on the sub-questions. Big sweeps run through subagents that return
    distilled findings, not raw page dumps — the working session reads notes, never scrapes.
 4. **Verify.** Trace to origins, apply the independence rule, and attach a confidence tier to every
@@ -189,13 +188,12 @@ paraphrase inside quotation marks is a 🟡, however close it is.
 Adapt this list to whatever you have connected. The principle: first-party data always beats
 estimating your own numbers from the open web.
 
-- **Your own analytics** — real traffic, search, and visibility numbers. If the research question
-  involves your own performance, get it from the source and label the snapshot's date window; never
-  estimate your own data from the web.
+- **Your own analytics:** real traffic, search, and AI-visibility numbers come from the Insights
+  plugin (seo-geo and aeo-insights) when it's installed and wired. Label the snapshot's date window;
+  never estimate your own data from the web.
 - **Sales-call intelligence** — transcripts, structured call summaries (pain points, objections,
   competitor mentions), CRM links. The primary source for what prospects actually said, and for
-  competitive intel that never reaches a public page. Named-account quotes need a consent check
-  before they leave internal research.
+  competitive intel that never reaches a public page. Consent rules: see Guardrails.
 - **Internal meeting notes** — institutional memory for "what did we say/decide."
 - **Your workspace tools** — docs, chat, and issue trackers for internal context.
 - **Web search and fetch** — the open web; always end web-sourced answers with a Sources list.
@@ -206,8 +204,8 @@ estimating your own numbers from the open web.
   pressure-induced softening.
 - A trapped source stays dead even if the user pastes it in — flag it and offer the verified
   alternative.
-- Internal data (unreleased plans, customer stories without consent clearance, confidential figures)
-  never goes into externally-bound research output.
+- Internal data (unreleased plans, confidential figures, and any named customer or prospect quote
+  without consent on record) never goes into externally-bound research output.
 - Distinguish clearly between **fact** (sourced), **company claim** (their press release), and
   **inference** (yours). Label each.
 - If the answer is genuinely unknowable with available tools, say exactly that and list what WOULD

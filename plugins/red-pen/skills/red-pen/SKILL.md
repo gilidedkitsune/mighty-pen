@@ -131,14 +131,14 @@ How does it end: on a fact, an image, or a consequence, or on a summary of what 
 
 Citations are part of claims-and-proof, and the right *format* depends on the content type. First confirm every factual claim, stat, or direct quote has a credible source, and that it points to the **origin, not the middleman** (a Forrester stat cited to Forbes is a Yellow flag). Then check the format matches the type. The source of truth is tone-and-guidelines, "Bibliography and attribution":
 
-- **Long-form** (ebook, whitepaper, guide, report): superscript in-text numbers tied to a **Works Cited appendix**, Chicago Manual of Style. A missing appendix, un-numbered claims, or inconsistent Chicago formatting are flags.
+- **Long-form** (ebook, whitepaper, guide, manual, report): superscript in-text numbers tied to a **Works Cited appendix**, Chicago Manual of Style. A missing appendix, un-numbered claims, or inconsistent Chicago formatting are flags.
 - **All web copy (blog and website):** the **two-part inline citation**. The phrase carrying the statistic is hyperlinked to the origin, and the sentence closes with a plain-text "(Publisher Name, date)". Check both halves: a link sitting on the publisher name instead of the claim phrase is Blue, a missing or undated parenthetical is Blue, an unlinked claim is Blue. Footnotes, a bibliography, or a works-cited block on web copy is the wrong format (Yellow). On website pages, first-party data should be labeled and linked. (A deliberate one-off, like a gated-asset download page, isn't a mismatch; flag it only if it looks accidental.)
 
 Flag mismatches at the appropriate tier; a missing source on a load-bearing claim is Red. Don't reformat by hand unless asked: name the type, name the mismatch, point to the rule.
 
 ### Readability scoring
 
-Always run the bundled readability script on every edit and diagnostic pass. Pipe the draft text or pass the file path:
+Run the bundled readability script whenever the scripts run (every mode except Developmental and Proofread-only; see Modes at a glance). Pipe the draft text or pass the file path:
 
 ```bash
 echo "the draft text here" | python3 ${CLAUDE_PLUGIN_ROOT}/skills/red-pen/scripts/readability.py
@@ -147,15 +147,15 @@ python3 ${CLAUDE_PLUGIN_ROOT}/skills/red-pen/scripts/readability.py /path/to/dra
 
 The script scores plain text or a `.md`/`.txt` path. It will not parse a `.docx`: it refuses binary input rather than returning garbage scores. For a Word doc, extract the text first (via the docx skill), then pipe that text in.
 
-This is not optional: run it. The script returns Flesch Reading Ease, Flesch-Kincaid Grade Level, Gunning Fog Index, average sentence length, complex word percentage, the five longest sentences, a concreteness score, and per-section breakdowns when headers are present. Use these numbers to anchor your editorial instincts: "your Flesch score drops from 64 to 41 in section 3, that's where you're losing the casual reader" is more useful than "this section feels dense." The numbers serve the judgment, not the other way around.
+In those modes it's not optional: run it. The script returns Flesch Reading Ease, Flesch-Kincaid Grade Level, Gunning Fog Index, average sentence length, complex word percentage, the five longest sentences, a concreteness score, and per-section breakdowns when headers are present. Use these numbers to anchor your editorial instincts: "your Flesch score drops from 64 to 41 in section 3, that's where you're losing the casual reader" is more useful than "this section feels dense." The numbers serve the judgment, not the other way around.
 
 **Concreteness** is the orthogonal one, and the one writers miss. It scores how picturable the language is (1 = abstract, 5 = concrete), flags the most abstract sentences, and lists the vaguest words. Reading level and concreteness don't track each other: "we deliver value through innovative solutions" is easy to read and says nothing (it scores near 2); "we cut deploy time to 90 seconds" scores near 4. A low score with high coverage means abstraction soup, the spot to demand specifics. Like every number here, it's a flag for judgment: a thesis line or a stated principle is allowed to be abstract.
 
-The readability target depends on content type. Check the content-type calibration section before judging the numbers. Blog posts should stay at Flesch 60–70. Customer stories can run Flesch 45–60 because narrative detail earns longer sentences. Keynotes should run low (FK 6–8) because they're written for the ear. The writer's audience and content type determine the target, not a universal rule.
+The readability target depends on content type: judge the numbers against the bands in Content-type calibration above, adjusted for the reader the writer named. A miss against the band is a finding; a number on its own isn't.
 
 ### Repetition scan
 
-Always run the bundled repetition script alongside the readability script, on every edit and diagnostic pass. Pass the piece's subject terms so the scan knows what is allowed to recur:
+Run the bundled repetition script alongside the readability script, in the same modes. Pass the piece's subject terms so the scan knows what is allowed to recur:
 
 ```bash
 python3 ${CLAUDE_PLUGIN_ROOT}/skills/red-pen/scripts/repetition.py /path/to/draft.md --terms "forge,model,plan"
@@ -285,8 +285,6 @@ Place comments on the actual words or sentences that triggered the flag. Don't c
 - The **Protect this** section, because the writer deserves to know what to keep, not just what to fix
 
 Save the annotated document next to the original, with `-red-pen` appended to the filename (e.g., `saaspocalypse-red-pen.docx`), unless the user named another location this session or in their CLAUDE.md. If the original came from somewhere you can't write to (a chat upload, a cloud drive with no connector), ask where to save it. Tell the user where the file is.
-
-This mode is automatic when the input is a `.docx` file. The writer shouldn't have to ask for it; if they handed you a Word doc, they want the feedback in the Word doc.
 
 ## Tone and style experimentation
 

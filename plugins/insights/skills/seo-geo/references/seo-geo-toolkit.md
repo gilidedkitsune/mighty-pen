@@ -2,7 +2,7 @@
 
 Which SEO/GEO skill to run at which stage of a content project. This reference owns the **choreography**; the skill's `SKILL.md` owns **what data is connected and how to pull it**.
 
-**Before running anything, check connection status in `../SKILL.md` ("What's connected").** Google (GA4 + Search Console) is connected through this skill once configured. DataForSEO, Firecrawl, and PageSpeed/CrUX are not. **AI-answer visibility is connected via a Cairrot connector**, where one is set up, never estimated otherwise. If a trigger below calls a skill whose backend isn't connected, skip it (say so in one line) or ask the user for the data — never fabricate volumes, difficulty, or rankings. Also skip any trigger when the user already handed you the data it would fetch (e.g. they gave you keywords → skip keyword research).
+**Before running anything, check "What's connected" in seo-geo's SKILL.md**, the one list of what's wired and what's gated. Every trigger below assumes that check: if its backend isn't connected, skip it (say so in one line) or ask the user for the data, and skip any trigger whose data the user already handed you.
 
 ---
 
@@ -16,10 +16,10 @@ These fire when their stage and conditions are met **and** the data backend each
 |-----------|--------|
 | Content type is blog, long-form, or website copy AND the user hasn't provided target keywords | Run `/keyword-research` for the topic. Use results to inform the outline. *(Needs DataForSEO — gated. Ask the user for target keywords instead.)* |
 | Content type is blog or long-form AND this is a Content Bonanza workflow | Run `/serp-analysis` on the primary keyword to see what Google rewards (format, depth, features, AI Overviews). *(Needs DataForSEO — gated.)* |
-| The user mentions a competitor by name or asks to differentiate | Run `/competitor-analysis` on the named competitor. *(Data-heavy parts need DataForSEO; the strategic read does not.)* For AI share of voice against the named competitor, run a Cairrot competitors pull (live, where connected). |
+| The user mentions a competitor by name or asks to differentiate | Run `/competitor-analysis` on the named competitor. *(Data-heavy parts need DataForSEO; the strategic read does not.)* For AI share of voice against the named competitor, run `aeo-insights` (its competitor view). |
 | Content type is blog and the piece is part of a series or hub | Run `/seo-cluster` to validate the topic-cluster structure and internal-link plan. *(Intent-only mode is safe with no backend; SERP-overlap mode needs DataForSEO.)* |
 | You need the site's current traffic or search performance to ground the piece | Pull it with this skill's `ga4` / `gsc` commands (connected). |
-| GEO priority is high, the user asks where the subject shows up in AI answers, or an idea's "GEO opportunity" needs grounding | Pull Cairrot (the MCP connector's `search_mentions` and `search_citations`, where configured) for visibility, named-vs-cited, per-topic and per-model breakdowns, and the competitor leaderboard, and state the window. If Cairrot isn't connected or returns nothing, say so. Never guess. |
+| GEO priority is high, the user asks where the subject shows up in AI answers, or an idea's "GEO opportunity" needs grounding | Run `aeo-insights` (named versus cited, per topic and per engine, competitors) and state the window. If it reports it isn't connected, say so. Never guess. |
 
 ### During drafting (Step 4)
 
@@ -68,7 +68,7 @@ Offer when the user shares a live URL or asks about performance:
 
 | Skill | When to offer | What it does |
 |-------|--------------|-------------|
-| `/performance-reporter` | User wants a report/dashboard on content performance | SEO/GEO report with KPI tracking — **feed it real numbers from this skill's `ga4`/`gsc` pulls; for AI-answer KPIs pull from Cairrot live and label the window** |
+| `/performance-reporter` | User wants a report/dashboard on content performance | SEO/GEO report with KPI tracking: **feed it real numbers from this skill's `ga4`/`gsc` pulls, and AI-answer KPIs from `aeo-insights`, each labeled with its window** |
 | `/content-refresher` | Published content is aging or losing traffic | What to update: stale stats, new competitors, decayed sections — **ground it in this skill's GSC trend pull** |
 | `/seo-audit` | User shares a live URL and wants a full audit | Comprehensive page audit *(crawl steps need Firecrawl — gated)* |
 | `/seo-page` | User wants a deep single-page analysis | One URL: content, keywords, links, schema, performance |
@@ -79,15 +79,7 @@ Offer when the user shares a live URL or asks about performance:
 
 ## Data integrations
 
-| Skill / source | Connects to | Status | When to use |
-|----------------|-------------|--------|-------------|
-| **seo-geo** (this skill) | GA4 + Search Console for the configured site | ✅ connected, once set up | Real traffic and search-performance numbers for the site. The default for "our actual data." |
-| **Cairrot** (MCP connector) | AI answer visibility (ChatGPT, Gemini, Claude, Perplexity, AI Overviews, DeepSeek, Grok) | ✅ connected where set up (per-user setup in `aeo-insights`) | Visibility, named vs cited, per-topic and per-model, competitor leaderboard, sentiment, crawler hits. |
-| `/seo-google` | GSC, PageSpeed, CrUX, GA4 (generic) | partial | Generic Google-API skill. Prefer this skill's puller once configured; `/seo-google` is for the PageSpeed/CrUX angles, which aren't wired. |
-| `/seo-dataforseo` | Live SERP, keyword metrics, backlinks | ❌ gated | Search volume, difficulty, SERP features, competitor data — only with the DataForSEO extension. |
-| `/seo-firecrawl` | Full-site crawl | ❌ gated | Site crawl, internal-link inventory — only with Firecrawl. |
-| `/seo-backlinks` | Backlink profile | ❌ gated | Link signals — data parts need DataForSEO. |
-| `/domain-authority-auditor` | Domain authority / competitive position | ❌ gated | How aggressively to target keywords — needs external authority data. |
+Connection status for every source (Google, DataForSEO, Firecrawl, PageSpeed, authority data) lives in seo-geo's "What's connected". AI-answer visibility is `aeo-insights`.
 
 ---
 
@@ -114,6 +106,6 @@ DRAFT COMPLETE
        └─ No (social, email, internal) → skip SEO/GEO skills
 
 POST-PUBLISH
-  └─ Tracking performance? → seo-geo ga4/gsc (live) + Cairrot (live, where set up) → /performance-reporter, /content-refresher
+  └─ Tracking performance? → seo-geo ga4/gsc (live) + aeo-insights (where wired) → /performance-reporter, /content-refresher
   └─ User shares live URL? → offer /seo-audit (crawl gated) or /seo-page
 ```
