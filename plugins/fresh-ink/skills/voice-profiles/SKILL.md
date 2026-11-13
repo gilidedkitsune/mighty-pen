@@ -4,7 +4,7 @@ description: >
   Library of individual voice and tone profiles, for writing in a specific person's voice
   instead of the default, plus the routine that builds a new profile from 3 to 5 writing
   samples. Trigger on "build a voice profile", "capture my voice", "capture [name]'s voice",
-  "write like [person]", "add a voice", or "make a tone profile from these". quill reads the
+  "write like [person]", "add a voice", or "make a tone profile from these". craft reads the
   roster at draft time; without a profile, everything uses tone-and-guidelines.
 metadata:
   version: 2.1.0
@@ -20,7 +20,7 @@ metadata:
 |---|---|---|---|---|
 | *(none loaded yet)* | | | | |
 
-This table is the **single source of truth for the voice roster**. quill builds its voice-selection menu from it at draft time (the default voice from `tone-and-guidelines` plus these rows via their Menu blurbs). **Adding a voice:** run the capture routine below, which writes the profile file to `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/references/` and adds the row here; quill's menu follows automatically, no edit there.
+This table is the **single source of truth for the voice roster**. craft builds its voice-selection menu from it at draft time (the default voice from `tone-and-guidelines` plus these rows via their Menu blurbs). **Adding a voice:** run the capture routine below, which writes the profile file to `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/references/` and adds the row here; craft's menu follows automatically, no edit there.
 
 ## How to Use
 1. Read the relevant person's tone file before drafting content in their voice.

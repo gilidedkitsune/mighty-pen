@@ -1,14 +1,14 @@
 ---
 name: blog
 description: >
-  Write blog posts and SEO blog content. Use this skill for any blog content task: write a post from scratch, produce a content brief or outline, optimize an existing draft, or analyze a competitor URL and write a post to outrank it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief", "blog brief", "optimize this post", "outrank this article", or any request for blog content. Do NOT trigger for other content types (social posts, emails, ads, landing pages, 1-pagers); those route through quill. This skill runs robust intake and research, drafts to the locked SEO-blog shape with the default voice from tone-and-guidelines in the register the post calls for (B2B tech buyer for technical-product posts, personal for Taylor's own), and audits with no-slops before presenting clean copy.
+  Write blog posts and SEO blog content. Use this skill for any blog content task: write a post from scratch, produce a content brief or outline, optimize an existing draft, or analyze a competitor URL and write a post to outrank it. Trigger on "blog post", "write a blog post", "draft a blog", "content brief", "blog brief", "optimize this post", "outrank this article", or any request for blog content. Do NOT trigger for other content types (social posts, emails, ads, landing pages, 1-pagers); those route through craft. This skill runs robust intake and research, drafts to the locked SEO-blog shape with the default voice from tone-and-guidelines in the register the post calls for (B2B tech buyer for technical-product posts, personal for Taylor's own), and audits with no-slops before presenting clean copy.
 ---
 
 # Blog Writer
 
-You write blog content. quill delegates every blog request here, so this skill owns the blog's shape: the four workflows, the post structure, the brief template, on-page SEO, and the citation format. Everything that isn't blog-specific (the promise, research, drafting craft, voice, and the edit order) follows quill's workflow in `${CLAUDE_PLUGIN_ROOT}/skills/quill/SKILL.md`; this file points there instead of repeating it, so the two can't drift apart.
+You write blog content. craft delegates every blog request here, so this skill owns the blog's shape: the four workflows, the post structure, the brief template, on-page SEO, and the citation format. Everything that isn't blog-specific (the promise, research, drafting craft, voice, and the edit order) follows craft's workflow in `${CLAUDE_PLUGIN_ROOT}/skills/craft/SKILL.md`; this file points there instead of repeating it, so the two can't drift apart.
 
-**Before writing anything,** read the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md` (pass 0 puts no-slops's rulebook in front of you as drafting constraints) and the voice in `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`, in the register the post calls for. **No-slops runs on every output,** briefs, outlines, FAQs, and meta copy included: the 35/50 gate, zero em dashes.
+**Before writing anything,** read the craft passes in `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` (pass 0 puts no-slops's rulebook in front of you as drafting constraints) and the voice in `${CLAUDE_PLUGIN_ROOT}/skills/tone-and-guidelines/SKILL.md`, in the register the post calls for. **No-slops runs on every output,** briefs, outlines, FAQs, and meta copy included: the 35/50 gate, zero em dashes.
 
 ## Four workflows
 
@@ -25,7 +25,7 @@ If it isn't clear which one they want, ask: "Do you want a full post, an outline
 
 ## Step 1: The promise, then the blog specifics
 
-Run quill's promise module first (quill Step 1, "The promise"): who it's for, what it's for, and why they should care, confirmed in one round. Most blogs are AEO/GEO with a buyer stage; name both. No answer to "why should they care" means no thesis yet; stop.
+Run craft's promise module first (craft Step 1, "The promise"): who it's for, what it's for, and why they should care, confirmed in one round. Most blogs are AEO/GEO with a buyer stage; name both. No answer to "why should they care" means no thesis yet; stop.
 
 Then one more round for what only a blog needs:
 1. **Target keyword**, primary plus any secondaries (search-weave will ask for questions and citations later; collect them now if the user has them)
@@ -35,18 +35,18 @@ Then one more round for what only a blog needs:
 
 ## Step 2: Research
 
-Follow quill Step 2: web research, internal context only from connectors that are actually there, and every stat or quote handed to **cited-works** by name (or cited origin-first by hand if it isn't installed). Two blog-specific rules on top:
+Follow craft Step 2: web research, internal context only from connectors that are actually there, and every stat or quote handed to **cited-works** by name (or cited origin-first by hand if it isn't installed). Two blog-specific rules on top:
 
 - **At least two credible sources** per post, internal or external.
-- **Citation format, every post.** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim; the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, bibliography, or works-cited block; Chicago belongs to long-form, which routes through quill. Ask cited-works to return citations in this format.
+- **Citation format, every post.** Two parts, both required: **hyperlink the phrase that carries the statistic** (not the publisher's name), then **close the sentence with a plain-text "(Publisher Name, date)"**. Example: "onboarding time [dropped 40% in 2026](url) (Forrester, 2026)." The anchor text carries the claim; the plain parenthetical keeps the attribution attached when an engine lifts the passage and strips the markup. No footnotes, bibliography, or works-cited block; Chicago belongs to long-form, which routes through craft. Ask cited-works to return citations in this format.
 
-**Position the post** before drafting: searchable, shareable, or both; buyer stage; pillar and internal-link opportunities; and the gap it fills that competitors haven't. For a series or a backlog, use quill's ideation workflow.
+**Position the post** before drafting: searchable, shareable, or both; buyer stage; pillar and internal-link opportunities; and the gap it fills that competitors haven't. For a series or a backlog, use craft's ideation workflow.
 
 ---
 
 ## Workflow 1: Write from Scratch
 
-Draft with quill Step 4: prose-craft passes 0 through 8, then the voice. The structure below is the skeleton; prose-craft is how each section gets written.
+Draft with craft Step 4: prose-craft passes 0 through 8, then the voice. The structure below is the skeleton; prose-craft is how each section gets written.
 
 ### Post structure
 ```
@@ -119,7 +119,7 @@ Intro rules, the intro must:
 
 [...continue]
 
-Section rules, from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md` §6 and §4: one move per section, named. Each section follows from the one before with *but* or *therefore*, never *and then*; a section that could open with "additionally" hasn't earned its slot. Every section names the specific it will carry, because a section with only a principle gives the reader nothing to hold. Let the outline be lopsided: the section you care about gets the weight.
+Section rules, from `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md` §6 and §4: one move per section, named. Each section follows from the one before with *but* or *therefore*, never *and then*; a section that could open with "additionally" hasn't earned its slot. Every section names the specific it will carry, because a section with only a principle gives the reader nothing to hold. Let the outline be lopsided: the section you care about gets the weight.
 
 **Kicker:** [the fact, image, or consequence the post lands on. Never a summary. It will change while drafting; naming it now is what stops the post ending on a wrap-up. See prose-craft §7: the kicker is the second-best line in the piece, and the lead gets the best one.]
 
@@ -193,13 +193,13 @@ Read `${CLAUDE_PLUGIN_ROOT}/skills/blog/references/competitor-research.md` in fu
 
 ## Present
 
-Deliver clean, ready-to-publish copy: title (sentence case), the full body, the meta description, and the slug. If the user wants a file, ask where it should go and in what format (quill Step 6).
+Deliver clean, ready-to-publish copy: title (sentence case), the full body, the meta description, and the slug. If the user wants a file, ask where it should go and in what format (craft Step 6).
 
 ### Edit passes
 
-The same Step 5 menu and order as quill: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in quill Step 5.
+The same Step 5 menu and order as craft: the no-slops gate, then the Schwartz re-angle and Ogilvy (on request; `headline-lab` when only the headline is in question), then **search-weave** (default for every published post), then **red-pen** (default, always last), then the final no-slops sweep. Skip what the post doesn't need; never reorder what runs. Full descriptions are in craft Step 5.
 
-**Data, if you have it.** Keywords, questions, and citations come from the user's brief by default. If the Insights plugin is installed and wired, its `seo-geo` skill can supply real Search Console queries and the stage-by-stage SEO tool map, and `aeo-tracker` the AI-answer baseline; both stay dormant otherwise. Never fabricate metrics.
+**Data, if you have it.** Keywords, questions, and citations come from the user's brief by default. If the Insights plugin is installed and wired, its `seo-geo` skill can supply real Search Console queries and the stage-by-stage SEO tool map, and `aeo-insights` the AI-answer baseline; both stay dormant otherwise. Never fabricate metrics.
 
 ## Brand reminder
 

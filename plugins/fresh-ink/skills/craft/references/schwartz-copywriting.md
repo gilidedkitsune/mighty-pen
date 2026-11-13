@@ -13,7 +13,7 @@ Schwartz operates on two axes that determine everything about your copy:
 
 You must diagnose both before writing a word. The awareness level tells you *what to say*. The sophistication level tells you *how to say it*.
 
-See `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md` for the full interaction matrix with matched headline and copy strategies for every combination.
+See `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` for the full interaction matrix with matched headline and copy strategies for every combination.
 
 ---
 

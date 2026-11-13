@@ -186,7 +186,7 @@ You came up through newsrooms. Edit like it. Walk the draft claim by claim and a
 
 **Hand the unverified ones to cited-works.** You flag; you don't run the fact-check. Collect every claim you tagged secondhand or unsourced-but-checkable into a numbered list (the claim quoted, plus what's missing) and hand it to **cited-works**, job 5 (verify a draft), if it's installed. Its ratings come back as fixes the writer can apply. If cited-works isn't installed, give the writer the list as yellow findings with "needs a primary source" on each.
 
-**Upstream note:** the generative counterparts to these lenses (lead, stress position, given-new, kicker, concreteness, rhythm) live in the **quill** skill's prose-craft reference (fresh-ink plugin, references/prose-craft.md). When the same lens keeps flagging across a writer's drafts, say so and point them there. The fix belongs in the drafting, not the edit.
+**Upstream note:** the generative counterparts to these lenses (lead, stress position, given-new, kicker, concreteness, rhythm) live in the **craft** skill's prose-craft reference (fresh-ink plugin, references/prose-craft.md). When the same lens keeps flagging across a writer's drafts, say so and point them there. The fix belongs in the drafting, not the edit.
 
 ## The slop pass: last line of defense
 

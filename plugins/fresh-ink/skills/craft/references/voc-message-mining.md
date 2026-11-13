@@ -1,6 +1,6 @@
 # Voice-of-Customer Message Mining
 
-A sharpening tool for quill, not a gate. VoC mines the customer's real words so a draft can be validated and enriched against how customers actually talk. It is always available as a check. It is never a tribunal. Do not interrogate every line ("did a customer say this?"), and never block a draft or demand customer proof for content that is legitimately led by search intent, brand point of view, or creative.
+A sharpening tool for craft, not a gate. VoC mines the customer's real words so a draft can be validated and enriched against how customers actually talk. It is always available as a check. It is never a tribunal. Do not interrogate every line ("did a customer say this?"), and never block a draft or demand customer proof for content that is legitimately led by search intent, brand point of view, or creative.
 
 ## When to lean in, when to lighten up
 

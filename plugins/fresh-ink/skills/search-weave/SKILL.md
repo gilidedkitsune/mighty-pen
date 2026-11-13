@@ -18,7 +18,7 @@ description: >
 
 Other skills make the prose good. This one makes it **findable and citable**: ranked by search, extractable in standalone passages, and safe for an engine to quote with your name on it. It works on a finished draft, with inputs you supply. It doesn't research keywords and doesn't measure anything; it structures.
 
-**The rulebook** is `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md`: the shared spine, the three tensions, and the engine notes (its FAST-MOVING section is the single source for engine behavior; read it there, don't restate it here). The draft should already have passed the no-slops gate: structuring slop makes citable slop.
+**The rulebook** is `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/SEO-GEO-drafting.md`: the shared spine, the three tensions, and the engine notes (its FAST-MOVING section is the single source for engine behavior; read it there, don't restate it here). The draft should already have passed the no-slops gate: structuring slop makes citable slop.
 
 ## Step 1: Collect the inputs
 
@@ -28,11 +28,11 @@ One AskUserQuestion round, asking only for what the brief and the draft don't al
 |---|---|---|
 | **Primary keyword or term** | The one phrase this piece should own | Propose one from the draft's promise and the reader's likely words, and confirm |
 | **Secondary keywords** | 3 to 8 related phrases, in the reader's words | Skip; don't invent a list |
-| **Questions to answer** | What the reader types into Google or asks an assistant | Draft 5 from the brief and the reader named in quill Step 1, and confirm |
+| **Questions to answer** | What the reader types into Google or asks an assistant | Draft 5 from the brief and the reader named in craft Step 1, and confirm |
 | **Citations to work in** | Sources, stats, or pages that must be cited, plus internal pages to link | Use what's already in the draft; send any new stat need to cited-works |
 | **Who already owns the answer** | Optional: competitors or sources that win this query today | Skip |
 
-**If the Insights plugin is installed and wired,** offer to pull from it instead of asking: `seo-geo` for the Search Console queries the page or site already ranks for, and `aeo-tracker` for the winnability verdict, the named-versus-cited baseline, and the sub-questions engines actually ran. If Insights isn't installed, or it reports it isn't connected, don't mention it again; work from the user's inputs.
+**If the Insights plugin is installed and wired,** offer to pull from it instead of asking: `seo-geo` for the Search Console queries the page or site already ranks for, and `aeo-insights` for the winnability verdict, the named-versus-cited baseline, and the sub-questions engines actually ran. If Insights isn't installed, or it reports it isn't connected, don't mention it again; work from the user's inputs.
 
 Never invent search volumes, rankings, or citation numbers. A keyword list the user didn't give you and no tool returned is a guess, so label it as one.
 
@@ -41,7 +41,7 @@ Never invent search volumes, rankings, or citation numbers. A keyword list the u
 Work through the draft in this order. Apply fixes in place unless the user asked for audit-only.
 
 ### 1. The term
-Pick the phrasing the piece can actually win. A brand-new term nobody owns yet gets the bare question ("What is X?"). An established term, a competitor's brand, or a saturated head query can't be won head-on; scope it to the entity ("What is the message queue in [Product]?"). If aeo-tracker returned a winnability verdict, follow it. Put the term in the title, the first 100 words, and at least one H2, in natural language.
+Pick the phrasing the piece can actually win. A brand-new term nobody owns yet gets the bare question ("What is X?"). An established term, a competitor's brand, or a saturated head query can't be won head-on; scope it to the entity ("What is the message queue in [Product]?"). If aeo-insights returned a winnability verdict, follow it. Put the term in the title, the first 100 words, and at least one H2, in natural language.
 
 ### 2. The question tree
 Every H2 and H3 is a question a real person would type or ask, in their words ("Why did my credits run out so fast?" beats "Understanding token consumption"). Map the supplied questions and secondary keywords onto headers; where a keyword doesn't fit a header naturally, it goes in the body or nowhere. Clean H1, H2, H3 hierarchy, no skipped levels. One non-question H2 for a closing section is fine.
@@ -79,4 +79,4 @@ If a factual claim can't be verified before publishing (a feature awaiting confi
 3. **Where each keyword landed**, and any you left out because it didn't fit.
 4. **The checklist:** each pass as pass, warn, or fail, with one line of detail.
 5. **What was protected.**
-6. If Insights' aeo-tracker is wired, offer to set the baseline now and re-measure after the engines re-crawl.
+6. If Insights' aeo-insights is wired, offer to set the baseline now and re-measure after the engines re-crawl.

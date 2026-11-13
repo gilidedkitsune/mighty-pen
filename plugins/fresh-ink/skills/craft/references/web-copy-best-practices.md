@@ -238,6 +238,6 @@ Campaign-specific pages tied to a single traffic source (paid ad, email, event, 
 - No site navigation. The page is standalone. Every exit path that isn't the CTA is a leak.
 - One CTA. One. Repeated at the hero and the CTA section, but never competing with a second action.
 - Message match: the headline must deliver on whatever the ad, email, or social post promised. If the ad says "build your site in 5 minutes," the landing page opens with that exact promise.
-- Schwartz diagnosis is most critical here. The traffic source determines the reader's awareness level: paid search is usually solution-aware, social ads might be problem-aware or unaware. Consult `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md` and match the copy to the intersection.
+- Schwartz diagnosis is most critical here. The traffic source determines the reader's awareness level: paid search is usually solution-aware, social ads might be problem-aware or unaware. Consult `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` and match the copy to the intersection.
 - Copy length follows awareness. Unaware readers need longer pages. Most-aware readers need just the offer and a button.
 - Strip everything that doesn't serve the conversion. No "about us," no feature tours, no secondary links.

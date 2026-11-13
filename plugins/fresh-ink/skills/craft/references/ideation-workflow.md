@@ -2,7 +2,7 @@
 
 Research and strategy only. No drafting happens here. The goal is a prioritized list of content ideas backed by data, competitive intelligence, and audience insight.
 
-Loaded by quill when the content type routes to **Ideation** ("brainstorm", "content ideas", "what should we write", "topic ideas", "content plan"). The promise module in Step 1 runs first, as it does for every piece: an ideation run still names who the work is for and what it is for before generating anything.
+Loaded by craft when the content type routes to **Ideation** ("brainstorm", "content ideas", "what should we write", "topic ideas", "content plan"). The promise module in Step 1 runs first, as it does for every piece: an ideation run still names who the work is for and what it is for before generating anything.
 
 ---
 
@@ -40,7 +40,7 @@ Present the 5 trending topics to the user before moving into the skill pipeline.
 
 ### Research phase
 
-Run a focused SEO/GEO research pass to ground the ideation, then weave findings into the conversation (not a report dump). Without data tools, that means a web trend scan plus whatever keywords, queries, or performance numbers the user can share. If the Insights plugin is installed and wired, its `seo-geo` skill holds the tool choreography and the site's real numbers, and `aeo-tracker` holds AI-answer visibility; delegate there rather than duplicating it here.
+Run a focused SEO/GEO research pass to ground the ideation, then weave findings into the conversation (not a report dump). Without data tools, that means a web trend scan plus whatever keywords, queries, or performance numbers the user can share. If the Insights plugin is installed and wired, its `seo-geo` skill holds the tool choreography and the site's real numbers, and `aeo-insights` holds AI-answer visibility; delegate there rather than duplicating it here.
 
 For ideation specifically, the useful order is: content strategy and pillars first (`/content-strategy`), then keyword and SERP research (`/keyword-research`, `/serp-analysis`), competitor and gap analysis (`/competitor-analysis`, `/content-gap-analysis`), topic clustering (`/seo-cluster`), and the site's own GA4/GSC numbers where they ground the angle. Offer deeper passes (`/entity-optimizer`, `/seo-content-brief`, and the others in Insights' map, where installed) based on the goal.
 
@@ -58,7 +58,7 @@ For each top idea, answer:
 
 Don't present this as a formal table. Weave it into the idea description naturally: one or two sentences per idea that explain the messaging angle the Schwartz diagnosis suggests. This gives the user a head start on *how* to write each piece, not just *what* to write about.
 
-Reference `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/schwartz-5x5-matrix.md` for the full matrix. If an idea sits at an unusual intersection (e.g., Unaware + Stage 5), flag it; those combinations require specific approaches and longer copy.
+Reference `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/schwartz-5x5-matrix.md` for the full matrix. If an idea sits at an unusual intersection (e.g., Unaware + Stage 5), flag it; those combinations require specific approaches and longer copy.
 
 ### Ideation output
 
@@ -71,7 +71,7 @@ After research and the Schwartz thought exercise, present a prioritized content 
 - **Messaging angle**: the Schwartz-informed headline/lead direction (one to two sentences)
 - **Why this idea**: the data point or gap that makes it worth doing
 - **Estimated effort** (light, medium, heavy)
-- **GEO opportunity**: whether this topic has AI citation potential. Ground it in an aeo-tracker pull (Insights, where wired) and state the window; if that isn't available, mark this "not grounded" rather than guessing
+- **GEO opportunity**: whether this topic has AI citation potential. Ground it in an aeo-insights pull (Insights, where wired) and state the window; if that isn't available, mark this "not grounded" rather than guessing
 
 Organize by priority: high-impact quick wins first, then strategic investments, then long-tail opportunities.
 
@@ -88,4 +88,4 @@ If the user selects a topic, route it through the standard content type workflow
 
 ---
 
-*Moved out of quill's SKILL.md on September 17, 2026. It is a Taylor-only workflow in practice (the team uses the drafting and editing path), and it was 83 lines loading on every run of every content type.*
+*Moved out of craft's SKILL.md on September 17, 2026. It is a Taylor-only workflow in practice (the team uses the drafting and editing path), and it was 83 lines loading on every run of every content type.*

@@ -43,7 +43,7 @@ To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 ```
 /cited-works:cited-works             # research a claim, a stat, a landscape
-/fresh-ink:quill     # start a piece
+/fresh-ink:craft     # start a piece
 /red-pen:red-pen                     # edit a piece
 ```
 
@@ -58,11 +58,11 @@ To call one explicitly, plugin skills are namespaced `plugin:skill`:
 
 ## What is in fresh-ink
 
-quill is the front door; it loads the others only when a job needs them.
+craft is the front door; it loads the others only when a job needs them.
 
 | Skill | Job |
 |---|---|
-| quill | The writer and routing spine |
+| craft | The writer and routing spine |
 | tone-and-guidelines | The default voice in three registers (personal; professional for cover letters, bios, and pitches; B2B tech buyer for product and sales content), plus editorial rules and writing tips |
 | voice-profiles | Voice profiles for writing as a specific person, plus a capture routine that builds one from 3 to 5 samples (with an authorship check) |
 | content-formats | Templates for fixed-shape content (customer story, webinar, sales enablement, creator brief, and career docs: cover letter, resume bullets, bio, LinkedIn About, editor pitch) |
@@ -73,18 +73,18 @@ quill is the front door; it loads the others only when a job needs them.
 | headline-lab | About 10 headline variants on different angles, scored against Ogilvy and search-weave's term winnability |
 | socialize | Social posts from scratch or rebuilt from a finished piece, with one reference per platform: LinkedIn, X, Threads, Bluesky, Mastodon, Reddit, Hacker News, Instagram, TikTok, Shorts, newsletter, email |
 
-There's no persona library anymore: quill asks who a piece is for directly (role, seniority, what they already know) instead of picking from a ranked list.
+There's no persona library anymore: craft asks who a piece is for directly (role, seniority, what they already know) instead of picking from a ranked list.
 
 ## What is in insights (optional)
 
 | Skill | Job |
 |---|---|
 | seo-geo | Your site's real GA4 and Search Console numbers, plus the map of which SEO tools to run at each stage |
-| aeo-tracker | AI-answer visibility: named versus cited, per engine, term winnability, and before-and-after measurement (needs a Cairrot connector or similar) |
+| aeo-insights | AI-answer visibility: named versus cited, per engine, term winnability, and before-and-after measurement (needs a Cairrot connector or similar) |
 
 Both are **dormant until wired**. Each one checks for its connection first; if it isn't there, it says so in one line and stops, and fresh-ink carries on with whatever keywords and citations you supplied. When they are wired, search-weave can pull its inputs from them instead of asking you.
 
-**Setup (per person, only if you want the data):** seo-geo reads GA4 and Search Console through **your own** Google sign-in; credentials live in `~/.config/claude-seo/` on your machine and never in this repo, and the property and domain come from a `config.json` you create. aeo-tracker needs an AI-visibility connector added in Claude's settings. Ask either skill to "set it up" and it walks you through the steps.
+**Setup (per person, only if you want the data):** seo-geo reads GA4 and Search Console through **your own** Google sign-in; credentials live in `~/.config/claude-seo/` on your machine and never in this repo, and the property and domain come from a `config.json` you create. aeo-insights needs an AI-visibility connector added in Claude's settings. Ask either skill to "set it up" and it walks you through the steps.
 
 ## cited-works setup (per person)
 

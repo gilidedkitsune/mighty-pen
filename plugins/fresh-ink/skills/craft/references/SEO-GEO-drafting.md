@@ -1,6 +1,6 @@
 # SEO-GEO Drafting
 
-The embedded drafting layer for quill: how to draft copy that ranks in Google **and** gets cited by AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot). Apply to blog, long-form, and website copy. Layers on top of tone-and-guidelines and no-slops; it does not replace either.
+The embedded drafting layer for craft: how to draft copy that ranks in Google **and** gets cited by AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini, Copilot). Apply to blog, long-form, and website copy. Layers on top of tone-and-guidelines and no-slops; it does not replace either.
 
 This file is the **writing** layer only: how the words on the page earn rankings and citations. The structural pass on a finished draft is `search-weave`. The **tooling** (keyword research, SERP analysis, audits, data pulls, AI-visibility measurement) lives in the separate Insights plugin, which is optional and dormant until wired.
 
@@ -75,7 +75,7 @@ The engines barely overlap in what they cite, so write for retrieval and extract
 ## Cadence
 
 - **DURABLE (quarterly review):** the shared spine (sections 1 to 8), the entity approach, E-E-A-T-in-prose, specificity, definitive language, liftable structures.
-- **FAST-MOVING (monthly review):** the engine notes above, the exact numbers (the 40 to 60 word answer, the ~150 word passage, snippet sizes, freshness windows), and any llms.txt / markdown-first conventions. This file is wired into quill's monthly source-file check as the fast-moving layer; re-verify the FAST-MOVING items there.
+- **FAST-MOVING (monthly review):** the engine notes above, the exact numbers (the 40 to 60 word answer, the ~150 word passage, snippet sizes, freshness windows), and any llms.txt / markdown-first conventions. This file is wired into craft's monthly source-file check as the fast-moving layer; re-verify the FAST-MOVING items there.
 
 ---
 

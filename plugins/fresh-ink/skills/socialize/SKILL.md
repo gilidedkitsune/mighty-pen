@@ -30,7 +30,7 @@ Ask only what the request hasn't answered (AskUserQuestion, up to 4 per round):
 3. **The author's stake.** A claim, a number, an event, a mistake, or an experience only they have. Without one, stop and ask; there's no post yet, only a topic.
 4. **The goal.** Reach, conversation, clicks, signups, or reputation. It decides the closer and where the link goes.
 
-For a repurpose, read the whole source first and write its promise in one sentence (quill Step 1: who it's for, what they walk away with). If you can't, the source isn't finished; say so.
+For a repurpose, read the whole source first and write its promise in one sentence (craft Step 1: who it's for, what they walk away with). If you can't, the source isn't finished; say so.
 
 ## Step 2: Voice
 

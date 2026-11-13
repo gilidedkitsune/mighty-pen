@@ -245,7 +245,7 @@ Write for the whole audience without announcing that you're doing it:
 
 ## Writing Tips
 
-These are the line-level rules every piece follows. The full drafting craft (leads, sentence engineering, rhythm, kickers, the 10% cut) lives in quill's `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/prose-craft.md`: writers work those passes at draft time, then these rules and the no-slops filter gate what ships.
+These are the line-level rules every piece follows. The full drafting craft (leads, sentence engineering, rhythm, kickers, the 10% cut) lives in craft's `${CLAUDE_PLUGIN_ROOT}/skills/craft/references/prose-craft.md`: writers work those passes at draft time, then these rules and the no-slops filter gate what ships.
 
 ### The three-rules test
 Run every line that carries weight (headlines, claims, openers, CTAs) through three questions:

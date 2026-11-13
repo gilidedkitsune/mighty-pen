@@ -6,7 +6,7 @@ A production checklist and content template for webinars. Covers everything from
 
 ## Export the finished BOM (optional)
 
-By default the finished package (all drafted assets plus the run of show) exports like any other piece: a `.docx` through quill's Step 6. If the user keeps a team wiki or an editorial calendar and it's connected to the session, offer to file it there instead. Never assume either exists; ask which one, if any.
+By default the finished package (all drafted assets plus the run of show) exports like any other piece: a `.docx` through craft's Step 6. If the user keeps a team wiki or an editorial calendar and it's connected to the session, offer to file it there instead. Never assume either exists; ask which one, if any.
 
 ### Option A: a team wiki page (Notion, Confluence, or similar)
 

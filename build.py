@@ -23,13 +23,13 @@ SRC  = os.path.join(HOME, ".claude", "skills")
 REPO = os.path.dirname(os.path.abspath(__file__))
 VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 
-KIT = ["quill", "tone-and-guidelines", "voice-profiles",
+KIT = ["craft", "tone-and-guidelines", "voice-profiles",
        "no-slops", "content-formats",
        "ogilvy-copywriting", "blog", "search-weave",
        "headline-lab", "socialize"]
 STANDALONE = ["red-pen"]
 RESEARCH = ["cited-works"]
-INSIGHTS = ["seo-geo", "aeo-tracker"]
+INSIGHTS = ["seo-geo", "aeo-insights"]
 
 EXCLUDE_NAMES  = {".last-source-check", ".DS_Store", "__pycache__", ".git"}
 EXCLUDE_SUFFIX = (".pyc",)
@@ -38,10 +38,10 @@ def ignore(_dir, names):
     return [n for n in names if n in EXCLUDE_NAMES or n.endswith(EXCLUDE_SUFFIX)]
 
 def rewrite_md(text, self_name, sibling_names):
-    # D: quill's monthly-check tracker -> a writable, persistent spot
+    # D: craft's monthly-check tracker -> a writable, persistent spot
     #    (the plugin cache is volatile and changes on every update)
-    text = text.replace("~/.claude/skills/quill/.last-source-check",
-                        "~/.claude/.quill-last-source-check")
+    text = text.replace("~/.claude/skills/craft/.last-source-check",
+                        "~/.claude/.craft-last-source-check")
     # A: absolute sibling/own refs -> plugin root (leaves ~/.config/claude-seo alone)
     text = text.replace("~/.claude/skills/", "${CLAUDE_PLUGIN_ROOT}/skills/")
     # C: short-form sibling refs  `<skill>/...  ->  `${CLAUDE_PLUGIN_ROOT}/skills/<skill>/...

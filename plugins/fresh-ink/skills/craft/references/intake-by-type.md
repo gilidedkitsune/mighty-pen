@@ -1,6 +1,6 @@
 # Intake by content type
 
-The per-type intake questions for quill Step 1. Read only the block for the detected content type. Pick the two that matter most for Round 1 (they batch with the audience and mode questions in one AskUserQuestion call) and carry the rest into Round 2. Skip anything the brief already answered.
+The per-type intake questions for craft Step 1. Read only the block for the detected content type. Pick the two that matter most for Round 1 (they batch with the audience and mode questions in one AskUserQuestion call) and carry the rest into Round 2. Skip anything the brief already answered.
 
 Where a block says to load a template from `content-formats`, that template's own pre-draft checklist is part of the intake for that type.
 

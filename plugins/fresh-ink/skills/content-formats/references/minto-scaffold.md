@@ -1,6 +1,6 @@
 # Answer-First Document Scaffold (Minto / SCQA)
 
-A document-level argument skeleton for content types that must land a conclusion fast with a busy reader: executive summaries, 1-pagers, bylines and thought leadership, and sales enablement. Loaded by quill at the outline step for those types.
+A document-level argument skeleton for content types that must land a conclusion fast with a busy reader: executive summaries, 1-pagers, bylines and thought leadership, and sales enablement. Loaded by craft at the outline step for those types.
 
 This is STRUCTURE (the order an argument is built in), not drafting craft. It is distinct from the passage-level answer-first rule in `SEO-GEO-drafting.md`: that rule makes each section independently extractable; this one organizes the whole document's logic so the point lands first and the support hangs beneath it.
 

@@ -107,7 +107,7 @@ its sections and flag the gaps explicitly ("no verified source found for section
 writer knows exactly where the holes are. End with: anything trapped or unverifiable that the user
 should know is OFF the table for this topic.
 
-**Handoffs from the writing tools.** quill and blog hand this job a list of needs, one line each
+**Handoffs from the writing tools.** craft and blog hand this job a list of needs, one line each
 ("a 2025+ stat on developer time lost to flaky tests, primary source"). Answer each line in order,
 and return the citation already in the format the piece uses: the two-part inline format for blog
 and web copy (stat phrase hyperlinked, then "(Publisher, date)" closing the sentence), Chicago

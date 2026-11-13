@@ -1,5 +1,5 @@
 ---
-name: aeo-tracker
+name: aeo-insights
 description: >
   Part of the Insights plugin, and dormant until wired: if no AI-visibility source (a Cairrot
   connector or a local puller) is connected, it says so in one line and does nothing else. Once
@@ -13,7 +13,7 @@ description: >
   search-weave in fresh-ink.
 ---
 
-# AEO Tracker
+# AEO Insights
 
 The measurement half of AEO. fresh-ink's `search-weave` shapes a draft so engines can find, lift, and credit it; this skill tells you whether that's happening, where it's failing, and whether the change worked. Without it, every AEO pass is a guess that never gets graded. With it, you know which page to fix, for which engine, and whether the fix moved the number.
 

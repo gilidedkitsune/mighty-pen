@@ -1,6 +1,6 @@
 # Career docs and pitches
 
-Structural specs for the documents that sell a person rather than a product: cover letter, resume bullets, bio, LinkedIn About, and a pitch to an editor. Voice is the **professional register** in tone-and-guidelines (Register 2). quill fills these shapes; this file only defines them.
+Structural specs for the documents that sell a person rather than a product: cover letter, resume bullets, bio, LinkedIn About, and a pitch to an editor. Voice is the **professional register** in tone-and-guidelines (Register 2). craft fills these shapes; this file only defines them.
 
 ## The truth gate (all five documents)
 

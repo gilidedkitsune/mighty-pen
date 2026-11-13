@@ -6,7 +6,7 @@ description: >
   has to be found in search or AI answers, search-weave's term winnability rule. Returns a ranked
   shortlist with the reasoning. Trigger on "headline options", "headline variants", "title
   ideas", "give me headlines", "subject line options", "what should I call this", "headline
-  lab", or when quill or blog needs a headline tested. Works on a finished draft, an outline,
+  lab", or when craft or blog needs a headline tested. Works on a finished draft, an outline,
   or a one-sentence promise. Does not write or edit the body.
 ---
 
@@ -17,7 +17,7 @@ Ten honest attempts at the headline, scored, so the choice is a decision instead
 ## Inputs
 
 Ask only for what the request doesn't already give you:
-1. **The piece or its promise.** A draft, an outline, or the one-sentence promise (quill Step 1). Without a promise there's nothing to headline; ask for it.
+1. **The piece or its promise.** A draft, an outline, or the one-sentence promise (craft Step 1). Without a promise there's nothing to headline; ask for it.
 2. **Where it runs.** Blog or web page (search and AI answers matter), email subject line, LinkedIn or X post, ad, landing page hero, op-ed or pitch subject, or a personal essay.
 3. **Who it's for**, and the register (tone-and-guidelines, "Choosing a register").
 4. **The target query**, if the piece is search- or AEO-led.
@@ -52,7 +52,7 @@ Score each variant out of 10 on the checks that apply to where it runs.
 - Specific: a number, a name, a mechanism, a scene (1)
 - No negative framing, and any curiosity it opens, the body pays off (1)
 
-**Findability (search, web, and AEO pieces, 4 points).** From `${CLAUDE_PLUGIN_ROOT}/skills/search-weave/SKILL.md`, pass 1 (the term), using aeo-tracker's verdict if Insights is wired:
+**Findability (search, web, and AEO pieces, 4 points).** From `${CLAUDE_PLUGIN_ROOT}/skills/search-weave/SKILL.md`, pass 1 (the term), using aeo-insights's verdict if Insights is wired:
 - Contains the target term or the reader's phrasing of it (1)
 - The term is winnable: greenfield, or scoped to the entity, not a head-on run at an owned term (2)
 - Works as a lifted answer: an engine could quote it and it would still make sense (1)
