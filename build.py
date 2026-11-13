@@ -26,7 +26,7 @@ VERSION = sys.argv[1] if len(sys.argv) > 1 else "1.0.0"
 KIT = ["quill", "tone-and-guidelines", "voice-profiles",
        "no-slops", "content-formats",
        "ogilvy-copywriting", "seo-geo", "blog", "aeo-craft",
-       "headline-lab", "repurpose"]
+       "headline-lab", "socialize"]
 STANDALONE = ["red-pen"]
 RESEARCH = ["cited-works"]
 
@@ -92,7 +92,7 @@ def main():
     build_plugin("fresh-ink", KIT,
         "The make-it kit: routing spine, three voice registers (personal, professional, "
         "B2B tech buyer), voice capture, content and career formats, headline lab, "
-        "repurposing, Ogilvy, slop audit, and SEO/GEO data for written content.")
+        "per-platform social writing, Ogilvy, slop audit, and SEO/GEO data for written content.")
     build_plugin("red-pen", STANDALONE,
         "The fix-it tool: a tough, exacting copyeditor with verdict-first review, "
         "quick-fix or full report, developmental and proofread-only modes, and "
@@ -108,7 +108,7 @@ def main():
         "description": "Personal writing and editing skills: research, draft, and edit.",
         "plugins": [
             {"name": "fresh-ink", "source": "./plugins/fresh-ink",
-             "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + repurposing + SEO/GEO.",
+             "description": "The make-it kit: routing spine + craft + three voice registers + formats + headlines + social + SEO/GEO.",
              "version": VERSION},
             {"name": "red-pen", "source": "./plugins/red-pen",
              "description": "The fix-it tool: verdict-first copyedit, developmental and proofread modes, concreteness scoring.",

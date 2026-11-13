@@ -13,11 +13,7 @@ Where a block says to load a template from `content-formats`, that template's ow
 - Customer name, company, what they built, the problem before, the measurable outcome
 - Available assets: interview transcript, quotes, screenshots, data?
 
-**Social:**
-- Platform (LinkedIn, X, Reddit)
-- Key message or hook
-- Links or assets to include
-- Part of a series or standalone?
+**Social:** delegated to `socialize`, which runs its own brief (platforms, whose account, the author's stake, the goal).
 
 **Email:**
 - Email type (announcement, nurture, transactional, sequence)

@@ -29,7 +29,7 @@ The skills **trigger automatically** when you describe a task, so most of the ti
 - "Draft a customer story about a team that shipped in a weekend" starts fresh-ink.
 - "Edit this" with a pasted draft starts red-pen. "Proofread this" or "developmental edit" picks its other modes.
 - "Fact-check this draft" starts cited-works' verify job.
-- "Give me headline options" or "turn this into a LinkedIn post" starts headline-lab or repurpose.
+- "Give me headline options" starts headline-lab. "Write a LinkedIn post about this" or "turn this into a thread" starts socialize.
 - "Build a voice profile from these samples" starts voice-profiles' capture routine.
 
 To call one explicitly, plugin skills are namespaced `plugin:skill`:
@@ -65,7 +65,7 @@ quill is the front door; it loads the others only when a job needs them.
 | aeo-craft | The citability sculpt for published work: gets a draft found, extracted, and cited by AI answer engines |
 | seo-geo | Live SEO/GEO data and tooling (setup below) |
 | headline-lab | About 10 headline variants on different angles, scored against Ogilvy and aeo-craft winnability |
-| repurpose | One finished piece rebuilt for LinkedIn, X, newsletter, and email, citations intact |
+| socialize | Social posts from scratch or rebuilt from a finished piece, with one reference per platform: LinkedIn, X, Threads, Bluesky, Mastodon, Reddit, Hacker News, Instagram, TikTok, Shorts, newsletter, email |
 
 There's no persona library anymore: quill asks who a piece is for directly (role, seniority, what they already know) instead of picking from a ranked list.
 

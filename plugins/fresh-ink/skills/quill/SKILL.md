@@ -1,7 +1,7 @@
 ---
 name: quill
 description: >
-  Writing and content strategy agent. Handles all content types: blog posts, customer stories, social media, emails, website copy, long-form (whitepapers, ebooks), survey reports, ads, executive summaries, 1-pagers, bylines, webinars, event copy, sales enablement, content creator briefs, cover letters, resumes, bios, LinkedIn About sections, editor pitches, personal essays, and content strategy/ideation. Routes headline options to headline-lab and repurposing to repurpose. Trigger on: "I need a [content type]", "write a", "draft a", "brainstorm content ideas", "what should we write", "content ideation", "topic ideas", "content plan", "webinar", "webinar BOM", or any request to create written content. Also trigger when the user mentions specific formats like "LinkedIn post", "case study", "landing page copy", "whitepaper", "customer story", or "webinar content", or career documents like "cover letter", "resume bullets", "bio", or "pitch an editor". If the output will be read by an audience beyond this conversation, this skill applies.
+  Writing and content strategy agent. Handles all content types: blog posts, customer stories, social media, emails, website copy, long-form (whitepapers, ebooks), survey reports, ads, executive summaries, 1-pagers, bylines, webinars, event copy, sales enablement, content creator briefs, cover letters, resumes, bios, LinkedIn About sections, editor pitches, personal essays, and content strategy/ideation. Routes headline options to headline-lab, and social posts and repurposing to socialize. Trigger on: "I need a [content type]", "write a", "draft a", "brainstorm content ideas", "what should we write", "content ideation", "topic ideas", "content plan", "webinar", "webinar BOM", or any request to create written content. Also trigger when the user mentions specific formats like "LinkedIn post", "case study", "landing page copy", "whitepaper", "customer story", or "webinar content", or career documents like "cover letter", "resume bullets", "bio", or "pitch an editor". If the output will be read by an audience beyond this conversation, this skill applies.
 ---
 
 # Writer
@@ -32,7 +32,7 @@ The user's first message names what they need. Detect the content type from it (
 | Content ideation | "brainstorm", "content ideas", "ideation", "what should we write", "topic ideas", "content plan" | Ideation | None |
 | Blog | "blog post", "article", "post", "content brief", "blog brief", "outrank" | Delegate | Hand to the **blog** skill (the robust blog default: it owns the blog shape, brief, optimize, and outrank workflows). |
 | Customer story | "customer story", "case study" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/customer-story-template.md` |
-| Social | "social", "LinkedIn", "X post", "tweet", "Reddit" | Light | None |
+| Social | "social", "LinkedIn", "X post", "tweet", "thread", "Threads", "Bluesky", "Reddit", "Show HN", "caption", "Reel script" | Delegate | Hand to the **socialize** skill (drafts from scratch and repurposes; one reference per platform). |
 | Email | "email", "newsletter", "drip", "email sequence" | Light | None |
 | Website copy | "website copy", "landing page", "hero copy" | Medium | `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/web-copy-best-practices.md` + `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` |
 | Long-form | "whitepaper", "ebook", "guide", "manual", "survey report", "research report", "findings" | Full | `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/SEO-GEO-drafting.md` |
@@ -46,7 +46,7 @@ The user's first message names what they need. Detect the content type from it (
 | Pitch | "pitch", "op-ed pitch", "pitch an editor", "story pitch", "guest post pitch" | Template | `${CLAUDE_PLUGIN_ROOT}/skills/content-formats/references/career-docs-template.md` |
 | Personal essay | "personal essay", "essay", "memoir", "personal piece", "newsletter essay" | Medium | None |
 | Headlines | "headline options", "headline variants", "title ideas", "subject lines", "headline lab" | Delegate | Hand to the **headline-lab** skill. |
-| Repurpose | "repurpose", "turn this into", "socialize", "cut this down for", "atomize" | Delegate | Hand to the **repurpose** skill. |
+| Repurpose | "socialize", "repurpose", "turn this into", "cut this down for", "atomize" | Delegate | Hand to the **socialize** skill. |
 
 **Reference: None** means there's no dedicated template for that type; follow tone-and-guidelines plus the type-specific rules in Step 4.
 
@@ -60,7 +60,7 @@ The user's first message names what they need. Detect the content type from it (
 - **Medium** = promise → intake → outline → draft → edit → present (skip deep research)
 - **Light** = promise → intake → draft → edit → present (skip research and outline)
 - **Template** = promise → intake → load the content-type's structural scaffold from the `content-formats` skill → work through its checklist → draft → edit → present
-- **Delegate** = hand the whole job to a dedicated skill that owns this content type (blog → `blog`, which runs its own promise module; headlines → `headline-lab`; repurposing → `repurpose`); don't run quill's workflow for it, the promise included
+- **Delegate** = hand the whole job to a dedicated skill that owns this content type (blog → `blog`, which runs its own promise module; headlines → `headline-lab`; social posts and repurposing → `socialize`); don't run quill's workflow for it, the promise included
 
 If the content type isn't clear, ask.
 
@@ -83,7 +83,7 @@ The three answers are the promise (prose-craft pass 1): who this is for, and wha
 
 Before asking, try to infer the mode from the user's message:
 
-- **Quick-and-dirty signals:** "quick", "fast", "just need a", "bang out", "rough draft", "knock out", short requests with source material already attached, or any Light workflow content type (social, email).
+- **Quick-and-dirty signals:** "quick", "fast", "just need a", "bang out", "rough draft", "knock out", short requests with source material already attached, or any Light workflow content type (email).
 - **Content Bonanza signals:** "full workflow", "deep dive", "SEO research", "content bonanza", "the works", "let's do this right", content ideation requests, or any request that names a specific voice, Schwartz lens, or asks for an edit pass by name.
 
 If signals are clear, state the inferred mode and proceed ("This reads like a quick-and-dirty; I'll skip the full workflow and get you clean copy. Let me grab a few details."). The user can override.
@@ -232,18 +232,13 @@ Work them on every piece longer than a one-liner. Drafting inside pass 0's const
 
 ### Short-form structure
 
-For social, email, ads, and other short-form quick hits (the Light-workflow types that skip the Schwartz diagnosis), reach for a proven skeleton from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/micro-formulas.md` (PAS, BAB, AIDA, PASTOR, FAB, 4Ps); FAB doubles as the feature-to-benefit antidote to feature-dumping. For long-form and persuasion-heavy work, the Step 2 Schwartz diagnosis leads; the formulas are the quick-draft tool, not the strategy layer.
+For email, ads, and other short-form quick hits (the Light-workflow types that skip the Schwartz diagnosis; social has its own hooks in `socialize`), reach for a proven skeleton from `${CLAUDE_PLUGIN_ROOT}/skills/quill/references/micro-formulas.md` (PAS, BAB, AIDA, PASTOR, FAB, 4Ps); FAB doubles as the feature-to-benefit antidote to feature-dumping. For long-form and persuasion-heavy work, the Step 2 Schwartz diagnosis leads; the formulas are the quick-draft tool, not the strategy layer.
 
 Type-specific rules below.
 
-### Voice selection (social only)
+### Voice selection (social)
 
-Before drafting social content, build the voice menu and ask which voice to use (AskUserQuestion). **Don't hardcode the roster here** — voice-profiles is the single source of truth for who's on it. The menu is a recipe:
-
-1. **Default voice** (the default choice): the voice from tone-and-guidelines, in the register the post calls for (personal for Taylor's own feed, professional for career posts, B2B tech buyer for a company account selling to technical buyers).
-2. **Every voice in voice-profiles**: read the Available Voices table in `${CLAUDE_PLUGIN_ROOT}/skills/voice-profiles/SKILL.md` and offer each person listed, using the table's **Menu blurb** as the option description.
-
-If a person's voice is selected, read their tone profile from the file listed in that table and apply it on top of the tone-and-guidelines editorial guidelines. The tone profile shapes how the piece sounds; the editorial guidelines still govern grammar and formatting, and Step 5 still runs in full. Ogilvy is not on this menu because it is not a voice: it is an edit pass (Step 5c) that applies on top of whichever voice the draft is in.
+Social is delegated to `socialize`, which runs the voice menu itself: the default voice in the right register first, then every person in the voice-profiles roster by Menu blurb. For webinar or launch posts that go out under a named person's account, hand the post to socialize with that person named.
 
 ### Blog-specific
 Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting rules live here: blog owns the shape, citations (the two-part inline format: stat phrase hyperlinked, plain "(Publisher, date)" closing the sentence), SEO requirements, and audit. For a blog in a specific person's voice, tell blog; it reads the profile from voice-profiles.
@@ -257,9 +252,7 @@ Blogs are delegated to the `blog` skill at routing (Step 1). No blog drafting ru
 - **Ogilvy pass on by default** (Step 5c). It fits this type almost one to one: one promise (what they achieved), the headline carries it, facts over adjectives (the numbers and the quotes), and the product is the hero of the build, not the writing.
 
 ### Social-specific
-- **LinkedIn:** Professional with humor. Light emoji. Target ~250-1,300 characters depending on format.
-- **X:** Brevity first. Target ~250 characters (under "read more" threshold). Room for irreverence.
-- **Reddit:** Most casual voice. Drop corporate posture entirely.
+Delegated to `socialize` at routing (Step 1). It owns platform formats, limits, current feed mechanics, and the social tells; nothing here duplicates it.
 
 ### Email-specific
 - Subject line + body. Subject lines are concise and specific, no clickbait.
